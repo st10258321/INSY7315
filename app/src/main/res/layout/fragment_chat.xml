@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/warm_grey"
+    tools:context=".fragments.ChatFragment">
+
+    <!-- Chat Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary_teal"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/backToProfileBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back_white_24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back to Profile"
+            app:tint="@color/white"
+            android:layout_marginEnd="16dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chatPartnerPic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_person_black_24dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/white"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:id="@+id/chatPartnerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chat with Jane Doe"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Chat Messages Area -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatMessagesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:clipToPadding="false"
+        android:background="@color/warm_grey"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_chat_message_received" />
+
+    <!-- Chat Input Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/messageInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/chat_input_background"
+            android:hint="@string/type_message_hint"
+            android:imeOptions="actionSend"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:singleLine="true"
+            android:textColor="@color/deep_blue"
+            android:textColorHint="@color/text_light_grey"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/sendMessageBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_send_white_24dp"
+            android:background="@drawable/send_button_background"
+            android:contentDescription="@string/send_button"
+            app:tint="@color/white"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+    </LinearLayout>
+</layout>

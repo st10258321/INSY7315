@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rating_options">
+        <item>@string/rating_any</item>
+        <item>@string/rating_4_stars_up</item>
+        <item>@string/rating_3_stars_up</item>
+    </string-array>
+</resources>

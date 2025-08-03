@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Root LinearLayout to contain all views -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/warm_grey"
+        tools:context=".fragments.BrowseServicesFragment">
+
+        <!-- Listings Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp"
+            android:background="@color/light_teal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/explore_hustle_title"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_teal"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/searchBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_hint"
+                android:padding="12dp"
+                android:background="@drawable/search_bar_background"
+                android:drawableStart="@drawable/ic_search_black_24dp"
+                android:drawablePadding="8dp"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:textSize="16sp"
+                android:textColor="@color/deep_blue"
+                android:textColorHint="@color/text_light_grey" />
+        </LinearLayout>
+
+        <!-- Listings Content (Sidebar and Grid) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Sidebar (Filters and Categories) -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/categories_title"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/deep_blue"
+                        android:layout_marginBottom="16dp" />
+
+                    <RadioGroup
+                        android:id="@+id/categoryFilterGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp">
+                        <RadioButton
+                            android:id="@+id/radioAllServices"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/all_services"
+                            android:textColor="@color/deep_blue"
+                            android:textSize="16sp"
+                            android:padding="8dp"
+                            android:checked="true" />
+                        <RadioButton
+                            android:id="@+id/radioAcademics"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/academics_tutoring"
+                            android:textColor="@color/deep_blue"
+                            android:textSize="16sp"
+                            android:padding="8dp" />
+                        <RadioButton
+                            android:id="@+id/radioCreative"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/creative_design"
+                            android:textColor="@color/deep_blue"
+                            android:textSize="16sp"
+                            android:padding="8dp" />
+                        <RadioButton
+                            android:id="@+id/radioPersonalCare"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/personal_care_beauty"
+                            android:textColor="@color/deep_blue"
+                            android:textSize="16sp"
+                            android:padding="8dp" />
+                        <RadioButton
+                            android:id="@+id/radioTech"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tech_it_support"
+                            android:textColor="@color/deep_blue"
+                            android:textSize="16sp"
+                            android:padding="8dp" />
+                        <RadioButton
+                            android:id="@+id/radioPhotography"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/photography_video"
+                            android:textColor="@color/deep_blue"
+                            android:textSize="16sp"
+                            android:padding="8dp" />
+                        <RadioButton
+                            android:id="@+id/radioFood"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/food_catering"
+                            android:textColor="@color/deep_blue"
+                            android:textSize="16sp"
+                            android:padding="8dp" />
+                        <RadioButton
+                            android:id="@+id/radioOther"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/other_services"
+                            android:textColor="@color/deep_blue"
+                            android:textSize="16sp"
+                            android:padding="8dp" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filters_title"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/deep_blue"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/price_range_label"
+                        android:textColor="@color/deep_blue"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <SeekBar
+                        android:id="@+id/priceRangeSeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="1000"
+                        android:progress="500"
+                        android:thumbTint="@color/primary_teal"
+                        android:progressTint="@color/primary_teal"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/currentPriceTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="R0 - R500+"
+                        android:textColor="@color/text_light_grey"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="24dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/min_rating_label"
+                        android:textColor="@color/deep_blue"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <Spinner
+                        android:id="@+id/ratingSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/rating_options"
+                        android:background="@drawable/spinner_background"
+                        android:padding="8dp"
+                        android:layout_marginBottom="24dp" />
+
+                    <Button
+                        android:id="@+id/applyFiltersBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/apply_filters_button"
+                        android:backgroundTint="@color/primary_teal"
+                        android:textColor="@color/white"
+                        android:padding="12dp"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Service Grid (RecyclerView) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/serviceRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="1"
+                tools:listitem="@layout/item_service_card" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>
+
