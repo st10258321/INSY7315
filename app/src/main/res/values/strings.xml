@@ -10,6 +10,7 @@
     <string name="title_offer_skills">Offer Skills</string>
     <string name="title_book_service">Book Service</string>
     <string name="title_chat">Chat</string>
+    <string name="title_account">Account</string>
 
     <!-- Home Screen -->
     <string name="hero_title">Unlock Your Potential. Connect, Create, Conquer.</string>
@@ -158,16 +159,23 @@
     <string name="main_booking_process_message">This button will initiate the main booking process for the provider. Coming soon!</string>
     <string name="message_sent_confirmation">Thanks for your message! I\'ll get back to you shortly regarding \"%1$s\".</string>
     <string name="message_box_ok">OK</string>
+
+    <!-- Login/Signup Strings -->
     <string name="login_title">Login</string>
     <string name="signup_title">Sign Up</string>
     <string name="login_email_hint">your.email@example.com</string>
     <string name="login_password_hint">********</string>
-    <string name="signup_name_hint">John Doe</string>
-    <string name="signup_confirm_password_hint">********</string>
+    <string name="signup_name_hint">Full Name</string>
+    <string name="signup_confirm_password_hint">Confirm Password</string>
     <string name="dont_have_account">Don\'t have an account? Sign Up</string>
     <string name="already_have_account">Already have an account? Login</string>
     <string name="email_label">Email:</string>
     <string name="password_label">Password:</string>
     <string name="full_name_label">Full Name:</string>
     <string name="confirm_password_label">Confirm Password:</string>
+    <string name="cell_number_hint">Cell Number</string>
+    <string name="account_page_title">Your Account</string>
+    <string name="account_welcome_message">Manage your profile, services, and bookings.</string>
+    <string name="social_login_prompt">Or connect with:</string>
+
 </resources>
