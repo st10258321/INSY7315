@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -47,6 +48,13 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.database)
+    implementation("com.google.firebase:firebase-auth:22.1.1")
+    implementation("androidx.credentials:credentials:1.2.0-alpha04")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
+    implementation ("com.google.dagger:hilt-android:2.50")
+    kapt ("com.google.dagger:hilt-compiler:2.50")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
