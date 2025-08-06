@@ -1,4 +1,34 @@
 package vcmsa.projects.wil_hustlehub.ViewModel
 
-class UserViewModel {
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import vcmsa.projects.wil_hustlehub.Model.User
+import vcmsa.projects.wil_hustlehub.Repository.UserRepository
+import javax.inject.Inject
+
+class UserViewModel @Inject constructor(private val userRepo: UserRepository): ViewModel() {
+
+    private val registrationStat = MutableLiveData<Pair<Boolean, String?>>()
+
+    fun register(user: User) {
+        // Call the register method from the user repository.
+        userRepo.register(user) { success, message ->
+            // Post the result to LiveData for observers.
+            registrationStat.postValue(Pair(success, message))
+        }
+    }
+
+    fun login(email: String, phoneNumber: String, callback: (User?, String?) -> Unit) {
+        /*
+            Delegates the login operation to the repository.
+            The repository will invoke the callback with the login result.
+       */
+        userRepo.login(email, phoneNumber, callback)
+    }
+
+    fun getUserData(userID: String): LiveData<User?> {
+        // Fetches user data for a given userID from the repository.
+        return userRepo.getUserData(userID)
+    }
 }
