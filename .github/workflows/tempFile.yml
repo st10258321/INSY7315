@@ -1,12 +1,14 @@
-name: Temporary CodeQL Setup
+name: CodeQL Kotlin Analysis
 
 on:
   push:
+    branches: [main]  # Make sure this matches your default branch
+  pull_request:
     branches: [main]
 
 jobs:
   analyze:
-    name: Analyze
+    name: Analyze Kotlin Code
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -16,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['kotlin']
+        language: ['kotlin']  # CodeQL language to scan
 
     steps:
       - name: Checkout code
@@ -28,6 +30,9 @@ jobs:
           distribution: 'temurin'
           java-version: 11
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Build project
         run: ./gradlew build
 
@@ -36,5 +41,5 @@ jobs:
         with:
           languages: ${{ matrix.language }}
 
-      - name: Run CodeQL Analysis
+      - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
