@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "243893716404",
+    "firebase_url": "https://hustlehubdb-default-rtdb.firebaseio.com",
+    "project_id": "hustlehubdb",
+    "storage_bucket": "hustlehubdb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243893716404:android:5b3c157234622e69a69ee1",
+        "android_client_info": {
+          "package_name": "vcmsa.projects.wil_hustlehub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHCcOIJIY7IiWqFQr0zyo5z5GRZ1DxydU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
