@@ -1,14 +1,12 @@
-name: CodeQL Kotlin Analysis
+name: CodeQL Analysis
 
 on:
   push:
-    branches: [main]  # Make sure this matches your default branch
-  pull_request:
     branches: [main]
 
 jobs:
   analyze:
-    name: Analyze Kotlin Code
+    name: Analyze Kotlin with CodeQL
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -18,28 +16,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['kotlin']  # CodeQL language to scan
+        language: ['kotlin']
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
+          java-version: '17'
           distribution: 'temurin'
-          java-version: 11
-
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
-      - name: Build project
-        run: ./gradlew build
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
           languages: ${{ matrix.language }}
+
+      - name: Build project
+        run: chmod +x ./gradlew && ./gradlew build
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
