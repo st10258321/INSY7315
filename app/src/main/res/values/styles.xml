@@ -26,9 +26,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-        <style name="Theme.WIL_HustleHub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-            <!-- Customize colors and styles here -->
-        </style>
+        <style name="Theme.WIL_HustleHub" parent="Theme.Material3.DayNight.NoActionBar" />
 
 
 </resources>

@@ -1,0 +1,62 @@
+package vcmsa.projects.wil_hustlehub.View
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import vcmsa.projects.wil_hustlehub.Model.User
+import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
+import vcmsa.projects.wil_hustlehub.R
+import vcmsa.projects.wil_hustlehub.Repository.UserRepository
+import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
+import vcmsa.projects.wil_hustlehub.databinding.FragmentLoginBinding
+import vcmsa.projects.wil_hustlehub.databinding.FragmentRegisterBinding
+
+class RegisterFragment: Fragment() {
+    private var _binding: FragmentRegisterBinding? = null
+    private val userViewModel: UserViewModel by viewModels()
+    private val binding get() = _binding!!
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the fragment_register.xml layout.
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        //return inflater.inflate(R.layout.fragment_register, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val userRepo = UserRepository()
+        val viewModelFactory = ViewModelFactory(userRepo)
+        val userViewModel: UserViewModel by viewModels { viewModelFactory }
+
+        binding.btnRegisterSubmit.setOnClickListener {
+            val user = User(
+                userID = "",
+                name = binding.registerName.text.toString(),
+                email = binding.registerEmail.text.toString(),
+                phoneNumber = binding.registerCellNumber.text.toString(),
+                password = binding.registerPassword.text.toString(),
+                createdDate = ""
+            )
+            userViewModel.register(user)
+
+
+        }
+        userViewModel.registrationStat.observe(viewLifecycleOwner) {(success, message, registeredUser) ->
+            if (success) {
+            Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
+    }
+}
