@@ -25,4 +25,8 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+        <style name="Theme.WIL_HustleHub" parent="Theme.Material3.DayNight.NoActionBar" />
+
+
 </resources>

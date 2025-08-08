@@ -9,13 +9,13 @@ import javax.inject.Inject
 
 class UserViewModel @Inject constructor(private val userRepo: UserRepository): ViewModel() {
 
-    private val registrationStat = MutableLiveData<Pair<Boolean, String?>>()
+    val registrationStat = MutableLiveData<Triple<Boolean, String?,User?>>()
 
-    fun register(user: User) {
+    fun register(user: User)  {
         // Call the register method from the user repository.
-        userRepo.register(user) { success, message ->
-            // Post the result to LiveData for observers.
-            registrationStat.postValue(Pair(success, message))
+        userRepo.register(user.name,user.email, user.phoneNumber, user.password) { success, message,registeredUser ->
+            // Post the result to LiveData for observers
+            registrationStat.postValue(Triple(success, message,registeredUser))
         }
     }
 
@@ -24,11 +24,12 @@ class UserViewModel @Inject constructor(private val userRepo: UserRepository): V
             Delegates the login operation to the repository.
             The repository will invoke the callback with the login result.
        */
-        userRepo.login(email, phoneNumber, callback)
+      //  userRepo.login(email, phoneNumber, callback)
     }
 
     fun getUserData(userID: String): LiveData<User?> {
         // Fetches user data for a given userID from the repository.
-        return userRepo.getUserData(userID)
+       // return userRepo.getUserData(userID)
+        return MutableLiveData()
     }
 }
