@@ -41,10 +41,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Updated AndroidManifest.xml">
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,13 +89,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Android App.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Sprint4/ViewModel",
+    "git-widget-placeholder": "Sprint4/View",
     "last_opened_file_path": "C:/Users/ashfo/AndroidStudioProjects/INSY7315-Sprint4-ViewModel"
   }
 }]]></component>
@@ -191,17 +192,21 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated AndroidManifest so that LoginActivity is launcher act" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated AndroidManifest so that LoginActivity is launcher act" />
+  </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="vcmsa.projects.wil_hustlehub">
           <value>
-            <CheckInfo lastCheckTimestamp="1754450675531" />
+            <CheckInfo lastCheckTimestamp="1754641639997" />
           </value>
         </entry>
         <entry key="vcmsa.projects.wil_hustlehub.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1754450675560" />
+            <CheckInfo lastCheckTimestamp="1754641640132" />
           </value>
         </entry>
       </map>
