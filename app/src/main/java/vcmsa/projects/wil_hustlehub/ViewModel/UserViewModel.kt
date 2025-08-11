@@ -18,13 +18,13 @@ class UserViewModel @Inject constructor(private val userRepo: UserRepository): V
             registrationStat.postValue(Triple(success, message,registeredUser))
         }
     }
-
+    //modify to match the Repository function
     fun login(email: String, phoneNumber: String, callback: (User?, String?) -> Unit) {
         /*
             Delegates the login operation to the repository.
             The repository will invoke the callback with the login result.
        */
-      //  userRepo.login(email, phoneNumber, callback)
+        userRepo.login(email, phoneNumber, callback)
     }
 
     fun getUserData(userID: String): LiveData<User?> {
