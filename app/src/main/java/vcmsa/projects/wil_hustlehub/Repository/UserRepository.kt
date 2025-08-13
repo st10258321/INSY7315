@@ -20,7 +20,7 @@ class UserRepository {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val uid = auth.currentUser?.uid ?: ""
-                    val user = User( uid, name, email, phone, createdDate)
+                    val user = User( uid, name, email, phone, createdDate, password)
 
                     database.child("users").child(uid).setValue(user)
                         .addOnCompleteListener { saveTask ->
