@@ -1,10 +1,10 @@
 package vcmsa.projects.wil_hustlehub.Model
 
-data class User (
-var userID: String ,
-var name: String,
-var email: String ,
-var phoneNumber: String ,
-var password : String,
-var createdDate: String
-)
+class User(uid: String, name: String, email: String, phone: String, createdDate: String, password: String) {
+    val uid: String = uid
+    val name: String = name
+    val email: String = email
+    val phone: String = phone
+    val createdDate: String = createdDate
+    val password: String = password
+}
