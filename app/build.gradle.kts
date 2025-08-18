@@ -8,6 +8,7 @@ plugins {
 android {
     namespace = "vcmsa.projects.wil_hustlehub"
     compileSdk = 35
+    viewBinding.isEnabled=true
 
     defaultConfig {
         applicationId = "vcmsa.projects.wil_hustlehub"
