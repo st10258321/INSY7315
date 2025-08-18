@@ -1,27 +1,26 @@
 package vcmsa.projects.wil_hustlehub.Repository
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import vcmsa.projects.wil_hustlehub.Model.User
-
+import com.google.firebase.database.FirebaseDatabase
 
 class UserRepository {
-    //Where all the firebase is being done
+    // Where all the firebase is being done.
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
 
-    //making the date and time readable in the database
+    // Making the date and time readable in the database.
     val createdDateFormat = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault())
     val createdDate = createdDateFormat.format(java.util.Date())
 
-    //function that registers the user
-// creates a new user and which returns if the user has successfully registered or not
+    /* Function that registers the user.
+       Creates a new user and which returns if the user has successfully registered or not. */
     fun register(name: String, email: String, phone : String, password: String, callback: (Boolean, String?, User?) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val uid = auth.currentUser?.uid ?: ""
-                    val user = User( uid, name, email, phone, password, createdDate)
+                    val user = User( uid, name, email, phone, createdDate, password)
 
                     database.child("users").child(uid).setValue(user)
                         .addOnCompleteListener { saveTask ->
@@ -37,8 +36,8 @@ class UserRepository {
             }
     }
 
-    //this function gets the users information using their id, which will be used for when the user logs in
-    private fun getUserData(uid: String, callback: (User?) -> Unit) {
+    // This function gets the users information using their id, which will be used for when the user logs in.
+    fun getUserData(uid: String, callback: (User?) -> Unit) {
         database.child("users").child(uid).get()
             .addOnSuccessListener { snapshot ->
                 val user = snapshot.getValue(User::class.java)
@@ -48,7 +47,7 @@ class UserRepository {
                 callback(null)
             }
     }
-    //this function logs the user in
+    // This function logs the user in.
     fun login(email: String, password: String, callback: (Boolean, String?, User?) -> Unit) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -62,9 +61,8 @@ class UserRepository {
                 }
             }
     }
-    //this function is called when the user wants to log out.
+    // This function is called when the user wants to log out.
     fun logout() {
         auth.signOut()
     }
-
 }

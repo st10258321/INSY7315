@@ -127,6 +127,7 @@
                         app:cardBackgroundColor="@color/light_teal">
 
                         <LinearLayout
+                            android:id="@+id/discoverLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -170,6 +171,7 @@
                         app:cardBackgroundColor="@color/light_teal">
 
                         <LinearLayout
+                            android:id="@+id/connectLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -212,6 +214,7 @@
                         app:cardBackgroundColor="@color/light_teal">
 
                         <LinearLayout
+                            android:id="@+id/thriveLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
