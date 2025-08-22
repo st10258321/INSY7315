@@ -137,5 +137,24 @@ class ServiceRepository {
             })
     }
 
+  //for displaying all the services inside the database
+    fun getAllServices(callback: (Boolean, String?, List<Service>?) -> Unit) {
+        database.child("Services")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val services = mutableListOf<Service>()
+                    for (serviceSnapshot in snapshot.children) {
+                        val service = serviceSnapshot.getValue(Service::class.java)
+                        service?.let { services.add(it) }
+                    }
+                    callback(true, null, services)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
+
 
 }
