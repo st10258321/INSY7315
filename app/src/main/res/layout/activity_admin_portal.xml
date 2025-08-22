@@ -183,7 +183,7 @@
                                 <ImageView
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
-                                    android:src="@drawable/ic_arrow_forward_b"
+                                    android:src="@drawable/ic_arrow_forward"
                                     app:tint="@color/text_light_grey" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
@@ -235,7 +235,7 @@
                                 <ImageView
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
-                                    android:src="@drawable/ic_arrow_forward_black_24dp"
+                                    android:src="@drawable/ic_arrow_forward"
                                     app:tint="@color/text_light_grey" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
@@ -287,7 +287,7 @@
                                 <ImageView
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
-                                    android:src="@drawable/ic_arrow_forward_black_24dp"
+                                    android:src="@drawable/ic_arrow_forward"
                                     app:tint="@color/text_light_grey" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
@@ -323,7 +323,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Analytics & Reports"
+                                        android:text="Analytics and Reports"
                                         android:textSize="18sp"
                                         android:textStyle="bold"
                                         android:textColor="@color/deep_blue" />
@@ -339,7 +339,7 @@
                                 <ImageView
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
-                                    android:src="@drawable/ic_arrow_forward_black_24dp"
+                                    android:src="@drawable/ic_arrow_forward"
                                     app:tint="@color/text_light_grey" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
@@ -361,7 +361,7 @@
                                 <ImageView
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
-                                    android:src="@drawable/ic_settings_black_24dp"
+                                    android:src="@drawable/ic_settings"
                                     android:layout_marginEnd="16dp"
                                     app:tint="@color/primary_teal" />
 
@@ -390,7 +390,7 @@
                                 <ImageView
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
-                                    android:src="@drawable/ic_arrow_forward_black_24dp"
+                                    android:src="@drawable/ic_arrow_forward"
                                     app:tint="@color/text_light_grey" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
