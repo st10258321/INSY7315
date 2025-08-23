@@ -5,4 +5,21 @@
         <item>@string/rating_4_stars_up</item>
         <item>@string/rating_3_stars_up</item>
     </string-array>
+    <string-array name="categories">
+        <item>Academics and Tutoring</item>
+        <item>Creative and Design</item>
+        <item>Personal care and beauty</item>
+        <item>Tech and IT support</item>
+        <item>Photography and video</item>
+        <item>Food and catering</item>
+    </string-array>
+    <string-array name="pricing_types">
+        <item>per hour</item>
+        <item>per session</item>
+    </string-array>
+    <string-array name="locations">
+        <item>On campus</item>
+        <item>Virtually</item>
+    </string-array>
+
 </resources>

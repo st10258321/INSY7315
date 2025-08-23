@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,17 +16,57 @@
         android:theme="@style/ShapeAppearance.Material3.Tooltip"
         tools:targetApi="31">
         <activity
-            android:name=".View.RegisterActivity"
+            android:name=".View.RegisterService"
             android:theme="@style/Theme.HustleHub"
             android:exported="false" />
+        <activity
+            android:name=".View.AboutUsActivity"
+            android:theme="@style/Theme.HustleHub"
+            android:exported="false" />
+        <activity
+            android:name=".View.AccountActivity"
+            android:theme="@style/Theme.HustleHub"
+            android:exported="false" />
+        <activity
+            android:name=".View.BookServiceActivity"
+            android:theme="@style/Theme.HustleHub"
+            android:exported="false" />
+        <activity
+            android:name=".View.CategoriesActivity"
+            android:theme="@style/Theme.HustleHub"
+            android:exported="false" />
+        <activity
+            android:name=".View.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.ContactActivity"
+            android:theme="@style/Theme.HustleHub"
+            android:exported="false" />
+        <activity
+            android:name=".View.ProfileActivity"
+            android:theme="@style/Theme.HustleHub"
+            android:exported="false" />
+        <activity
+            android:name=".View.OfferSkillsActivity"
+            android:theme="@style/Theme.HustleHub"
+            android:exported="false" />
+        <activity
+            android:name=".View.BrowseServicesActivity"
+            android:theme="@style/Theme.HustleHub"
+            android:exported="false" />
+        <activity
+            android:name=".View.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.HustleHub" />
+
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.HustleHub"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.HustleHub" />
         <activity
             android:name=".View.LoginActivity"
-            android:theme="@style/Theme.HustleHub"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.HustleHub">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
