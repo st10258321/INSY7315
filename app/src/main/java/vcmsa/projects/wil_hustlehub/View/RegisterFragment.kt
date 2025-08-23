@@ -9,15 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import vcmsa.projects.wil_hustlehub.Model.User
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
-import vcmsa.projects.wil_hustlehub.R
+import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
-import vcmsa.projects.wil_hustlehub.databinding.FragmentLoginBinding
 import vcmsa.projects.wil_hustlehub.databinding.FragmentRegisterBinding
 
 class RegisterFragment: Fragment() {
+    // Declare the binding variable
     private var _binding: FragmentRegisterBinding? = null
-    private val userViewModel: UserViewModel by viewModels()
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,9 @@ class RegisterFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val userRepo = UserRepository()
-        val viewModelFactory = ViewModelFactory(userRepo)
+        val serviceRepo = ServiceRepository()
+        val bookRepo = BookServiceRepository()
+        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
 
         binding.btnRegisterSubmit.setOnClickListener {
