@@ -3,33 +3,165 @@ package vcmsa.projects.wil_hustlehub.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import vcmsa.projects.wil_hustlehub.Model.BookService
+import vcmsa.projects.wil_hustlehub.Model.Service
 import vcmsa.projects.wil_hustlehub.Model.User
+import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import javax.inject.Inject
 
-class UserViewModel @Inject constructor(private val userRepo: UserRepository): ViewModel() {
+class UserViewModel @Inject constructor(
+    private val userRepo: UserRepository,
+    private val serviceRepo: ServiceRepository,
+    private val bookRepo: BookServiceRepository): ViewModel() {
 
-    val registrationStat = MutableLiveData<Triple<Boolean, String?,User?>>()
+    // LiveData to observe registration status
+    val registrationStat = MutableLiveData<Triple<Boolean, String?, User?>>()
+    // LiveData to observe login status and user data
+    val loginStat = MutableLiveData<Pair<Boolean, String?>>()
 
-    fun register(user: User)  {
-        // Call the register method from the user repository.
-        userRepo.register(user.name,user.email, user.phoneNumber, user.password) { success, message,registeredUser ->
-            // Post the result to LiveData for observers
-            registrationStat.postValue(Triple(success, message,registeredUser))
+    // LiveData to expose the currently logged-in user's data
+    val currentUserData = MutableLiveData<User?>()
+
+    // LiveData for the list of services created by the current user
+    val userServices = MutableLiveData<List<Service>?>()
+
+    // LiveData to track the status of adding, deleting, or getting a single service
+    val serviceStatus = MutableLiveData<Pair<Boolean, String?>>()
+
+    // LiveData to observe the status of booking actions (create, delete, confirm, reject)
+    val bookingActionStatus = MutableLiveData<Pair<Boolean, String?>>()
+
+    // LiveData for the list of bookings made by the current user
+    val userBookings = MutableLiveData<List<BookService>?>()
+
+    // LiveData for the list of bookings for the services owned by the current user
+    val bookingsForMyServices = MutableLiveData<List<BookService>?>()
+
+    // Function to handle user registration
+    fun register(user: User) {
+        userRepo.register(user.name, user.email, user.phoneNumber, user.password) { success, message, registeredUser ->
+            registrationStat.postValue(Triple(success, message, registeredUser))
         }
     }
 
-    fun login(email: String, phoneNumber: String, callback: (User?, String?) -> Unit) {
-        /*
-            Delegates the login operation to the repository.
-            The repository will invoke the callback with the login result.
-       */
-      //  userRepo.login(email, phoneNumber, callback)
+    // Connect this to the UserRepository's login function
+    fun login(email: String, password: String) {
+        // Call the login method from the user repository.
+        userRepo.login(email, password) { success, message, loggedInUser ->
+            if (success) {
+                // Update the LiveData for user data and login status
+                currentUserData.postValue(loggedInUser)
+                loginStat.postValue(Pair(true, null))
+            } else {
+                // Update LiveData with the error message
+                loginStat.postValue(Pair(false, message))
+                currentUserData.postValue(null)
+            }
+        }
     }
 
-    fun getUserData(userID: String): LiveData<User?> {
-        // Fetches user data for a given userID from the repository.
-       // return userRepo.getUserData(userID)
-        return MutableLiveData()
+    // Connect this to the UserRepository's logout function
+    fun logout() {
+        userRepo.logout()
+        // Clear LiveData to reflect the logged-out state
+        currentUserData.postValue(null)
+        loginStat.postValue(Pair(false, "Logged out successfully"))
+    }
+
+    // Function to add a new service
+    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: String, location: String) {
+        serviceRepo.addService(serviceName, category, description, price, image, availability, location) { success, message, service ->
+            // Update UI state based on the result
+            serviceStatus.postValue(Pair(success, message))
+        }
+    }
+
+    // Function to get all services created by the current user
+    fun getUserServices() {
+        serviceRepo.getUserServices { success, message, services ->
+            if (success) {
+                userServices.postValue(services) // Update the LiveData with the list of services
+            } else {
+                // Handle the error, maybe by setting the list to null and updating a status message
+                userServices.postValue(null)
+                serviceStatus.postValue(Pair(false, message))
+            }
+        }
+    }
+
+    // Function to delete a service
+    fun deleteService(serviceId: String) {
+        serviceRepo.deleteService(serviceId) { success, message ->
+            serviceStatus.postValue(Pair(success, message))
+        }
+    }
+
+    // Function to get a single service
+    fun getServiceById(serviceId: String): LiveData<Service?> {
+        val liveData = MutableLiveData<Service?>()
+        serviceRepo.getServiceById(serviceId) { success, message, service ->
+            if (success) {
+                liveData.postValue(service)
+            } else {
+                // Handle error
+                liveData.postValue(null)
+                serviceStatus.postValue(Pair(false, message))
+            }
+        }
+        return liveData
+    }
+
+    // Function to create a new booking
+    fun createBooking(serviceId: String, date: String, time: String, location: String, message: String) {
+        bookRepo.createBookService(serviceId, date, time, location, message) { success, message, bookService ->
+            bookingActionStatus.postValue(Pair(success, message))
+        }
+    }
+
+    // Function to get all bookings made by the current user
+    fun getUserBookings() {
+        bookRepo.getUserBookServices { success, message, bookings ->
+            if (success) {
+                userBookings.postValue(bookings)
+            } else {
+                userBookings.postValue(null)
+                bookingActionStatus.postValue(Pair(false, message))
+            }
+        }
+    }
+
+    // Function to get bookings for the services owned by the current user
+    fun getBookingsForMyServices() {
+        bookRepo.getBookingsForMyServices { success, message, bookings ->
+            if (success) {
+                bookingsForMyServices.postValue(bookings)
+            } else {
+                bookingsForMyServices.postValue(null)
+                bookingActionStatus.postValue(Pair(false, message))
+            }
+        }
+    }
+
+    // Function to confirm a booking
+    fun confirmBooking(bookingId: String) {
+        bookRepo.confirmBooking(bookingId) { success, message, updatedBooking ->
+            bookingActionStatus.postValue(Pair(success, message))
+        }
+    }
+
+    // Function to reject a booking
+    fun rejectBooking(bookingId: String) {
+        bookRepo.rejectBooking(bookingId) { success, message, updatedBooking ->
+            bookingActionStatus.postValue(Pair(success, message))
+        }
+    }
+
+    // Function to delete a booking
+    fun deleteBooking(bookingId: String) {
+        bookRepo.deleteBookService(bookingId) { success, message ->
+            bookingActionStatus.postValue(Pair(success, message))
+        }
     }
 }

@@ -6,16 +6,16 @@ import vcmsa.projects.wil_hustlehub.Model.User
 
 
 class UserRepository {
-    //Where all the firebase is being done
+    // Where all the firebase is being done
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
 
-    //making the date and time readable in the database
+    // Making the date and time readable in the database
     val createdDateFormat = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault())
     val createdDate = createdDateFormat.format(java.util.Date())
 
-    //function that registers the user
-// creates a new user and which returns if the user has successfully registered or not
+    /* Function that registers the user
+       Creates a new user and which returns if the user has successfully registered or not */
     fun register(name: String, email: String, phone : String, password: String, callback: (Boolean, String?, User?) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -37,7 +37,7 @@ class UserRepository {
             }
     }
 
-    //this function gets the users information using their id, which will be used for when the user logs in
+    // This function gets the users information using their id, which will be used for when the user logs in
     private fun getUserData(uid: String, callback: (User?) -> Unit) {
         database.child("users").child(uid).get()
             .addOnSuccessListener { snapshot ->
@@ -48,7 +48,7 @@ class UserRepository {
                 callback(null)
             }
     }
-    //this function logs the user in
+    // This function logs the user in
     fun login(email: String, password: String, callback: (Boolean, String?, User?) -> Unit) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -62,9 +62,8 @@ class UserRepository {
                 }
             }
     }
-    //this function is called when the user wants to log out.
+    // This function is called when the user wants to log out.
     fun logout() {
         auth.signOut()
     }
-
 }
