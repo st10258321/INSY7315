@@ -9,7 +9,7 @@ class BrowseServicesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_browse_services)
+        setContentView(R.layout.fragment_browse_services)
 
         // Load fragment only if it's the first creation.
         if (savedInstanceState == null) {

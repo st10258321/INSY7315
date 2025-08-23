@@ -9,7 +9,7 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_chat)
+        setContentView(R.layout.fragment_chat)
 
         // Load fragment only if it's the first creation.
         if (savedInstanceState == null) {

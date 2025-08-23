@@ -4,6 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import vcmsa.projects.wil_hustlehub.View.BrowseServicesFragment
+import vcmsa.projects.wil_hustlehub.View.HomeFragment
+import vcmsa.projects.wil_hustlehub.View.LoginFragment
+import vcmsa.projects.wil_hustlehub.View.OfferSkillsFragment
+import vcmsa.projects.wil_hustlehub.View.ProfileFragment
+import vcmsa.projects.wil_hustlehub.View.RegisterFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -30,6 +30,11 @@
           <theme>@style/Theme.WIL_HustleHub</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_account.xml">
+        <config>
+          <theme>@style/Theme.WIL_HustleHub</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_book_service.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
@@ -75,6 +80,11 @@
           <theme>@style/Theme.WIL_HustleHub</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_profile_service.xml">
+        <config>
+          <theme>@style/Theme.WIL_HustleHub</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_review.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
@@ -91,8 +101,24 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="just to merge the repo branch into this one.">
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AboutUsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AboutUsActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AccountActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AccountActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/CategoriesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/CategoriesActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ContactActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ContactActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/spinner_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/spinner_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +146,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Sprint5&amp;6/Navigation" />
+        <entry key="$PROJECT_DIR$" value="Sprint5&amp;6/ViewModel" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -151,20 +177,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Sprint5&&6/Activities",
-    "last_opened_file_path": "C:/Users/ashfo/AndroidStudioProjects/INSY7315-Sprint4-ViewModel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Sprint5&amp;&amp;6/Activities&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ashfo/AndroidStudioProjects/INSY7315-Sprint4-ViewModel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="android.template.-1774855519">
       <recent name="vcmsa.projects.wil_hustlehub.View" />
