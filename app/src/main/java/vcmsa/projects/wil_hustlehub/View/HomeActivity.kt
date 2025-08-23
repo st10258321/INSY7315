@@ -9,7 +9,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.fragment_home)
 
         // Load fragment only if it's the first creation.
         if (savedInstanceState == null) {
