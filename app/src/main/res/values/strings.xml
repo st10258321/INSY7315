@@ -177,5 +177,9 @@
     <string name="account_page_title">Your Account</string>
     <string name="account_welcome_message">Manage your profile, services, and bookings.</string>
     <string name="social_login_prompt">Or connect with:</string>
+    <string name="service_title">Service Title</string>
+    <string name="category">Category</string>
+    <string name="service_description">Service Description</string>
+    <string name="title_about_contact">Contact</string>
 
 </resources>

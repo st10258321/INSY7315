@@ -60,7 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/contact_email_address"
-                    android:textSize="16sp"
+                    android:background="@drawable/edit_text_background"
+                    android:textSize="12sp"
                     android:textColor="@color/primary_teal"
                     android:autoLink="email"
                     android:layout_marginBottom="12dp" />
@@ -76,8 +77,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/contact_phone_number"
-                    android:textSize="16sp"
-                    android:textColor="@color/primary_teal"
+                    android:background="@drawable/edit_text_background"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
                     android:autoLink="phone"
                     android:layout_marginBottom="12dp" />
 
@@ -111,22 +113,22 @@
                     android:orientation="horizontal"
                     android:gravity="center_horizontal">
                     <ImageButton
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@drawable/ic_facebook_primary_teal_24"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="Facebook"
                         android:layout_marginEnd="16dp" />
                     <ImageButton
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:src="@drawable/ic_twitter_primary_teal_24dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="Twitter"
                         android:layout_marginEnd="16dp" />
                     <ImageButton
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:src="@drawable/ic_instagram_primary_teal_24dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="Instagram" />
@@ -169,6 +171,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_background"
                         android:hint="@string/form_name_hint"
+                        android:textSize="12sp"
                         android:inputType="textPersonName"
                         android:padding="12dp"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -186,6 +189,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_background"
                         android:hint="@string/form_email_hint"
+                        android:textSize="12sp"
                         android:inputType="textEmailAddress"
                         android:padding="12dp"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -201,6 +205,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:hint="@string/form_message_hint"
+                        android:textSize="12sp"
                         android:inputType="textMultiLine"
                         android:gravity="top"
                         android:padding="12dp"
@@ -212,7 +217,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/send_message_button"
-                    android:backgroundTint="@color/primary_teal"
+                    android:textSize="14sp"
+                    android:textAlignment="center"
+                    android:background="@color/primary_teal"
                     android:textColor="@color/white"
                     android:padding="12dp"
                     app:cornerRadius="8dp" />

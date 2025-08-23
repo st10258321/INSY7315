@@ -52,8 +52,8 @@
                 android:padding="24dp">
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/ic_person_black_24dp"
                     android:contentDescription="Create Profile Icon"
                     android:layout_marginBottom="16dp"
@@ -62,17 +62,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/offer_skills_step1_title"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     android:textColor="@color/deep_blue"
-                    android:layout_marginBottom="8dp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/offer_skills_step1_desc"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="@color/text_light_grey"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -95,8 +95,8 @@
                 android:padding="24dp">
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/ic_list_teal_48dp"
                     android:contentDescription="List Services Icon"
                     android:layout_marginBottom="16dp"
@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/offer_skills_step2_title"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/deep_blue"
                     android:layout_marginBottom="8dp" />
@@ -115,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/offer_skills_step2_desc"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="@color/text_light_grey"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -138,8 +138,8 @@
                 android:padding="24dp">
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/ic_money_teal_48dp"
                     android:contentDescription="Earn Icon"
                     android:layout_marginBottom="16dp"
@@ -149,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/offer_skills_step3_title"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/deep_blue"
                     android:layout_marginBottom="8dp" />
@@ -158,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/offer_skills_step3_desc"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="@color/text_light_grey"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -169,8 +169,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/register_as_provider_button"
-            android:backgroundTint="@color/primary_teal"
+            android:background="@color/primary_teal"
             android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textAlignment="center"
             android:padding="14dp"
             android:layout_marginBottom="16dp"
             app:cornerRadius="8dp" />
@@ -180,8 +182,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/manage_listings_button"
-            android:backgroundTint="@color/soft_orange"
+            android:background="@color/soft_orange"
             android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textAlignment="center"
             android:padding="14dp"
             app:cornerRadius="8dp" />
 
