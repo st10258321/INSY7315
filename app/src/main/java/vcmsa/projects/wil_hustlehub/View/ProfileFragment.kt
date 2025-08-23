@@ -1,33 +1,27 @@
 package vcmsa.projects.wil_hustlehub.View
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import vcmsa.projects.wil_hustlehub.databinding.FragmentLoginBinding
+import vcmsa.projects.wil_hustlehub.databinding.FragmentProfileBinding
 
-class LoginFragment: Fragment() {
+class ProfileFragment: Fragment() {
     // Declare the binding variable
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the fragment_login.xml layout.
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        // Inflate the fragment_profile.xml layout.
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-        // Directs the user to the register page
-        binding.tvSignUpPrompt.setOnClickListener {
-            val intent = Intent(requireContext(), RegisterActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 }
