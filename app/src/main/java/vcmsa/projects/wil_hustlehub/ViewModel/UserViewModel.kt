@@ -27,6 +27,9 @@ class UserViewModel @Inject constructor(
     // LiveData for the list of services created by the current user
     val userServices = MutableLiveData<List<Service>?>()
 
+    // LiveData for the list of all services in the database
+    val allServices = MutableLiveData<List<Service>?>()
+
     // LiveData to track the status of adding, deleting, or getting a single service
     val serviceStatus = MutableLiveData<Pair<Boolean, String?>>()
 
@@ -75,6 +78,17 @@ class UserViewModel @Inject constructor(
         serviceRepo.addService(serviceName, category, description, price, image, availability, location) { success, message, service ->
             // Update UI state based on the result
             serviceStatus.postValue(Pair(success, message))
+        }
+    }
+    // Functions to get all services
+    fun getAllServices(){
+        serviceRepo.getAllServices { success, message, services ->
+            if (success) {
+                allServices.postValue(services)
+            } else {
+                allServices.postValue(null)
+                serviceStatus.postValue(Pair(false, message))
+            }
         }
     }
 
