@@ -111,38 +111,13 @@
 
                 <CalendarView
                     android:id="@+id/bookingCalendar"
-                    android:dateTextAppearance="@color/white"
-                    android:shadowColor="@color/red_error"
-                    android:backgroundTint="@color/black"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="250dp" />
+                    android:layout_height="270dp"
+                    android:background="@color/warm_grey"
+                    android:dateTextAppearance="@color/black"
+                    android:visibility="gone" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/edBookingTime"
-                        android:layout_marginTop="15dp"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:hint="10:00"
-                        android:visibility="gone"
-                        android:textSize="12sp"
-                        android:ems="10"
-                        android:inputType="time" />
-                    <Button
-                        android:id="@+id/btnConfirmTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Confirm Time"
-                        android:visibility="gone"
-                        android:textSize="12sp"
-                        android:background="@color/light_teal"
-                        android:textColor="@color/deep_blue"
-                        android:padding="12dp"
-                        />
-                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/selectedDateTime"
@@ -152,6 +127,23 @@
                     android:textSize="15sp"
                     android:textColor="@color/text_light_grey"
                     android:layout_marginBottom="24dp" />
+
+
+                    <EditText
+                        android:id="@+id/edBookingTime"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:hint="10:00"
+                        android:padding="8dp"
+                        android:visibility="gone"
+                        android:background="@color/black"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"
+                        android:inputType="time" />
+
+
+
 
 
                 <TextView

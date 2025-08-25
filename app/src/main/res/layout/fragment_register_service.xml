@@ -48,7 +48,7 @@
                     android:id="@+id/etServiceTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Service"
+
                     android:inputType="textCapWords"
                     android:textSize="14sp"
                     tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
@@ -66,7 +66,7 @@
                     android:id="@+id/actvCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Select a category"
+
                     android:inputType="none"
                     android:textSize="14sp"
                     tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
@@ -85,7 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:gravity="top"
-                    android:hint="Service Description"
+
                     android:inputType="textMultiLine"
                     android:maxLines="5"
                     android:textSize="14sp"
@@ -112,7 +112,7 @@
                         android:id="@+id/etServicePrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="e.g., 150"
+
                         android:inputType="numberDecimal"
                         android:textSize="14sp"
                         tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
@@ -130,7 +130,7 @@
                         android:id="@+id/actvPricingType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Pricing"
+
                         android:inputType="none"
                         android:textSize="14sp"
                         tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
@@ -149,7 +149,7 @@
                     android:id="@+id/etAvailability"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="e.g., Weekdays after 5pm, Weekends"
+
                     android:textSize="14sp"
                     tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -166,7 +166,7 @@
                     android:id="@+id/actvLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Location"
+
                     android:inputType="none"
                     android:textSize="14sp"
                     tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />

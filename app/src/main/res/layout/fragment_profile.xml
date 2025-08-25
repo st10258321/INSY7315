@@ -148,29 +148,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="20dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
                             android:text="@string/about_me_title"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
                             android:textColor="@color/primary_teal"
-                            android:layout_marginBottom="12dp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Hi, I'm Jane! I'm a final-year BSc student specializing in Applied Mathematics and Physics. I've been tutoring for over 3 years, helping students grasp complex concepts and excel in their studies. I believe in making learning fun and accessible. Whether you're struggling with differential equations or quantum mechanics, I'm here to help you conquer it! My goal is not just to help you pass, but to build your confidence and foster a genuine understanding of the subject matter. I'm patient, adaptable, and always happy to answer any questions, no matter how small they seem."
-                            android:textSize="14sp"
-                            android:textColor="@color/deep_blue" />
+                            android:textColor="@color/deep_blue"
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -179,23 +181,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="20dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
                             android:text="@string/my_services_title"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
                             android:textColor="@color/primary_teal"
-                            android:layout_marginBottom="12dp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:id="@+id/servicesContainer"
@@ -204,7 +207,9 @@
                             android:orientation="vertical">
                             <!-- Service listings will be added here programmatically or via includes -->
                             <include layout="@layout/item_profile_service" />
+
                             <include layout="@layout/item_profile_service" />
+
                             <include layout="@layout/item_profile_service" />
                         </LinearLayout>
                     </LinearLayout>
@@ -215,23 +220,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="20dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
                             android:text="@string/what_students_say_title"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
                             android:textColor="@color/primary_teal"
-                            android:layout_marginBottom="12dp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:id="@+id/reviewsContainer"
@@ -240,7 +246,9 @@
                             android:orientation="vertical">
                             <!-- Review items will be added here programmatically or via includes -->
                             <include layout="@layout/item_review" />
+
                             <include layout="@layout/item_review" />
+
                             <include layout="@layout/item_review" />
                         </LinearLayout>
                     </LinearLayout>
@@ -251,64 +259,122 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="20dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
                             android:text="@string/availability_title"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
                             android:textColor="@color/primary_teal"
-                            android:layout_marginBottom="12dp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
                             <LinearLayout style="@style/AvailabilityItem">
-                                <TextView style="@style/AvailabilityDay" android:text="@string/availability_monday" />
-                                <TextView style="@style/AvailabilityStatus" android:text="14:00 - 18:00" android:textColor="@color/primary_teal" />
+
+                                <TextView
+                                    style="@style/AvailabilityDay"
+                                    android:text="@string/availability_monday" />
+
+                                <TextView
+                                    style="@style/AvailabilityStatus"
+                                    android:text="14:00 - 18:00"
+                                    android:textColor="@color/primary_teal" />
                             </LinearLayout>
+
                             <LinearLayout style="@style/AvailabilityItem">
-                                <TextView style="@style/AvailabilityDay" android:text="@string/availability_tuesday" />
-                                <TextView style="@style/AvailabilityStatus" android:text="@string/status_booked" android:textColor="@color/red_error" />
+
+                                <TextView
+                                    style="@style/AvailabilityDay"
+                                    android:text="@string/availability_tuesday" />
+
+                                <TextView
+                                    style="@style/AvailabilityStatus"
+                                    android:text="@string/status_booked"
+                                    android:textColor="@color/red_error" />
                             </LinearLayout>
+
                             <LinearLayout style="@style/AvailabilityItem">
-                                <TextView style="@style/AvailabilityDay" android:text="@string/availability_wednesday" />
-                                <TextView style="@style/AvailabilityStatus" android:text="10:00 - 13:00" android:textColor="@color/primary_teal" />
+
+                                <TextView
+                                    style="@style/AvailabilityDay"
+                                    android:text="@string/availability_wednesday" />
+
+                                <TextView
+                                    style="@style/AvailabilityStatus"
+                                    android:text="10:00 - 13:00"
+                                    android:textColor="@color/primary_teal" />
                             </LinearLayout>
+
                             <LinearLayout style="@style/AvailabilityItem">
-                                <TextView style="@style/AvailabilityDay" android:text="@string/availability_thursday" />
-                                <TextView style="@style/AvailabilityStatus" android:text="15:00 - 17:00" android:textColor="@color/primary_teal" />
+
+                                <TextView
+                                    style="@style/AvailabilityDay"
+                                    android:text="@string/availability_thursday" />
+
+                                <TextView
+                                    style="@style/AvailabilityStatus"
+                                    android:text="15:00 - 17:00"
+                                    android:textColor="@color/primary_teal" />
                             </LinearLayout>
+
                             <LinearLayout style="@style/AvailabilityItem">
-                                <TextView style="@style/AvailabilityDay" android:text="@string/availability_friday" />
-                                <TextView style="@style/AvailabilityStatus" android:text="@string/status_booked" android:textColor="@color/red_error" />
+
+                                <TextView
+                                    style="@style/AvailabilityDay"
+                                    android:text="@string/availability_friday" />
+
+                                <TextView
+                                    style="@style/AvailabilityStatus"
+                                    android:text="@string/status_booked"
+                                    android:textColor="@color/red_error" />
                             </LinearLayout>
+
                             <LinearLayout style="@style/AvailabilityItem">
-                                <TextView style="@style/AvailabilityDay" android:text="@string/availability_saturday" />
-                                <TextView style="@style/AvailabilityStatus" android:text="09:00 - 12:00" android:textColor="@color/primary_teal" />
+
+                                <TextView
+                                    style="@style/AvailabilityDay"
+                                    android:text="@string/availability_saturday" />
+
+                                <TextView
+                                    style="@style/AvailabilityStatus"
+                                    android:text="09:00 - 12:00"
+                                    android:textColor="@color/primary_teal" />
                             </LinearLayout>
+
                             <LinearLayout style="@style/AvailabilityItem">
-                                <TextView style="@style/AvailabilityDay" android:text="@string/availability_sunday" />
-                                <TextView style="@style/AvailabilityStatus" android:text="@string/status_available" android:textColor="@color/primary_teal" />
+
+                                <TextView
+                                    style="@style/AvailabilityDay"
+                                    android:text="@string/availability_sunday" />
+
+                                <TextView
+                                    style="@style/AvailabilityStatus"
+                                    android:text="@string/status_available"
+                                    android:textColor="@color/primary_teal" />
                             </LinearLayout>
                         </LinearLayout>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:text="@string/availability_note"
-                            android:textSize="14sp"
                             android:textColor="@color/text_light_grey"
-                            android:layout_marginTop="16dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -317,31 +383,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="20dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
                             android:text="@string/contact_location_title"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
                             android:textColor="@color/primary_teal"
-                            android:layout_marginBottom="12dp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp"
                             android:gravity="center_vertical"
-                            android:layout_marginBottom="8dp">
-                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_email_deep_blue_24dp" app:tint="@color/deep_blue" android:layout_marginEnd="8dp" />
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/ic_email_deep_blue_24dp"
+                                app:tint="@color/deep_blue" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -349,13 +423,21 @@
                                 android:textColor="@color/deep_blue"
                                 android:textSize="16sp" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp"
                             android:gravity="center_vertical"
-                            android:layout_marginBottom="8dp">
-                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_location_deep_blue_24dp" app:tint="@color/deep_blue" android:layout_marginEnd="8dp" />
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/ic_location_deep_blue_24dp"
+                                app:tint="@color/deep_blue" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -363,12 +445,20 @@
                                 android:textColor="@color/deep_blue"
                                 android:textSize="16sp" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
-                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_calendar_deep_blue_24dp" app:tint="@color/deep_blue" android:layout_marginEnd="8dp" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/ic_calendar_deep_blue_24dp"
+                                app:tint="@color/deep_blue" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

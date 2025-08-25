@@ -15,6 +15,7 @@ import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
 import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
 import vcmsa.projects.wil_hustlehub.databinding.FragmentBookServiceBinding
 import kotlin.getValue
+import androidx.core.view.isVisible
 
 class BookServiceFragment: Fragment() {
     // Declare the binding variable
@@ -45,12 +46,14 @@ class BookServiceFragment: Fragment() {
                 binding.selectedServiceTitle.text = service.serviceName
             }
         }
+        if(binding.bookingCalendar.isVisible)
+            binding.bookingCalendar.visibility = View.GONE
+
         binding.btnSelectDate.setOnClickListener {
             binding.bookingCalendar.visibility = View.VISIBLE
         }
         binding.btnSelectTime.setOnClickListener {
             binding.bookingCalendar.visibility = View.GONE
-            binding.btnSelectTime.visibility = View.VISIBLE
             binding.edBookingTime.visibility = View.VISIBLE
         }
 
@@ -58,9 +61,6 @@ class BookServiceFragment: Fragment() {
             view, year, month, dayOfMonth ->
             val selectedDate = "$dayOfMonth/${month + 1}/$year"
             binding.selectedDateTime.text = selectedDate
-        }
-        binding.btnConfirmTime?.setOnClickListener {
-            val selectedTime = binding.edBookingTime.text.toString()
         }
 
         binding.btnConfirmBooking.setOnClickListener {
@@ -77,6 +77,7 @@ class BookServiceFragment: Fragment() {
 
                     if (success) {
                         Toast.makeText(requireContext(), "Booking created successfully", Toast.LENGTH_SHORT).show()
+                        //navigate to the home page or the page where the user can see their pending bookings
                     }else{
                         Toast.makeText(requireContext(), "Failed to create booking", Toast.LENGTH_SHORT).show()
                     }
