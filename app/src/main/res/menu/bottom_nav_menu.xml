@@ -10,16 +10,20 @@
         android:id="@+id/navigation_browse_services"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="@string/title_browse_services" />
+    <!-- Improvement: Added "Offer Services" item -->
     <item
-        android:id="@+id/navigation_account"
+        android:id="@+id/navigation_offer_services"
+        android:icon="@drawable/ic_list_teal_48dp"
+        android:title="@string/title_offer_services" />
+    <!-- Improvement: Renamed "Account" to "Profile" for clarity, assuming it leads to the user's profile -->
+    <item
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/title_account" />
+        android:title="@string/title_profile" />
+    <!-- Improvement: Combined About Us and Contact into one item as per your description -->
     <item
-        android:id="@+id/navigation_about_us"
+        android:id="@+id/navigation_about_contact"
         android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/title_about_us" />
-    <item
-        android:id="@+id/navigation_contact"
-        android:icon="@drawable/ic_contact_mail_black_24dp"
-        android:title="@string/title_contact" />
+        android:title="@string/title_about_contact" />
 </menu>
+

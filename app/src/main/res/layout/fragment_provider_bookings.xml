@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/warm_grey"
+        tools:context=".fragments.ProviderBookingsFragment">
+
+        <!-- Top App Bar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary_teal"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+            app:title="@string/provider_bookings_page_title"
+            app:navigationIcon="@drawable/ic_arrow_back_white_24dp" />
+
+        <!-- Tab Layout for Pending/Confirmed Bookings -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutBookings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabIndicatorColor="@color/primary_teal"
+            app:tabSelectedTextColor="@color/primary_teal"
+            app:tabTextColor="@color/text_light_grey"
+            app:tabMode="fixed"
+            app:tabGravity="fill" />
+
+        <!-- ViewPager2 to swipe between tabs (requires implementation in Kotlin/Java) -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerBookings"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</layout>

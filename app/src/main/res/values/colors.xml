@@ -17,4 +17,5 @@
     <color name="deep_blue">#2C3E50</color>
     <color name="text_light_grey">#6c757d</color>
     <color name="red_error">#dc3545</color>
+    <color name="confirmed">#03AC13</color>
 </resources>
