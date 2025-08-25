@@ -157,4 +157,69 @@ class ServiceRepository {
     }
 
 
+    // when the user wants to search a service by name
+    fun searchServicesByName(nameOfService: String, callback: (Boolean, String?, List<Service>?) -> Unit) {
+        database.child("Services")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val services = mutableListOf<Service>()
+                    for (serviceSnapshot in snapshot.children) {
+                        val service = serviceSnapshot.getValue(Service::class.java)
+                        service?.let {
+                            if (it.serviceName.contains(nameOfService, ignoreCase = true)) {
+                                services.add(it)
+                            }
+                        }
+                    }
+                    callback(true, null, services)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
+
+    fun searchServicesByCategory(category: String, callback: (Boolean, String?, List<Service>?) -> Unit) {
+        database.child("Services")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val services = mutableListOf<Service>()
+                    for (serviceSnapshot in snapshot.children) {
+                        val service = serviceSnapshot.getValue(Service::class.java)
+                        service?.let {
+                            if (it.category.equals(category, ignoreCase = true)) {
+                                services.add(it)
+                            }
+                        }
+                    }
+                    callback(true, null, services)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
+
+
+    // getting all services offered by a specific service provider
+    fun getServicesByUserId(userid: String, callback: (Boolean, String?, List<Service>?) -> Unit) {
+        database.child("Services").orderByChild("userId").equalTo(userid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val services = mutableListOf<Service>()
+                    for (serviceSnapshot in snapshot.children) {
+                        val service = serviceSnapshot.getValue(Service::class.java)
+                        service?.let { services.add(it) }
+                    }
+                    callback(true, null, services)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
+
 }
