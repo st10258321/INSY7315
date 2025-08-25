@@ -1,7 +1,10 @@
 package vcmsa.projects.wil_hustlehub.Repository
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import vcmsa.projects.wil_hustlehub.Model.User
 
 
@@ -62,9 +65,95 @@ class UserRepository {
                 }
             }
     }
+
     //this function is called when the user wants to log out.
     fun logout() {
         auth.signOut()
+    }
+
+    // getting the user/service provider profile
+    fun getUserProfile(userId: String, callback: (Boolean, String?, User?) -> Unit) {
+        database.child("users").child(userId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val user = snapshot.getValue(User::class.java)
+                    if (user != null) {
+                        callback(true, null, user)
+                    } else {
+                        callback(false, "User not found", null)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
+
+    // updating the users about me
+    fun updateAboutMe(aboutMe: String, callback: (Boolean, String?, User?) -> Unit) {
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            callback(false, "User not logged in", null)
+            return
+        }
+
+        val userId = currentUser.uid
+
+        // getting the current user data first
+        getUserProfile(userId) { success, error, user ->
+            if (success && user != null) {
+                val updatedUser = user.copy(aboutMe = aboutMe)
+
+                database.child("users").child(userId).setValue(updatedUser)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            callback(true, null, updatedUser)
+                        } else {
+                            callback(false, task.exception?.message, null)
+                        }
+                    }
+            } else {
+                callback(false, error ?: "Failed to get user profile", null)
+            }
+        }
+    }
+
+    // when user wants to update the their profile
+    fun updateUserProfile(name: String, email: String, phoneNumber: String, aboutMe: String, tagLine: String , profilePhoto: String, callback: (Boolean, String?, User?) -> Unit
+    ) {
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            callback(false, "User not logged in", null)
+            return
+        }
+
+        val userId = currentUser.uid
+
+        // Get current user data first
+        getUserProfile(userId) { success, error, user ->
+            if (success && user != null) {
+                val updatedUser = user.copy(
+                    name = name,
+                    email = email,
+                    phoneNumber = phoneNumber,
+                    aboutMe = aboutMe,
+                    tagLine = tagLine,
+                    profilePhoto = profilePhoto
+                )
+
+                database.child("users").child(userId).setValue(updatedUser)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            callback(true, null, updatedUser)
+                        } else {
+                            callback(false, task.exception?.message, null)
+                        }
+                    }
+            } else {
+                callback(false, error ?: "Failed to get user profile", null)
+            }
+        }
     }
 
 }
