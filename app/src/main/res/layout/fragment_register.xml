@@ -38,8 +38,9 @@
                     android:background="@drawable/edit_text_background"
                     android:hint="@string/signup_name_hint"
                     android:inputType="textPersonName"
-                    android:padding="14dp" />
-
+                    android:padding="14dp"
+                    android:textSize="13sp"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -55,8 +56,9 @@
                     android:background="@drawable/edit_text_background"
                     android:hint="@string/form_email_hint"
                     android:inputType="textEmailAddress"
-                    android:padding="14dp" />
-
+                    android:padding="14dp"
+                    android:textSize="13sp"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -72,8 +74,9 @@
                     android:background="@drawable/edit_text_background"
                     android:hint="@string/cell_number_hint"
                     android:inputType="phone"
-                    android:padding="14dp" />
-
+                    android:padding="14dp"
+                    android:textSize="13sp"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -89,9 +92,9 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
                     android:hint="@string/login_password_hint"
+                    android:textSize="12sp"
                     android:inputType="textPassword"
                     android:padding="14dp" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -107,18 +110,57 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
                     android:hint="@string/signup_confirm_password_hint"
+                    android:textSize="11sp"
                     android:inputType="textPassword"
                     android:padding="14dp" />
-
             </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Improvement: Add RadioGroup for user role selection -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register as:"
+                android:textSize="16sp"
+                android:textColor="@color/deep_blue"
+                android:layout_marginBottom="8dp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupUserRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
+
+                <RadioButton
+                    android:id="@+id/radioCustomer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Customer"
+                    android:textColor="@color/deep_blue"
+                    android:textSize="16sp"
+                    android:checked="true"
+                    android:layout_marginEnd="16dp" />
+
+                <RadioButton
+                    android:id="@+id/radioServiceProvider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Service Provider"
+                    android:textColor="@color/deep_blue"
+                    android:textSize="16sp" />
+            </RadioGroup>
+            <!-- End Improvement -->
 
             <Button
                 android:id="@+id/btnRegisterSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/signup_title"
-                android:backgroundTint="@color/primary_teal"
+                android:background="@color/primary_teal"
                 android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textStyle="bold"
                 android:padding="16dp"
                 android:layout_marginBottom="24dp"
                 app:cornerRadius="8dp" />
@@ -148,8 +190,8 @@
 
                 <ImageButton
                     android:id="@+id/btnSocialInstagramRegister"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
                     android:src="@drawable/ic_instagram_primary_teal_24dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Register with Instagram"
@@ -158,8 +200,8 @@
 
                 <ImageButton
                     android:id="@+id/btnSocialFacebookRegister"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:src="@drawable/ic_facebook_primary_teal_24"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Register with Facebook"
@@ -168,15 +210,14 @@
 
                 <ImageButton
                     android:id="@+id/btnSocialTwitterRegister"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/ic_twitter_primary_teal_24dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Register with Twitter"
                     app:tint="@color/deep_blue" />
-
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </layout>
+

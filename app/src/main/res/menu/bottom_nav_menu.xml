@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/navigation_home"
+
+    <item android:id ="@+id/nav_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:title="Home"
+        />
     <item
-        android:id="@+id/navigation_browse_services"
+        android:id="@+id/nav_browse"
         android:icon="@drawable/ic_search_black_24dp"
-        android:title="@string/title_browse_services" />
+        android:title="Browse"
+        />
     <item
-        android:id="@+id/navigation_account"
+        android:id ="@+id/nav_offer_skills"
+        android:icon="@drawable/ic_add_circle"
+        android:title="Offer Skills"
+        />
+    <item
+        android:id="@+id/nav_profile"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/title_account" />
-    <item
-        android:id="@+id/navigation_about_us"
-        android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/title_about_us" />
-    <item
-        android:id="@+id/navigation_contact"
-        android:icon="@drawable/ic_contact_mail_black_24dp"
-        android:title="@string/title_contact" />
+        android:title="Profile"
+        />
 </menu>

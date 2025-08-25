@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Calculus Tutoring"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="@color/primary_teal"
                     android:layout_marginBottom="24dp" />
 
@@ -88,7 +88,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/select_date_button"
-                        android:backgroundTint="@color/light_teal"
+                        android:textSize="12sp"
+                        android:background="@color/light_teal"
                         android:textColor="@color/deep_blue"
                         android:padding="12dp"
                         android:layout_marginEnd="8dp"
@@ -99,12 +100,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/select_time_button"
-                        android:backgroundTint="@color/light_teal"
+                        android:textSize="12sp"
+                        android:background="@color/light_teal"
                         android:textColor="@color/deep_blue"
                         android:padding="12dp"
                         android:layout_marginStart="8dp"
                         app:cornerRadius="8dp" />
+
                 </LinearLayout>
+
+                <CalendarView
+                    android:id="@+id/bookingCalendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:background="@color/warm_grey"
+                    android:dateTextAppearance="@color/black"
+                    android:visibility="gone" />
+
+
 
                 <TextView
                     android:id="@+id/selectedDateTime"
@@ -114,6 +127,24 @@
                     android:textSize="15sp"
                     android:textColor="@color/text_light_grey"
                     android:layout_marginBottom="24dp" />
+
+
+                    <EditText
+                        android:id="@+id/edBookingTime"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:hint="10:00"
+                        android:padding="8dp"
+                        android:visibility="gone"
+                        android:background="@color/black"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"
+                        android:inputType="time" />
+
+
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -157,6 +188,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:hint="@string/additional_notes_hint"
+                        android:textSize="12sp"
                         android:inputType="textMultiLine"
                         android:gravity="top"
                         android:padding="12dp"
@@ -167,10 +199,12 @@
                     android:id="@+id/btnConfirmBooking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/confirm_booking_button"
-                    android:backgroundTint="@color/primary_teal"
-                    android:textColor="@color/white"
+                    android:background="@color/primary_teal"
                     android:padding="14dp"
+                    android:text="@string/confirm_booking_button"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
                     app:cornerRadius="8dp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

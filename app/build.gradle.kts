@@ -8,6 +8,7 @@ plugins {
 android {
     namespace = "vcmsa.projects.wil_hustlehub"
     compileSdk = 35
+    viewBinding.isEnabled=true
 
     defaultConfig {
         applicationId = "vcmsa.projects.wil_hustlehub"
@@ -38,6 +39,7 @@ android {
 
     buildFeatures {
         dataBinding = true // Enable data binding
+        viewBinding = true
     }
 }
 
@@ -49,12 +51,11 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.database)
-    implementation("com.google.firebase:firebase-auth:24.0.1")
-    implementation("androidx.credentials:credentials:1.5.0")
-    implementation("com.google.android.gms:play-services-auth:21.4.0")
-    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
-    implementation ("com.google.dagger:hilt-android:2.50")
-    kapt ("com.google.dagger:hilt-compiler:2.50")
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation(libs.androidx.media3.common.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,4 +66,5 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
     kapt("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("com.google.android.material:material:1.11.0")
 }

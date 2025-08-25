@@ -43,6 +43,8 @@
         </LinearLayout>
     </LinearLayout>
 
+
+
     <TextView
         android:id="@+id/reviewText"
         android:layout_width="match_parent"
@@ -52,4 +54,5 @@
         tools:text="Jane is an amazing tutor! She made complex calculus concepts so easy to understand. Highly recommend her for anyone struggling with math." />
 
     </LinearLayout>
+
 </layout>
