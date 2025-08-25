@@ -39,6 +39,7 @@ android {
 
     buildFeatures {
         dataBinding = true // Enable data binding
+        viewBinding = true
     }
 }
 
@@ -54,6 +55,7 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation(libs.androidx.media3.common.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

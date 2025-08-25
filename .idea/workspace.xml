@@ -136,11 +136,19 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Updated BookServiceFragment.kt">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookings.kt" afterDir="false" />
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Update">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ProviderBookingsAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookings.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_offer_skills.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_offer_skills.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_provider_bookings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_provider_bookings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +158,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lanop\.android\avd\pixel_7_-_api_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=RF8XA0EDGRF)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -228,6 +236,9 @@
     </key>
     <key name="android.template.-1076556644">
       <recent name="vcmsa.projects.wil_hustlehub.View" />
+    </key>
+    <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="vcmsa.projects.wil_hustlehub.Adapters" />
     </key>
   </component>
   <component name="RunManager">
@@ -360,8 +371,27 @@
       <option name="project" value="LOCAL" />
       <updated>1756086680304</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update">
+      <option name="closed" value="true" />
+      <created>1756128885878</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1756128885878</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
@@ -370,7 +400,8 @@
     <MESSAGE value="on page nav complete and RegisterService.kt nearly complete" />
     <MESSAGE value="updated UserViewModel.kt and added BrowseServiceAdapter.kt" />
     <MESSAGE value="added the booking service and navigation to booking page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added the booking service and navigation to booking page" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">

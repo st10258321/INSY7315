@@ -56,7 +56,6 @@ class BrowseServicesFragment: Fragment() {
                 usersLoaded =
                     users.associate { user -> (user.userID to user.name) as Pair<String, String> }
                 setAdapter()
-                Toast.makeText(requireContext(), "Users Loaded: ${users.size}", Toast.LENGTH_SHORT).show()
             }
         }
             userViewModel.allServices.observe(viewLifecycleOwner) { services ->
@@ -64,7 +63,7 @@ class BrowseServicesFragment: Fragment() {
                     //create adapter to display the services
                     servicesLoaded = services
                     setAdapter()
-                    Toast.makeText(requireContext(), "Services Loaded: ${services.size}", Toast.LENGTH_SHORT).show()
+
                 }
             }
 
@@ -76,7 +75,6 @@ class BrowseServicesFragment: Fragment() {
                 getUserName = { userID -> (usersLoaded[userID] ?: "Unknown User") },
                 onViewProfileClick = { service ->
                         //navigate to booking page with the service id being pushed via INTENT
-                        Toast.makeText(requireContext(), "Service Clicked: ${service.serviceName}", Toast.LENGTH_SHORT).show()
                         val fragment = BookServiceFragment()
                         val bundle = Bundle()
                         bundle.putString("serviceID", service.serviceId)
@@ -88,7 +86,7 @@ class BrowseServicesFragment: Fragment() {
                             .commit()
                 })
             binding.serviceRecyclerView.adapter = adapter
-            Toast.makeText(requireContext(), "Adapter Set", Toast.LENGTH_SHORT).show()
+
         }
     }
 }

@@ -27,5 +27,9 @@ class OfferSkillsFragment: Fragment() {
             val intent = Intent(requireContext(), RegisterService::class.java)
             startActivity(intent)
         }
+        binding.btnManageListings.setOnClickListener {
+            val intent = Intent(requireContext(), ProviderBookings::class.java)
+            startActivity(intent)
+        }
     }
 }
