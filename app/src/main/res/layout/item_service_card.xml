@@ -128,7 +128,7 @@
                 android:id="@+id/btnViewProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/view_profile_button"
+                android:text="Book Service"
                 android:background="@android:color/transparent"
                 android:textColor="@color/primary_teal"
                 android:textSize="16sp"

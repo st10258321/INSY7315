@@ -40,7 +40,7 @@ class UserRepository {
     }
 
     // This function gets the users information using their id, which will be used for when the user logs in
-    private fun getUserData(uid: String, callback: (User?) -> Unit) {
+     fun getUserData(uid: String, callback: (User?) -> Unit) {
         database.child("users").child(uid).get()
             .addOnSuccessListener { snapshot ->
                 val user = snapshot.getValue(User::class.java)
@@ -48,6 +48,13 @@ class UserRepository {
             }
             .addOnFailureListener {
                 callback(null)
+            }
+    }
+    fun getUsers(callback: (List<User>?) -> Unit) {
+        database.child("users").get()
+            .addOnSuccessListener { snapshot ->
+                val users = snapshot.children.mapNotNull { it.getValue(User::class.java) }
+                callback(users)
             }
     }
     // This function logs the user in

@@ -15,6 +15,16 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout-v28/fragment_book_service.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
@@ -100,6 +110,11 @@
           <theme>@style/Theme.WIL_HustleHub</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_service_card.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
@@ -111,8 +126,19 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="on page nav complete and RegisterService.kt nearly complete">
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="added the booking service and navigation to booking page">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-v28/fragment_book_service.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/BrowseServiceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/BrowseServiceAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_book_service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_book_service.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_services.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_services.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_service_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_service_card.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +148,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lanop\.android\avd\pixel_7_-_api_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=RF8XA0EDGRF)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -132,8 +158,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
-        <option value="Kotlin Class" />
         <option value="resourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -312,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755991375471</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updated UserViewModel.kt and added BrowseServiceAdapter.kt">
+      <option name="closed" value="true" />
+      <created>1756064367374</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1756064367376</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -320,19 +354,21 @@
     <MESSAGE value="just to merge the repo branch into this one." />
     <MESSAGE value="Login functionality implemented" />
     <MESSAGE value="on page nav complete and RegisterService.kt nearly complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="on page nav complete and RegisterService.kt nearly complete" />
+    <MESSAGE value="updated UserViewModel.kt and added BrowseServiceAdapter.kt" />
+    <MESSAGE value="added the booking service and navigation to booking page" />
+    <option name="LAST_COMMIT_MESSAGE" value="added the booking service and navigation to booking page" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="vcmsa.projects.wil_hustlehub">
           <value>
-            <CheckInfo lastCheckTimestamp="1755953099742" />
+            <CheckInfo lastCheckTimestamp="1756063137875" />
           </value>
         </entry>
         <entry key="vcmsa.projects.wil_hustlehub.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1755953099742" />
+            <CheckInfo lastCheckTimestamp="1756063137875" />
           </value>
         </entry>
       </map>

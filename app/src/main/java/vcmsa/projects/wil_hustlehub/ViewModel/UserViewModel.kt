@@ -16,6 +16,9 @@ class UserViewModel @Inject constructor(
     private val serviceRepo: ServiceRepository,
     private val bookRepo: BookServiceRepository): ViewModel() {
 
+    // LiveData to observe all users
+        val allUsers = MutableLiveData<List<User>?>()
+
     // LiveData to observe registration status
     val registrationStat = MutableLiveData<Triple<Boolean, String?, User?>>()
     // LiveData to observe login status and user data
@@ -25,7 +28,7 @@ class UserViewModel @Inject constructor(
     val currentUserData = MutableLiveData<User?>()
 
     // LiveData for the list of services created by the current user
-    val userServices = MutableLiveData<List<Service>?>()
+    val userServices = MutableLiveData<List<Service>>()
 
     // LiveData for the list of all services in the database
     val allServices = MutableLiveData<List<Service>?>()
@@ -64,6 +67,19 @@ class UserViewModel @Inject constructor(
             }
         }
     }
+    // Getting specific user data
+    fun getUserData(uid: String): LiveData<User?> {
+        val liveData = MutableLiveData<User?>()
+        userRepo.getUserData(uid) { user ->
+            liveData.postValue(user)
+        }
+        return liveData
+    }
+    fun getAllUsers(){
+        userRepo.getUsers { users ->
+            allUsers.postValue(users)
+        }
+    }
 
     // Connect this to the UserRepository's logout function
     fun logout() {
@@ -95,12 +111,14 @@ class UserViewModel @Inject constructor(
     // Function to get all services created by the current user
     fun getUserServices() {
         serviceRepo.getUserServices { success, message, services ->
-            if (success) {
-                userServices.postValue(services) // Update the LiveData with the list of services
-            } else {
-                // Handle the error, maybe by setting the list to null and updating a status message
-                userServices.postValue(null)
-                serviceStatus.postValue(Pair(false, message))
+            if(services != null) {
+                if (success) {
+                    userServices.postValue(services) // Update the LiveData with the list of services
+                } else {
+                    // Handle the error, maybe by setting the list to null and updating a status message
+
+                    serviceStatus.postValue(Pair(false, message))
+                }
             }
         }
     }

@@ -111,38 +111,23 @@
 
                 <CalendarView
                     android:id="@+id/bookingCalendar"
-                    android:dateTextAppearance="@color/white"
-                    android:shadowColor="@color/red_error"
-                    android:backgroundTint="@color/black"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="250dp" />
+                    android:layout_height="250dp"
+                    android:background="#009688"
+                    android:backgroundTint="#03A9F4"
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:selectedWeekBackgroundColor="#03A9F4" />
 
-                <LinearLayout
+                <EditText
+                    android:id="@+id/edBookingTime"
+                    android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/edBookingTime"
-                        android:layout_marginTop="15dp"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:hint="10:00"
-                        android:visibility="gone"
-                        android:textSize="12sp"
-                        android:ems="10"
-                        android:inputType="time" />
-                    <Button
-                        android:id="@+id/btnConfirmTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Confirm Time"
-                        android:visibility="gone"
-                        android:textSize="12sp"
-                        android:background="@color/light_teal"
-                        android:textColor="@color/deep_blue"
-                        android:padding="12dp"
-                        />
-                </LinearLayout>
+                    android:layout_height="15dp"
+                    android:visibility="gone"
+                    android:hint="10:00"
+                    android:textSize="12sp"
+                    android:ems="10"
+                    android:inputType="time" />
 
                 <TextView
                     android:id="@+id/selectedDateTime"
@@ -152,7 +137,14 @@
                     android:textSize="15sp"
                     android:textColor="@color/text_light_grey"
                     android:layout_marginBottom="24dp" />
-
+                <TextView
+                    android:id="@+id/selectedTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No date/time selected"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_light_grey"
+                    android:layout_marginBottom="24dp" />
 
                 <TextView
                     android:layout_width="wrap_content"

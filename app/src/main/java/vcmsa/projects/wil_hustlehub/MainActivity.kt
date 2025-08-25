@@ -10,11 +10,14 @@ import vcmsa.projects.wil_hustlehub.View.LoginFragment
 import vcmsa.projects.wil_hustlehub.View.OfferSkillsFragment
 import vcmsa.projects.wil_hustlehub.View.ProfileFragment
 import vcmsa.projects.wil_hustlehub.View.RegisterFragment
+import vcmsa.projects.wil_hustlehub.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
@@ -49,16 +52,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun openFragment(fragment: androidx.fragment.app.Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, fragment)
+            .replace(binding.navHostFragment.id, fragment)
             .commit()
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         // 👇 Hide nav bar for Login & Register
-        if (fragment is LoginFragment || fragment is RegisterFragment) {
-            bottomNav.visibility = View.GONE
-        } else {
-            bottomNav.visibility = View.VISIBLE
-        }
+//        if (fragment is LoginFragment || fragment is RegisterFragment) {
+//            bottomNav.visibility = View.GONE
+//        } else {
+//            bottomNav.visibility = View.VISIBLE
+//        }
+        binding.bottomNavigation.visibility =
+            if (fragment is LoginFragment || fragment is RegisterFragment) View.GONE else View.VISIBLE
     }
 }

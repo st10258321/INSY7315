@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,5 +18,7 @@ class BrowseServicesActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, BrowseServicesFragment())
                 .commit()
         }
+
+
     }
 }

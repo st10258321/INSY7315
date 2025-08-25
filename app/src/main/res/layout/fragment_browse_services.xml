@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_container"
     xmlns:tools="http://schemas.android.com/tools">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,14 +45,13 @@
                 android:textColorHint="@color/text_light_grey" />
         </LinearLayout>
 
-        <!-- Listings Content (Sidebar and Grid) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
 
             <!-- Sidebar (Filters and Categories) -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:fillViewport="false"
+            android:paddingHorizontal="16dp">
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -237,6 +235,7 @@
                         app:cornerRadius="8dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+        </androidx.core.widget.NestedScrollView>
 
             <!-- Service Grid (RecyclerView) -->
             <androidx.recyclerview.widget.RecyclerView
@@ -245,9 +244,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="1"
                 tools:listitem="@layout/item_service_card" />
         </LinearLayout>
-    </LinearLayout>
+
+
 </layout>
 
