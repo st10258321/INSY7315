@@ -66,7 +66,5 @@ class ProviderBookingsFragment : Fragment() {
         userViewModel.getBookingsForMyServices()
         }
 
-
-
     }
 

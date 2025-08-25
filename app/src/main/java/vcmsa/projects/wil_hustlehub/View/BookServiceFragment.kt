@@ -46,12 +46,14 @@ class BookServiceFragment: Fragment() {
                 binding.selectedServiceTitle.text = service.serviceName
             }
         }
+        //hiding the calendar
         if(binding.bookingCalendar.isVisible)
             binding.bookingCalendar.visibility = View.GONE
-
+        //displaying the calendar
         binding.btnSelectDate.setOnClickListener {
             binding.bookingCalendar.visibility = View.VISIBLE
         }
+        //hiding the time Calendar when the user selects a Time
         binding.btnSelectTime.setOnClickListener {
             binding.bookingCalendar.visibility = View.GONE
             binding.edBookingTime.visibility = View.VISIBLE
@@ -62,7 +64,7 @@ class BookServiceFragment: Fragment() {
             val selectedDate = "$dayOfMonth/${month + 1}/$year"
             binding.selectedDateTime.text = selectedDate
         }
-
+        //sending the information to the database
         binding.btnConfirmBooking.setOnClickListener {
             val selectedDate = binding.selectedDateTime.text.toString()
             val selectedTime = binding.edBookingTime.text.toString()
