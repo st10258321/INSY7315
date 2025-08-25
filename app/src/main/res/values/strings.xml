@@ -182,15 +182,20 @@
     <string name="service_description">Service Description</string>
     <!-- <string name="title_about_contact">Contact</string> -->
 
-    <!-- New strings for updated navigation and profile -->
+    <!-- strings for updated navigation and profile -->
     <string name="title_offer_services">Offer Services</string>
     <string name="title_about_contact">About &amp; Contact</string>
     <string name="categories_description">Explore services by category or search for something specific.</string>
 
-    <!-- New strings for Provider Bookings Page -->
+    <!-- strings for Provider Bookings Page -->
     <string name="provider_bookings_page_title">My Bookings</string>
     <string name="tab_pending_bookings">Pending</string>
     <string name="tab_confirmed_bookings">Confirmed</string>
     <string name="reject_button">Reject</string>
     <string name="confirm_button">Confirm</string>
+
+    <string name="tab_completed_bookings">Completed</string>
+    <string name="empty_bookings_title">No Bookings Yet</string>
+    <string name="empty_bookings_message">When students book your services, they\'ll appear here.</string>
+
 </resources>
