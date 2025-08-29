@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException
 
 fun <T> getOrAwaitValue(
     liveData: LiveData<T>,
-    time: Long = 5,
+    time: Long = 6,
     timeUnit: TimeUnit = TimeUnit.SECONDS
 ): T {
 

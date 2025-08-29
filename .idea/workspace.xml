@@ -41,17 +41,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="UserIntergrationTests.kt set up method was made">
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/MockUserRepo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/LiveDataObserver.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/java/vcmsa/projects/wil_hustlehub/LiveDataObserver.kt" afterDir="false" />
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Successful integration test">
       <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/vcmsa/projects/wil_hustlehub/IntergrationTest/UserIntergrationTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/UserIntergrationTests.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/vcmsa/projects/wil_hustlehub/Repository/UserRepositoryTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/vcmsa/projects/wil_hustlehub/Repository/UserRepositoryTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/UserIntergrationTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/UserIntergrationTests.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/LiveDataObserver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/LiveDataObserver.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,18 +77,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "st10258321"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;st10258321&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/st10258321/INSY7315.git",
-    "accountId": "5139ffd0-0285-4a18-815f-b40050ca0ffb"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/st10258321/INSY7315.git&quot;,
+    &quot;accountId&quot;: &quot;5139ffd0-0285-4a18-815f-b40050ca0ffb&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -113,6 +107,7 @@
   "keyToString": {
     "Android App.app.executor": "Run",
     "Android Instrumented Tests.UserIntergrationTests.executor": "Run",
+    "Android Instrumented Tests.registerAndLoginAndRegisterServiceFlow().executor": "Run",
     "Android Instrumented Tests.registerAndLoginFlow().executor": "Run",
     "Gradle.UserIntergrationTests.executor": "Run",
     "Gradle.UserIntergrationTests.registerAndLoginFlow.executor": "Run",
@@ -139,7 +134,7 @@
       <recent name="vcmsa.projects.wil_hustlehub.View" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Instrumented Tests.registerAndLoginFlow()">
+  <component name="RunManager" selected="Android Instrumented Tests.registerAndLoginAndRegisterServiceFlow()">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="WIL_HustleHub.app" />
       <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
@@ -217,6 +212,68 @@
       <option name="ANDROID_TEST_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="vcmsa.projects.wil_hustlehub.IntergrationTest.UserIntergrationTests" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_NAME_REGEX" value="" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="RETENTION_ENABLED" value="No" />
+      <option name="RETENTION_MAX_SNAPSHOTS" value="2" />
+      <option name="RETENTION_COMPRESS_SNAPSHOTS" value="false" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="registerAndLoginAndRegisterServiceFlow()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+      <module name="WIL_HustleHub.app" />
+      <option name="ANDROID_TEST_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+      <option name="TESTING_TYPE" value="3" />
+      <option name="METHOD_NAME" value="registerAndLoginAndRegisterServiceFlow" />
       <option name="CLASS_NAME" value="vcmsa.projects.wil_hustlehub.IntergrationTest.UserIntergrationTests" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
@@ -386,6 +443,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android Instrumented Tests.registerAndLoginAndRegisterServiceFlow()" />
         <item itemvalue="Android Instrumented Tests.registerAndLoginFlow()" />
         <item itemvalue="Android Instrumented Tests.UserIntergrationTests" />
         <item itemvalue="Gradle.UserIntergrationTests.registerAndLoginFlow" />
@@ -409,12 +467,21 @@
       <option name="project" value="LOCAL" />
       <updated>1756463873148</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Successful integration test">
+      <option name="closed" value="true" />
+      <created>1756478352039</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1756478352039</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="UserIntergrationTests.kt set up method was made" />
-    <option name="LAST_COMMIT_MESSAGE" value="UserIntergrationTests.kt set up method was made" />
+    <MESSAGE value="Successful integration test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Successful integration test" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
