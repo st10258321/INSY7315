@@ -4,7 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import vcmsa.projects.wil_hustlehub.Model.User
 
-class UserRepository(
+open class UserRepository(
     private val auth: FirebaseAuth = FirebaseAuth.getInstance(),
     private val database: DatabaseReference = com.google.firebase.database.FirebaseDatabase.getInstance().reference
 ) {
@@ -16,7 +16,7 @@ class UserRepository(
      * Function that registers the user
      * Creates a new user and returns via callback if the user has successfully registered
      */
-    fun register(
+    open fun register(
         name: String,
         email: String,
         phone: String,
@@ -60,7 +60,7 @@ class UserRepository(
     /**
      * This function logs the user in
      */
-    fun login(
+    open fun login(
         email: String,
         password: String,
         callback: (Boolean, String?, User?) -> Unit
