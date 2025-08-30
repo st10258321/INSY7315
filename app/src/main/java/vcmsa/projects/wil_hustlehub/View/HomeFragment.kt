@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,5 +24,13 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnFindService.setOnClickListener {
+            val intent = Intent(requireContext(), BrowseServicesActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnOfferSkills.setOnClickListener {
+            val intent = Intent(requireContext(), OfferSkillsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

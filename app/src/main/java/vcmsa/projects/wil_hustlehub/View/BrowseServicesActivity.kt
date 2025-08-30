@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,7 @@ class BrowseServicesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_browse_services)
+        setContentView(R.layout.fragment_browse_services)
 
         // Load fragment only if it's the first creation.
         if (savedInstanceState == null) {
@@ -17,5 +18,7 @@ class BrowseServicesActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, BrowseServicesFragment())
                 .commit()
         }
+
+
     }
 }

@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,13 @@ class OfferSkillsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.btnRegisterAsProvider.setOnClickListener {
+            val intent = Intent(requireContext(), RegisterService::class.java)
+            startActivity(intent)
+        }
+        binding.btnManageListings.setOnClickListener {
+            val intent = Intent(requireContext(), ProviderBookings::class.java)
+            startActivity(intent)
+        }
     }
 }

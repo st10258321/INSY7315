@@ -13,14 +13,14 @@ class BookServiceRepository {
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
 
-    // Making the date and time readable in the database by using specific format
+    //making the date and time readable in the database by using specific format
     private val dateFormat = java.text.SimpleDateFormat("yyyy/MM/dd", java.util.Locale.getDefault())
     private val timeFormat = java.text.SimpleDateFormat("HH:mm", java.util.Locale.getDefault())
 
 
-   /* This function takes the information like servicename,
-      date and time and saves it to the database
-      and the current userId of the user that is logged in.*/
+   /*this function takes the information like servicename,
+   date and time and saves it to the database
+   and the current userId of the user that is logged in.*/
     fun createBookService(serviceId: String, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -> Unit
     ) {
         // gets current user ID
@@ -60,7 +60,7 @@ class BookServiceRepository {
                        bookingId = bookServiceId,
                        userId = userId,
                        serviceId = serviceId, 
-                       serviceName = service.serviceName,
+                       serviceName = service.serviceName, // Automatically filled from service
                        date = finalDate,
                        time = finalTime,
                        location = location,
@@ -85,9 +85,8 @@ class BookServiceRepository {
            })
    }
 
-    /*
-       With this function we are getting all the bookings that are inside the database
-       that belong to the user that is logged in and returns then as a list
+    /* with this function we are getting all the bookings that are inside the database
+     that belong to the user that is logged in and returns then as a list
     */
     fun getUserBookServices(callback: (Boolean, String?, List<BookService>?) -> Unit) {
         val userId = auth.currentUser?.uid
@@ -114,9 +113,8 @@ class BookServiceRepository {
     }
 
 
-    /*
-       This function is for the admin portal where it gets all the bookings that are saved inside
-       the databaseThis function retrieves every single booking in the entire database from all users
+    /* this function is for the admin portal where it gets all the bookings that are saved inside
+     the databaseThis function retrieves every single booking in the entire database from all users,
      */
     fun getAllBookServices(callback: (Boolean, String?, List<BookService>?) -> Unit) {
         database.child("Book_Service")
@@ -134,7 +132,8 @@ class BookServiceRepository {
             }
     }
 
-    // This function searches for a booking and returns specific booking details by using the bookingId
+    /*this function searches for a booking and returns specific booking details by using the
+      bookingId */
     fun getBookServiceById(bookServiceId: String, callback: (Boolean, String?, BookService?) -> Unit) {
         database.child("Book_Service").child(bookServiceId)
             .get()
@@ -152,7 +151,7 @@ class BookServiceRepository {
     }
 
 
-    // Getting all bookings for users that are service providers.
+    //  getting all bookings for users that are service providers.
     fun getBookingsForMyServices(callback: (Boolean, String?, List<BookService>?) -> Unit) {
         val userId = auth.currentUser?.uid
         if (userId == null) {
@@ -202,9 +201,8 @@ class BookServiceRepository {
     }
 
 
-    /*
-       This function can be used for when the user wants to cancle/delete a booking
-       Which permanently removes that booking from the database.
+    /* this function can be used for when the user wants to cancle/delete a booking
+    // which permanently removes that booking from the database.
     */
     fun deleteBookService(bookServiceId: String, callback: (Boolean, String?) -> Unit) {
         val userId = auth.currentUser?.uid
@@ -231,7 +229,7 @@ class BookServiceRepository {
     }
 
 
-    // To confirm a booking this can only be done by the person who registered/owns the service
+    /* to confirm a booking this can only be done by the person who registered/owns the service */
     fun confirmBooking(bookServiceId: String, callback: (Boolean, String?, BookService?) -> Unit) {
         val userId = auth.currentUser?.uid
         if (userId == null) {
@@ -263,7 +261,7 @@ class BookServiceRepository {
         }
     }
 
-    // To reject a booking this can only be done by the person who registered/owns the service
+    /* to reject a booking this can only be done by the person who registered/owns the service */
     fun rejectBooking(bookServiceId: String, callback: (Boolean, String?, BookService?) -> Unit) {
         val userId = auth.currentUser?.uid
         if (userId == null) {
@@ -294,4 +292,5 @@ class BookServiceRepository {
             }
         }
     }
+
 }

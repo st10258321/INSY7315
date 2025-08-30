@@ -9,7 +9,7 @@ class CategoriesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_categories)
+        setContentView(R.layout.fragment_categories)
 
         // Load fragment only if it's the first creation.
         if (savedInstanceState == null) {

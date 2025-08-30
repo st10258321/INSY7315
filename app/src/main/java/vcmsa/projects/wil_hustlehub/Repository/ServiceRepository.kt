@@ -8,11 +8,10 @@ import com.google.firebase.database.ValueEventListener
 import vcmsa.projects.wil_hustlehub.Model.Service
 
 class ServiceRepository {
-    // Where all the firebase is being done
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
 
-    // Using specific format
+    // using specific format
     private val createdDateFormat = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault())
     private val createdDate = createdDateFormat.format(java.util.Date())
 
@@ -25,11 +24,9 @@ class ServiceRepository {
             return
         }
 
-        // Create a new service with the provided information
         val userId = currentUser.uid
         val serviceId = database.child("Services").push().key ?: ""
 
-        // Create the Service object
         val service = Service(
             serviceId = serviceId,
             userId = userId,
@@ -54,7 +51,7 @@ class ServiceRepository {
     }
 
 
-    // Getting all the services that were created by the current user that is logged in.
+    // getting all the services that were created by the current user that is logged in.
     fun getUserServices(callback: (Boolean, String?, List<Service>?) -> Unit) {
         val currentUser = auth.currentUser
         if (currentUser == null) {
@@ -80,7 +77,7 @@ class ServiceRepository {
             })
     }
 
-    // When the current user wants to delete a service that they created and exists.
+    // when the current user wants to delete a service that they created and exists.
     fun deleteService(serviceId: String, callback: (Boolean, String?) -> Unit) {
         val currentUser = auth.currentUser
         if (currentUser == null) {
@@ -139,4 +136,90 @@ class ServiceRepository {
                 }
             })
     }
+
+  //for displaying all the services inside the database
+    fun getAllServices(callback: (Boolean, String?, List<Service>?) -> Unit) {
+        database.child("Services")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val services = mutableListOf<Service>()
+                    for (serviceSnapshot in snapshot.children) {
+                        val service = serviceSnapshot.getValue(Service::class.java)
+                        service?.let { services.add(it) }
+                    }
+                    callback(true, null, services)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
+
+
+    // when the user wants to search a service by name
+    fun searchServicesByName(nameOfService: String, callback: (Boolean, String?, List<Service>?) -> Unit) {
+        database.child("Services")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val services = mutableListOf<Service>()
+                    for (serviceSnapshot in snapshot.children) {
+                        val service = serviceSnapshot.getValue(Service::class.java)
+                        service?.let {
+                            if (it.serviceName.contains(nameOfService, ignoreCase = true)) {
+                                services.add(it)
+                            }
+                        }
+                    }
+                    callback(true, null, services)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
+
+    fun searchServicesByCategory(category: String, callback: (Boolean, String?, List<Service>?) -> Unit) {
+        database.child("Services")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val services = mutableListOf<Service>()
+                    for (serviceSnapshot in snapshot.children) {
+                        val service = serviceSnapshot.getValue(Service::class.java)
+                        service?.let {
+                            if (it.category.equals(category, ignoreCase = true)) {
+                                services.add(it)
+                            }
+                        }
+                    }
+                    callback(true, null, services)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
+
+
+    // getting all services offered by a specific service provider
+    fun getServicesByUserId(userid: String, callback: (Boolean, String?, List<Service>?) -> Unit) {
+        database.child("Services").orderByChild("userId").equalTo(userid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val services = mutableListOf<Service>()
+                    for (serviceSnapshot in snapshot.children) {
+                        val service = serviceSnapshot.getValue(Service::class.java)
+                        service?.let { services.add(it) }
+                    }
+                    callback(true, null, services)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
+
 }

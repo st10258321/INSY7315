@@ -9,7 +9,7 @@ class OfferSkillsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_offer_skills)
+        setContentView(R.layout.fragment_offer_skills)
 
         // Load fragment only if it's the first creation.
         if (savedInstanceState == null) {
