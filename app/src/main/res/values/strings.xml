@@ -120,7 +120,7 @@
 
     <!-- Categories Screen (Placeholder) -->
     <string name="categories_page_title">All Service Categories</string>
-    <string name="categories_description">Browse services by category to find exactly what you need.</string>
+    <!--<string name="categories_description">Browse services by category to find exactly what you need.</string>-->
     <string name="category_academics">Academics &amp; Tutoring</string>
     <string name="category_creative">Creative &amp; Design</string>
     <string name="category_personal_care">Personal Care &amp; Beauty</string>
@@ -177,5 +177,32 @@
     <string name="account_page_title">Your Account</string>
     <string name="account_welcome_message">Manage your profile, services, and bookings.</string>
     <string name="social_login_prompt">Or connect with:</string>
+    <string name="service_title">Service Title</string>
+    <string name="category">Category</string>
+    <string name="service_description">Service Description</string>
+    <!-- <string name="title_about_contact">Contact</string> -->
+
+    <!-- strings for updated navigation and profile -->
+    <string name="title_offer_services">Offer Services</string>
+    <string name="title_about_contact">About &amp; Contact</string>
+    <string name="categories_description">Explore services by category or search for something specific.</string>
+
+    <!-- strings for Provider Bookings Page -->
+    <string name="provider_bookings_page_title">My Bookings</string>
+    <string name="tab_pending_bookings">Pending</string>
+    <string name="tab_confirmed_bookings">Confirmed</string>
+    <string name="reject_button">Reject</string>
+    <string name="confirm_button">Confirm</string>
+
+    <string name="label_customer">Customer: %1$s</string>
+    <string name="label_date_time">Date: %1$s, Time: %2$s</string>
+    <string name="label_location">Location: %1$s</string>
+    <string name="label_notes">Notes: %1$s</string>
+    <string name="toast_bookings_fetched">Bookings fetched successfully: %1$d</string>
+    <string name="toast_no_bookings">No bookings found</string>
+
+    <string name="tab_completed_bookings">Completed</string>
+    <string name="empty_bookings_title">No Bookings Yet</string>
+    <string name="empty_bookings_message">When students book your services, they\'ll appear here.</string>
 
 </resources>
