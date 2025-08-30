@@ -194,6 +194,13 @@
     <string name="reject_button">Reject</string>
     <string name="confirm_button">Confirm</string>
 
+    <string name="label_customer">Customer: %1$s</string>
+    <string name="label_date_time">Date: %1$s, Time: %2$s</string>
+    <string name="label_location">Location: %1$s</string>
+    <string name="label_notes">Notes: %1$s</string>
+    <string name="toast_bookings_fetched">Bookings fetched successfully: %1$d</string>
+    <string name="toast_no_bookings">No bookings found</string>
+
     <string name="tab_completed_bookings">Completed</string>
     <string name="empty_bookings_title">No Bookings Yet</string>
     <string name="empty_bookings_message">When students book your services, they\'ll appear here.</string>
