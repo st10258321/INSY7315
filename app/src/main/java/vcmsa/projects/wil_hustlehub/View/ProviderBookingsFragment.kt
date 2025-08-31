@@ -1,6 +1,5 @@
 package vcmsa.projects.wil_hustlehub.View
 
-package vcmsa.projects.wil_hustlehub.View
 
 import android.os.Bundle
 import android.view.LayoutInflater
