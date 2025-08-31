@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import vcmsa.projects.wil_hustlehub.Adapters.ProviderBookingsAdapter
+import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
