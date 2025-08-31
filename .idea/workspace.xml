@@ -30,9 +30,19 @@
           <theme>@style/Theme.WIL_HustleHub</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_provider_bookings.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_register.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_provider_booking.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
     </layouts>
@@ -41,9 +51,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Successful integration test 2">
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Updated reference">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/LiveDataObserver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/LiveDataObserver.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/MockUserRepo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/UserIntergrationTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/UserIntergrationTests.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,26 +112,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "Android Instrumented Tests.UserIntergrationTests.executor": "Run",
-    "Android Instrumented Tests.registerAndLoginAndRegisterServiceFlow().executor": "Run",
-    "Android Instrumented Tests.registerAndLoginFlow().executor": "Run",
-    "Gradle.UserIntergrationTests.executor": "Run",
-    "Gradle.UserIntergrationTests.registerAndLoginFlow.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Sprint6/Zalano-Testing",
-    "last_opened_file_path": "C:/Users/lanop/AndroidStudioProjects/HustleHub/app/src/androidTest/java/vcmsa/projects/wil_hustlehub",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Android Instrumented Tests.UserIntergrationTests.executor&quot;: &quot;Run&quot;,
+    &quot;Android Instrumented Tests.registerAndLoginAndRegisterServiceFlow().executor&quot;: &quot;Run&quot;,
+    &quot;Android Instrumented Tests.registerAndLoginFlow().executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.UserIntergrationTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.UserIntergrationTests.registerAndLoginFlow.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Sprint6/Zalano-Testing&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lanop/AndroidStudioProjects/HustleHub/app/src/androidTest/java/vcmsa/projects/wil_hustlehub&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="android.template.-1774855519">
       <recent name="vcmsa.projects.wil_hustlehub.View" />
@@ -481,26 +492,35 @@
       <option name="project" value="LOCAL" />
       <updated>1756491968354</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated reference">
+      <option name="closed" value="true" />
+      <created>1756493155140</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1756493155140</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="UserIntergrationTests.kt set up method was made" />
     <MESSAGE value="Successful integration test" />
     <MESSAGE value="Successful integration test 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Successful integration test 2" />
+    <MESSAGE value="Updated reference" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated reference" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="vcmsa.projects.wil_hustlehub">
           <value>
-            <CheckInfo lastCheckTimestamp="1755021463465" />
+            <CheckInfo lastCheckTimestamp="1756556680819" />
           </value>
         </entry>
         <entry key="vcmsa.projects.wil_hustlehub.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1755021463462" />
+            <CheckInfo lastCheckTimestamp="1756556680819" />
           </value>
         </entry>
       </map>

@@ -14,7 +14,6 @@ import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
 import vcmsa.projects.wil_hustlehub.getOrAwaitValue
-import vcmsa.projects.wil_hustlehub.IntergrationTest.MockUserRepo
 import vcmsa.projects.wil_hustlehub.Model.Service
 
 @RunWith(AndroidJUnit4::class)
