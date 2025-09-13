@@ -27,7 +27,7 @@ class ProviderBookingsAdapter(
     override fun onBindViewHolder(holder: BookingViewHolder, position: Int) {
         val booking = bookings[position]
         val context = holder.itemView.context
-
+//just for git purposes, didnt change anything
         holder.binding.bookingServiceTitle.text = booking.serviceName
         holder.binding.bookingStatus.text = booking.status
         holder.binding.bookingCustomerName.text =
