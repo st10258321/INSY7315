@@ -1,16 +1,13 @@
 package vcmsa.projects.wil_hustlehub.Adapters
 
-import android.R
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vcmsa.projects.wil_hustlehub.Model.BookService
-import android.widget.TextView
+import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.databinding.ItemProviderBookingBinding
 
 class ProviderBookingsAdapter(
-    val bookings: MutableList<BookService>,
     private val bookings: MutableList<BookService>,
     private val onConfirmAction: (BookService) -> Unit,
     private val onRejectAction: (BookService) -> Unit
