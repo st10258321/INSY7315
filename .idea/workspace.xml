@@ -51,10 +51,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Updated reference">
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Updated repo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/MockUserRepo.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/UserIntergrationTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/vcmsa/projects/wil_hustlehub/IntergrationTest/UserIntergrationTests.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +62,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lanop\.android\avd\pixel_7_-_api_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=RF8XA0EDGRF)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -81,7 +79,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Sprint6/Activities" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -452,11 +450,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Android Instrumented Tests.registerAndLoginAndRegisterServiceFlow()" />
-        <item itemvalue="Android Instrumented Tests.registerAndLoginFlow()" />
-        <item itemvalue="Android Instrumented Tests.UserIntergrationTests" />
         <item itemvalue="Gradle.UserIntergrationTests.registerAndLoginFlow" />
         <item itemvalue="Gradle.UserIntergrationTests" />
+        <item itemvalue="Android Instrumented Tests.UserIntergrationTests" />
+        <item itemvalue="Android Instrumented Tests.registerAndLoginFlow()" />
+        <item itemvalue="Android Instrumented Tests.registerAndLoginAndRegisterServiceFlow()" />
       </list>
     </recent_temporary>
   </component>
