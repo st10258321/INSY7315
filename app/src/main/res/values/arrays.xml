@@ -21,5 +21,13 @@
         <item>On campus</item>
         <item>Virtually</item>
     </string-array>
+    <string-array name="time_slots">
+        <item>08:00 - 10:00</item>
+        <item>10:00 - 12:00</item>
+        <item>12:00 - 14:00</item>
+        <item>14:00 - 16:00</item>
+        <item>16:00 - 18:00</item>
+    </string-array>
+
 
 </resources>
