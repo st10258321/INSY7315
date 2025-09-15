@@ -57,6 +57,10 @@ class BrowseServicesFragment: Fragment() {
                     users.associate { user -> (user.userID to user.name) as Pair<String, String> }
                 setAdapter()
             }
+            if(users.isNullOrEmpty())
+                Toast.makeText(requireContext(), "No users found", Toast.LENGTH_SHORT).show()
+            else
+                Toast.makeText(requireContext(), "Users found", Toast.LENGTH_SHORT).show()
         }
             userViewModel.allServices.observe(viewLifecycleOwner) { services ->
                 if (!services.isNullOrEmpty()) {
