@@ -67,6 +67,8 @@ class BrowseServicesFragment: Fragment() {
                 }
             }
 
+        loadDummyServices()
+
     }
     private fun setAdapter() {
         if(usersLoaded.isNotEmpty() && servicesLoaded.isNotEmpty()) {
@@ -86,7 +88,45 @@ class BrowseServicesFragment: Fragment() {
                             .commit()
                 })
             binding.serviceRecyclerView.adapter = adapter
-
         }
+    }
+
+    private fun loadDummyServices() {
+        val dummyUsers = mapOf(
+            "user1" to "Alice Johnson",
+            "user2" to "Bob Smith",
+            "user3" to "Charlie Brown"
+        )
+
+        val dummyServices = listOf(
+            Service(
+                serviceId = "s1",
+                userId = "user1",
+                serviceName = "Plumbing Repair",
+                description = "Fix leaks, unclog drains, and repair pipes.",
+                price = 500.0
+            ),
+            Service(
+                serviceId = "s2",
+                userId = "user2",
+                serviceName = "House Cleaning",
+                description = "Full house cleaning including carpets and windows.",
+                price = 300.0
+            ),
+            Service(
+                serviceId = "s3",
+                userId = "user3",
+                serviceName = "Gardening",
+                description = "Lawn mowing, hedge trimming, and garden maintenance.",
+                price = 200.0
+            )
+        )
+
+        // Save to fragment variables
+        usersLoaded = dummyUsers
+        servicesLoaded = dummyServices
+
+        // Attach adapter
+        setAdapter()
     }
 }
