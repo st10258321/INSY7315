@@ -89,7 +89,7 @@
     <string name="value_community">Community: Building strong, supportive networks among students.</string>
     <string name="value_innovation">Innovation: Continuously improving our platform to meet student needs.</string>
     <string name="value_integrity">Integrity: Ensuring a trustworthy and transparent marketplace.</string>
-
+    <string name="register_your_service">Register your service</string>
     <!-- Contact Screen -->
     <string name="contact_us_page_title">Contact Us</string>
     <string name="contact_us_description">Have questions, feedback, or need support? Reach out to us!</string>

@@ -92,7 +92,7 @@ class UserViewModel @Inject constructor(
 
     // Function to add a new service
     fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: String, location: String) {
-        serviceRepo.addService(serviceName, category, description, price, image, availability, location) { success, message, service ->
+        serviceRepo.addService(serviceName, category, description, price, image, availability,"", location) { success, message, service ->
             // Update UI state based on the result
             serviceStatus.postValue(Pair(success, message))
         }

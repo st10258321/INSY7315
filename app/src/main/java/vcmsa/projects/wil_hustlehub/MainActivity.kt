@@ -1,9 +1,12 @@
 package vcmsa.projects.wil_hustlehub
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 import vcmsa.projects.wil_hustlehub.View.BrowseServicesFragment
 import vcmsa.projects.wil_hustlehub.View.HomeFragment
 import vcmsa.projects.wil_hustlehub.View.LoginFragment
@@ -25,7 +28,13 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             openFragment(HomeFragment())
         }
-
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            task -> if(task.isSuccessful){
+                Log.d("FCM_TOKEN",task.result?:"No token")
+            }else{
+                Toast.makeText(this,"Failed to get token",Toast.LENGTH_SHORT).show()
+        }
+        }
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
