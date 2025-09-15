@@ -29,6 +29,7 @@ class BookServiceRepository {
             callback(false, "User not logged in", null)
             return
         }
+       val userName = auth.currentUser?.displayName
 
        // First, get the service details to populate serviceName and serviceOwnerId
        database.child("Services").child(serviceId)
@@ -65,7 +66,8 @@ class BookServiceRepository {
                        time = finalTime,
                        location = location,
                        status = "Pending",
-                       message = message
+                       message = message,
+                       userName = userName ?: ""
                    )
 
                    // Save to the database

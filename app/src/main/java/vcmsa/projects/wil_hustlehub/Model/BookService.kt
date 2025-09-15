@@ -9,5 +9,6 @@ data class BookService(
     val time: String = "",
     val location: String = "",
     val status: String = "Pending",
-    val message: String = ""
+    val message: String = "",
+    val userName : String = ""
 )

@@ -81,6 +81,7 @@ class UserViewModel @Inject constructor(
         }
     }
 
+
     // Connect this to the UserRepository's logout function
     fun logout() {
         userRepo.logout()
