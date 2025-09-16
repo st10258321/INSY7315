@@ -1,6 +1,7 @@
 package vcmsa.projects.wil_hustlehub.ViewModel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import vcmsa.projects.wil_hustlehub.Model.BookService
@@ -44,6 +45,23 @@ class UserViewModel @Inject constructor(
 
     // LiveData for the list of bookings for the services owned by the current user
     val bookingsForMyServices = MutableLiveData<List<BookService>?>()
+    val combinedData = MediatorLiveData<Pair<Map<String, String>?, List<Service>?>>().apply{
+        val usersMap = MutableLiveData<Map<String, String>?>()
+        val servicesList = MutableLiveData<List<Service>?>()
+
+
+        addSource(allUsers){ users ->
+            usersMap.value = users?.associate { user ->
+                (user.userID to user.name) as Pair<String, String> }
+            value  = usersMap.value to servicesList.value
+
+        }
+        addSource(allServices){ services ->
+            servicesList.value = services
+            value = usersMap.value to servicesList.value
+
+        }
+    }
 
     // Function to handle user registration
     fun register(user: User) {

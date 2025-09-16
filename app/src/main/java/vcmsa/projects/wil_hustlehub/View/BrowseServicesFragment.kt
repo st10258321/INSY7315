@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import vcmsa.projects.wil_hustlehub.Adapters.BrowseServiceAdapter
 import vcmsa.projects.wil_hustlehub.MainActivity
@@ -51,25 +53,34 @@ class BrowseServicesFragment: Fragment() {
         userViewModel.getAllServices()
 
 
-        userViewModel.allUsers.observe(viewLifecycleOwner) { users ->
-            if(!users.isNullOrEmpty()) {
-                usersLoaded =
-                    users.associate { user -> (user.userID to user.name) as Pair<String, String> }
+        userViewModel.combinedData.observe(viewLifecycleOwner){
+            if(it.first != null && it.second != null){
+                usersLoaded = it.first!!
+                servicesLoaded = it.second!!
                 setAdapter()
+            }else{
+                Toast.makeText(requireContext(), "Error loading data", Toast.LENGTH_SHORT).show()
             }
-            if(users.isNullOrEmpty())
-                Toast.makeText(requireContext(), "No users found", Toast.LENGTH_SHORT).show()
-            else
-                Toast.makeText(requireContext(), "Users found", Toast.LENGTH_SHORT).show()
         }
-            userViewModel.allServices.observe(viewLifecycleOwner) { services ->
-                if (!services.isNullOrEmpty()) {
-                    //create adapter to display the services
-                    servicesLoaded = services
-                    setAdapter()
 
-                }
-            }
+
+//
+//        userViewModel.allUsers.observe(viewLifecycleOwner) { users ->
+//            if(!users.isNullOrEmpty()) {
+//                usersLoaded =
+//                    users.associate { user -> (user.userID to user.name) as Pair<String, String> }
+//                setAdapter()
+//            }
+//
+//        }
+//            userViewModel.allServices.observe(viewLifecycleOwner) { services ->
+//                if (!services.isNullOrEmpty()) {
+//                    //create adapter to display the services
+//                    servicesLoaded = services
+//                    setAdapter()
+//
+//                }
+//            }
 
     }
     private fun setAdapter() {
