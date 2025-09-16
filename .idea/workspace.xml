@@ -91,7 +91,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="updated files" />
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="updated workspace.xml">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,7 +103,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=RF8XA0EDGRF)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lanop\.android\avd\pixel_7_-_api_34.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -122,6 +125,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "st10258321"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/st10258321/INSY7315.git",
+    "accountId": "5139ffd0-0285-4a18-815f-b40050ca0ffb"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -141,12 +156,14 @@
     "Android App.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "Sprint7/Support-Z",
-    "last_opened_file_path": "C:/Users/ashfo/AndroidStudioProjects/INSY7315-Sprint4-ViewModel"
+    "last_opened_file_path": "C:/Users/ashfo/AndroidStudioProjects/INSY7315-Sprint4-ViewModel",
+    "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -263,14 +280,23 @@
       <option name="project" value="LOCAL" />
       <updated>1757968874343</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="updated workspace.xml">
+      <option name="closed" value="true" />
+      <created>1757969157494</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1757969157494</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updated code" />
     <MESSAGE value="update" />
     <MESSAGE value="updated files" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated files" />
+    <MESSAGE value="updated workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated workspace.xml" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">

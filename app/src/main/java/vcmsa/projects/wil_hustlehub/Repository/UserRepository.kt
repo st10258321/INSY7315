@@ -94,14 +94,14 @@ class UserRepository(
     fun logout() {
         auth.signOut()
     }
-    fun getUsers(callback: (List<User>?) -> Unit) {
-        database.child("users").get()
-            .addOnSuccessListener { snapshot ->
-                val users = snapshot.children.mapNotNull { it.getValue(User::class.java) }
-                callback(users)
-            }
-            .addOnFailureListener {
-                callback(null)
-            }
-    }
+//    fun getUsers(callback: (List<User>?) -> Unit) {
+//        database.child("users").get()
+//            .addOnSuccessListener { snapshot ->
+//                val users = snapshot.children.mapNotNull { it.getValue(User::class.java) }
+//                callback(users)
+//            }
+//            .addOnFailureListener {
+//                callback(null)
+//            }
+//    }
 }
