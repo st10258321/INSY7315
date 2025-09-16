@@ -67,7 +67,7 @@ class BrowseServicesFragment: Fragment() {
                 }
             }
 
-        loadDummyServices()
+        //loadDummyServices()
 
     }
     private fun setAdapter() {
