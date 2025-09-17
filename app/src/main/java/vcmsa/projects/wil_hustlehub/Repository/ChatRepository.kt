@@ -6,17 +6,20 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import vcmsa.projects.wil_hustlehub.Model.Chat
+import vcmsa.projects.wil_hustlehub.Model.Message
 import vcmsa.projects.wil_hustlehub.Model.Service
+import vcmsa.projects.wil_hustlehub.Model.User
 
 class ChatRepository {
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
 
-    private val createdDateFormat = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault())
+    private val createdDateFormat =
+        java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault())
     private val createdDate = createdDateFormat.format(java.util.Date())
 
     fun createChat(serviceId: String, callback: (Boolean, String?, Chat?) -> Unit) {
-       val currentUser = auth.currentUser
+        val currentUser = auth.currentUser
 
         if (currentUser == null) {
             callback(false, "User not logged in", null)
@@ -38,7 +41,8 @@ class ChatRepository {
                         return
                     }
 
-                    val serviceProviderId = service.userId  // getting service provider id from Service class/model using userId
+                    val serviceProviderId =
+                        service.userId  // getting service provider id from Service class/model using userId
                     val serviceName = service.serviceName
                     val chatId = "${userId}_${serviceProviderId}_${serviceId}"
 
@@ -153,5 +157,85 @@ class ChatRepository {
                     callback(false, error.message, null)
                 }
             })
+    }
+
+    // send a message in the chat
+    fun sendMessage(
+        chatId: String,
+        message: String,
+        callback: (Boolean, String?, Message?) -> Unit
+    ) {
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            callback(false, "User not logged in", null)
+            return
+        }
+
+        val messageId = database.child("Messages").child(chatId).push().key ?: ""
+        val senderId = currentUser.uid
+
+        // getting the name of the sender from the user table
+        database.child("Users").child(senderId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(userSnapshot: DataSnapshot) {
+
+                    val user = userSnapshot.getValue(User::class.java)
+
+                    val senderName = user?.name ?: "User"
+
+                    val chatMessage = Message(
+                        messageId = messageId,
+                        chatId = chatId,
+                        senderId = senderId,
+                        senderName = senderName,
+                        message = message,
+                        timeSent = createdDate,
+                    )
+
+                    database.child("Messages").child(chatId).child(messageId).setValue(chatMessage)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                // Update chat with last message
+                                updateLastMessageSent(chatId, message)
+                                callback(true, null, chatMessage)
+                            } else {
+                                callback(false, task.exception?.message, null)
+                            }
+                        }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                    val senderName = "User"
+
+                    val chatMessage = Message(
+                        messageId = messageId,
+                        chatId = chatId,
+                        senderId = senderId,
+                        senderName = senderName,
+                        message = message,
+                        timeSent = createdDate
+                    )
+
+                    database.child("Messages").child(chatId).child(messageId).setValue(chatMessage)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                updateLastMessageSent(chatId, message)
+                                callback(true, null, chatMessage)
+                            } else {
+                                callback(false, task.exception?.message, null)
+                            }
+                        }
+                }
+            })
+    }
+
+    // update the last message sent in the chat
+    private fun updateLastMessageSent(chatId: String, lastMessage: String) {
+        val updates = mapOf(
+            "lastMessage" to lastMessage,
+            "lastMessageTime" to createdDate
+        )
+        database.child("Chats").child(chatId).updateChildren(updates)
     }
 }
