@@ -1,6 +1,8 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +18,9 @@ import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
 import vcmsa.projects.wil_hustlehub.databinding.FragmentBookServiceBinding
 import kotlin.getValue
 import androidx.core.view.isVisible
+import androidx.lifecycle.MediatorLiveData
+import vcmsa.projects.wil_hustlehub.Model.CombinedData
+import vcmsa.projects.wil_hustlehub.Network.PushApiClient
 
 class BookServiceFragment: Fragment() {
     // Declare the binding variable
@@ -25,8 +30,14 @@ class BookServiceFragment: Fragment() {
     private val bookRepo = BookServiceRepository()
     private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
     private val userViewModel: UserViewModel by viewModels { viewModelFactory }
-
+    private var spFcmToken :String? = null
     private var serviceID :String? = null
+    private var serviceName :String? = null
+    private var userName :String? = null
+    private lateinit var combinedData: MediatorLiveData<CombinedData>
+
+
+    private var serviceProviderId :String = ""
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,30 +51,58 @@ class BookServiceFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         serviceID = arguments?.getString("serviceID")
-        userViewModel.getServiceById(serviceID!!)
-            .observe(viewLifecycleOwner) { service ->
-            if(service != null) {
+
+
+//        userViewModel.currentUserData.observe(viewLifecycleOwner){cUser ->
+//            userName = cUser?.name
+//        }
+        val sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val uName = sharedPref.getString("uid", "")
+        if(!uName.isNullOrEmpty())
+            userName = uName
+
+        userViewModel.getServiceById(serviceID!!).observe(viewLifecycleOwner){service ->
+            if(service != null){
                 binding.selectedServiceTitle.text = service.serviceName
+                serviceName = service.serviceName
+                serviceProviderId = service.userId
+                Toast.makeText(requireContext(), "userName: ${userName}", Toast.LENGTH_SHORT).show()
+
+                if(serviceProviderId.isNotEmpty()){
+                    userViewModel.getUserData(serviceProviderId).observe(viewLifecycleOwner){provider->
+                        spFcmToken = provider?.fcmToken
+                        Toast.makeText(requireContext(), "spFcmToken: ${spFcmToken}", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
-        //hiding the calendar
-        if(binding.bookingCalendar.isVisible)
-            binding.bookingCalendar.visibility = View.GONE
-        //displaying the calendar
-        binding.btnSelectDate.setOnClickListener {
-            binding.bookingCalendar.visibility = View.VISIBLE
-        }
-        //hiding the time Calendar when the user selects a Time
-        binding.btnSelectTime.setOnClickListener {
-            binding.bookingCalendar.visibility = View.GONE
-            binding.edBookingTime.visibility = View.VISIBLE
-        }
 
-        binding.bookingCalendar.setOnDateChangeListener {
-            view, year, month, dayOfMonth ->
-            val selectedDate = "$dayOfMonth/${month + 1}/$year"
-            binding.selectedDateTime.text = selectedDate
+            //hiding the calendar
+            if (binding.bookingCalendar.isVisible)
+                binding.bookingCalendar.visibility = View.GONE
+            //displaying the calendar
+            binding.btnSelectDate.setOnClickListener {
+                binding.bookingCalendar.visibility = View.VISIBLE
+            }
+            //hiding the time Calendar when the user selects a Time
+            binding.btnSelectTime.setOnClickListener {
+                binding.bookingCalendar.visibility = View.GONE
+                binding.edBookingTime.visibility = View.VISIBLE
+            }
+
+            binding.bookingCalendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
+                val selectedDate = "$dayOfMonth/${month + 1}/$year"
+                binding.selectedDateTime.text = selectedDate
+            }
+
+        checkAndEnableBooking()
+
+
         }
+    fun checkAndEnableBooking(){
+
+
+
         //sending the information to the database
         binding.btnConfirmBooking.setOnClickListener {
             val selectedDate = binding.selectedDateTime.text.toString()
@@ -71,17 +110,54 @@ class BookServiceFragment: Fragment() {
             val location = if (binding.radioOnline.isChecked) "Online" else "On Campus"
             val additionalNotes = binding.additionalNotes.text.toString()
             if (selectedDate.isEmpty() || selectedTime.isEmpty() || location.isEmpty()) {
-                Toast.makeText(requireContext(), "Please select a date, time or location", Toast.LENGTH_SHORT).show()
-            }else{
-                userViewModel.createBooking(serviceID!!, selectedDate, selectedTime, location, additionalNotes)
+                Toast.makeText(
+                    requireContext(),
+                    "Please select a date, time or location",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                userViewModel.createBooking(
+                    serviceID!!,
+                    selectedDate,
+                    selectedTime,
+                    location,
+                    additionalNotes
+                )
 
                 userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
 
                     if (success) {
-                        Toast.makeText(requireContext(), "Booking created successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Booking created successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         //navigate to the home page or the page where the user can see their pending bookings
-                    }else{
-                        Toast.makeText(requireContext(), "Failed to create booking", Toast.LENGTH_SHORT).show()
+                        //send notification to service provider
+                        try {
+                            PushApiClient.sendBookingNotification(
+                                requireContext(),
+                                spFcmToken,
+                                userName,
+                                serviceName
+                            )
+                        } catch (e: Exception) {
+                            Log.d(
+                                "API-TEST!!!!",
+                                "${spFcmToken} -- ${userName} -- ${serviceName}"
+                            )
+                            Toast.makeText(
+                                requireContext(),
+                                "Failed to send notification",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Failed to create booking",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }

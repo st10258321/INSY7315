@@ -12,3 +12,9 @@ data class BookService(
     val message: String = "",
     val userName : String = ""
 )
+data class CombinedData(
+    val serviceName: String? = null,
+    val serviceProviderId: String? = null,
+    val spFcmToken: String? = null,
+    val userName: String? = null
+)

@@ -44,6 +44,8 @@ class LoginFragment: Fragment() {
             val intent = Intent(requireContext(), RegisterActivity::class.java)
             startActivity(intent)
         }
+        val sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
 
         val loginButton = binding.btnLoginSubmit
         val email = binding.loginEmail
@@ -59,6 +61,12 @@ class LoginFragment: Fragment() {
         userViewModel.loginStat.observe(viewLifecycleOwner) { (success, message) ->
             if (success) {
                 Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
+                userViewModel.currentUserData.observe(viewLifecycleOwner) { user ->
+                    if (user != null) {
+                        editor.putString("uid", user.name)
+                        editor.apply()
+                    }
+                }
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()
