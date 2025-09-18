@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MediatorLiveData
@@ -53,34 +54,36 @@ class BrowseServicesFragment: Fragment() {
         userViewModel.getAllServices()
 
 
-        userViewModel.combinedData.observe(viewLifecycleOwner){
-            if(it.first != null && it.second != null){
-                usersLoaded = it.first!!
-                servicesLoaded = it.second!!
-                setAdapter()
+        binding.toggleFilterBtn.setOnClickListener {
+            if(binding.filterContainer.isVisible){
+                binding.filterContainer.animate()
+                    .alpha(0f)
+                    .setDuration(200)
+                    .withEndAction { binding.filterContainer.isVisible = false }
+                    .start()
+                    binding.toggleFilterBtn.text = "Show Filters"
             }else{
-                Toast.makeText(requireContext(), "Error loading data", Toast.LENGTH_SHORT).show()
+                binding.filterContainer.alpha = 0f
+                binding.filterContainer.isVisible = true
+                binding.filterContainer.animate()
+                    .alpha(1f)
+                    .setDuration(200)
+                    .start()
+                binding.toggleFilterBtn.text ="Hide Filters"
             }
         }
 
 
-//
-//        userViewModel.allUsers.observe(viewLifecycleOwner) { users ->
-//            if(!users.isNullOrEmpty()) {
-//                usersLoaded =
-//                    users.associate { user -> (user.userID to user.name) as Pair<String, String> }
-//                setAdapter()
-//            }
-//
-//        }
-//            userViewModel.allServices.observe(viewLifecycleOwner) { services ->
-//                if (!services.isNullOrEmpty()) {
-//                    //create adapter to display the services
-//                    servicesLoaded = services
-//                    setAdapter()
-//
-//                }
-//            }
+        userViewModel.combinedData.observe(viewLifecycleOwner) {
+            if (it.first != null && it.second != null) {
+                usersLoaded = it.first!!
+                servicesLoaded = it.second!!
+                setAdapter()
+            } else {
+                Toast.makeText(requireContext(), "Error loading data", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
     }
     private fun setAdapter() {

@@ -15,6 +15,11 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
@@ -23,6 +28,11 @@
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_offer_skills.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
@@ -46,6 +56,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_services.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_categories.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
@@ -95,6 +110,11 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_service_card.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/mipmap-anydpi/ic_launcher.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
@@ -106,15 +126,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="BookServiceFragment.kt update, UI errors">
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="ProviderBookingsFragment.kt functionality working">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_offer_skills.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ProviderBookingsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ProviderBookingsAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_book_service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_book_service.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_services.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_services.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_offer_skills.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_offer_skills.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,9 +151,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
         <option value="Kotlin Object" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -353,7 +371,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758193604541</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="ProviderBookingsFragment.kt functionality working">
+      <option name="closed" value="true" />
+      <created>1758225317790</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1758225317791</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -366,7 +392,8 @@
     <MESSAGE value="Push notification for bookings enabled" />
     <MESSAGE value="workspace.xml update" />
     <MESSAGE value="BookServiceFragment.kt update, UI errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="BookServiceFragment.kt update, UI errors" />
+    <MESSAGE value="ProviderBookingsFragment.kt functionality working" />
+    <option name="LAST_COMMIT_MESSAGE" value="ProviderBookingsFragment.kt functionality working" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
