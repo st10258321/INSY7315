@@ -120,6 +120,7 @@
                         android:id="@+id/bookingCalendar"
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
+                        android:visibility="gone"
                         android:background="@color/white"
                         android:weekSeparatorLineColor="@color/black"
                         android:dateTextAppearance="@style/CalendarDateTextStyle"
@@ -129,36 +130,16 @@
                         android:layout_marginBottom="16dp" />
 
                     <!-- Hidden Time Input -->
-                    <EditText
-                        android:id="@+id/edBookingTime"
-                        android:layout_marginTop="15dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:visibility="gone"
-                        android:hint="10:00"
-                        android:textSize="14sp"
-                        android:ems="10"
-                        android:inputType="time" />
+
 
                     <!-- Selected Date/Time -->
-                    <TextView
-                        android:id="@+id/selectedDateTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No date/time selected"
-                        android:textSize="15sp"
-                        android:textColor="@color/text_light_grey"
-                        android:layout_marginBottom="12dp" />
 
-                    <TextView
-                        android:id="@+id/selectedTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No time selected"
-                        android:textSize="15sp"
-                        android:textColor="@color/text_light_grey"
-                        android:layout_marginBottom="24dp" />
-
+                    <Spinner
+                        android:id="@+id/timeslotSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:entries="@array/time_slots"
+                        android:spinnerMode="dropdown" />
                     <!-- Location -->
                     <TextView
                         android:layout_width="wrap_content"

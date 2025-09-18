@@ -76,23 +76,24 @@ class BookServiceFragment: Fragment() {
                 }
             }
         }
-
-            //hiding the calendar
-            if (binding.bookingCalendar.isVisible)
+            if(binding.bookingCalendar.isVisible)
                 binding.bookingCalendar.visibility = View.GONE
+
             //displaying the calendar
             binding.btnSelectDate.setOnClickListener {
                 binding.bookingCalendar.visibility = View.VISIBLE
+
             }
             //hiding the time Calendar when the user selects a Time
             binding.btnSelectTime.setOnClickListener {
                 binding.bookingCalendar.visibility = View.GONE
-                binding.edBookingTime.visibility = View.VISIBLE
+                binding.timeslotSpinner?.visibility = View.VISIBLE
+                binding.timeslotSpinner?.setSelection(0)//default selection being the first option
             }
 
             binding.bookingCalendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
                 val selectedDate = "$dayOfMonth/${month + 1}/$year"
-                binding.selectedDateTime.text = selectedDate
+                binding.selectedDateTime?.text = selectedDate
             }
 
         checkAndEnableBooking()
@@ -105,8 +106,8 @@ class BookServiceFragment: Fragment() {
 
         //sending the information to the database
         binding.btnConfirmBooking.setOnClickListener {
-            val selectedDate = binding.selectedDateTime.text.toString()
-            val selectedTime = binding.edBookingTime.text.toString()
+            val selectedDate = binding.selectedDateTime?.text.toString()
+            val selectedTime = binding.timeslotSpinner?.selectedItem.toString()
             val location = if (binding.radioOnline.isChecked) "Online" else "On Campus"
             val additionalNotes = binding.additionalNotes.text.toString()
             if (selectedDate.isEmpty() || selectedTime.isEmpty() || location.isEmpty()) {
