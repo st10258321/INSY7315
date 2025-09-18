@@ -185,7 +185,7 @@ class UserViewModel @Inject constructor(
 
     // Function to get bookings for the services owned by the current user
     fun getBookingsForMyServices() {
-        bookRepo.getBookingsForMyServices { success, message, bookings ->
+        bookRepo.getUserBookServices { success, message, bookings ->
             if (success) {
                 bookingsForMyServices.postValue(bookings)
             } else {
@@ -194,25 +194,41 @@ class UserViewModel @Inject constructor(
             }
         }
     }
-
-    // Function to confirm a booking
-    fun confirmBooking(bookingId: String) {
-        bookRepo.confirmBooking(bookingId) { success, message, updatedBooking ->
-            bookingActionStatus.postValue(Pair(success, message))
+    //use this at provider_bookings_fragment
+    fun getMyServiceProviderBookings() {
+        serviceRepo.getUserServices { success, message, services ->
+            if (success) {
+                bookRepo.getAllBookServices { success, message, bookings ->
+                    if (success) {
+                        val myServiceIds = services?.map { it.serviceId } ?: emptyList()
+                        val filteredBookings =
+                            bookings?.filter { myServiceIds.contains(it.serviceId) }
+                        bookingsForMyServices.postValue(filteredBookings)
+                    }
+                }
+            }
         }
     }
 
-    // Function to reject a booking
-    fun rejectBooking(bookingId: String) {
-        bookRepo.rejectBooking(bookingId) { success, message, updatedBooking ->
-            bookingActionStatus.postValue(Pair(success, message))
+        // Function to confirm a booking
+        fun confirmBooking(bookingId: String) {
+            bookRepo.confirmBooking(bookingId) { success, message, updatedBooking ->
+                bookingActionStatus.postValue(Pair(success, message))
+            }
         }
-    }
 
-    // Function to delete a booking
-    fun deleteBooking(bookingId: String) {
-        bookRepo.deleteBookService(bookingId) { success, message ->
-            bookingActionStatus.postValue(Pair(success, message))
+        // Function to reject a booking
+        fun rejectBooking(bookingId: String) {
+            bookRepo.rejectBooking(bookingId) { success, message, updatedBooking ->
+                bookingActionStatus.postValue(Pair(success, message))
+            }
         }
-    }
+
+        // Function to delete a booking
+        fun deleteBooking(bookingId: String) {
+            bookRepo.deleteBookService(bookingId) { success, message ->
+                bookingActionStatus.postValue(Pair(success, message))
+            }
+        }
+
 }

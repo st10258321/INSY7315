@@ -88,6 +88,7 @@ class BookServiceRepository {
    }
 
     /* with this function we are getting all the bookings that are inside the database
+    this is for the client not the provider
      that belong to the user that is logged in and returns then as a list
     */
     fun getUserBookServices(callback: (Boolean, String?, List<BookService>?) -> Unit) {

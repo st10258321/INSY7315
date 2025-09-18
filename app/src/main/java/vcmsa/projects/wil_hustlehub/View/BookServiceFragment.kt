@@ -90,27 +90,33 @@ class BookServiceFragment: Fragment() {
                 binding.timeslotSpinner?.visibility = View.VISIBLE
                 binding.timeslotSpinner?.setSelection(0)//default selection being the first option
             }
-
+            var selectedDate  = ""
             binding.bookingCalendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
-                val selectedDate = "$dayOfMonth/${month + 1}/$year"
-                binding.selectedDateTime?.text = selectedDate
+                selectedDate  = "$dayOfMonth/${month + 1}/$year"
+                binding.selectedDate?.text = selectedDate
             }
 
-        checkAndEnableBooking()
 
+            binding.btnConfirmBooking.setOnClickListener{
+                checkAndEnableBooking(selectedDate)
+            }
 
         }
-    fun checkAndEnableBooking(){
+    fun checkAndEnableBooking(selectedDate : String){
 
 
 
         //sending the information to the database
-        binding.btnConfirmBooking.setOnClickListener {
-            val selectedDate = binding.selectedDateTime?.text.toString()
-            val selectedTime = binding.timeslotSpinner?.selectedItem.toString()
+            val selectedTime = binding.timeslotSpinner?.selectedItemPosition?.let {
+                if(it > 0)
+                    binding.timeslotSpinner?.selectedItem.toString()
+                else{
+                    null
+                }
+            }
             val location = if (binding.radioOnline.isChecked) "Online" else "On Campus"
             val additionalNotes = binding.additionalNotes.text.toString()
-            if (selectedDate.isEmpty() || selectedTime.isEmpty() || location.isEmpty()) {
+            if (selectedDate.isNullOrEmpty() || selectedTime.isNullOrEmpty() || location.isNullOrEmpty()) {
                 Toast.makeText(
                     requireContext(),
                     "Please select a date, time or location",
@@ -162,6 +168,6 @@ class BookServiceFragment: Fragment() {
                     }
                 }
             }
-        }
+
     }
 }

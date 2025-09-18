@@ -127,10 +127,19 @@
                         android:focusedMonthDateColor="@color/black"
                         android:unfocusedMonthDateColor="@color/black"
                         android:weekDayTextAppearance="@style/CalendarWeekDayTextStyle"
+                        android:selectedDateVerticalBar="@color/warm_grey"
                         android:layout_marginBottom="16dp" />
 
                     <!-- Hidden Time Input -->
+                    <TextView
+                        android:id="@+id/selectedDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
 
+                        android:hint="date"
+                        android:textSize="16sp"
+                        />
 
                     <!-- Selected Date/Time -->
 
@@ -138,6 +147,7 @@
                         android:id="@+id/timeslotSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
+                        android:textSize="25sp"
                         android:entries="@array/time_slots"
                         android:spinnerMode="dropdown" />
                     <!-- Location -->

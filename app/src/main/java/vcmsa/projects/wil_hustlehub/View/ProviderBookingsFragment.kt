@@ -25,6 +25,12 @@ class ProviderBookingsFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: ProviderBookingsAdapter
 
+    private val userRepo = UserRepository()
+    private val serviceRepo = ServiceRepository()
+    private val bookRepo = BookServiceRepository()
+    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+    private val userViewModel: UserViewModel by viewModels { viewModelFactory }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,26 +43,43 @@ class ProviderBookingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d("ProviderBookingsFragment", "onViewCreated called")
 
-        val userRepo = UserRepository()
-        val serviceRepo = ServiceRepository()
-        val bookRepo = BookServiceRepository()
-        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
-        val userViewModel: UserViewModel by viewModels { viewModelFactory }
+
+        userViewModel.getMyServiceProviderBookings()
+
 
         adapter = ProviderBookingsAdapter(
             bookings = mutableListOf(),
             onConfirmAction = { booking ->
                 Log.d("ProviderBookingsFragment", "Confirming booking: ${booking.bookingId}")
                 userViewModel.confirmBooking(booking.bookingId)
+                userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
+                    if(success){
+                        //send them a push notification here and change the status of the booking
+                        Toast.makeText(requireContext(),"Booking confirmed", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(),"Booking confirmation failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
             },
             onRejectAction = { booking ->
                 Log.d("ProviderBookingsFragment", "Rejecting booking: ${booking.bookingId}")
                 userViewModel.rejectBooking(booking.bookingId)
+
             }
         )
+        userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
+            if (success) {
+                //update the list of bookings
+                Toast.makeText(requireContext(), message ?: "Booking action successful", Toast.LENGTH_SHORT).show()
+                userViewModel.getMyServiceProviderBookings()
+            } else {
+                Toast.makeText(requireContext(), message?:"Booking action failed", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         binding.recyclerViewBookings.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewBookings.adapter = adapter
+
 
         userViewModel.bookingsForMyServices.observe(viewLifecycleOwner) { bookings ->
             Log.d("ProviderBookingsFragment", "Bookings received: ${bookings?.size}")
@@ -69,7 +92,6 @@ class ProviderBookingsFragment : Fragment() {
             }
         }
 
-        userViewModel.getBookingsForMyServices()
     }
 
     override fun onDestroyView() {

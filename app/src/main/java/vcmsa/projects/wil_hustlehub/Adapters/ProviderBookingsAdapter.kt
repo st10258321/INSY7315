@@ -27,8 +27,13 @@ class ProviderBookingsAdapter(
 //just for git purposes, didnt change anything
         holder.binding.bookingServiceTitle.text = booking.serviceName
         holder.binding.bookingStatus.text = booking.status
+        if(booking.status == "Confirmed"){
+            holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_confirmed_background)
+        }else if(booking.status == "Rejected"){
+            holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_rejected_background)
+        }
         holder.binding.bookingCustomerName.text =
-            context.getString(R.string.label_customer, booking.userId)
+            context.getString(R.string.label_customer, booking.userName)
         holder.binding.bookingDateTime.text =
             context.getString(R.string.label_date_time, booking.date, booking.time)
         holder.binding.bookingLocation.text =
