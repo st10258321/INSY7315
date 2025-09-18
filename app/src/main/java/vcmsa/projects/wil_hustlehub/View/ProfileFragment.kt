@@ -35,9 +35,9 @@ class ProfileFragment: Fragment() {
         val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
         //get user data from the view model
-        val userData = userViewModel.currentUserData.value
-
-        binding.providerName.text = userData?.name
+        userViewModel.currentUserData.observe(viewLifecycleOwner){ user ->
+            binding.providerName.text = user?.name
+        }
 
 
     }
