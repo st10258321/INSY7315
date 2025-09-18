@@ -137,14 +137,6 @@
                     android:textSize="15sp"
                     android:textColor="@color/text_light_grey"
                     android:layout_marginBottom="24dp" />
-                <TextView
-                    android:id="@+id/selectedTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No date/time selected"
-                    android:textSize="15sp"
-                    android:textColor="@color/text_light_grey"
-                    android:layout_marginBottom="24dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
