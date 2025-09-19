@@ -36,7 +36,7 @@ class ProfileFragment: Fragment() {
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
         //get user data from the view model
         userViewModel.currentUserData.observe(viewLifecycleOwner){ user ->
-            binding.providerName.text = user?.name
+            binding.providerName.text = user?.email
         }
 
 

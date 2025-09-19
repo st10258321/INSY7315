@@ -9,7 +9,6 @@ import vcmsa.projects.wil_hustlehub.Model.BookService
 import vcmsa.projects.wil_hustlehub.Model.Service
 
 class BookServiceRepository {
-
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
 

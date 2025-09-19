@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.R
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import vcmsa.projects.wil_hustlehub.Model.Service
@@ -76,8 +78,12 @@ class BookServiceFragment: Fragment() {
                 }
             }
         }
-            if(binding.bookingCalendar.isVisible)
-                binding.bookingCalendar.visibility = View.GONE
+
+//        // Set background color programmatically
+//        binding.bookingCalendar.backgroundTintList =
+//            ContextCompat.getColorStateList(requireContext(), R.color.white)
+
+
 
             //displaying the calendar
             binding.btnSelectDate.setOnClickListener {
@@ -88,7 +94,7 @@ class BookServiceFragment: Fragment() {
             binding.btnSelectTime.setOnClickListener {
                 binding.bookingCalendar.visibility = View.GONE
                 binding.timeslotSpinner?.visibility = View.VISIBLE
-                binding.timeslotSpinner?.setSelection(0)//default selection being the first option
+                binding.timeslotSpinner?.setSelection(0)  //default selection being the first option
             }
             var selectedDate  = ""
             binding.bookingCalendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
