@@ -50,6 +50,7 @@ class ProviderBookingsFragment : Fragment() {
         adapter = ProviderBookingsAdapter(
             bookings = mutableListOf(),
             onConfirmAction = { booking ->
+
                 Log.d("ProviderBookingsFragment", "Confirming booking: ${booking.bookingId}")
                 userViewModel.confirmBooking(booking.bookingId)
                 userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->

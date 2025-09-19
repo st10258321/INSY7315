@@ -63,10 +63,16 @@ class LoginFragment: Fragment() {
                 Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
                 userViewModel.currentUserData.observe(viewLifecycleOwner) { user ->
                     if (user != null) {
-                        editor.putString("uid", user.name)
+                        editor.putString("uid", user.userID)
                         editor.apply()
+
+                        Toast.makeText(requireContext(), "User name is ${user.name}", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), "User data is not being loaded", Toast.LENGTH_SHORT).show()
                     }
+
                 }
+
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()

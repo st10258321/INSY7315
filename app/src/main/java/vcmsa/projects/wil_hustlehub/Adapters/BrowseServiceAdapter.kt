@@ -12,7 +12,8 @@ import vcmsa.projects.wil_hustlehub.R
 class BrowseServiceAdapter (
     private val services : List<Service>,
     private val getUserName: (String) -> String,
-    private val onViewProfileClick: (Service) -> Unit
+    private val onViewProfileClick: (Service) -> Unit,
+    private val onBookServiceClick: (Service) -> Unit
 ): RecyclerView.Adapter<BrowseServiceAdapter.ServiceViewHolder>(){
     inner class ServiceViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
         val tvServiceName : TextView = itemView.findViewById(R.id.serviceTitle)
@@ -20,6 +21,7 @@ class BrowseServiceAdapter (
         val tvServicePrice : TextView = itemView.findViewById(R.id.servicePrice)
         val tvDescription : TextView = itemView.findViewById(R.id.serviceDescription)
         val btnViewProfile : Button = itemView.findViewById(R.id.btnViewProfile)
+        val btnBookService : Button = itemView.findViewById(R.id.btnBookSer)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
@@ -36,6 +38,9 @@ class BrowseServiceAdapter (
         holder.tvDescription.text = service.description
         holder.btnViewProfile.setOnClickListener {
             onViewProfileClick(service)
+        }
+        holder.btnBookService.setOnClickListener {
+            onBookServiceClick(service)
         }
     }
 

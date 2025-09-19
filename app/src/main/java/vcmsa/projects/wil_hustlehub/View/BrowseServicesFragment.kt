@@ -93,16 +93,29 @@ class BrowseServicesFragment: Fragment() {
                 getUserName = { userID -> (usersLoaded[userID] ?: "Unknown User") },
                 onViewProfileClick = { service ->
                         //navigate to booking page with the service id being pushed via INTENT
-                        val fragment = BookServiceFragment()
+                        val fragment = ProfileFragment()
                         val bundle = Bundle()
-                        bundle.putString("serviceID", service.serviceId)
+                        bundle.putString("serviceProfiderID", service.userId)
                         fragment.arguments = bundle
                         val mainActivity = requireActivity() as MainActivity
                         mainActivity.supportFragmentManager.beginTransaction()
                             .replace(mainActivity.binding.navHostFragment.id, fragment)
                             .addToBackStack(null)
                             .commit()
-                })
+                },
+                onBookServiceClick = {  service ->
+                    //navigate to booking page with the service id being pushed via INTENT
+                    val fragment = BookServiceFragment()
+                    val bundle = Bundle()
+                    bundle.putString("serviceID", service.serviceId)
+                    fragment.arguments = bundle
+                    val mainActivity = requireActivity() as MainActivity
+                    mainActivity.supportFragmentManager.beginTransaction()
+                        .replace(mainActivity.binding.navHostFragment.id, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
+                )
             binding.serviceRecyclerView.adapter = adapter
 
         }

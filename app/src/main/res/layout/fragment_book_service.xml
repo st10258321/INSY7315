@@ -146,8 +146,9 @@
                     <Spinner
                         android:id="@+id/timeslotSpinner"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:textSize="25sp"
+                        android:visibility="visible"
                         android:entries="@array/time_slots"
                         android:spinnerMode="dropdown" />
                     <!-- Location -->

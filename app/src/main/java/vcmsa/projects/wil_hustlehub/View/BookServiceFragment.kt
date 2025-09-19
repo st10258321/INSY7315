@@ -109,9 +109,6 @@ class BookServiceFragment: Fragment() {
 
         }
     fun checkAndEnableBooking(selectedDate : String){
-
-
-
         //sending the information to the database
             val selectedTime = binding.timeslotSpinner?.selectedItemPosition?.let {
                 if(it > 0)

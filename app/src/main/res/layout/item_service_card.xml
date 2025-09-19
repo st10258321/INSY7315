@@ -124,11 +124,28 @@
             android:padding="12dp"
             android:gravity="end">
 
+
+            <Button
+                android:id="@+id/btnBookSer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Book Service"
+                android:background="@android:color/transparent"
+                android:textColor="@color/primary_teal"
+                android:textSize="16sp"
+                app:strokeColor="@color/primary_teal"
+                app:strokeWidth="2dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                app:cornerRadius="5dp" />
+
             <Button
                 android:id="@+id/btnViewProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Book Service"
+                android:text="View Profile"
                 android:background="@android:color/transparent"
                 android:textColor="@color/primary_teal"
                 android:textSize="16sp"
