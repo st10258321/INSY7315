@@ -25,21 +25,21 @@ class ReportUserActvity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReportUserActvityBinding.inflate(layoutInflater)
-
+        setContentView(binding.root)
 
         val serviceProId = intent.getStringExtra("serviceProId")
         userViewModel.getMyServices(serviceProId!!)
         userViewModel.userServices.observe(this) { services ->
-            servicesOffered = services?.map { it.serviceId }
+            servicesOffered = services?.map { it.serviceName }
         }
 
 
 
         userViewModel.getUserData(serviceProId).observe(this) { user ->
             if(user != null) {
-                binding.spUsername.text = user.name
-                binding.spDateJoined.text = user.createdDate
-                binding.servicesOffered.text = servicesOffered?.joinToString(", ")
+                binding.spUsername.text = "Service Provider Name: ${user.name}"
+                binding.spDateJoined.text = "Date Joined HustleHub: ${user.createdDate}"
+                binding.servicesOffered.text = "Services Offered: ${servicesOffered?.joinToString(", ")}"
             }
         }
 

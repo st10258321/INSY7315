@@ -45,13 +45,13 @@
     <string name="rating_3_stars_up">3 Stars &amp; Up</string>
     <string name="apply_filters_button">Apply Filters</string>
     <string name="view_profile_button">View Profile</string>
-    <string name="service_price_placeholder">R%1$s/hour</string>
-    <string name="service_price_from_placeholder">From R%1$s</string>
+    <string name="service_price_placeholder">R /hour</string>
+    <string name="service_price_from_placeholder">From </string>
     <string name="service_price_per_word_placeholder">R%1$s/word</string>
 
     <!-- Service Profile Screen -->
     <string name="verified_badge">Verified</string>
-    <string name="message_provider_button">Message %1$s</string>
+    <string name="message_provider_button">Message </string>
     <string name="share_profile_button">Share Profile</string>
     <string name="about_me_title">About Me</string>
     <string name="my_services_title">My Services</string>
@@ -194,15 +194,24 @@
     <string name="reject_button">Reject</string>
     <string name="confirm_button">Confirm</string>
 
-    <string name="label_customer">Customer: %1$s</string>
-    <string name="label_date_time">Date: %1$s, Time: %2$s</string>
-    <string name="label_location">Location: %1$s</string>
-    <string name="label_notes">Notes: %1$s</string>
+    <string name="label_customer">Customer: </string>
+    <string name="label_date_time">Date: , Time: </string>
+    <string name="label_location">Location: </string>
+    <string name="label_notes">Notes: </string>
     <string name="toast_bookings_fetched">Bookings fetched successfully: %1$d</string>
     <string name="toast_no_bookings">No bookings found</string>
 
     <string name="tab_completed_bookings">Completed</string>
     <string name="empty_bookings_title">No Bookings Yet</string>
     <string name="empty_bookings_message">When students book your services, they\'ll appear here.</string>
+    <string name="back_button">arrow back</string>
+    <string name="home">Home\n</string>
+    <string name="browse">Browse\n</string>
+    <string name="offer">Offer</string>
+    <string name="messages">Messages\n</string>
+    <string name="profile">Profile</string>
 
+    <string name="filter_category_label">Category:</string>
+    <string name="filter_location_label">Location:</string>
+    <string name="filter_rating_label">Rating:</string>
 </resources>

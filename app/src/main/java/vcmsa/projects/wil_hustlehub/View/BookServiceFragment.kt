@@ -97,10 +97,10 @@ class BookServiceFragment: Fragment() {
                 binding.timeslotSpinner?.setSelection(0)  //default selection being the first option
             }
             var selectedDate  = ""
-            binding.bookingCalendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
-                selectedDate  = "$dayOfMonth/${month + 1}/$year"
-                binding.selectedDate?.text = selectedDate
-            }
+//            binding.bookingCalendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
+//                selectedDate  = "$dayOfMonth/${month + 1}/$year"
+//                binding.selectedDateTime?.text = selectedDate
+//            }
 
 
             binding.btnConfirmBooking.setOnClickListener{
