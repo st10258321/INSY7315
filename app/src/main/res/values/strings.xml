@@ -27,7 +27,7 @@
 
     <!-- Browse Services Screen -->
     <string name="explore_hustle_title">Explore Your Next Hustle!</string>
-    <string name="search_hint">Search for \'tutoring\', \'braids\', \'design\'...</string>
+    <string name="search_hint">Search for 'tutoring', 'braids', 'design'...</string>
     <string name="categories_title">Categories</string>
     <string name="all_services">All Services</string>
     <string name="academics_tutoring">Academics &amp; Tutoring</string>
@@ -81,7 +81,7 @@
     <string name="about_us_page_title">About HustleHub</string>
     <string name="about_us_content_p1">HustleHub is a dynamic student marketplace designed to empower university and college students in South Africa. We provide a central platform where students can easily advertise their unique skills and services, connect with peers who need those services, and manage bookings seamlessly.</string>
     <string name="about_us_content_p2">Our mission is to foster entrepreneurship, peer support, and financial inclusion within the student community. We believe in turning everyday skills—from tutoring and graphic design to braiding and photography—into income-generating opportunities, helping students navigate rising living costs and gain valuable experience.</string>
-    <string name="about_us_content_p3">Join HustleHub today and become part of a vibrant community that supports each other\'s success!</string>
+    <string name="about_us_content_p3">Join HustleHub today and become part of a vibrant community that supports each other's success!</string>
     <string name="our_mission_title">Our Mission</string>
     <string name="our_mission_content">To empower students by providing a secure and accessible platform for earning income, developing entrepreneurial skills, and fostering a supportive campus economy.</string>
     <string name="our_values_title">Our Values</string>
@@ -118,9 +118,8 @@
     <string name="register_as_provider_button">Register as a Service Provider</string>
     <string name="manage_listings_button">Manage My Listings</string>
 
-    <!-- Categories Screen (Placeholder) -->
+    <!-- Categories -->
     <string name="categories_page_title">All Service Categories</string>
-    <!--<string name="categories_description">Browse services by category to find exactly what you need.</string>-->
     <string name="category_academics">Academics &amp; Tutoring</string>
     <string name="category_creative">Creative &amp; Design</string>
     <string name="category_personal_care">Personal Care &amp; Beauty</string>
@@ -132,7 +131,7 @@
     <string name="category_transport">Transport &amp; Logistics</string>
     <string name="category_home">Home Services</string>
 
-    <!-- Book Service Screen (Placeholder) -->
+    <!-- Book Service -->
     <string name="book_service_page_title">Book Your Service</string>
     <string name="book_service_description">Confirm details and schedule your service with %1$s.</string>
     <string name="service_details_label">Service:</string>
@@ -155,19 +154,19 @@
     <string name="filter_applied_message">Filtered by: %1$s</string>
     <string name="filters_applied_message">Price: R%1$s, Min Rating: %2$s stars</string>
     <string name="share_profile_message">Sharing functionality will be implemented here!</string>
-    <string name="booking_service_message">You are trying to book \"%1$s\". Booking process coming soon!</string>
+    <string name="booking_service_message">You are trying to book "%1$s". Booking process coming soon!</string>
     <string name="main_booking_process_message">This button will initiate the main booking process for the provider. Coming soon!</string>
-    <string name="message_sent_confirmation">Thanks for your message! I\'ll get back to you shortly regarding \"%1$s\".</string>
+    <string name="message_sent_confirmation">Thanks for your message! I'll get back to you shortly regarding "%1$s".</string>
     <string name="message_box_ok">OK</string>
 
-    <!-- Login/Signup Strings -->
+    <!-- Login/Signup -->
     <string name="login_title">Login</string>
     <string name="signup_title">Sign Up</string>
     <string name="login_email_hint">your.email@example.com</string>
     <string name="login_password_hint">********</string>
     <string name="signup_name_hint">Full Name</string>
     <string name="signup_confirm_password_hint">Confirm Password</string>
-    <string name="dont_have_account">Don\'t have an account? Sign Up</string>
+    <string name="dont_have_account">Don't have an account? Sign Up</string>
     <string name="already_have_account">Already have an account? Login</string>
     <string name="email_label">Email:</string>
     <string name="password_label">Password:</string>
@@ -180,22 +179,17 @@
     <string name="service_title">Service Title</string>
     <string name="category">Category</string>
     <string name="service_description">Service Description</string>
-    <!-- <string name="title_about_contact">Contact</string> -->
 
-    <!-- strings for updated navigation and profile -->
+    <!-- Updated navigation and profile -->
     <string name="title_offer_services">Offer Services</string>
     <string name="title_about_contact">About &amp; Contact</string>
     <string name="categories_description">Explore services by category or search for something specific.</string>
 
-    <!-- strings for Provider Bookings Page -->
+    <!-- Provider Bookings -->
     <string name="provider_bookings_page_title">My Bookings</string>
     <string name="tab_pending_bookings">Pending</string>
     <string name="tab_confirmed_bookings">Confirmed</string>
-    <string name="reject_button">Reject</string>
-    <string name="confirm_button">Confirm</string>
-
     <string name="tab_completed_bookings">Completed</string>
     <string name="empty_bookings_title">No Bookings Yet</string>
-    <string name="empty_bookings_message">When students book your services, they\'ll appear here.</string>
-
+    <string name="empty_bookings_message">When students book your services, they'll appear here.</string>
 </resources>
