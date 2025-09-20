@@ -474,19 +474,7 @@
             </LinearLayout>
         </ScrollView>
 
-        <!-- Sticky Book a Service Button (Floating Action Button style) -->
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/stickyBookBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:text="@string/sticky_book_service_button"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/soft_orange"
-            app:icon="@drawable/ic_book_white_24dp"
-            app:iconTint="@color/white"
-            app:cornerRadius="30dp"
-            app:elevation="8dp" />
+
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
