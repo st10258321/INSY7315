@@ -246,9 +246,12 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
                                 <!-- Service listings will be added here programmatically or via includes -->
-                                <include layout="@layout/item_profile_service" />
-                                <include layout="@layout/item_profile_service" />
-                                <include layout="@layout/item_profile_service" />
+<!--                                insert recylerview-->
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/profileServicesRecycler"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:listitem="@layout/item_profile_service"/>
                             </LinearLayout>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>

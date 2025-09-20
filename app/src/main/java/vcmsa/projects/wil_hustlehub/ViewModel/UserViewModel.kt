@@ -29,7 +29,7 @@ class UserViewModel @Inject constructor(
     val currentUserData = MutableLiveData<User?>()
 
     // LiveData for the list of services created by the current user
-    val userServices = MutableLiveData<List<Service>>()
+    val userServices = MutableLiveData<List<Service>?>()
 
     // LiveData for the list of all services in the database
     val allServices = MutableLiveData<List<Service>?>()
@@ -162,6 +162,18 @@ class UserViewModel @Inject constructor(
             }
         }
         return liveData
+    }
+    fun getMyServices(serviceProviderId  : String){
+        if(serviceProviderId.isNotEmpty()) {
+            serviceRepo.getServicesByUserId(serviceProviderId) { success, message, services ->
+                if (success) {
+                    userServices.postValue(services)
+                } else {
+                    userServices.postValue(null)
+                    serviceStatus.postValue(Pair(false, message))
+                }
+            }
+        }
     }
 
     // Function to create a new booking
