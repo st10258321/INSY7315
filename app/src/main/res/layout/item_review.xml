@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/light_teal_bottom_border">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/reviewerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/deep_blue"
+            tools:text="Lebo M." />
+
+        <LinearLayout
+            android:id="@+id/reviewStarRatingLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <!-- Stars will be added programmatically or via a custom view -->
+            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star_24dp" app:tint="@color/soft_orange" />
+            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star_24dp" app:tint="@color/soft_orange" />
+            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star_24dp" app:tint="@color/soft_orange" />
+            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star_24dp" app:tint="@color/soft_orange" />
+            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_star_24dp" app:tint="@color/soft_orange" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/reviewText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/text_light_grey"
+        tools:text="Jane is an amazing tutor! She made complex calculus concepts so easy to understand. Highly recommend her for anyone struggling with math." />
+
+    </LinearLayout>
+
+</layout>

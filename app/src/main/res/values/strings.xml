@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HustleHub</string>
+    <string name="title_home">Home</string>
+    <string name="title_browse_services">Browse</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_about_us">About Us</string>
+    <string name="title_contact">Contact</string>
+    <string name="title_categories">Categories</string>
+    <string name="title_offer_skills">Offer Skills</string>
+    <string name="title_book_service">Book Service</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_account">Account</string>
+
+    <!-- Home Screen -->
+    <string name="hero_title">Unlock Your Potential. Connect, Create, Conquer.</string>
+    <string name="hero_subtitle">Your campus marketplace for student services. Find help, offer your skills, and earn!</string>
+    <string name="find_service_button">Find a Service</string>
+    <string name="offer_skills_button">Offer Your Skills</string>
+    <string name="how_it_works_title">How HustleHub Works</string>
+    <string name="step_1_title">1. Discover</string>
+    <string name="step_1_description">Browse a wide range of services offered by talented students on campus.</string>
+    <string name="step_2_title">2. Connect</string>
+    <string name="step_2_description">Chat directly with service providers to discuss your needs and negotiate.</string>
+    <string name="step_3_title">3. Thrive</string>
+    <string name="step_3_description">Book your gig, get the job done, and support your fellow students!</string>
+
+    <!-- Browse Services Screen -->
+    <string name="explore_hustle_title">Explore Your Next Hustle!</string>
+    <string name="search_hint">Search for \'tutoring\', \'braids\', \'design\'...</string>
+    <string name="categories_title">Categories</string>
+    <string name="all_services">All Services</string>
+    <string name="academics_tutoring">Academics &amp; Tutoring</string>
+    <string name="creative_design">Creative &amp; Design</string>
+    <string name="personal_care_beauty">Personal Care &amp; Beauty</string>
+    <string name="tech_it_support">Tech &amp; IT Support</string>
+    <string name="photography_video">Photography &amp; Video</string>
+    <string name="food_catering">Food &amp; Catering</string>
+    <string name="other_services">Other Services</string>
+    <string name="filters_title">Filters</string>
+    <string name="price_range_label">Price Range:</string>
+    <string name="min_rating_label">Minimum Rating:</string>
+    <string name="rating_any">Any</string>
+    <string name="rating_4_stars_up">4 Stars &amp; Up</string>
+    <string name="rating_3_stars_up">3 Stars &amp; Up</string>
+    <string name="apply_filters_button">Apply Filters</string>
+    <string name="view_profile_button">View Profile</string>
+    <string name="service_price_placeholder">R /hour</string>
+    <string name="service_price_from_placeholder">From </string>
+    <string name="service_price_per_word_placeholder">R%1$s/word</string>
+
+    <!-- Service Profile Screen -->
+    <string name="verified_badge">Verified</string>
+    <string name="message_provider_button">Message </string>
+    <string name="share_profile_button">Share Profile</string>
+    <string name="about_me_title">About Me</string>
+    <string name="my_services_title">My Services</string>
+    <string name="what_students_say_title">What Students Say (Reviews)</string>
+    <string name="availability_title">Availability</string>
+    <string name="contact_location_title">Contact &amp; Location</string>
+    <string name="book_now_button">Book Now</string>
+    <string name="sticky_book_service_button">Book a Service</string>
+    <string name="availability_monday">Monday:</string>
+    <string name="availability_tuesday">Tuesday:</string>
+    <string name="availability_wednesday">Wednesday:</string>
+    <string name="availability_thursday">Thursday:</string>
+    <string name="availability_friday">Friday:</string>
+    <string name="availability_saturday">Saturday:</string>
+    <string name="availability_sunday">Sunday:</string>
+    <string name="status_available">Available</string>
+    <string name="status_booked">Booked</string>
+    <string name="availability_note">Please message me to confirm specific times.</string>
+    <string name="joined_hustlehub">Joined HustleHub: %1$s</string>
+
+    <!-- Chat Screen -->
+    <string name="chat_with_placeholder">Chat with %1$s</string>
+    <string name="type_message_hint">Type your message...</string>
+    <string name="send_button">Send</string>
+
+    <!-- About Us Screen -->
+    <string name="about_us_page_title">About HustleHub</string>
+    <string name="about_us_content_p1">HustleHub is a dynamic student marketplace designed to empower university and college students in South Africa. We provide a central platform where students can easily advertise their unique skills and services, connect with peers who need those services, and manage bookings seamlessly.</string>
+    <string name="about_us_content_p2">Our mission is to foster entrepreneurship, peer support, and financial inclusion within the student community. We believe in turning everyday skills—from tutoring and graphic design to braiding and photography—into income-generating opportunities, helping students navigate rising living costs and gain valuable experience.</string>
+    <string name="about_us_content_p3">Join HustleHub today and become part of a vibrant community that supports each other\'s success!</string>
+    <string name="our_mission_title">Our Mission</string>
+    <string name="our_mission_content">To empower students by providing a secure and accessible platform for earning income, developing entrepreneurial skills, and fostering a supportive campus economy.</string>
+    <string name="our_values_title">Our Values</string>
+    <string name="value_empowerment">Empowerment: Enabling students to take control of their financial futures.</string>
+    <string name="value_community">Community: Building strong, supportive networks among students.</string>
+    <string name="value_innovation">Innovation: Continuously improving our platform to meet student needs.</string>
+    <string name="value_integrity">Integrity: Ensuring a trustworthy and transparent marketplace.</string>
+    <string name="register_your_service">Register your service</string>
+    <!-- Contact Screen -->
+    <string name="contact_us_page_title">Contact Us</string>
+    <string name="contact_us_description">Have questions, feedback, or need support? Reach out to us!</string>
+    <string name="contact_email_label">Email:</string>
+    <string name="contact_email_address">support@hustlehub.ac.za</string>
+    <string name="contact_phone_label">Phone:</string>
+    <string name="contact_phone_number">+27 11 555 1234</string>
+    <string name="contact_address_label">Address:</string>
+    <string name="contact_address_details">HustleHub Campus Office, University Main Building, Johannesburg, South Africa</string>
+    <string name="contact_social_media_title">Connect with us on Social Media:</string>
+    <string name="contact_form_title">Send us a Message</string>
+    <string name="form_name_hint">Your Name</string>
+    <string name="form_email_hint">Your Email</string>
+    <string name="form_message_hint">Your Message</string>
+    <string name="send_message_button">Send Message</string>
+
+    <!-- Offer Your Skills Screen -->
+    <string name="offer_skills_page_title">Offer Your Skills on HustleHub</string>
+    <string name="offer_skills_description">Ready to turn your talents into income? Create your service listings and start earning!</string>
+    <string name="offer_skills_step1_title">1. Create Your Profile</string>
+    <string name="offer_skills_step1_desc">Showcase your expertise, add a profile picture, and write a compelling bio.</string>
+    <string name="offer_skills_step2_title">2. List Your Services</string>
+    <string name="offer_skills_step2_desc">Define the services you offer, set your prices, and specify your availability.</string>
+    <string name="offer_skills_step3_title">3. Get Booked &amp; Earn</string>
+    <string name="offer_skills_step3_desc">Receive booking requests, chat with clients, and get paid securely through the app.</string>
+    <string name="register_as_provider_button">Register as a Service Provider</string>
+    <string name="manage_listings_button">Manage My Listings</string>
+
+    <!-- Categories Screen (Placeholder) -->
+    <string name="categories_page_title">All Service Categories</string>
+    <!--<string name="categories_description">Browse services by category to find exactly what you need.</string>-->
+    <string name="category_academics">Academics &amp; Tutoring</string>
+    <string name="category_creative">Creative &amp; Design</string>
+    <string name="category_personal_care">Personal Care &amp; Beauty</string>
+    <string name="category_tech">Tech &amp; IT Support</string>
+    <string name="category_photography">Photography &amp; Video</string>
+    <string name="category_food">Food &amp; Catering</string>
+    <string name="category_events">Events &amp; Planning</string>
+    <string name="category_wellness">Health &amp; Wellness</string>
+    <string name="category_transport">Transport &amp; Logistics</string>
+    <string name="category_home">Home Services</string>
+
+    <!-- Book Service Screen (Placeholder) -->
+    <string name="book_service_page_title">Book Your Service</string>
+    <string name="book_service_description">Confirm details and schedule your service with %1$s.</string>
+    <string name="service_details_label">Service:</string>
+    <string name="date_time_label">Preferred Date &amp; Time:</string>
+    <string name="select_date_button">Select Date</string>
+    <string name="select_time_button">Select Time</string>
+    <string name="location_label">Location:</string>
+    <string name="location_online">Online</string>
+    <string name="location_on_campus">On Campus</string>
+    <string name="additional_notes_hint">Any specific instructions or questions for the provider?</string>
+    <string name="confirm_booking_button">Confirm Booking</string>
+    <string name="booking_confirmation_message">Your booking request for %1$s with %2$s has been sent! The provider will confirm shortly.</string>
+    <string name="booking_error_message">Please select a date and time to book.</string>
+
+    <!-- Generic Messages -->
+    <string name="coming_soon_message">This feature is coming soon!</string>
+    <string name="login_attempt_message">Attempting to login with %1$s... (Not yet implemented)</string>
+    <string name="signup_attempt_message">Attempting to register %1$s with %2$s... (Not yet implemented)</string>
+    <string name="passwords_do_not_match">Passwords do not match!</string>
+    <string name="filter_applied_message">Filtered by: %1$s</string>
+    <string name="filters_applied_message">Price: R%1$s, Min Rating: %2$s stars</string>
+    <string name="share_profile_message">Sharing functionality will be implemented here!</string>
+    <string name="booking_service_message">You are trying to book \"%1$s\". Booking process coming soon!</string>
+    <string name="main_booking_process_message">This button will initiate the main booking process for the provider. Coming soon!</string>
+    <string name="message_sent_confirmation">Thanks for your message! I\'ll get back to you shortly regarding \"%1$s\".</string>
+    <string name="message_box_ok">OK</string>
+
+    <!-- Login/Signup Strings -->
+    <string name="login_title">Login</string>
+    <string name="signup_title">Sign Up</string>
+    <string name="login_email_hint">your.email@example.com</string>
+    <string name="login_password_hint">********</string>
+    <string name="signup_name_hint">Full Name</string>
+    <string name="signup_confirm_password_hint">Confirm Password</string>
+    <string name="dont_have_account">Don\'t have an account? Sign Up</string>
+    <string name="already_have_account">Already have an account? Login</string>
+    <string name="email_label">Email:</string>
+    <string name="password_label">Password:</string>
+    <string name="full_name_label">Full Name:</string>
+    <string name="confirm_password_label">Confirm Password:</string>
+    <string name="cell_number_hint">Cell Number</string>
+    <string name="account_page_title">Your Account</string>
+    <string name="account_welcome_message">Manage your profile, services, and bookings.</string>
+    <string name="social_login_prompt">Or connect with:</string>
+    <string name="service_title">Service Title</string>
+    <string name="category">Category</string>
+    <string name="service_description">Service Description</string>
+    <!-- <string name="title_about_contact">Contact</string> -->
+
+    <!-- strings for updated navigation and profile -->
+    <string name="title_offer_services">Offer Services</string>
+    <string name="title_about_contact">About &amp; Contact</string>
+    <string name="categories_description">Explore services by category or search for something specific.</string>
+
+    <!-- strings for Provider Bookings Page -->
+    <string name="provider_bookings_page_title">My Bookings</string>
+    <string name="tab_pending_bookings">Pending</string>
+    <string name="tab_confirmed_bookings">Confirmed</string>
+    <string name="reject_button">Reject</string>
+    <string name="confirm_button">Confirm</string>
+
+    <string name="label_customer">Customer: </string>
+    <string name="label_date_time">Date: , Time: </string>
+    <string name="label_location">Location: </string>
+    <string name="label_notes">Notes: </string>
+    <string name="toast_bookings_fetched">Bookings fetched successfully: %1$d</string>
+    <string name="toast_no_bookings">No bookings found</string>
+
+    <string name="tab_completed_bookings">Completed</string>
+    <string name="empty_bookings_title">No Bookings Yet</string>
+    <string name="empty_bookings_message">When students book your services, they\'ll appear here.</string>
+    <string name="back_button">arrow back</string>
+    <string name="home">Home\n</string>
+    <string name="browse">Browse\n</string>
+    <string name="offer">Offer</string>
+    <string name="messages">Messages\n</string>
+    <string name="profile">Profile</string>
+
+    <string name="filter_category_label">Category:</string>
+    <string name="filter_location_label">Location:</string>
+    <string name="filter_rating_label">Rating:</string>
+</resources>
