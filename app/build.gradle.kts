@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.googleid)
     implementation(libs.androidx.media3.common.ktx)
     implementation(libs.volley)
+    implementation(libs.androidx.coordinatorlayout)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -1,12 +1,14 @@
 package vcmsa.projects.wil_hustlehub.View
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,6 +48,8 @@ class ProfileFragment: Fragment() {
         val userid = sharedPreferences.getString("uid", null)
         serviceProId = arguments?.getString("serviceProfiderID")
         val isOwner = serviceProId.isNullOrEmpty() || serviceProId == userid
+
+        binding.reportUserLayout.isVisible = !isOwner
 
         val adapter = ProfileServiceAdapter(emptyList(),
             onBookServiceClick = { service ->
@@ -96,6 +100,12 @@ class ProfileFragment: Fragment() {
             Log.d("ProfiileFragment- Service Provider error", e.message.toString())
         }
 
+        //report user action
+        binding.reportUserBtn.setOnClickListener {
+            val intent = Intent(requireContext(), ReportUserActvity::class.java)
+            intent.putExtra("serviceProId", serviceProId)
+            startActivity(intent)
+        }
 
 
     }
