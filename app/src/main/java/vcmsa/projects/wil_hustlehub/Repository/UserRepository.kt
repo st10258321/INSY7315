@@ -1,7 +1,10 @@
 package vcmsa.projects.wil_hustlehub.Repository
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import vcmsa.projects.wil_hustlehub.Model.User
 
 class UserRepository(
@@ -43,10 +46,27 @@ class UserRepository(
             }
     }
 
+    fun getUsers(callback: (List<User>) -> Unit) {
+        database.child("users").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val users = mutableListOf<User>()
+                for (userSnapshot in snapshot.children) {
+                    val user = userSnapshot.getValue(User::class.java)
+                    user?.let { users.add(it) }
+                }
+                callback(users)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(emptyList()) // return empty if cancelled
+            }
+        })
+    }
+
     /**
      * This function gets the user's information using their id
      */
-    private fun getUserData(uid: String, callback: (User?) -> Unit) {
+    fun getUserData(uid: String, callback: (User?) -> Unit) {
         database.child("users").child(uid).get()
             .addOnSuccessListener { snapshot ->
                 val user = snapshot.getValue(User::class.java)

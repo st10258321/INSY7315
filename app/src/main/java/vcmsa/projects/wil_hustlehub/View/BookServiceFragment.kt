@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,9 @@ import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
 import vcmsa.projects.wil_hustlehub.databinding.FragmentBookServiceBinding
 import kotlin.getValue
 import androidx.core.view.isVisible
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
+import java.util.Calendar
 
 class BookServiceFragment: Fragment() {
     // Declare the binding variable
@@ -23,7 +27,9 @@ class BookServiceFragment: Fragment() {
     private val userRepo = UserRepository()
     private val serviceRepo = ServiceRepository()
     private val bookRepo = BookServiceRepository()
-    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+    private val reviewRepo = ReviewRepository()
+    private val chatRepo = ChatRepository()
+    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
     private val userViewModel: UserViewModel by viewModels { viewModelFactory }
 
     private var serviceID :String? = null
@@ -56,7 +62,37 @@ class BookServiceFragment: Fragment() {
         //hiding the time Calendar when the user selects a Time
         binding.btnSelectTime.setOnClickListener {
             binding.bookingCalendar.visibility = View.GONE
-            binding.edBookingTime.visibility = View.VISIBLE
+
+            // Disable the button to prevent multiple clicks
+            binding.btnSelectTime.isEnabled = false
+
+            val currentTime = Calendar.getInstance()
+            val hour = currentTime.get(Calendar.HOUR_OF_DAY)
+            val minute = currentTime.get(Calendar.MINUTE)
+
+            val timePicker = TimePickerDialog(
+                context,
+                { _, selectedHour, selectedMinute ->
+                    val formattedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
+                    binding.edBookingTime.setText(formattedTime)
+
+                    val currentDate = binding.selectedDateTime.text.toString()
+                    binding.selectedDateTime.text = "$currentDate at $formattedTime"
+
+                    // Re-enable the button after selection
+                    binding.btnSelectTime.isEnabled = true
+                },
+                hour,
+                minute,
+                true
+            )
+
+            timePicker.setOnCancelListener {
+                // Re-enable the button if the dialog is dismissed without selection
+                binding.btnSelectTime.isEnabled = true
+            }
+
+            timePicker.show()
         }
 
         binding.bookingCalendar.setOnDateChangeListener {

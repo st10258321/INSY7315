@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import vcmsa.projects.wil_hustlehub.Adapters.ProviderBookingsAdapter
 import vcmsa.projects.wil_hustlehub.Model.BookService
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
@@ -42,7 +44,9 @@ class ProviderBookingsFragment : Fragment() {
         val userRepo = UserRepository()
         val serviceRepo = ServiceRepository()
         val bookRepo = BookServiceRepository()
-        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+        val reviewRepo = ReviewRepository()
+        val chatRepo = ChatRepository()
+        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
 
         //first intializing the adapter with an empty list

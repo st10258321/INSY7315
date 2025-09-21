@@ -8,7 +8,8 @@ data class Service (
     val description: String = "",
     val price: Double = 0.0,
     val image: String = "",
-    val availability: String = "",
+    val availabileDay: List<String>,
+    val availabileTime: List<String>,
     val location: String = "",
     val createdDate: String = ""
 )

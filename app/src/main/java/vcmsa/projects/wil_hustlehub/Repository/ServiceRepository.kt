@@ -16,7 +16,7 @@ class ServiceRepository {
     private val createdDate = createdDateFormat.format(java.util.Date())
 
     // Add a new service
-    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: String, location: String, callback: (Boolean, String?, Service?) -> Unit
+    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List<String>, availabileTime: List<String>, location: String, callback: (Boolean, String?, Service?) -> Unit
     ) {
         val currentUser = auth.currentUser
         if (currentUser == null) {
@@ -35,7 +35,8 @@ class ServiceRepository {
             description = description,
             price = price,
             image = image,
-            availability = availability,
+            availabileDay = availabileDay,
+            availabileTime = availabileTime,
             location = location,
             createdDate = createdDate
         )

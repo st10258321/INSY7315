@@ -17,14 +17,18 @@ import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
 import vcmsa.projects.wil_hustlehub.databinding.FragmentRegisterServiceBinding
 import kotlin.getValue
 import androidx.activity.viewModels
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 
 class RegisterService : AppCompatActivity() {
     private lateinit var binding: FragmentRegisterServiceBinding
     private val userRepo = UserRepository()
     private val serviceRepo = ServiceRepository()
     private val bookRepo = BookServiceRepository()
+    private val reviewRepo = ReviewRepository()
+    private val chatRepo = ChatRepository()
     private val userViewModel : UserViewModel by viewModels {
-        ViewModelFactory(userRepo, serviceRepo, bookRepo)
+        ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +53,14 @@ class RegisterService : AppCompatActivity() {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }else{
                 val price = price.toDouble()
-                userViewModel.addService(serviceName, category, description, price, "", availability, location)
+                val availabilityInput = binding.etAvailability.text.toString()
+                // Split the availability input into days and times
+                // Example input: "Mon,Tue,Wed | 09:00-17:00"
+                val parts = availabilityInput.split("|")
+                val days = parts.getOrNull(0)?.split(",") ?: listOf()
+                val times = parts.getOrNull(1)?.split(",") ?: listOf()
+
+                userViewModel.addService(serviceName, category, description, price, "", days, times, location)
             }
         }
         userViewModel.serviceStatus.observe(this) { (success, message) ->
