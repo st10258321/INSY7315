@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import vcmsa.projects.wil_hustlehub.MainActivity
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
@@ -37,7 +39,9 @@ class LoginFragment: Fragment() {
         val userRepo = UserRepository()
         val serviceRepo = ServiceRepository()
         val bookRepo = BookServiceRepository()
-        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+        val reviewRepo = ReviewRepository()
+        val chatRepo = ChatRepository()
+        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
         // Directs the user to the register page
         binding.tvSignUpPrompt.setOnClickListener {

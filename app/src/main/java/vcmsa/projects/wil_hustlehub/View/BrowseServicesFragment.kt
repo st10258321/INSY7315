@@ -18,6 +18,8 @@ import vcmsa.projects.wil_hustlehub.Adapters.BrowseServiceAdapter
 import vcmsa.projects.wil_hustlehub.MainActivity
 import vcmsa.projects.wil_hustlehub.Model.Service
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
@@ -33,7 +35,9 @@ class BrowseServicesFragment: Fragment() {
     private val userRepo = UserRepository()
     private val serviceRepo = ServiceRepository()
     private val bookRepo = BookServiceRepository()
-    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+    private val reviewRepo = ReviewRepository()
+    private val chatRepo = ChatRepository()
+    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
     private val userViewModel: UserViewModel by viewModels { viewModelFactory }
 
     private val binding get() = _binding!!
