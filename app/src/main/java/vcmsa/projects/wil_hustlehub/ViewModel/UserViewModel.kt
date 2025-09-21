@@ -5,9 +5,13 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import vcmsa.projects.wil_hustlehub.Model.BookService
+import vcmsa.projects.wil_hustlehub.Model.Chat
+import vcmsa.projects.wil_hustlehub.Model.Review
 import vcmsa.projects.wil_hustlehub.Model.Service
 import vcmsa.projects.wil_hustlehub.Model.User
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import javax.inject.Inject
@@ -15,7 +19,10 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(
     private val userRepo: UserRepository,
     private val serviceRepo: ServiceRepository,
-    private val bookRepo: BookServiceRepository): ViewModel() {
+    private val bookRepo: BookServiceRepository,
+    private val reviewRepo: ReviewRepository,
+    private val chatRepo: ChatRepository
+): ViewModel() {
 
     // LiveData to observe all users
         val allUsers = MutableLiveData<List<User>?>()
@@ -45,6 +52,16 @@ class UserViewModel @Inject constructor(
 
     // LiveData for the list of bookings for the services owned by the current user
     val bookingsForMyServices = MutableLiveData<List<BookService>?>()
+
+    val reviewStatus = MutableLiveData<Pair<Boolean, String?>>()
+    val serviceProviderReviews = MutableLiveData<List<Review>?>()
+    val averageRating = MutableLiveData<Pair<Double?, Int?>>() // avg rating + total reviews
+
+    val chatStatus = MutableLiveData<Pair<Boolean, String?>>()
+    val userChats = MutableLiveData<List<Chat>?>()
+    val singleChat = MutableLiveData<Chat?>()
+    val messageStatus = MutableLiveData<Pair<Boolean, String?>>()
+
     val combinedData = MediatorLiveData<Pair<Map<String, String>?, List<Service>?>>().apply{
         val usersMap = MutableLiveData<Map<String, String>?>()
         val servicesList = MutableLiveData<List<Service>?>()
@@ -247,6 +264,83 @@ class UserViewModel @Inject constructor(
             serviceStatus.postValue(Pair(success, message))
         }
 
+    }
+    // ------------------ REVIEWS ------------------
+    fun addReview(serviceId: String, stars: Int, reviewText: String) {
+        reviewRepo.addReview(serviceId, stars, reviewText) { success, message, review ->
+            if (success) {
+                reviewStatus.postValue(Pair(true, "Review added successfully"))
+            } else {
+                reviewStatus.postValue(Pair(false, message))
+            }
+        }
+    }
+
+    fun getReviewsForServiceProvider(userId: String) {
+        reviewRepo.getReviewsForServiceProvider(userId) { success, message, reviews ->
+            if (success) {
+                serviceProviderReviews.postValue(reviews)
+            } else {
+                serviceProviderReviews.postValue(null)
+                reviewStatus.postValue(Pair(false, message))
+            }
+        }
+    }
+
+    fun getServiceProviderAverageRating(userId: String) {
+        reviewRepo.getServiceProviderAverageRating(userId) { success, message, avg, total ->
+            if (success) {
+                averageRating.postValue(Pair(avg, total))
+            } else {
+                averageRating.postValue(Pair(null, null))
+                reviewStatus.postValue(Pair(false, message))
+            }
+        }
+    }
+
+    fun deleteReview(reviewId: String) {
+        reviewRepo.deleteReview(reviewId) { success, message ->
+            reviewStatus.postValue(Pair(success, message))
+        }
+    }
+
+    // ------------------ CHATS ------------------
+    fun createChat(serviceId: String) {
+        chatRepo.createChat(serviceId) { success, message, chat ->
+            if (success) {
+                singleChat.postValue(chat)
+            } else {
+                chatStatus.postValue(Pair(false, message))
+            }
+        }
+    }
+
+    fun getUserChats() {
+        chatRepo.getUserChats { success, message, chats ->
+            if (success) {
+                userChats.postValue(chats)
+            } else {
+                userChats.postValue(null)
+                chatStatus.postValue(Pair(false, message))
+            }
+        }
+    }
+
+    fun getChatById(chatId: String) {
+        chatRepo.getChatById(chatId) { success, message, chat ->
+            if (success) {
+                singleChat.postValue(chat)
+            } else {
+                singleChat.postValue(null)
+                chatStatus.postValue(Pair(false, message))
+            }
+        }
+    }
+
+    fun sendMessage(chatId: String, message: String) {
+        chatRepo.sendMessage(chatId, message) { success, error, _ ->
+            messageStatus.postValue(Pair(success, error))
+        }
     }
 
 }
