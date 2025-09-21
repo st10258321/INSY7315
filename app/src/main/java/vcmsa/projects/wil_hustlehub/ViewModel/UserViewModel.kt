@@ -109,8 +109,8 @@ class UserViewModel @Inject constructor(
     }
 
     // Function to add a new service
-    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: String, location: String) {
-        serviceRepo.addService(serviceName, category, description, price, image, availability,"", location) { success, message, service ->
+    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: List<String>,availableTime : List<String> ,location: String) {
+        serviceRepo.addService(serviceName, category, description, price, image, availability,availableTime, location) { success, message, service ->
             // Update UI state based on the result
             serviceStatus.postValue(Pair(success, message))
         }
@@ -242,5 +242,11 @@ class UserViewModel @Inject constructor(
                 bookingActionStatus.postValue(Pair(success, message))
             }
         }
+    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: List<String>) {
+        serviceRepo.reportServiceProvider(serviceProviderId, serviceId, reportedIssue, additionalNotes, images) { success, message ->
+            serviceStatus.postValue(Pair(success, message))
+        }
+
+    }
 
 }
