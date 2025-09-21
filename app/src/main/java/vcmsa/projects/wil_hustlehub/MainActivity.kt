@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.messaging.FirebaseMessaging
+import vcmsa.projects.wil_hustlehub.View.AccountFragment
 import vcmsa.projects.wil_hustlehub.View.BrowseServicesFragment
+import vcmsa.projects.wil_hustlehub.View.ChatFragment
 import vcmsa.projects.wil_hustlehub.View.HomeFragment
 import vcmsa.projects.wil_hustlehub.View.LoginFragment
 import vcmsa.projects.wil_hustlehub.View.OfferSkillsFragment
@@ -61,9 +63,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this,"Failed to get token",Toast.LENGTH_SHORT).show()
         }
         }
-
-
-
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -76,6 +75,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_offer_skills -> {
                     openFragment(OfferSkillsFragment())
+                    true
+                }
+                R.id.nav_chat ->{
+                    openFragment(ChatFragment())
                     true
                 }
                 R.id.nav_profile -> {
@@ -101,6 +104,6 @@ class MainActivity : AppCompatActivity() {
 //            bottomNav.visibility = View.VISIBLE
 //        }
         binding.bottomNavigation.visibility =
-            if (fragment is LoginFragment || fragment is RegisterFragment) View.GONE else View.VISIBLE
+            if (fragment is LoginFragment || fragment is RegisterFragment || fragment is AccountFragment) View.GONE else View.VISIBLE
     }
 }

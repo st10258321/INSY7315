@@ -5,7 +5,7 @@
         <item>@string/rating_4_stars_up</item>
         <item>@string/rating_3_stars_up</item>
     </string-array>
-    <string-array name="categories">
+    <string-array name="service_categories">
         <item>Academics and Tutoring</item>
         <item>Creative and Design</item>
         <item>Personal care and beauty</item>
@@ -17,7 +17,7 @@
         <item>per hour</item>
         <item>per session</item>
     </string-array>
-    <string-array name="locations">
+    <string-array name="service_locations">
         <item>On campus</item>
         <item>Virtually</item>
     </string-array>

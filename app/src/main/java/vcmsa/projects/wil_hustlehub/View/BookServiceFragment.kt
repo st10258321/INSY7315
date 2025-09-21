@@ -21,156 +21,142 @@ import vcmsa.projects.wil_hustlehub.databinding.FragmentBookServiceBinding
 import kotlin.getValue
 import androidx.core.view.isVisible
 import androidx.lifecycle.MediatorLiveData
+import com.google.android.material.datepicker.MaterialDatePicker
 import vcmsa.projects.wil_hustlehub.Model.CombinedData
 import vcmsa.projects.wil_hustlehub.Network.PushApiClient
+import java.util.Calendar
 
-class BookServiceFragment: Fragment() {
-    // Declare the binding variable
+class BookServiceFragment : Fragment() {
     private var _binding: FragmentBookServiceBinding? = null
+    private val binding get() = _binding!!
+
     private val userRepo = UserRepository()
     private val serviceRepo = ServiceRepository()
     private val bookRepo = BookServiceRepository()
     private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
     private val userViewModel: UserViewModel by viewModels { viewModelFactory }
-    private var spFcmToken :String? = null
-    private var serviceID :String? = null
-    private var serviceName :String? = null
-    private var userName :String? = null
-    private lateinit var combinedData: MediatorLiveData<CombinedData>
 
+    private var spFcmToken: String? = null
+    private var serviceID: String? = null
+    private var serviceName: String? = null
+    private var userName: String? = null
+    private var serviceProviderId: String = ""
 
-    private var serviceProviderId :String = ""
-    private val binding get() = _binding!!
+    // keep only one source of truth
+    private var selectedDate: String = ""
+    private var selectedTime: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the fragment_book_service.xml layout.
+    ): View {
         _binding = FragmentBookServiceBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         serviceID = arguments?.getString("serviceID")
 
-
-//        userViewModel.currentUserData.observe(viewLifecycleOwner){cUser ->
-//            userName = cUser?.name
-//        }
         val sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val uName = sharedPref.getString("uid", "")
-        if(!uName.isNullOrEmpty())
-            userName = uName
+        userName = sharedPref.getString("uid", "")
 
-        userViewModel.getServiceById(serviceID!!).observe(viewLifecycleOwner){service ->
-            if(service != null){
+        // load service
+        userViewModel.getServiceById(serviceID!!).observe(viewLifecycleOwner) { service ->
+            if (service != null) {
                 binding.selectedServiceTitle.text = service.serviceName
                 serviceName = service.serviceName
                 serviceProviderId = service.userId
-                Toast.makeText(requireContext(), "userName: ${userName}", Toast.LENGTH_SHORT).show()
 
-                if(serviceProviderId.isNotEmpty()){
-                    userViewModel.getUserData(serviceProviderId).observe(viewLifecycleOwner){provider->
+                if (serviceProviderId.isNotEmpty()) {
+                    userViewModel.getUserData(serviceProviderId).observe(viewLifecycleOwner) { provider ->
                         spFcmToken = provider?.fcmToken
-                        Toast.makeText(requireContext(), "spFcmToken: ${spFcmToken}", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
 
-//        // Set background color programmatically
-//        binding.bookingCalendar.backgroundTintList =
-//            ContextCompat.getColorStateList(requireContext(), R.color.white)
 
-
-
-            //displaying the calendar
-            binding.btnSelectDate.setOnClickListener {
-                binding.bookingCalendar.visibility = View.VISIBLE
+        // --- Date selection ---
+        binding.btnSelectDate.setOnClickListener {
+           val datePicker = MaterialDatePicker.Builder.datePicker()
+               .setTitleText("Select Date")
+               .build()
+            datePicker.addOnPositiveButtonClickListener { selection ->
+                val calendar = Calendar.getInstance().apply{timeInMillis = selection}
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
+                val month = calendar.get(Calendar.MONTH)
+                val year = calendar.get(Calendar.YEAR)
+                selectedDate = "$day/${month + 1}/$year"
+               binding.selectedDate?.text = selectedDate
 
             }
-            //hiding the time Calendar when the user selects a Time
-            binding.btnSelectTime.setOnClickListener {
-                binding.bookingCalendar.visibility = View.GONE
-                binding.timeslotSpinner?.visibility = View.VISIBLE
-                binding.timeslotSpinner?.setSelection(0)  //default selection being the first option
-            }
-            var selectedDate  = ""
-//            binding.bookingCalendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
-//                selectedDate  = "$dayOfMonth/${month + 1}/$year"
-//                binding.selectedDateTime?.text = selectedDate
-//            }
-
-
-            binding.btnConfirmBooking.setOnClickListener{
-                checkAndEnableBooking(selectedDate)
-            }
-
+            datePicker.show(parentFragmentManager, "DatePicker")
+            binding.timeslotSpinner?.visibility = View.GONE
+            //binding.edBookingTime.visibility = View.GONE
         }
-    fun checkAndEnableBooking(selectedDate : String){
-        //sending the information to the database
-            val selectedTime = binding.timeslotSpinner?.selectedItemPosition?.let {
-                if(it > 0)
-                    binding.timeslotSpinner?.selectedItem.toString()
-                else{
-                    null
+
+
+        // --- Time selection (Spinner) ---
+        binding.btnSelectTime.setOnClickListener {
+
+            binding.timeslotSpinner?.visibility = View.VISIBLE
+          //  binding.edBookingTime.visibility = View.GONE
+        }
+
+
+        // --- Confirm Booking ---
+        binding.btnConfirmBooking.setOnClickListener {
+            // get time either from spinner or edittext
+            selectedTime = when {
+                binding.timeslotSpinner?.isVisible == true -> {
+                    val pos = binding.timeslotSpinner?.selectedItemPosition ?: -1
+                    if (pos > 0) binding.timeslotSpinner?.selectedItem?.toString() else null
                 }
+                //binding.edBookingTime.isVisible -> binding.edBookingTime.text.toString().takeIf { it.isNotEmpty() }
+                else -> null
             }
+
+
             val location = if (binding.radioOnline.isChecked) "Online" else "On Campus"
             val additionalNotes = binding.additionalNotes.text.toString()
-            if (selectedDate.isNullOrEmpty() || selectedTime.isNullOrEmpty() || location.isNullOrEmpty()) {
-                Toast.makeText(
-                    requireContext(),
-                    "Please select a date, time or location",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                userViewModel.createBooking(
-                    serviceID!!,
-                    selectedDate,
-                    selectedTime,
-                    location,
-                    additionalNotes
-                )
 
-                userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
-
-                    if (success) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Booking created successfully",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        //navigate to the home page or the page where the user can see their pending bookings
-                        //send notification to service provider
-                        try {
-                            PushApiClient.sendBookingNotification(
-                                requireContext(),
-                                spFcmToken,
-                                userName,
-                                serviceName
-                            )
-                        } catch (e: Exception) {
-                            Log.d(
-                                "API-TEST!!!!",
-                                "${spFcmToken} -- ${userName} -- ${serviceName}"
-                            )
-                            Toast.makeText(
-                                requireContext(),
-                                "Failed to send notification",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Failed to create booking",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
+            if (selectedDate.isEmpty() || selectedTime.isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Please select a date and time", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
+            userViewModel.createBooking(
+                serviceID!!,
+                selectedDate,
+                selectedTime!!,
+                location,
+                additionalNotes
+            )
+
+            userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, _) ->
+                if (success) {
+                    Toast.makeText(requireContext(), "Booking created successfully", Toast.LENGTH_SHORT).show()
+                    try {
+                        PushApiClient.sendBookingNotification(
+                            requireContext(),
+                            spFcmToken,
+                            userName,
+                            serviceName
+                        )
+                    } catch (e: Exception) {
+                        Log.e("BookService", "Failed to send notification", e)
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Failed to create booking", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

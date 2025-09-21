@@ -33,8 +33,8 @@ class RegisterService : AppCompatActivity() {
         binding = FragmentRegisterServiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.actvCategory.setAdapter(ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item))
-        binding.actvLocation.setAdapter(ArrayAdapter.createFromResource(this, R.array.locations, android.R.layout.simple_spinner_item))
+        binding.actvCategory.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_categories, android.R.layout.simple_spinner_item))
+        binding.actvLocation.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_locations, android.R.layout.simple_spinner_item))
         binding.actvPricingType.setAdapter(ArrayAdapter.createFromResource(this, R.array.pricing_types, android.R.layout.simple_spinner_item))
 
 
