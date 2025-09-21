@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import vcmsa.projects.wil_hustlehub.Model.Service
+import vcmsa.projects.wil_hustlehub.Model.Report
 
 class ServiceRepository {
     private val auth = FirebaseAuth.getInstance()
@@ -222,5 +223,69 @@ class ServiceRepository {
                 }
             })
     }
+
+    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: List<String> = emptyList(), callback: (Boolean, String?) -> Unit)
+    {
+        val currentUser = auth.currentUser
+
+        if (currentUser == null) {
+            callback(false, "User not logged in")
+            return
+        }
+
+        val userId = currentUser.uid
+
+        // to check if user is trying to report themselves
+        if (serviceProviderId == userId) {
+            callback(false, "You cannot report yourself")
+            return
+        }
+
+
+        database.child("Services").child(serviceId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val service = snapshot.getValue(Service::class.java)
+                    if (service == null) {
+                        callback(false, "Selected service not found")
+                        return
+                    }
+
+                    if (service.userId != serviceProviderId) {
+                        callback(false, "Selected service does not belong to this provider")
+                        return
+                    }
+
+                    val reportId = database.child("Reports").push().key ?: ""
+                    val currentDate = createdDateFormat.format(java.util.Date())
+
+                    val report = Report(
+                        reportId = reportId,
+                        serviceProviderId = serviceProviderId,
+                        userId = userId,
+                        serviceId = serviceId, //this is the specific service selected from the drop down list
+                        reportIssue = reportedIssue,
+                        additionalNotes = additionalNotes,
+                        image = images,
+                        createdDate = currentDate
+                    )
+
+                    // saving the report
+                    database.child("Reports").child(reportId).setValue(report)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                callback(true, null)
+                            } else {
+                                callback(false, task.exception?.message)
+                            }
+                        }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message)
+                }
+            })
+    }
+
 
 }
