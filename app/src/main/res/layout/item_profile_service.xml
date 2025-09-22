@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/dashed_bottom_border">
+
+    <TextView
+        android:id="@+id/serviceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/deep_blue"
+        android:layout_marginBottom="4dp"
+        tools:text="Calculus Tutoring (MAT1503, MAT2611)" />
+
+    <TextView
+        android:id="@+id/serviceDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/text_light_grey"
+        android:layout_marginBottom="8dp"
+        tools:text="One-on-one sessions covering limits, derivatives, integrals, and differential equations." />
+
+    <TextView
+        android:id="@+id/servicePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/soft_orange"
+        android:layout_marginBottom="12dp"
+        tools:text="R180/hour" />
+
+    <Button
+        android:id="@+id/bookNowBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/book_now_button"
+        android:background="@color/primary_teal"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:cornerRadius="5dp" />
+
+    </LinearLayout>
+</layout>

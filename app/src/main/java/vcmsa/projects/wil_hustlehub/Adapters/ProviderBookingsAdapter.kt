@@ -1,0 +1,60 @@
+package vcmsa.projects.wil_hustlehub.Adapters
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import vcmsa.projects.wil_hustlehub.Model.BookService
+import vcmsa.projects.wil_hustlehub.R
+import vcmsa.projects.wil_hustlehub.databinding.ItemProviderBookingBinding
+
+class ProviderBookingsAdapter(
+    private val bookings: MutableList<BookService>,
+    private val onConfirmAction: (BookService) -> Unit,
+    private val onRejectAction: (BookService) -> Unit
+): RecyclerView.Adapter<ProviderBookingsAdapter.BookingViewHolder>(){
+
+    inner class BookingViewHolder(val binding: ItemProviderBookingBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookingViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ItemProviderBookingBinding.inflate(inflater, parent, false)
+        return BookingViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: BookingViewHolder, position: Int) {
+        val booking = bookings[position]
+        val context = holder.itemView.context
+//just for git purposes, didnt change anything
+        holder.binding.bookingServiceTitle.text = booking.serviceName
+        holder.binding.bookingStatus.text = booking.status
+        if(booking.status == "Confirmed"){
+            holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_confirmed_background)
+        }else if(booking.status == "Rejected"){
+            holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_rejected_background)
+        }
+        holder.binding.bookingCustomerName.text =
+            context.getString(R.string.label_customer, booking.userName)
+        holder.binding.bookingDateTime.text =
+            context.getString(R.string.label_date_time, booking.date, booking.time)
+        holder.binding.bookingLocation.text =
+            context.getString(R.string.label_location, booking.location)
+        holder.binding.bookingNotes.text =
+            context.getString(R.string.label_notes, booking.message)
+
+        holder.binding.btnRejectBooking.setOnClickListener {
+            onRejectAction(booking)
+        }
+
+        holder.binding.btnConfirmBooking.setOnClickListener {
+            onConfirmAction(booking)
+        }
+    }
+
+    override fun getItemCount(): Int = bookings.size
+
+    fun updateBookings(newBookings: List<BookService>?) {
+        bookings.clear()
+        newBookings?.let(bookings::addAll)
+        notifyDataSetChanged()
+    }
+}
