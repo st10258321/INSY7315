@@ -4,6 +4,7 @@ data class BookService(
     val bookingId: String = "",
     val userId: String = "",
     val serviceId: String = "",
+    val providerId :String = "",
     val serviceName: String = "",
     val date: String = "",
     val time: String = "",

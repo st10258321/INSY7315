@@ -24,6 +24,8 @@ import androidx.lifecycle.MediatorLiveData
 import com.google.android.material.datepicker.MaterialDatePicker
 import vcmsa.projects.wil_hustlehub.Model.CombinedData
 import vcmsa.projects.wil_hustlehub.Network.PushApiClient
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import java.util.Calendar
 
 class BookServiceFragment : Fragment() {
@@ -33,7 +35,9 @@ class BookServiceFragment : Fragment() {
     private val userRepo = UserRepository()
     private val serviceRepo = ServiceRepository()
     private val bookRepo = BookServiceRepository()
-    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+    private val reviewRepo = ReviewRepository()
+    private val chatRepo = ChatRepository()
+    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo,chatRepo)
     private val userViewModel: UserViewModel by viewModels { viewModelFactory }
 
     private var spFcmToken: String? = null
@@ -60,8 +64,13 @@ class BookServiceFragment : Fragment() {
         serviceID = arguments?.getString("serviceID")
 
         val sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        userName = sharedPref.getString("uid", "")
+        val userId = sharedPref.getString("uid", "")
 
+
+
+        userViewModel.getUserData(userId!!).observe(viewLifecycleOwner) { user ->
+            userName = user?.name
+        }
         // load service
         userViewModel.getServiceById(serviceID!!).observe(viewLifecycleOwner) { service ->
             if (service != null) {
@@ -135,7 +144,7 @@ class BookServiceFragment : Fragment() {
                 additionalNotes
             )
 
-            userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, _) ->
+            userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
                 if (success) {
                     Toast.makeText(requireContext(), "Booking created successfully", Toast.LENGTH_SHORT).show()
                     try {
@@ -149,7 +158,7 @@ class BookServiceFragment : Fragment() {
                         Log.e("BookService", "Failed to send notification", e)
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Failed to create booking", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 }
             }
         }

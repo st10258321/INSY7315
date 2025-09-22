@@ -59,7 +59,8 @@ class BookServiceRepository {
                    val bookService = BookService(
                        bookingId = bookServiceId,
                        userId = userId,
-                       serviceId = serviceId, 
+                       serviceId = serviceId,
+                       providerId = service.userId, // Automatically filled from service
                        serviceName = service.serviceName, // Automatically filled from service
                        date = finalDate,
                        time = finalTime,
@@ -68,16 +69,19 @@ class BookServiceRepository {
                        message = message,
                        userName = userName ?: ""
                    )
-
-                   // Save to the database
-                   database.child("Book_Service").child(bookServiceId).setValue(bookService)
-                       .addOnCompleteListener { task ->
-                           if (task.isSuccessful) {
-                               callback(true, null, bookService)
-                           } else {
-                               callback(false, task.exception?.message, null)
-                           }
-                       }
+                if(userId != service.userId) {
+                    // Save to the database
+                    database.child("Book_Service").child(bookServiceId).setValue(bookService)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                callback(true, null, bookService)
+                            } else {
+                                callback(false, task.exception?.message, null)
+                            }
+                        }
+                }else{
+                    callback(false, "You cannot book your own service", null)
+                }
                }
 
                override fun onCancelled(error: DatabaseError) {
@@ -242,7 +246,7 @@ class BookServiceRepository {
         // Check if the booking exists and the current user is the service owner
         getBookServiceById(bookServiceId) { success, error, bookService ->
             if (success && bookService != null) {
-                if (bookService.userId == userId) {
+                if (bookService.providerId == userId) {
                     // Update the status to CONFIRMED
                     val updatedBookService = bookService.copy(status = "Confirmed")
 

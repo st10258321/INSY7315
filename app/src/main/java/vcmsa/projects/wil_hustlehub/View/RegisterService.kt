@@ -1,9 +1,12 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,8 +20,10 @@ import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
 import vcmsa.projects.wil_hustlehub.databinding.FragmentRegisterServiceBinding
 import kotlin.getValue
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
 import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
+import android.Manifest
 
 class RegisterService : AppCompatActivity() {
     private lateinit var binding: FragmentRegisterServiceBinding
@@ -30,6 +35,27 @@ class RegisterService : AppCompatActivity() {
     private val userViewModel : UserViewModel by viewModels {
         ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
     }
+    private val requestPermissionsLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val cameraGranted = permissions[Manifest.permission.CAMERA] ?: false
+            val storageGranted = when {
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
+                    (permissions[Manifest.permission.READ_MEDIA_IMAGES] ?: false) &&
+                            (permissions[Manifest.permission.READ_MEDIA_VIDEO] ?: false)
+                }
+                else -> permissions[Manifest.permission.READ_EXTERNAL_STORAGE] ?: false
+            }
+            val notificationsGranted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                permissions[Manifest.permission.POST_NOTIFICATIONS] ?: false
+            } else true
+
+            if (cameraGranted && storageGranted && notificationsGranted) {
+                openCameraOrGallery()
+            } else {
+                Toast.makeText(this, "Permissions required to continue", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +68,16 @@ class RegisterService : AppCompatActivity() {
         binding.actvPricingType.setAdapter(ArrayAdapter.createFromResource(this, R.array.pricing_types, android.R.layout.simple_spinner_item))
 
 
+
+        binding.btnUploadImages.setOnClickListener {
+            checkPermissionsAndProceed()
+
+        }
+
+
         binding.btnSubmitService.setOnClickListener {
+
+
             val serviceName = binding.etServiceTitle.text.toString()
             val category = binding.actvCategory.text.toString()
             val description = binding.etServiceDescription.text.toString()
@@ -71,5 +106,45 @@ class RegisterService : AppCompatActivity() {
             }
         }
 
+    }
+    private fun checkPermissionsAndProceed() {
+        val permissionsToRequest = mutableListOf<String>()
+
+        // Camera
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            permissionsToRequest.add(Manifest.permission.CAMERA)
+        }
+
+        // Storage / media
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
+            }
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(Manifest.permission.READ_MEDIA_VIDEO)
+            }
+        } else {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }
+
+        // Notifications
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            permissionsToRequest.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
+
+        if (permissionsToRequest.isNotEmpty()) {
+            requestPermissionsLauncher.launch(permissionsToRequest.toTypedArray())
+        } else {
+            openCameraOrGallery()
+        }
+    }
+
+    private fun openCameraOrGallery() {
+        // TODO: Launch your camera or gallery logic
+        Toast.makeText(this, "Ready to pick image or take photo", Toast.LENGTH_SHORT).show()
     }
 }

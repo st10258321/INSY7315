@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import vcmsa.projects.wil_hustlehub.Adapters.ProviderBookingsAdapter
 import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
@@ -28,7 +30,9 @@ class ProviderBookingsFragment : Fragment() {
     private val userRepo = UserRepository()
     private val serviceRepo = ServiceRepository()
     private val bookRepo = BookServiceRepository()
-    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+    private val reviewRepo = ReviewRepository()
+    private val chatRepo = ChatRepository()
+    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo,chatRepo)
     private val userViewModel: UserViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(

@@ -12,15 +12,19 @@ import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
 import androidx.activity.viewModels
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.databinding.ActivityReportUserActvityBinding
 
 class ReportUserActvity : AppCompatActivity() {
     val userRepo = UserRepository()
     val serviceRepo = ServiceRepository()
     val bookRepo = BookServiceRepository()
+    val reviewRepo = ReviewRepository()
+    val chatRepo = ChatRepository()
     private lateinit var binding: ActivityReportUserActvityBinding
     private var servicesOffered:  List<String>? = null
-    val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+    val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo,reviewRepo,chatRepo)
     val userViewModel: UserViewModel by viewModels { viewModelFactory }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

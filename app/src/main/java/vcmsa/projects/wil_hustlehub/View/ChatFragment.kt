@@ -43,7 +43,7 @@ class ChatFragment : Fragment() {
     private val userViewModel: UserViewModel by viewModels { viewModelFactory }
 
     private lateinit var chatAdapter: ChatAdapter
-    private val currentUserId = "dummyUser123" // TODO: Replace with logged-in userId
+    private var currentUserId : String =""  // TODO: Replace with logged-in userId
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +55,10 @@ class ChatFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        userViewModel.currentUserData.observe(viewLifecycleOwner) { user ->
+            if (user != null)
+                currentUserId = user.userID
+        }
         // Setup RecyclerView
         chatAdapter = ChatAdapter(mutableListOf(), currentUserId)
         binding.chatMessagesRecyclerView.apply {

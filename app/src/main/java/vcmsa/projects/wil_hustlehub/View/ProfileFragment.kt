@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import vcmsa.projects.wil_hustlehub.Adapters.ProfileServiceAdapter
 import vcmsa.projects.wil_hustlehub.MainActivity
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
@@ -41,7 +43,10 @@ class ProfileFragment: Fragment() {
         val userRepo = UserRepository()
         val serviceRepo = ServiceRepository()
         val bookRepo = BookServiceRepository()
-        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+        val reviewRepo = ReviewRepository()
+        val chatRepo = ChatRepository()
+
+        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo,reviewRepo,chatRepo)
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
         //get user data from the view model
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
