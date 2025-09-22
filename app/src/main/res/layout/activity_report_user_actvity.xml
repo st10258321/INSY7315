@@ -88,11 +88,15 @@
                         android:textAlignment="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-
                     <Spinner
                         android:id="@+id/complaintSpinner"
                         android:layout_width="match_parent"
-                        android:entries="@array/time_slots"
+                        android:entries="@array/complaint_array"
+                        android:paddingBottom="10dp"
+                        android:layout_height="wrap_content"/>
+                    <Spinner
+                        android:id="@+id/servicesOfferedSpinner"
+                        android:layout_width="match_parent"
                         android:paddingBottom="10dp"
                         android:layout_height="wrap_content"/>
 
@@ -106,12 +110,27 @@
                         android:textSize="15sp"
                         android:gravity="start|top"
                         android:inputType="textMultiLine" />
+
+
+
+                    <Button
+                        android:id="@+id/btnUploadImage"
+                        android:layout_width="match_parent"
+                        android:textSize="10sp"
+                        android:paddingTop="10dp"
+                        android:textAlignment="center"
+                        android:backgroundTint="@color/soft_orange"
+                        android:padding="10dp"
+                        android:text="Upload image - optional"
+                        android:layout_height="wrap_content"/>
+
                     <Button
                         android:id="@+id/btnSubmitComplaint"
                         android:layout_width="match_parent"
                         android:textSize="10sp"
+                        android:paddingTop="10dp"
                         android:textAlignment="center"
-                        android:background="@color/primary_teal"
+                        android:backgroundTint="@color/primary_teal"
                         android:padding="10dp"
                         android:text="Submit Complaint"
                         android:layout_height="wrap_content"/>

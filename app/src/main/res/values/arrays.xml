@@ -16,6 +16,7 @@
     <string-array name="pricing_types">
         <item>per hour</item>
         <item>per session</item>
+        <item>once off</item>
     </string-array>
     <string-array name="service_locations">
         <item>On campus</item>
@@ -28,6 +29,11 @@
         <item>12:00 - 14:00</item>
         <item>14:00 - 16:00</item>
         <item>16:00 - 18:00</item>
+    </string-array>
+    <string-array name="complaint_array">
+        <item>Late to session</item>
+        <item>Inaccurate advertising information</item>
+        <item>Inappropriate behaviour</item>
     </string-array>
 
 

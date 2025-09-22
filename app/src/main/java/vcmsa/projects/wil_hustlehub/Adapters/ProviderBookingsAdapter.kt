@@ -32,14 +32,10 @@ class ProviderBookingsAdapter(
         }else if(booking.status == "Rejected"){
             holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_rejected_background)
         }
-        holder.binding.bookingCustomerName.text =
-            context.getString(R.string.label_customer, booking.userName)
-        holder.binding.bookingDateTime.text =
-            context.getString(R.string.label_date_time, booking.date, booking.time)
-        holder.binding.bookingLocation.text =
-            context.getString(R.string.label_location, booking.location)
-        holder.binding.bookingNotes.text =
-            context.getString(R.string.label_notes, booking.message)
+        holder.binding.bookingCustomerName.text = "Customer Name: ${booking.userName}"
+        holder.binding.bookingDateTime.text = "Date and Time: ${booking.date} - ${booking.time}"
+        holder.binding.bookingLocation.text = "Location: ${booking.location}"
+        holder.binding.bookingNotes.text = "Notes: ${booking.message}"
 
         holder.binding.btnRejectBooking.setOnClickListener {
             onRejectAction(booking)
@@ -56,5 +52,12 @@ class ProviderBookingsAdapter(
         bookings.clear()
         newBookings?.let(bookings::addAll)
         notifyDataSetChanged()
+    }
+    fun updateBookingStatus(bookingId: String, newStatus: String) {
+        val index = bookings.indexOfFirst { it.bookingId == bookingId }
+        if(index != 1){
+            bookings[index].status = newStatus
+            notifyItemChanged(index)
+        }
     }
 }

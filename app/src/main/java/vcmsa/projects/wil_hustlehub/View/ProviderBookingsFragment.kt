@@ -1,6 +1,7 @@
 package vcmsa.projects.wil_hustlehub.View
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import vcmsa.projects.wil_hustlehub.Adapters.ProviderBookingsAdapter
+import vcmsa.projects.wil_hustlehub.MainActivity
 import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
@@ -49,38 +51,58 @@ class ProviderBookingsFragment : Fragment() {
 
 
         userViewModel.getMyServiceProviderBookings()
+        binding.addPetBackButton.setOnClickListener {
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
+        }
 
-
+//        adapter = ProviderBookingsAdapter(
+//            bookings = mutableListOf(),
+//            onConfirmAction = { booking ->
+//
+//                Log.d("ProviderBookingsFragment", "Confirming booking: ${booking.bookingId}")
+//                userViewModel.confirmBooking(booking.bookingId)
+//                userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
+//                    if(success){
+//                        //send them a push notification here and change the status of the booking
+//                        Toast.makeText(requireContext(),"Booking confirmed", Toast.LENGTH_SHORT).show()
+//                    }else{
+//                        Toast.makeText(requireContext(),"Booking confirmation failed", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            },
+//            onRejectAction = { booking ->
+//                Log.d("ProviderBookingsFragment", "Rejecting booking: ${booking.bookingId}")
+//                userViewModel.rejectBooking(booking.bookingId)
+//
+//            }
+//        )
         adapter = ProviderBookingsAdapter(
             bookings = mutableListOf(),
             onConfirmAction = { booking ->
-
-                Log.d("ProviderBookingsFragment", "Confirming booking: ${booking.bookingId}")
                 userViewModel.confirmBooking(booking.bookingId)
-                userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
-                    if(success){
-                        //send them a push notification here and change the status of the booking
-                        Toast.makeText(requireContext(),"Booking confirmed", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(requireContext(),"Booking confirmation failed", Toast.LENGTH_SHORT).show()
-                    }
-                }
             },
             onRejectAction = { booking ->
-                Log.d("ProviderBookingsFragment", "Rejecting booking: ${booking.bookingId}")
                 userViewModel.rejectBooking(booking.bookingId)
-
             }
         )
-        userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
-            if (success) {
-                //update the list of bookings
-                Toast.makeText(requireContext(), message ?: "Booking action successful", Toast.LENGTH_SHORT).show()
-                userViewModel.getMyServiceProviderBookings()
-            } else {
-                Toast.makeText(requireContext(), message?:"Booking action failed", Toast.LENGTH_SHORT).show()
+        userViewModel.bookingActionStatus.observe(viewLifecycleOwner){result ->
+            if(result.success){
+                Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                adapter.updateBookingStatus(result.bookingId, result.newStatus)
+            }else{
+                Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
             }
         }
+//        userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
+//            if (success) {
+//                //update the list of bookings
+//                Toast.makeText(requireContext(), message ?: "Booking action successful", Toast.LENGTH_SHORT).show()
+//                userViewModel.getMyServiceProviderBookings()
+//            } else {
+//                Toast.makeText(requireContext(), message?:"Booking action failed", Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
         binding.recyclerViewBookings.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewBookings.adapter = adapter

@@ -225,7 +225,7 @@ class ServiceRepository {
             })
     }
 
-    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: List<String> = emptyList(), callback: (Boolean, String?) -> Unit)
+    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String, callback: (Boolean, String?) -> Unit)
     {
         val currentUser = auth.currentUser
 
@@ -275,7 +275,7 @@ class ServiceRepository {
                     database.child("Reports").child(reportId).setValue(report)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                callback(true, null)
+                                callback(true, "Report submitted successfully!")
                             } else {
                                 callback(false, task.exception?.message)
                             }

@@ -9,7 +9,7 @@ data class BookService(
     val date: String = "",
     val time: String = "",
     val location: String = "",
-    val status: String = "Pending",
+    var status: String = "Pending",
     val message: String = "",
     val userName : String = ""
 )

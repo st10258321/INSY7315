@@ -6,6 +6,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import vcmsa.projects.wil_hustlehub.Model.BookService
+import vcmsa.projects.wil_hustlehub.Model.BookingActionResult
 import vcmsa.projects.wil_hustlehub.Model.Chat
 import vcmsa.projects.wil_hustlehub.Model.Review
 import vcmsa.projects.wil_hustlehub.Model.Service
@@ -46,7 +47,7 @@ class UserViewModel @Inject constructor(
     val serviceStatus = MutableLiveData<Pair<Boolean, String?>>()
 
     // LiveData to observe the status of booking actions (create, delete, confirm, reject)
-    val bookingActionStatus = MutableLiveData<Pair<Boolean, String?>>()
+    val bookingActionStatus = MutableLiveData<BookingActionResult>()
 
     // LiveData for the list of bookings made by the current user
     val userBookings = MutableLiveData<List<BookService>?>()
@@ -62,6 +63,8 @@ class UserViewModel @Inject constructor(
     val userChats = MutableLiveData<List<Chat>?>()
     val singleChat = MutableLiveData<Chat?>()
     val messageStatus = MutableLiveData<Pair<Boolean, String?>>()
+
+    val reportResult:LiveData<Pair<Boolean, String?>> = MutableLiveData()
 
     val combinedData = MediatorLiveData<Pair<Map<String, String>?, List<Service>?>>().apply{
         val usersMap = MutableLiveData<Map<String, String>?>()
@@ -197,7 +200,7 @@ class UserViewModel @Inject constructor(
     // Function to create a new booking
     fun createBooking(serviceId: String, date: String, time: String, location: String, message: String) {
         bookRepo.createBookService(serviceId, date, time, location, message) { success, message, bookService ->
-            bookingActionStatus.postValue(Pair(success, message))
+            bookingActionStatus.postValue(BookingActionResult(success, message, bookService?.bookingId ?: "", ""))
         }
     }
 
@@ -208,7 +211,7 @@ class UserViewModel @Inject constructor(
                 userBookings.postValue(bookings)
             } else {
                 userBookings.postValue(null)
-                bookingActionStatus.postValue(Pair(false, message))
+                bookingActionStatus.postValue(BookingActionResult(false, message, "", ""))
             }
         }
     }
@@ -220,7 +223,7 @@ class UserViewModel @Inject constructor(
                 bookingsForMyServices.postValue(bookings)
             } else {
                 bookingsForMyServices.postValue(null)
-                bookingActionStatus.postValue(Pair(false, message))
+                bookingActionStatus.postValue(BookingActionResult(false, message, "", ""))
             }
         }
     }
@@ -243,29 +246,29 @@ class UserViewModel @Inject constructor(
         // Function to confirm a booking
         fun confirmBooking(bookingId: String) {
             bookRepo.confirmBooking(bookingId) { success, message, updatedBooking ->
-                bookingActionStatus.postValue(Pair(success, message))
+                bookingActionStatus.postValue(BookingActionResult(true,"Booking confirmed", bookingId, "Confirmed"))
             }
         }
 
         // Function to reject a booking
         fun rejectBooking(bookingId: String) {
             bookRepo.rejectBooking(bookingId) { success, message, updatedBooking ->
-                bookingActionStatus.postValue(Pair(success, message))
+                bookingActionStatus.postValue(BookingActionResult(true,"Booking rejected", bookingId, "Rejected"))
             }
         }
 
         // Function to delete a booking
         fun deleteBooking(bookingId: String) {
             bookRepo.deleteBookService(bookingId) { success, message ->
-                bookingActionStatus.postValue(Pair(success, message))
+                bookingActionStatus.postValue(BookingActionResult(true,"Booking deleted", bookingId, ""))
             }
         }
-    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: List<String>) {
-        serviceRepo.reportServiceProvider(serviceProviderId, serviceId, reportedIssue, additionalNotes, images) { success, message ->
-            serviceStatus.postValue(Pair(success, message))
-        }
-
-    }
+//    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String) {
+//        serviceRepo.reportServiceProvider(serviceProviderId, serviceId, reportedIssue, additionalNotes, images) { success, message ->
+//            serviceStatus.postValue(Pair(success, message))
+//        }
+//
+//    }
     // ------------------ REVIEWS ------------------
     fun addReview(serviceId: String, stars: Int, reviewText: String) {
         reviewRepo.addReview(serviceId, stars, reviewText) { success, message, review ->
@@ -341,6 +344,15 @@ class UserViewModel @Inject constructor(
     fun sendMessage(chatId: String, message: String) {
         chatRepo.sendMessage(chatId, message) { success, error, _ ->
             messageStatus.postValue(Pair(success, error))
+        }
+    }
+    fun reportServiceProvider(serviceProviderId:String, serviceId :String, reportedIssue : String,additionalNotes :String, images : String){
+        serviceRepo.reportServiceProvider(serviceProviderId, serviceId, reportedIssue, additionalNotes, images) { success, message ->
+                if(success){
+                    reviewStatus.postValue(Pair(true,message))
+                }else{
+                    reviewStatus.postValue(Pair(false,message))
+                }
         }
     }
 

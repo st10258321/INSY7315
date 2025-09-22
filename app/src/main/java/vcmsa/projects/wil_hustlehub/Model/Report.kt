@@ -7,6 +7,6 @@ data class Report(
     val serviceId: String = "",
     val reportIssue: String = "",
     val additionalNotes: String = "",
-    val image: List<String> = emptyList(),
+    val image: String = "",
     val createdDate: String = ""
 )

@@ -2,6 +2,7 @@ package vcmsa.projects.wil_hustlehub.View
 
 import android.R
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ import kotlin.getValue
 import androidx.core.view.isVisible
 import androidx.lifecycle.MediatorLiveData
 import com.google.android.material.datepicker.MaterialDatePicker
+import vcmsa.projects.wil_hustlehub.MainActivity
 import vcmsa.projects.wil_hustlehub.Model.CombinedData
 import vcmsa.projects.wil_hustlehub.Network.PushApiClient
 import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
@@ -154,6 +156,8 @@ class BookServiceFragment : Fragment() {
                             userName,
                             serviceName
                         )
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        startActivity(intent)
                     } catch (e: Exception) {
                         Log.e("BookService", "Failed to send notification", e)
                     }
