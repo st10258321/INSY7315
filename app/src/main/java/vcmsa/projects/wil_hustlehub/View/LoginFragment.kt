@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import vcmsa.projects.wil_hustlehub.MainActivity
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
@@ -37,13 +39,17 @@ class LoginFragment: Fragment() {
         val userRepo = UserRepository()
         val serviceRepo = ServiceRepository()
         val bookRepo = BookServiceRepository()
-        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
+        val reviewRepo = ReviewRepository()
+        val chatRepo = ChatRepository()
+        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
         // Directs the user to the register page
         binding.tvSignUpPrompt.setOnClickListener {
             val intent = Intent(requireContext(), RegisterActivity::class.java)
             startActivity(intent)
         }
+        val sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
 
         val loginButton = binding.btnLoginSubmit
         val email = binding.loginEmail
@@ -59,6 +65,18 @@ class LoginFragment: Fragment() {
         userViewModel.loginStat.observe(viewLifecycleOwner) { (success, message) ->
             if (success) {
                 Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
+                userViewModel.currentUserData.observe(viewLifecycleOwner) { user ->
+                    if (user != null) {
+                        editor.putString("uid", user.userID)
+                        editor.apply()
+
+                        Toast.makeText(requireContext(), "User name is ${user.name}", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), "User data is not being loaded", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()

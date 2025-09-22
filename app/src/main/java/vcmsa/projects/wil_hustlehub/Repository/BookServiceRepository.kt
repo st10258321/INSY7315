@@ -9,7 +9,6 @@ import vcmsa.projects.wil_hustlehub.Model.BookService
 import vcmsa.projects.wil_hustlehub.Model.Service
 
 class BookServiceRepository {
-
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
 
@@ -29,6 +28,7 @@ class BookServiceRepository {
             callback(false, "User not logged in", null)
             return
         }
+       val userName = auth.currentUser?.displayName
 
        // First, get the service details to populate serviceName and serviceOwnerId
        database.child("Services").child(serviceId)
@@ -59,24 +59,29 @@ class BookServiceRepository {
                    val bookService = BookService(
                        bookingId = bookServiceId,
                        userId = userId,
-                       serviceId = serviceId, 
+                       serviceId = serviceId,
+                       providerId = service.userId, // Automatically filled from service
                        serviceName = service.serviceName, // Automatically filled from service
                        date = finalDate,
                        time = finalTime,
                        location = location,
                        status = "Pending",
-                       message = message
+                       message = message,
+                       userName = userName ?: ""
                    )
-
-                   // Save to the database
-                   database.child("Book_Service").child(bookServiceId).setValue(bookService)
-                       .addOnCompleteListener { task ->
-                           if (task.isSuccessful) {
-                               callback(true, null, bookService)
-                           } else {
-                               callback(false, task.exception?.message, null)
-                           }
-                       }
+                if(userId != service.userId) {
+                    // Save to the database
+                    database.child("Book_Service").child(bookServiceId).setValue(bookService)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                callback(true, null, bookService)
+                            } else {
+                                callback(false, task.exception?.message, null)
+                            }
+                        }
+                }else{
+                    callback(false, "You cannot book your own service", null)
+                }
                }
 
                override fun onCancelled(error: DatabaseError) {
@@ -86,6 +91,7 @@ class BookServiceRepository {
    }
 
     /* with this function we are getting all the bookings that are inside the database
+    this is for the client not the provider
      that belong to the user that is logged in and returns then as a list
     */
     fun getUserBookServices(callback: (Boolean, String?, List<BookService>?) -> Unit) {
@@ -240,7 +246,7 @@ class BookServiceRepository {
         // Check if the booking exists and the current user is the service owner
         getBookServiceById(bookServiceId) { success, error, bookService ->
             if (success && bookService != null) {
-                if (bookService.userId == userId) {
+                if (bookService.providerId == userId) {
                     // Update the status to CONFIRMED
                     val updatedBookService = bookService.copy(status = "Confirmed")
 

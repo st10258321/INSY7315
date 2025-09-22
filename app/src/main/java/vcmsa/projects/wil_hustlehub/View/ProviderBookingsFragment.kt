@@ -1,51 +1,82 @@
 package vcmsa.projects.wil_hustlehub.View
 
+
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.media3.common.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import vcmsa.projects.wil_hustlehub.Adapters.ProviderBookingsAdapter
-import vcmsa.projects.wil_hustlehub.Model.BookService
+import vcmsa.projects.wil_hustlehub.MainActivity
+import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
+import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
+import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
 import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
-import vcmsa.projects.wil_hustlehub.databinding.FragmentBookServiceBinding
 import vcmsa.projects.wil_hustlehub.databinding.FragmentProviderBookingsBinding
-import kotlin.getValue
-
 
 class ProviderBookingsFragment : Fragment() {
+
     private var _binding: FragmentProviderBookingsBinding? = null
+    private val binding get() = _binding!!
     private lateinit var adapter: ProviderBookingsAdapter
 
+    private val userRepo = UserRepository()
+    private val serviceRepo = ServiceRepository()
+    private val bookRepo = BookServiceRepository()
+    private val reviewRepo = ReviewRepository()
+    private val chatRepo = ChatRepository()
+    private val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo,chatRepo)
+    private val userViewModel: UserViewModel by viewModels { viewModelFactory }
 
-    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the fragment_profile.xml layout.
+    ): View {
         _binding = FragmentProviderBookingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val userRepo = UserRepository()
-        val serviceRepo = ServiceRepository()
-        val bookRepo = BookServiceRepository()
-        val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo)
-        val userViewModel: UserViewModel by viewModels { viewModelFactory }
+        Log.d("ProviderBookingsFragment", "onViewCreated called")
 
-        //first intializing the adapter with an empty list
+
+        userViewModel.getMyServiceProviderBookings()
+        binding.addPetBackButton.setOnClickListener {
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
+        }
+
+//        adapter = ProviderBookingsAdapter(
+//            bookings = mutableListOf(),
+//            onConfirmAction = { booking ->
+//
+//                Log.d("ProviderBookingsFragment", "Confirming booking: ${booking.bookingId}")
+//                userViewModel.confirmBooking(booking.bookingId)
+//                userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
+//                    if(success){
+//                        //send them a push notification here and change the status of the booking
+//                        Toast.makeText(requireContext(),"Booking confirmed", Toast.LENGTH_SHORT).show()
+//                    }else{
+//                        Toast.makeText(requireContext(),"Booking confirmation failed", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            },
+//            onRejectAction = { booking ->
+//                Log.d("ProviderBookingsFragment", "Rejecting booking: ${booking.bookingId}")
+//                userViewModel.rejectBooking(booking.bookingId)
+//
+//            }
+//        )
         adapter = ProviderBookingsAdapter(
             bookings = mutableListOf(),
             onConfirmAction = { booking ->
@@ -55,16 +86,43 @@ class ProviderBookingsFragment : Fragment() {
                 userViewModel.rejectBooking(booking.bookingId)
             }
         )
+        userViewModel.bookingActionStatus.observe(viewLifecycleOwner){result ->
+            if(result.success){
+                Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                adapter.updateBookingStatus(result.bookingId, result.newStatus)
+            }else{
+                Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+//        userViewModel.bookingActionStatus.observe(viewLifecycleOwner) { (success, message) ->
+//            if (success) {
+//                //update the list of bookings
+//                Toast.makeText(requireContext(), message ?: "Booking action successful", Toast.LENGTH_SHORT).show()
+//                userViewModel.getMyServiceProviderBookings()
+//            } else {
+//                Toast.makeText(requireContext(), message?:"Booking action failed", Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
         binding.recyclerViewBookings.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewBookings.adapter = adapter
 
+
         userViewModel.bookingsForMyServices.observe(viewLifecycleOwner) { bookings ->
+            Log.d("ProviderBookingsFragment", "Bookings received: ${bookings?.size}")
             adapter.updateBookings(bookings)
-            Toast.makeText(requireContext(), "Bookings fetched successfully:${bookings?.size}", Toast.LENGTH_SHORT).show()
-        }
-        userViewModel.getBookingsForMyServices()
+
+            if (bookings.isNullOrEmpty()) {
+                Toast.makeText(requireContext(), getString(R.string.toast_no_bookings), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.toast_bookings_fetched, bookings.size), Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

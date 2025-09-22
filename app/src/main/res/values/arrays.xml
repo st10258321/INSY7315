@@ -5,7 +5,7 @@
         <item>@string/rating_4_stars_up</item>
         <item>@string/rating_3_stars_up</item>
     </string-array>
-    <string-array name="categories">
+    <string-array name="service_categories">
         <item>Academics and Tutoring</item>
         <item>Creative and Design</item>
         <item>Personal care and beauty</item>
@@ -16,10 +16,25 @@
     <string-array name="pricing_types">
         <item>per hour</item>
         <item>per session</item>
+        <item>once off</item>
     </string-array>
-    <string-array name="locations">
+    <string-array name="service_locations">
         <item>On campus</item>
         <item>Virtually</item>
     </string-array>
+    <string-array name="time_slots">
+        <item>Select a time</item>
+        <item>08:00 - 10:00</item>
+        <item>10:00 - 12:00</item>
+        <item>12:00 - 14:00</item>
+        <item>14:00 - 16:00</item>
+        <item>16:00 - 18:00</item>
+    </string-array>
+    <string-array name="complaint_array">
+        <item>Late to session</item>
+        <item>Inaccurate advertising information</item>
+        <item>Inappropriate behaviour</item>
+    </string-array>
+
 
 </resources>

@@ -10,7 +10,7 @@ import vcmsa.projects.wil_hustlehub.R
 class ProviderBookings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_provider_bookings)
+        setContentView(R.layout.activity_provider_bookings)
 
         // Load fragment only if it's the first creation.
         if (savedInstanceState == null) {

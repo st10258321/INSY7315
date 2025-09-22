@@ -9,5 +9,6 @@ data class User (
     var aboutMe: String = "",
     var tagLine: String = "",
     var profilePhoto: String = "",
-    var createdDate: String = ""
+    var createdDate: String = "",
+    var fcmToken : String? = null
 )

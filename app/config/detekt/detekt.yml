@@ -1,0 +1,14 @@
+# Security-focused Detekt config (valid for 1.22.0)
+
+build:
+  maxIssues: 0  # Fail build if any issue is found
+
+potential-bugs:
+  UnsafeCast:
+    active: true
+  EqualsAlwaysReturnsTrueOrFalse:
+    active: true
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: true

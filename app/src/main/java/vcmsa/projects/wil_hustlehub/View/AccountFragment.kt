@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,14 @@ class AccountFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.btnLogin.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnRegister.setOnClickListener {
+            val intent = Intent(requireContext(), RegisterActivity::class.java)
+            startActivity(intent)
 
+        }
     }
 }

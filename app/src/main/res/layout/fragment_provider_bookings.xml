@@ -1,100 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_container"
-xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/warm_grey"
-    tools:context=".fragments.ProviderBookingsFragment">
-
-<!--    &lt;!&ndash; Top App Bar with Back Button &ndash;&gt;-->
-<!--    <com.google.android.material.appbar.MaterialToolbar-->
-<!--        android:id="@+id/topAppBar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="?attr/actionBarSize"-->
-<!--        android:background="@color/primary_teal"-->
-<!--        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"-->
-<!--        app:title="@string/provider_bookings_page_title"-->
-<!--        app:navigationIcon="@drawable/ic_arrow_back_white_24dp" />-->
-
-<!--    &lt;!&ndash; Tab Layout for Filtering Bookings &ndash;&gt;-->
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--        android:id="@+id/tabLayoutBookings"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/white"-->
-<!--        app:tabIndicatorColor="@color/primary_teal"-->
-<!--        app:tabSelectedTextColor="@color/primary_teal"-->
-<!--        app:tabTextColor="@color/text_light_grey"-->
-<!--        app:tabMode="fixed"-->
-<!--        app:tabGravity="fill">-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/tab_pending_bookings" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/tab_confirmed_bookings" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/tab_completed_bookings" />-->
-<!--    </com.google.android.material.tabs.TabLayout>-->
-
-    <!-- RecyclerView to display the list of bookings -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewBookings"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp"
-        android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_provider_booking" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-<!--    &lt;!&ndash; Empty State View (shown when there are no bookings) &ndash;&gt;-->
-<!--    <LinearLayout-->
-<!--        android:id="@+id/emptyStateLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        android:gravity="center"-->
-<!--        android:visibility="gone"-->
-<!--        android:padding="40dp">-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="@color/light_teal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
 
-<!--        <ImageView-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="120dp"-->
-<!--            android:src="@drawable/ic_calendar_deep_blue_24dp"-->
-<!--            android:contentDescription="Empty bookings calendar icon"-->
-<!--            android:layout_marginBottom="24dp" />-->
+            <ImageView
+                android:id="@+id/add_pet_back_button"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/back_button"
+                android:src="@drawable/ic_arrow_back_white_24dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/empty_bookings_title"-->
-<!--            android:textSize="20sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textColor="@color/primary_teal"-->
-<!--            android:layout_marginBottom="8dp" />-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/empty_bookings_message"-->
-<!--            android:textSize="16sp"-->
-<!--            android:textColor="@color/text_light_grey"-->
-<!--            android:textAlignment="center" />-->
-<!--    </LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/warm_grey"
+            tools:context=".fragments.ProviderBookingsFragment">
 
-</LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBookings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_provider_booking" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 </layout>
-

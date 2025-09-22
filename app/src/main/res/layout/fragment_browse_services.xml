@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_container"
     xmlns:tools="http://schemas.android.com/tools">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,234 +10,190 @@
         android:background="@color/warm_grey"
         tools:context=".fragments.BrowseServicesFragment">
 
-        <!-- Listings Header -->
-        <LinearLayout
+        <!-- HEADER -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_pet_header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@color/light_teal">
+            android:layout_height="72dp"
+            android:background="@color/light_teal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+<!--            <ImageView-->
+<!--                android:id="@+id/add_pet_back_button"-->
+<!--                android:layout_width="36dp"-->
+<!--                android:layout_height="36dp"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true"-->
+<!--                android:contentDescription="@string/back_button"-->
+<!--                android:src="@drawable/ic_arrow_back_white_24dp"-->
+<!--                app:tint="@color/white"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent" />-->
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/explore_hustle_title"
-                android:textSize="28sp"
+                android:text="Explore Our Services"
+                android:textColor="@color/black"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/primary_teal"
-                android:layout_marginBottom="16dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <EditText
-                android:id="@+id/searchBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/search_hint"
-                android:padding="12dp"
-                android:background="@drawable/search_bar_background"
-                android:drawableStart="@drawable/ic_search_black_24dp"
-                android:drawablePadding="8dp"
-                android:singleLine="true"
-                android:imeOptions="actionSearch"
-                android:maxLines="1"
-                android:textSize="14sp"
-                android:textColor="@color/deep_blue"
-                android:textColorHint="@color/text_light_grey" />
-        </LinearLayout>
-
-
-            <!-- Sidebar (Filters and Categories) -->
-        <androidx.core.widget.NestedScrollView
+        <!-- MAIN CONTENT -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:fillViewport="false"
-            android:paddingHorizontal="16dp">
-            <com.google.android.material.card.MaterialCardView
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Search + Toggle -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
-                app:cardBackgroundColor="@color/white">
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:padding="20dp"
+                android:background="@color/light_teal">
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/explore_hustle_title"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_teal"
+                    android:layout_marginBottom="16dp" />
+
+                <EditText
+                    android:id="@+id/searchBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:hint="@string/search_hint"
+                    android:padding="12dp"
+                    android:background="@drawable/search_bar_background"
+                    android:drawableStart="@drawable/ic_search_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:singleLine="true"
+                    android:imeOptions="actionSearch"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:textColor="@color/deep_blue"
+                    android:textColorHint="@color/text_light_grey" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/categories_title"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/deep_blue"
-                        android:layout_marginBottom="16dp" />
+                <Button
+                    android:id="@+id/toggleFilterBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/primary_teal"
+                    android:text="Show Filters"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    app:cornerRadius="8dp" />
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/filterContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:visibility="gone"
+                    android:fillViewport="false"
+                    android:paddingHorizontal="16dp">
 
-                    <RadioGroup
-                        android:id="@+id/categoryFilterGroup"
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/filterCard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="24dp">
+                        android:visibility="visible"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp"
+                        app:cardBackgroundColor="@color/white">
 
-                        <RadioButton
-                            android:id="@+id/radioAllServices"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/all_services"
-                            android:textColor="@color/deep_blue"
-                            android:textSize="14sp"
-                            android:padding="8dp"
-                            android:checked="true"
-                            android:drawableStart="@drawable/ic_all"
-                            android:drawablePadding="8dp" />
+                            android:orientation="vertical"
+                            android:padding="20dp">
 
-                        <RadioButton
-                            android:id="@+id/radioAcademics"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/academics_tutoring"
-                            android:textColor="@color/deep_blue"
-                            android:textSize="14sp"
-                            android:padding="8dp"
-                            android:drawableStart="@drawable/ic_book"
-                            android:drawablePadding="15dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/categories_title"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/deep_blue"
+                                android:layout_marginBottom="16dp" />
 
-                        <RadioButton
-                            android:id="@+id/radioCreative"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/creative_design"
-                            android:textColor="@color/deep_blue"
-                            android:textSize="14sp"
-                            android:padding="8dp"
-                            android:drawableStart="@drawable/ic_palette"
-                            android:drawablePadding="8dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/filter_category_label"
+                                android:textColor="@color/black"
+                                android:layout_marginBottom="8dp" />
+                            <Spinner
+                                android:id="@+id/categorySpinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:entries="@array/service_categories"
+                                android:background="@drawable/spinner_background"
+                                android:padding="8dp"
+                                android:layout_marginBottom="16dp" />
 
-                        <RadioButton
-                            android:id="@+id/radioPersonalCare"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/personal_care_beauty"
-                            android:textColor="@color/deep_blue"
-                            android:textSize="14sp"
-                            android:padding="8dp"
-                            android:drawableStart="@drawable/ic_cut"
-                            android:drawablePadding="8dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/filter_location_label"
+                                android:textColor="@color/black"
+                                android:layout_marginBottom="8dp" />
+                            <Spinner
+                                android:id="@+id/locationSpinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:entries="@array/service_locations"
+                                android:background="@drawable/spinner_background"
+                                android:padding="8dp"
+                                android:layout_marginBottom="16dp" />
 
-                        <RadioButton
-                            android:id="@+id/radioTech"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tech_it_support"
-                            android:textColor="@color/deep_blue"
-                            android:textSize="14sp"
-                            android:padding="8dp"
-                            android:drawableStart="@drawable/ic_laptop"
-                            android:drawablePadding="8dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/filter_rating_label"
+                                android:textColor="@color/black"
+                                android:layout_marginBottom="8dp" />
+                            <Spinner
+                                android:id="@+id/ratingSpinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:entries="@array/rating_options"
+                                android:background="@drawable/spinner_background"
+                                android:padding="8dp"
+                                android:layout_marginBottom="24dp" />
 
-                        <RadioButton
-                            android:id="@+id/radioPhotography"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/photography_video"
-                            android:textColor="@color/deep_blue"
-                            android:textSize="14sp"
-                            android:padding="8dp"
-                            android:drawableStart="@drawable/ic_camera"
-                            android:drawablePadding="8dp" />
+                            <Button
+                                android:id="@+id/applyFiltersBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/apply_filters_button"
+                                android:backgroundTint="@color/primary_teal"
+                                android:textColor="@color/white"
+                                android:padding="12dp"
+                                app:cornerRadius="8dp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
 
-                        <RadioButton
-                            android:id="@+id/radioFood"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/food_catering"
-                            android:textColor="@color/deep_blue"
-                            android:textSize="14sp"
-                            android:padding="8dp"
-                            android:drawableStart="@drawable/ic_utensils"
-                            android:drawablePadding="8dp" />
+            <!-- Filter Section -->
 
-                        <RadioButton
-                            android:id="@+id/radioOther"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/other_services"
-                            android:textColor="@color/deep_blue"
-                            android:textSize="14sp"
-                            android:padding="8dp"
-                            android:drawableStart="@drawable/ic_other"
-                            android:drawablePadding="8dp" />
-                    </RadioGroup>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/filters_title"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/deep_blue"
-                        android:layout_marginBottom="16dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/price_range_label"
-                        android:textColor="@color/deep_blue"
-                        android:textSize="16sp"
-                        android:layout_marginBottom="8dp" />
-
-                    <SeekBar
-                        android:id="@+id/priceRangeSeekBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:max="1000"
-                        android:progress="500"
-                        android:thumbTint="@color/primary_teal"
-                        android:progressTint="@color/primary_teal"
-                        android:layout_marginBottom="8dp" />
-
-                    <TextView
-                        android:id="@+id/currentPriceTv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R0 - R500+"
-                        android:textColor="@color/text_light_grey"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="24dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/min_rating_label"
-                        android:textColor="@color/deep_blue"
-                        android:textSize="16sp"
-                        android:layout_marginBottom="8dp" />
-
-                    <Spinner
-                        android:id="@+id/ratingSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:entries="@array/rating_options"
-                        android:background="@drawable/spinner_background"
-                        android:padding="8dp"
-                        android:layout_marginBottom="24dp" />
-
-                    <Button
-                        android:id="@+id/applyFiltersBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/apply_filters_button"
-                        android:backgroundTint="@color/primary_teal"
-                        android:textColor="@color/white"
-                        android:padding="12dp"
-                        app:cornerRadius="8dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </androidx.core.widget.NestedScrollView>
-
-            <!-- Service Grid (RecyclerView) -->
+            <!-- Recycler -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/serviceRecyclerView"
                 android:layout_width="match_parent"
@@ -247,6 +203,20 @@
                 tools:listitem="@layout/item_service_card" />
         </LinearLayout>
 
+        <!-- Bottom Navigation -->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/bottom_navigation"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/light_teal"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingTop="12dp"-->
+<!--            android:paddingBottom="12dp"-->
+<!--            android:weightSum="5">-->
 
+<!--            &lt;!&ndash; nav items... (unchanged) &ndash;&gt;-->
+<!--            &lt;!&ndash; Keep your 5 LinearLayouts with ImageView + TextView here &ndash;&gt;-->
+<!--        </LinearLayout>-->
+    </LinearLayout>
 </layout>
-

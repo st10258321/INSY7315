@@ -9,7 +9,7 @@ class AccountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.fragment_account)
+        setContentView(R.layout.activity_account)
 
         // Load fragment only if it's the first creation.
         if (savedInstanceState == null) {

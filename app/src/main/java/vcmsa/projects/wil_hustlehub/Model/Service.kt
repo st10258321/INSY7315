@@ -1,5 +1,7 @@
 package vcmsa.projects.wil_hustlehub.Model
 
+import android.net.Uri
+
 data class Service (
     val serviceId: String = "",
     val userId: String = "",
@@ -8,7 +10,8 @@ data class Service (
     val description: String = "",
     val price: Double = 0.0,
     val image: String = "",
-    val availability: String = "",
+    val availabileDay: Any? = emptyList<String>(),
+    val availabileTime: Any? = emptyList<String>(),
     val location: String = "",
     val createdDate: String = ""
 )

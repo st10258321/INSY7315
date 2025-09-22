@@ -25,4 +25,28 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <!-- For the date numbers -->
+    <style name="CalendarDateTextStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- For weekdays (Mon, Tue, etc.) -->
+    <style name="CalendarWeekDayTextStyle" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="CalendarMonthTitleStyle" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="MyCustomButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/light_teal</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textColor">@color/deep_blue</item>
+    </style>
+
+
 </resources>

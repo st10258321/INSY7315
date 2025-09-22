@@ -2,6 +2,7 @@ package vcmsa.projects.wil_hustlehub.Repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.messaging.FirebaseMessaging
 import vcmsa.projects.wil_hustlehub.Model.User
 
 class UserRepository(
@@ -27,16 +28,34 @@ class UserRepository(
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val uid = auth.currentUser?.uid ?: ""
-                    val user = User(uid, name, email, phone, password, createdDate)
+                    FirebaseMessaging.getInstance().token.addOnCompleteListener { tokenTask ->
+                        if(tokenTask.isSuccessful){
+                            val fcmToken = tokenTask.result ?:""
+                            val user = User(uid, name, email, phone, password, "","","",createdDate,fcmToken)
+                            database.child("users").child(uid).setValue(user)
+                                .addOnCompleteListener { saveTask ->
+                                    if (saveTask.isSuccessful) {
+                                        callback(true, null, user)
+                                    } else {
+                                        callback(false, saveTask.exception?.message, null)
+                                    }
+                                }
+                        }else{
+                            //stores user in database without the token
+                            val user = User(uid, name, email, phone, password, createdDate)
 
-                    database.child("users").child(uid).setValue(user)
-                        .addOnCompleteListener { saveTask ->
-                            if (saveTask.isSuccessful) {
-                                callback(true, null, user)
-                            } else {
-                                callback(false, saveTask.exception?.message, null)
-                            }
+                            database.child("users").child(uid).setValue(user)
+                                .addOnCompleteListener { saveTask ->
+                                    if (saveTask.isSuccessful) {
+                                        callback(true, null, user)
+                                    } else {
+                                        callback(false, saveTask.exception?.message, null)
+                                    }
+                                }
                         }
+
+                    }
+
                 } else {
                     callback(false, task.exception?.message, null)
                 }
@@ -46,7 +65,7 @@ class UserRepository(
     /**
      * This function gets the user's information using their id
      */
-    private fun getUserData(uid: String, callback: (User?) -> Unit) {
+     fun getUserData(uid: String, callback: (User?) -> Unit) {
         database.child("users").child(uid).get()
             .addOnSuccessListener { snapshot ->
                 val user = snapshot.getValue(User::class.java)
@@ -77,6 +96,16 @@ class UserRepository(
                 }
             }
     }
+    fun getUsers(callback: (List<User>?) -> Unit) {
+        database.child("users").get()
+            .addOnSuccessListener { snapshot ->
+                val users = snapshot.children.mapNotNull { it.getValue(User::class.java) }
+                callback(users)
+            }
+            .addOnFailureListener {
+                callback(null)
+            }
+    }
 
     /**
      * This function logs the user out
@@ -84,4 +113,14 @@ class UserRepository(
     fun logout() {
         auth.signOut()
     }
+//    fun getUsers(callback: (List<User>?) -> Unit) {
+//        database.child("users").get()
+//            .addOnSuccessListener { snapshot ->
+//                val users = snapshot.children.mapNotNull { it.getValue(User::class.java) }
+//                callback(users)
+//            }
+//            .addOnFailureListener {
+//                callback(null)
+//            }
+//    }
 }
