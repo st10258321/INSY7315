@@ -8,9 +8,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.viewModels
 import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
@@ -24,6 +21,16 @@ import androidx.core.content.ContextCompat
 import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
 import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import android.Manifest
+import android.content.Intent
+import android.net.Uri
+import android.os.Environment
+import android.provider.MediaStore
+import androidx.core.content.FileProvider
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class RegisterService : AppCompatActivity() {
     private lateinit var binding: FragmentRegisterServiceBinding
@@ -35,26 +42,21 @@ class RegisterService : AppCompatActivity() {
     private val userViewModel : UserViewModel by viewModels {
         ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
     }
+    private var imageString : String = ""
+    private var photoUri : Uri? = null
+    private val CAMERA_REQUEST_CODE = 100
     private val requestPermissionsLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            val cameraGranted = permissions[Manifest.permission.CAMERA] ?: false
-            val storageGranted = when {
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
-                    (permissions[Manifest.permission.READ_MEDIA_IMAGES] ?: false) &&
-                            (permissions[Manifest.permission.READ_MEDIA_VIDEO] ?: false)
-                }
-                else -> permissions[Manifest.permission.READ_EXTERNAL_STORAGE] ?: false
-            }
-            val notificationsGranted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                permissions[Manifest.permission.POST_NOTIFICATIONS] ?: false
-            } else true
-
-            if (cameraGranted && storageGranted && notificationsGranted) {
+            val denied = permissions.filter { !it.value }.keys
+            if (denied.isEmpty()) {
+                // All requested permissions granted
                 openCameraOrGallery()
             } else {
-                Toast.makeText(this, "Permissions required to continue", Toast.LENGTH_SHORT).show()
+                // Some permissions denied
+                Toast.makeText(this, "Permissions required to continue: $denied", Toast.LENGTH_SHORT).show()
             }
         }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,13 +73,10 @@ class RegisterService : AppCompatActivity() {
 
         binding.btnUploadImages.setOnClickListener {
             checkPermissionsAndProceed()
-
         }
 
 
         binding.btnSubmitService.setOnClickListener {
-
-
             val serviceName = binding.etServiceTitle.text.toString()
             val category = binding.actvCategory.text.toString()
             val description = binding.etServiceDescription.text.toString()
@@ -95,7 +94,7 @@ class RegisterService : AppCompatActivity() {
                 val days = parts.getOrNull(0)?.split(",") ?: listOf()
                 val times = parts.getOrNull(1)?.split(",") ?: listOf()
 
-                userViewModel.addService(serviceName, category, description, price, "", days, times, location)
+                userViewModel.addService(serviceName, category, description, price, imageString, days, times, location)
             }
         }
         userViewModel.serviceStatus.observe(this) { (success, message) ->
@@ -115,13 +114,9 @@ class RegisterService : AppCompatActivity() {
             permissionsToRequest.add(Manifest.permission.CAMERA)
         }
 
-        // Storage / media
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
                 permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
-            }
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) != PackageManager.PERMISSION_GRANTED) {
-                permissionsToRequest.add(Manifest.permission.READ_MEDIA_VIDEO)
             }
         } else {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -138,13 +133,41 @@ class RegisterService : AppCompatActivity() {
 
         if (permissionsToRequest.isNotEmpty()) {
             requestPermissionsLauncher.launch(permissionsToRequest.toTypedArray())
-        } else {
+        }else{
             openCameraOrGallery()
+        }
+    }
+    private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()){
+        success:Boolean ->
+        if(success){
+            Toast.makeText(this, "Image saved", Toast.LENGTH_SHORT).show()
+            photoUri?.let { uri ->
+                imageString = uri.toString()
+            }
+        }else{
+            Toast.makeText(this, "Failed to save image", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun openCameraOrGallery() {
-        // TODO: Launch your camera or gallery logic
-        Toast.makeText(this, "Ready to pick image or take photo", Toast.LENGTH_SHORT).show()
+        val photoFile : File? = try{
+            createImageFile()
+        }catch (e: IOException) {
+            Toast.makeText(this, "Failed to create image file", Toast.LENGTH_SHORT).show()
+            null
+
+        }
+            photoFile?.also{
+                photoUri = FileProvider.getUriForFile(this, "${applicationContext.packageName}.fileprovider", it)
+                cameraLauncher.launch(photoUri!!)
+            }
+
+    }
+
+    private fun createImageFile(): File{
+        val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir : File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+        return File.createTempFile("JPEG_${timestamp}_", ".jpg", storageDir)
+
     }
 }

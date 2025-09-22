@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.ViewModel
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -126,7 +127,7 @@ class UserViewModel @Inject constructor(
     }
 
     // Function to add a new service
-    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: List<String>,availableTime : List<String> ,location: String) {
+    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: List<String>, availableTime : List<String>, location: String) {
         serviceRepo.addService(serviceName, category, description, price, image, availability,availableTime, location) { success, message, service ->
             // Update UI state based on the result
             serviceStatus.postValue(Pair(success, message))

@@ -1,5 +1,7 @@
 package vcmsa.projects.wil_hustlehub.Model
 
+import android.net.Uri
+
 data class Service (
     val serviceId: String = "",
     val userId: String = "",
