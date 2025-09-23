@@ -19,7 +19,10 @@
     <color name="text_light_grey">#6c757d</color>
     <color name="red_error">#dc3545</color>
     <color name="confirmed">#03AC13</color>
+<<<<<<< HEAD
     <color name="light_blue">#D1EAF0</color>
     <color name="light_green">#4CBB17</color>
     <color name="gray">#e5e5e5</color>
+=======
+>>>>>>> 62adfa53e848126dcfee71501664e8495db74376
 </resources>
