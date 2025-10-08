@@ -83,8 +83,6 @@ class BrowseServicesFragment: Fragment() {
                 usersLoaded = it.first!!
                 servicesLoaded = it.second!!
                 setAdapter()
-            } else {
-                Toast.makeText(requireContext(), "Error loading data", Toast.LENGTH_SHORT).show()
             }
         }
 

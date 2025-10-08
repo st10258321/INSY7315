@@ -10,26 +10,6 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/default_image.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_messages.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/rounded_red_background.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/status_pending_background.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
@@ -40,12 +20,12 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_account.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal2.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
@@ -60,24 +40,9 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_offer_skills.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_provider_bookings.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_report_user_actvity.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about_us.xml">
@@ -170,11 +135,6 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
@@ -182,9 +142,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="detekt.yml added for static code analysis">
-      <change afterPath="$PROJECT_DIR$/app/config/detekt/detekt.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/admin_portal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +159,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lanop\.android\avd\pixel_7_-_api_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=RF8XA0EDGRF)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -254,7 +219,7 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Sprint7/Support-Z&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/lanop/AndroidStudioProjects/HustleHub/app/src/main/res/drawable&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
@@ -269,6 +234,9 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lanop\AndroidStudioProjects\HustleHub\app\src\main\res\drawable" />
+    </key>
+    <key name="android.template.-1862567588">
+      <recent name="vcmsa.projects.wil_hustlehub.View" />
     </key>
     <key name="android.template.-1076556644">
       <recent name="vcmsa.projects.wil_hustlehub.View" />
@@ -587,12 +555,12 @@
       <map>
         <entry key="vcmsa.projects.wil_hustlehub">
           <value>
-            <CheckInfo lastCheckTimestamp="1758489416648" />
+            <CheckInfo lastCheckTimestamp="1759949844143" />
           </value>
         </entry>
         <entry key="vcmsa.projects.wil_hustlehub.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1758489416649" />
+            <CheckInfo lastCheckTimestamp="1759949844143" />
           </value>
         </entry>
       </map>
