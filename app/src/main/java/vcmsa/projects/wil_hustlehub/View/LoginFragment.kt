@@ -3,6 +3,7 @@ package vcmsa.projects.wil_hustlehub.View
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,6 +59,7 @@ class LoginFragment: Fragment() {
             if(email.text.toString().isEmpty() || password.text.toString().isEmpty()){
                 Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }else {
+                Log.d("login attempt","${email.text.toString()}")
                 userViewModel.login(email.text.toString(), password.text.toString())
             }
 
@@ -69,12 +71,21 @@ class LoginFragment: Fragment() {
                     if (user != null) {
                         editor.putString("uid", user.userID)
                         editor.apply()
+                        Toast.makeText(requireContext(),"User ID is ${user.userID}", Toast.LENGTH_SHORT).show()
+
 
                         Toast.makeText(requireContext(), "User name is ${user.name}", Toast.LENGTH_SHORT).show()
-                    }else{
+                    }
+                    else{
                         Toast.makeText(requireContext(), "User data is not being loaded", Toast.LENGTH_SHORT).show()
                     }
 
+                }
+                if(message.equals("admin001@gmail.com")){
+                    Log.d("login--","logged in user email : ${null}")
+                    val intent = Intent(requireContext(), admin_portal::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
                 }
 
                 val intent = Intent(requireContext(), MainActivity::class.java)

@@ -98,7 +98,7 @@ class UserViewModel @Inject constructor(
             if (success) {
                 // Update the LiveData for user data and login status
                 currentUserData.postValue(loggedInUser)
-                loginStat.postValue(Pair(true, null))
+                loginStat.postValue(Pair(true, email))
             } else {
                 // Update LiveData with the error message
                 loginStat.postValue(Pair(false, message))
