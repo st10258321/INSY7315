@@ -63,7 +63,7 @@ class BrowseServicesFragment: Fragment() {
             servicesLoaded
             setAdapter()
         }
-
+        //searching the services using the search bar via serviceName
         binding.searchBar.addTextChangedListener { editable ->
             val search = editable.toString().trim()
             filteredServices = if(!search.isEmpty()){
@@ -74,6 +74,39 @@ class BrowseServicesFragment: Fragment() {
                 servicesLoaded
             }
             setAdapter()
+        }
+
+        binding.applyFiltersBtn.setOnClickListener {
+            val appliedCategory = binding.categorySpinner.selectedItem.toString()
+            val appliedLocation = binding.locationSpinner.selectedItem.toString()
+           // val appliedRating = binding.ratingSpinner.selectedItem.toString()
+            if(appliedCategory == "All" && appliedLocation == "Any"){
+                filteredServices = servicesLoaded
+            }else if(appliedCategory == "All") {
+                filteredServices = servicesLoaded.filter { service ->
+                    service.location == appliedLocation
+                }
+            } else if(appliedLocation == "Any") {
+                filteredServices = servicesLoaded.filter { service ->
+                    service.category == appliedCategory
+                }
+            }
+            else {
+                filteredServices = servicesLoaded.filter { service ->
+                    service.category == appliedCategory
+                    service.location == appliedLocation
+                }
+            }
+            setAdapter()
+            if(binding.filterContainer.isVisible){
+                binding.filterContainer.animate()
+                    .alpha(0f)
+                    .setDuration(200)
+                    .withEndAction { binding.filterContainer.isVisible = false }
+                    .start()
+                binding.toggleFilterBtn.text = "Show Filters"
+            }
+            Toast.makeText(requireContext(),"Applied Filters", Toast.LENGTH_SHORT).show()
         }
 
         binding.toggleFilterBtn.setOnClickListener {

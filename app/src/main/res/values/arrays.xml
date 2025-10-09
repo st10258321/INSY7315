@@ -6,6 +6,7 @@
         <item>@string/rating_3_stars_up</item>
     </string-array>
     <string-array name="service_categories">
+        <item>All</item>
         <item>Academics and Tutoring</item>
         <item>Creative and Design</item>
         <item>Personal care and beauty</item>
@@ -19,6 +20,7 @@
         <item>once off</item>
     </string-array>
     <string-array name="service_locations">
+        <item>Any</item>
         <item>On campus</item>
         <item>Virtually</item>
     </string-array>
