@@ -51,14 +51,12 @@ class RegisterFragment: Fragment() {
                 createdDate = ""
             )
             userViewModel.register(user)
-
-
         }
         userViewModel.registrationStat.observe(viewLifecycleOwner) {(success, message, registeredUser) ->
             if (success) {
             Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
             }else{
-                Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Registration Failed:  ${message}", Toast.LENGTH_SHORT).show()
             }
         }
 

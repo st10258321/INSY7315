@@ -158,6 +158,31 @@ class ChatRepository {
                 }
             })
     }
+    fun loadMessages(
+        chatId : String,
+        callback: (Boolean, String?, List<Message>?) -> Unit
+    ){
+        val currentUser = auth.currentUser
+        if(currentUser == null){
+            callback(false, "User not logged in", null)
+            return
+        }
+        database.child("Messages").child("chat1")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val messages = mutableListOf<Message>()
+                    for(messageSnapshot in snapshot.children){
+                        val message = messageSnapshot.getValue(Message::class.java)
+                        message?.let { messages.add(it) }
+                    }
+                    callback(true, null, messages)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
 
     // send a message in the chat
     fun sendMessage(
@@ -187,6 +212,7 @@ class ChatRepository {
                         messageId = messageId,
                         chatId = chatId,
                         senderId = senderId,
+                        receiverId = "eOzy8HdGhbbilmY9x93uea4ogom1",
                         senderName = senderName,
                         message = message,
                         timeSent = createdDate,
@@ -212,6 +238,7 @@ class ChatRepository {
                         messageId = messageId,
                         chatId = chatId,
                         senderId = senderId,
+                        receiverId = "eOzy8HdGhbbilmY9x93uea4ogom1",
                         senderName = senderName,
                         message = message,
                         timeSent = createdDate

@@ -1,6 +1,7 @@
 package vcmsa.projects.wil_hustlehub.View
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,37 +56,38 @@ class ChatFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel.currentUserData.observe(viewLifecycleOwner) { user ->
-            if (user != null)
-                currentUserId = user.userID
-        }
-        // Setup RecyclerView
         chatAdapter = ChatAdapter(mutableListOf(), currentUserId)
         binding.chatMessagesRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = chatAdapter
         }
+        Log.d("current-user-id", "$currentUserId")
+        //the problem lies here, why doesnt the user's data persist from login
+        userViewModel.currentUserData.observe(viewLifecycleOwner) { user ->
+            Log.d("message--", "${user?.email}" ?: "it doesnt persist from the login")
+            if (user != null){
+                Toast.makeText(requireContext(), "Logged in as ${user.name}", Toast.LENGTH_SHORT).show()
+                currentUserId = user.userID
+                chatAdapter.currentUserId = currentUserId
+                Log.d("current-user-id", "$currentUserId")
+            }else{
+                Log.d("2nd check","$currentUserId")
+                Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+            }
+        }
+        userViewModel.loadMessages("chat1")
 
-        // Dummy starting messages
-        val dummyMessages = listOf(
-            Message(
-                messageId = "1",
-                chatId = "chat1",
-                senderId = currentUserId,
-                senderName = "Me",
-                message = "Hey, how are you?",
-                timeSent = "10:30 AM"
-            ),
-            Message(
-                messageId = "2",
-                chatId = "chat1",
-                senderId = "provider456",
-                senderName = "Provider",
-                message = "I’m good, thanks! You?",
-                timeSent = "10:31 AM"
-            )
-        )
-        chatAdapter.updateMessages(dummyMessages)
+
+        userViewModel.messageList.observe(viewLifecycleOwner) { (success, error, messages) ->
+            if (success && messages != null) {
+                Log.d("message-list", "${messages.size}")
+                chatAdapter.updateMessages(messages)
+                binding.chatMessagesRecyclerView.scrollToPosition(messages.size - 1)
+            }else{
+                Log.d("Failed to load","${messages?.size}")
+            }
+        }
+
 
         // Handle Send button click
         binding.sendMessageBtn.setOnClickListener {
@@ -95,18 +97,18 @@ class ChatFragment : Fragment() {
                     messageId = System.currentTimeMillis().toString(),
                     chatId = "chat1",
                     senderId = currentUserId,
+                    receiverId = "eOzy8HdGhbbilmY9x93uea4ogom1",
                     senderName = "Me",
                     message = messageText,
                     timeSent = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
                 )
 
                 // Add to adapter immediately
-                val updatedList = chatAdapter.let { adapter ->
-                    val current = adapter.messages.toMutableList()
-                    current.add(newMessage)
-                    current
-                }
-                chatAdapter.updateMessages(updatedList)
+                val updatedList = chatAdapter.messages.toMutableList()
+                    updatedList.add(newMessage)
+                    chatAdapter.updateMessages(updatedList)
+                Log.d("updated-list", "${updatedList.size}")
+
 
                 // Scroll to latest
                 binding.chatMessagesRecyclerView.scrollToPosition(updatedList.size - 1)

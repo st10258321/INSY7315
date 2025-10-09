@@ -1,6 +1,7 @@
 package vcmsa.projects.wil_hustlehub.ViewModel
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import vcmsa.projects.wil_hustlehub.Model.BookService
 import vcmsa.projects.wil_hustlehub.Model.BookingActionResult
 import vcmsa.projects.wil_hustlehub.Model.Chat
+import vcmsa.projects.wil_hustlehub.Model.Message
 import vcmsa.projects.wil_hustlehub.Model.Review
 import vcmsa.projects.wil_hustlehub.Model.Service
 import vcmsa.projects.wil_hustlehub.Model.User
@@ -63,6 +65,7 @@ class UserViewModel @Inject constructor(
     val userChats = MutableLiveData<List<Chat>?>()
     val singleChat = MutableLiveData<Chat?>()
     val messageStatus = MutableLiveData<Pair<Boolean, String?>>()
+    val messageList = MutableLiveData<Triple<Boolean, String?, List<Message>?>>()
 
     val reportResult:LiveData<Pair<Boolean, String?>> = MutableLiveData()
 
@@ -98,6 +101,7 @@ class UserViewModel @Inject constructor(
             if (success) {
                 // Update the LiveData for user data and login status
                 currentUserData.postValue(loggedInUser)
+                Log.d("checking--","${loggedInUser?.userID}")
                 loginStat.postValue(Pair(true, email))
             } else {
                 // Update LiveData with the error message
@@ -340,7 +344,11 @@ class UserViewModel @Inject constructor(
             }
         }
     }
-
+    fun loadMessages(chatId : String){
+        chatRepo.loadMessages(chatId){ success, message , messages ->
+            messageList.postValue(Triple(success,message,messages))
+        }
+    }
     fun sendMessage(chatId: String, message: String) {
         chatRepo.sendMessage(chatId, message) { success, error, _ ->
             messageStatus.postValue(Pair(success, error))

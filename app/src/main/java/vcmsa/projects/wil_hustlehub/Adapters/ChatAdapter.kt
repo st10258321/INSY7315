@@ -9,7 +9,7 @@ import vcmsa.projects.wil_hustlehub.databinding.ItemChatMessageSentBinding
 
 class ChatAdapter(
     var messages: MutableList<Message>,
-    private val currentUserId: String
+    var currentUserId: String
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
