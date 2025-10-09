@@ -81,16 +81,19 @@ class LoginFragment: Fragment() {
                     }
 
                 }
+                Log.d("--login--",message!!)
                 if(message.equals("admin001@gmail.com")){
                     Log.d("login--","logged in user email : ${null}")
                     val intent = Intent(requireContext(), admin_portal::class.java)
                     startActivity(intent)
                     requireActivity().finish()
+                }else{
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
                 }
 
-                val intent = Intent(requireContext(), MainActivity::class.java)
-                startActivity(intent)
-                requireActivity().finish()
+
             } else {
                 Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
             }

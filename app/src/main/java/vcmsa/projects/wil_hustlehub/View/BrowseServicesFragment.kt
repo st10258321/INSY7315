@@ -26,7 +26,8 @@ import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
 import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
 import vcmsa.projects.wil_hustlehub.databinding.FragmentBrowseServicesBinding
 import kotlin.getValue
-
+import android.widget.EditText
+import androidx.core.widget.addTextChangedListener
 
 
 class BrowseServicesFragment: Fragment() {
@@ -51,12 +52,29 @@ class BrowseServicesFragment: Fragment() {
     }
     private var usersLoaded : Map<String,String> = emptyMap()
     private var servicesLoaded = emptyList<Service>()
+    private var filteredServices = emptyList<Service>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userViewModel.getAllUsers()
         userViewModel.getAllServices()
+        //search bar functionality
+        if(binding.searchBar.text.toString().isEmpty()){
+            servicesLoaded
+            setAdapter()
+        }
 
+        binding.searchBar.addTextChangedListener { editable ->
+            val search = editable.toString().trim()
+            filteredServices = if(!search.isEmpty()){
+                servicesLoaded.filter { service ->
+                    service.serviceName.contains(search, ignoreCase = true)
+                }
+            }else{
+                servicesLoaded
+            }
+            setAdapter()
+        }
 
         binding.toggleFilterBtn.setOnClickListener {
             if(binding.filterContainer.isVisible){
@@ -79,9 +97,10 @@ class BrowseServicesFragment: Fragment() {
 
 
         userViewModel.combinedData.observe(viewLifecycleOwner) {
-            if (it.first != null && it.second != null) {
+            if (it.first != null && it.second != null && filteredServices.isEmpty()) {
                 usersLoaded = it.first!!
                 servicesLoaded = it.second!!
+                filteredServices = servicesLoaded
                 setAdapter()
             }
         }
@@ -89,9 +108,9 @@ class BrowseServicesFragment: Fragment() {
 
     }
     private fun setAdapter() {
-        if(usersLoaded.isNotEmpty() && servicesLoaded.isNotEmpty()) {
+        if(usersLoaded.isNotEmpty() && filteredServices.isNotEmpty()) {
             val adapter = BrowseServiceAdapter(
-                services = servicesLoaded,
+                services = filteredServices,
                 getUserName = { userID -> (usersLoaded[userID] ?: "Unknown User") },
                 onViewProfileClick = { service ->
                         //navigate to booking page with the service id being pushed via INTENT
