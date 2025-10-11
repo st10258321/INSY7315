@@ -62,7 +62,6 @@ class LoginFragment: Fragment() {
                 Log.d("login attempt","${email.text.toString()}")
                 userViewModel.login(email.text.toString(), password.text.toString())
             }
-
         }
         userViewModel.loginStat.observe(viewLifecycleOwner) { (success, message) ->
             if (success) {

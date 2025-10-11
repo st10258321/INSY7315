@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -54,6 +55,7 @@ class ChatFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         chatAdapter = ChatAdapter(mutableListOf(), currentUserId)
@@ -61,32 +63,41 @@ class ChatFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = chatAdapter
         }
-        Log.d("current-user-id", "$currentUserId")
-        //the problem lies here, why doesnt the user's data persist from login
-        userViewModel.currentUserData.observe(viewLifecycleOwner) { user ->
-            Log.d("message--", "${user?.email}" ?: "it doesnt persist from the login")
-            if (user != null){
-                Toast.makeText(requireContext(), "Logged in as ${user.name}", Toast.LENGTH_SHORT).show()
-                currentUserId = user.userID
+        val editor = context?.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
+        currentUserId = editor?.getString("uid", "").toString()
+        userViewModel.getUserData(currentUserId).observe(viewLifecycleOwner) {user ->
+            if(user != null){
                 chatAdapter.currentUserId = currentUserId
-                Log.d("current-user-id", "$currentUserId")
-            }else{
-                Log.d("2nd check","$currentUserId")
-                Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+
+
+                userViewModel.messageList.observe(viewLifecycleOwner) { (success, error, messages) ->
+                    if (success && messages != null) {
+                        Log.d("message-list", "${messages.size}")
+                        chatAdapter.updateMessages(messages)
+                        binding.chatMessagesRecyclerView.scrollToPosition(messages.size - 1)
+                    }else{
+                        Log.d("Failed to load","${messages?.size}")
+                    }
+                }
             }
         }
+
         userViewModel.loadMessages("chat1")
+        Log.d("current-user-id", "$currentUserId")
+        //the problem lies here, why doesn't the user's data persist from login
+//        userViewModel.currentUserData.observe(viewLifecycleOwner) { user ->
+//            Log.d("message--", "${user?.email}" ?: "it doesnt persist from the login")
+//            if (user != null){
+//                Toast.makeText(requireContext(), "Logged in as ${user.name}", Toast.LENGTH_SHORT).show()
+//                currentUserId = user.userID
+//                chatAdapter.currentUserId = currentUserId
+//                Log.d("current-user-id", "$currentUserId")
+//            }else{
+//                Log.d("2nd check","$currentUserId")
+//                Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
-
-        userViewModel.messageList.observe(viewLifecycleOwner) { (success, error, messages) ->
-            if (success && messages != null) {
-                Log.d("message-list", "${messages.size}")
-                chatAdapter.updateMessages(messages)
-                binding.chatMessagesRecyclerView.scrollToPosition(messages.size - 1)
-            }else{
-                Log.d("Failed to load","${messages?.size}")
-            }
-        }
 
 
         // Handle Send button click
