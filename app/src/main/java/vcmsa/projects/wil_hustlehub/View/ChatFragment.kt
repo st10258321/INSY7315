@@ -87,21 +87,6 @@ class ChatFragment : Fragment() {
 
         userViewModel.loadMessages("chat1")
         Log.d("current-user-id", "$currentUserId")
-        //the problem lies here, why doesn't the user's data persist from login
-//        userViewModel.currentUserData.observe(viewLifecycleOwner) { user ->
-//            Log.d("message--", "${user?.email}" ?: "it doesnt persist from the login")
-//            if (user != null){
-//                Toast.makeText(requireContext(), "Logged in as ${user.name}", Toast.LENGTH_SHORT).show()
-//                currentUserId = user.userID
-//                chatAdapter.currentUserId = currentUserId
-//                Log.d("current-user-id", "$currentUserId")
-//            }else{
-//                Log.d("2nd check","$currentUserId")
-//                Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-
-
 
         // Handle Send button click
         binding.sendMessageBtn.setOnClickListener {
