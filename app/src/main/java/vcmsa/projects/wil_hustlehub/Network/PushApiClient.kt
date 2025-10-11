@@ -55,9 +55,10 @@ object PushApiClient {
                     put("senderName", senderName)
                     put("text",text)
                 }
+                Log.d("API", "Booking notification sent: $requestBody")
                 val request = object : StringRequest(
                     Method.POST,
-                    "https://push-api-k1q5.onrender.com",
+                    "https://push-api-k1q5.onrender.com/new-message",
                     { response -> Log.d("API", "Booking notification sent: $response") },
                     { error -> Log.e("API", "Failed to send booking notification: ${error.message}") }
                 ) {

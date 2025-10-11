@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vcmsa.projects.wil_hustlehub.Adapters.ChatAdapter
 import vcmsa.projects.wil_hustlehub.Model.Message
+import vcmsa.projects.wil_hustlehub.Network.PushApiClient
 import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
@@ -43,7 +44,7 @@ class ChatFragment : Fragment() {
         ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
 
     private val userViewModel: UserViewModel by viewModels { viewModelFactory }
-
+    private var currentUserName : String = "John Doe"
     private lateinit var chatAdapter: ChatAdapter
     private var currentUserId : String =""  // TODO: Replace with logged-in userId
 
@@ -63,12 +64,14 @@ class ChatFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = chatAdapter
         }
+        //this fragment must receive the chat id from the previous fragment
+        //then it must load the messages from the chat id (Messages collection in the firebase database)
         val editor = context?.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
         currentUserId = editor?.getString("uid", "").toString()
         userViewModel.getUserData(currentUserId).observe(viewLifecycleOwner) {user ->
             if(user != null){
                 chatAdapter.currentUserId = currentUserId
-
+                currentUserName = user.name
 
                 userViewModel.messageList.observe(viewLifecycleOwner) { (success, error, messages) ->
                     if (success && messages != null) {
@@ -113,6 +116,17 @@ class ChatFragment : Fragment() {
                     message = messageText,
                     timeSent = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
                 )
+
+                try{
+                    PushApiClient.sendMessageNotification(
+                        requireContext(),
+                        "cawqEKO_SSWKZo1zBG9BlK:APA91bHVm58qnJA2KNRBHjVbNtuWan_zgSeHRt9_qcnbpZKqMstMOh9b8VZOGZGGg3kcoPADYKZo4HBH4khwINvAMtBltCOHZVN_NsyDvDNdws7SJjGcGPg",
+                        currentUserName,
+                        messageText
+                    )
+                }catch (e : Exception){
+                    Log.d("push notification failes", "$e")
+                }
 
                 // Add to adapter immediately
                 val updatedList = chatAdapter.messages.toMutableList()
