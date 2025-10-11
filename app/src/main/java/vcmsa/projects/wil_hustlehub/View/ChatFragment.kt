@@ -101,7 +101,7 @@ class ChatFragment : Fragment() {
                     message = messageText,
                     timeSent = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
                 )
-
+                //get the token of the receiver by the receiver id
                 try{
                     PushApiClient.sendMessageNotification(
                         requireContext(),
