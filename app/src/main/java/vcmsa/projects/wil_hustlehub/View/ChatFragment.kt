@@ -68,7 +68,7 @@ class ChatFragment : Fragment() {
         //then it must load the messages from the chat id (Messages collection in the firebase database)
         val editor = context?.getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
         currentUserId = editor?.getString("uid", "").toString()
-        userViewModel.getUserData(currentUserId).observe(viewLifecycleOwner) {user ->
+        userViewModel.getUserData(currentUserId).observe(viewLifecycleOwner) { user ->
             if(user != null){
                 chatAdapter.currentUserId = currentUserId
                 currentUserName = user.name

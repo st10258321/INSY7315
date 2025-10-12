@@ -136,9 +136,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="chat feature done">
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="updated comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Network/PushApiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Network/PushApiClient.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +148,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=RF8XA0EDGRF)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lanop\.android\avd\pixel_7_-_api_34.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -570,12 +569,34 @@
       <option name="project" value="LOCAL" />
       <updated>1760215661762</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="push notification implemented in sending messages">
+      <option name="closed" value="true" />
+      <created>1760218995490</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1760218995490</updated>
+    </task>
+    <task id="LOCAL-00034" summary="updated comments">
+      <option name="closed" value="true" />
+      <created>1760219289695</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1760219289695</updated>
+    </task>
+    <task id="LOCAL-00035" summary="updated comments">
+      <option name="closed" value="true" />
+      <created>1760219374406</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1760219374406</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated files" />
-    <MESSAGE value="updated workspace.xml" />
     <MESSAGE value="push notifications enabled and working locally" />
     <MESSAGE value="PushApiClient.kt file was added" />
     <MESSAGE value="Push notification for bookings enabled" />
@@ -599,7 +620,9 @@
     <MESSAGE value="filter services functional" />
     <MESSAGE value="chat feature in progress" />
     <MESSAGE value="chat feature done" />
-    <option name="LAST_COMMIT_MESSAGE" value="chat feature done" />
+    <MESSAGE value="push notification implemented in sending messages" />
+    <MESSAGE value="updated comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated comments" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
