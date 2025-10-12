@@ -144,7 +144,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
-                            android:background="@color/soft_orange"
+                            android:backgroundTint="@color/soft_orange"
                             android:paddingStart="24dp"
                             android:paddingTop="12dp"
                             android:paddingEnd="24dp"
@@ -155,7 +155,7 @@
                             app:cornerRadius="8dp" />
 
                         <Button
-                            android:id="@+id/shareProfileBtn"
+                            android:id="@+id/viewReviewsBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
@@ -163,7 +163,7 @@
                             android:paddingTop="12dp"
                             android:paddingEnd="24dp"
                             android:paddingBottom="12dp"
-                            android:text="@string/share_profile_button"
+                            android:text="View Reviews"
                             android:textColor="@color/white"
                             android:textSize="14sp"
                             app:cornerRadius="8dp"

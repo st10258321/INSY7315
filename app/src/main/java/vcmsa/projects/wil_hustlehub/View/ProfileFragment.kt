@@ -56,6 +56,7 @@ class ProfileFragment: Fragment() {
 
         binding.reportUserLayout.isVisible = !isOwner
 
+
         val adapter = ProfileServiceAdapter(emptyList(),
             onBookServiceClick = { service ->
             val fragment = BookServiceFragment()
@@ -68,6 +69,18 @@ class ProfileFragment: Fragment() {
                 .addToBackStack(null)
                 .commit()
         },
+            onLeaveReviewClick = { service ->
+                val fragment = AddReviewFragment()
+                val bundle = Bundle()
+                bundle.putString("serviceID",service.serviceId)
+                bundle.putString("serviceName",service.serviceName)
+                fragment.arguments = bundle
+                val mainActivity = requireActivity() as MainActivity
+                mainActivity.supportFragmentManager.beginTransaction()
+                    .replace(mainActivity.binding.navHostFragment.id, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            },
             isOwner = isOwner
         )
         binding.profileServicesRecycler.layoutManager = LinearLayoutManager(requireContext())

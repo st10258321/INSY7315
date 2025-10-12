@@ -21,6 +21,7 @@ import kotlin.getValue
 class ProfileServiceAdapter(
     private var services: List<Service>,
     private val onBookServiceClick: (Service) -> Unit,
+    private val onLeaveReviewClick: (Service) -> Unit,
     private val isOwner : Boolean
 ): RecyclerView.Adapter<ProfileServiceAdapter.ProfileViewHolder>() {
     inner class ProfileViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -30,6 +31,8 @@ class ProfileServiceAdapter(
 
         val tvDescription : TextView = itemView.findViewById(R.id.serviceDescription)
         val btnBookService : Button = itemView.findViewById(R.id.bookNowBtn)
+
+        val btnLeaveReview : Button = itemView.findViewById(R.id.leaveReviewBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
@@ -44,10 +47,15 @@ class ProfileServiceAdapter(
         holder.tvDescription.text = service.description
         if(isOwner){
             holder.btnBookService.visibility = View.GONE
+            holder.btnLeaveReview.visibility = View.GONE
         }else{
+            holder.btnLeaveReview.visibility = View.VISIBLE
             holder.btnBookService.visibility = View.VISIBLE
             holder.btnBookService.setOnClickListener {
                 onBookServiceClick(service)
+            }
+            holder.btnLeaveReview.setOnClickListener {
+                onLeaveReviewClick(service)
             }
         }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import vcmsa.projects.wil_hustlehub.MainActivity
 import vcmsa.projects.wil_hustlehub.databinding.FragmentHomeBinding
 
 class HomeFragment: Fragment() {
@@ -25,12 +26,20 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnFindService.setOnClickListener {
-            val intent = Intent(requireContext(), BrowseServicesActivity::class.java)
-            startActivity(intent)
+            val fragment = BrowseServicesFragment()
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.supportFragmentManager.beginTransaction()
+                .replace(mainActivity.binding.navHostFragment.id, fragment)
+                .addToBackStack(null)
+                .commit()
         }
         binding.btnOfferSkills.setOnClickListener {
-            val intent = Intent(requireContext(), OfferSkillsActivity::class.java)
-            startActivity(intent)
+            val fragment = OfferSkillsFragment()
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.supportFragmentManager.beginTransaction()
+                .replace(mainActivity.binding.navHostFragment.id, fragment)
+                .addToBackStack(null)
+                .commit()
         }
     }
 }
