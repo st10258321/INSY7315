@@ -5,9 +5,11 @@ data class BookService(
     val userId: String = "",
     val serviceId: String = "",
     val serviceName: String = "",
+    val serviceProviderId: String = "",
     val date: String = "",
     val time: String = "",
     val location: String = "",
     val status: String = "Pending",
-    val message: String = ""
+    val message: String = "",
+    val createdDate: String = ""
 )

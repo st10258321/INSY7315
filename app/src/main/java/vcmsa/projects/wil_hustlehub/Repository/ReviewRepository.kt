@@ -16,6 +16,9 @@ class ReviewRepository {
     private val dateFormat =
         java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault())
 
+    //caching the user data
+    private val userCache = mutableMapOf<String, String>()
+
     // adding/ creating a new review
     fun addReview(
         serviceId: String,
@@ -30,55 +33,79 @@ class ReviewRepository {
         }
 
         val userId = currentUser.uid
-        val reviewId = database.child("reviews").push().key ?: ""
+        val reviewId = database.child("Reviews").push().key ?: ""
         val reviewDate = dateFormat.format(java.util.Date())
 
-        // Get the current user's name first
-        database.child("users").child(userId)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(userSnapshot: DataSnapshot) {
-                    val user = userSnapshot.getValue(User::class.java)
-                    val reviewerName = user?.name ?: "Anonymous"
+        // OPTIMIZATION: Check cache first to avoid duplicate user queries
+        if (userCache.containsKey(userId)) {
+            val reviewerName = userCache[userId] ?: "Anonymous"
+            saveReview(reviewId, userId, serviceId, reviewerName, stars, reviewText, reviewDate, callback)
+        } else {
+            // Get the current user's name first
+            database.child("users").child(userId)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(userSnapshot: DataSnapshot) {
+                        val user = userSnapshot.getValue(User::class.java)
+                        val reviewerName = user?.name ?: "Anonymous"
 
-                    val review = Review(
-                        reviewId = reviewId,
-                        userId = userId,
-                        serviceId = serviceId,
-                        reviewerName = reviewerName,
-                        stars = stars,
-                        reviewText = reviewText,
-                        reviewDate = reviewDate
-                    )
+                        // Cache the username
+                        userCache[userId] = reviewerName
 
-                    database.child("Reviews").child(reviewId).setValue(review)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                callback(true, null, review)
-                            } else {
-                                callback(false, task.exception?.message, null)
-                            }
-                        }
-                }
+                        saveReview(reviewId, userId, serviceId, reviewerName, stars, reviewText, reviewDate, callback)
+                    }
 
-                override fun onCancelled(error: DatabaseError) {
-                    callback(false, error.message, null)
-                }
-            })
+                    override fun onCancelled(error: DatabaseError) {
+                        callback(false, error.message, null)
+                    }
+                })
+        }
     }
 
-    // getting all the reviews for a specific service provider
+    private fun saveReview(
+        reviewId: String,
+        userId: String,
+        serviceId: String,
+        reviewerName: String,
+        stars: Int,
+        reviewText: String,
+        reviewDate: String,
+        callback: (Boolean, String?, Review?) -> Unit
+    ) {
+        val review = Review(
+            reviewId = reviewId,
+            userId = userId,
+            serviceId = serviceId,
+            reviewerName = reviewerName,
+            stars = stars,
+            reviewText = reviewText,
+            reviewDate = reviewDate
+        )
+
+        database.child("Reviews").child(reviewId).setValue(review)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback(true, null, review)
+                } else {
+                    callback(false, task.exception?.message, null)
+                }
+            }
+    }
+
+    // getting all the reviews for a specific service provider, using indexing
     fun getReviewsForServiceProvider(userID: String, callback: (Boolean, String?, List<Review>?) -> Unit
     ) {
 
-        database.child("Services").orderByChild("userId").equalTo(userID)
+        database.child("Reviews")
+            .orderByChild("userID")
+            .equalTo(userID)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(reviewsSnapshot: DataSnapshot) {
                     val reviews = mutableListOf<Review>()
+
                     for (reviewChild in reviewsSnapshot.children) {
-                        val review = reviewChild.getValue(Review::class.java)
-                        review?.let { reviews.add(it) }
+                        reviewChild.getValue(Review::class.java)?.let { reviews.add(it) }
                     }
-                    // sorting the reviews by the putting the newest review first
+
                     val sortedReviews = reviews.sortedByDescending {
                         try {
                             dateFormat.parse(it.reviewDate)?.time ?: 0L
@@ -86,6 +113,8 @@ class ReviewRepository {
                             0L
                         }
                     }
+
+                    callback(true, null, sortedReviews)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -97,14 +126,19 @@ class ReviewRepository {
     // this function calculates the overall rating for the service provider
     fun getServiceProviderAverageRating(userID: String, callback: (Boolean, String?, Double?, Int?) -> Unit
     ) {
+
         getReviewsForServiceProvider(userID) { success, error, reviews ->
-            if (success && reviews != null && reviews.isNotEmpty()) {
-                val totalStars = reviews.sumOf { it.stars }
-                val averageRating = totalStars.toDouble() / reviews.size
-                val totalReviews = reviews.size
-                callback(true, null, averageRating, totalReviews)
-            } else if (success && reviews != null && reviews.isEmpty()) {
-                callback(true, null, 0.0, 0)
+            if (success && reviews != null) {
+                if (reviews.isNotEmpty()) {
+                    // Use sumOf directly
+                    val totalStars = reviews.sumOf { it.stars }
+                    val averageRating = totalStars.toDouble() / reviews.size
+                    val totalReviews = reviews.size
+                    callback(true, null, averageRating, totalReviews)
+                } else {
+
+                    callback(true, null, 0.0, 0)
+                }
             } else {
                 callback(false, error, null, null)
             }

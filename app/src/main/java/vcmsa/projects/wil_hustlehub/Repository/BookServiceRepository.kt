@@ -7,6 +7,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import vcmsa.projects.wil_hustlehub.Model.BookService
 import vcmsa.projects.wil_hustlehub.Model.Service
+import java.util.Date
 
 class BookServiceRepository {
 
@@ -17,78 +18,115 @@ class BookServiceRepository {
     private val dateFormat = java.text.SimpleDateFormat("yyyy/MM/dd", java.util.Locale.getDefault())
     private val timeFormat = java.text.SimpleDateFormat("HH:mm", java.util.Locale.getDefault())
 
+    private val createdDateFormat = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault())
+    private val createdDate = createdDateFormat.format(java.util.Date())
 
-   /*this function takes the information like servicename,
-   date and time and saves it to the database
-   and the current userId of the user that is logged in.*/
+    //created a cache to temporarily store service details instead of retrieving them from firebase every time.
+    private val serviceCache = mutableMapOf<String, Service>()
+
+    //the service details expires after 5 minutes.
+    private val cacheExpiry = 5 * 60 * 1000L
+
+    /*this function takes the information like servicename,
+     date and time and saves it to the database
+     and the current userId of the user that is logged in using indexing and denormalization*/
     fun createBookService(serviceId: String, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -> Unit
     ) {
-        // gets current user ID
         val userId = auth.currentUser?.uid
         if (userId == null) {
             callback(false, "User not logged in", null)
             return
         }
 
-       // First, get the service details to populate serviceName and serviceOwnerId
-       database.child("Services").child(serviceId)
-           .addListenerForSingleValueEvent(object : ValueEventListener {
-               override fun onDataChange(serviceSnapshot: DataSnapshot) {
-                   val service = serviceSnapshot.getValue(Service::class.java)
-                   if (service == null) {
-                       callback(false, "Service not found", null)
-                       return
-                   }
+        // checking cache first. looks for the service inside the cache.
+        val cachedService = serviceCache[serviceId]
+        //checks if service exists in the cache. if it exists it creates the booking immediately.
+        if (cachedService != null) {
+            createBookingWithService(userId, serviceId, cachedService, date, time, location, message, callback)
+            return
+        }
 
-                   // Create the booking service ID
-                   val bookServiceId = database.child("Book_Service").push().key ?: ""
+        // if the service didnt exist in the cache it now fetches the service from the database.
+        // also reads the service details once in the database.
+        database.child("Services").child(serviceId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(serviceSnapshot: DataSnapshot) {
+                    val service = serviceSnapshot.getValue(Service::class.java)
+                    if (service == null) {
+                        callback(false, "Service not found", null)
+                        return
+                    }
 
-                   val finalDate = if (date.isEmpty()) {
-                       dateFormat.format(java.util.Date())
-                   } else {
-                       date
-                   }
+                    // now we then cache the service details and store them temporarily
+                    serviceCache[serviceId] = service
+                    //and them creates the booking.
+                    createBookingWithService(userId, serviceId, service, date, time, location, message, callback)
+                }
 
-                   val finalTime = if (time.isEmpty()) {
-                       timeFormat.format(java.util.Date())
-                   } else {
-                       time
-                   }
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
 
-                   // Create the BookService object with service details automatically filled
-                   val bookService = BookService(
-                       bookingId = bookServiceId,
-                       userId = userId,
-                       serviceId = serviceId, 
-                       serviceName = service.serviceName, // Automatically filled from service
-                       date = finalDate,
-                       time = finalTime,
-                       location = location,
-                       status = "Pending",
-                       message = message
-                   )
+    /*this method does the actually saving to the database after getting the cached service*/
+    fun createBookingWithService(userId: String, serviceId: String ,service: Service, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -> Unit
+    ) {
 
-                   // Save to the database
-                   database.child("Book_Service").child(bookServiceId).setValue(bookService)
-                       .addOnCompleteListener { task ->
-                           if (task.isSuccessful) {
-                               callback(true, null, bookService)
-                           } else {
-                               callback(false, task.exception?.message, null)
-                           }
-                       }
-               }
+        // Create the booking service ID
+        val bookServiceId = database.child("Book_Service").push().key ?: ""
 
-               override fun onCancelled(error: DatabaseError) {
-                   callback(false, error.message, null)
-               }
-           })
+        //makes sure the date and time are always in the correct format
+        val finalDate = if (date.isEmpty()) {
+            dateFormat.format(java.util.Date())
+        } else {
+            date
+        }
+
+        val finalTime = if (time.isEmpty()) {
+            timeFormat.format(java.util.Date())
+        } else {
+            time
+        }
+
+        // denormalizing so that it stores the service provider id for easier queries
+        val bookService = BookService(
+            bookingId = bookServiceId,
+            userId = userId,
+            serviceId = serviceId,
+            serviceName = service.serviceName,
+            serviceProviderId = service.userId,
+            date = finalDate,
+            time = finalTime,
+            location = location,
+            status = "Pending",
+            message = message,
+            createdDate = createdDateFormat.format(Date())
+        )
+
+        //updating to two different paths in the database at the same time
+        val updates = hashMapOf<String, Any>(
+            "/Book_Service/$bookServiceId" to bookService,
+            // Optional: Create index for service owner's bookings
+            // "ServiceOwnerBookings" creates an index inside the database to store the bookings that belong to a specific service provider
+            "/ServiceProviderBookings/${service.userId}/$bookServiceId" to true
+        )
+
+        //saving to the database
+        database.updateChildren(updates)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback(true, null, bookService)
+                } else {
+                    callback(false, task.exception?.message, null)
+                }
+            }
+
    }
 
     /* with this function we are getting all the bookings that are inside the database
-     that belong to the user that is logged in and returns then as a list
-    */
-    fun getUserBookServices(callback: (Boolean, String?, List<BookService>?) -> Unit) {
+     that belong to the user that is logged in and returns then as a list, using indexing and limiting the amount of booked services that is shown from the database */
+    fun getUserBookServices(limit: Int = 50, callback: (Boolean, String?, List<BookService>?) -> Unit) {
         val userId = auth.currentUser?.uid
         if (userId == null) {
             callback(false, "User not logged in", null)
@@ -98,60 +136,70 @@ class BookServiceRepository {
         database.child("Book_Service")
             .orderByChild("userId")
             .equalTo(userId)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val bookServices = mutableListOf<BookService>()
-                for (child in snapshot.children) {
-                    val bookService = child.getValue(BookService::class.java)
-                    bookService?.let { bookServices.add(it) }
+            .limitToFirst(limit)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val bookServices = snapshot.children.mapNotNull {
+                        it.getValue(BookService::class.java)
+                    }
+                    callback(true, null, bookServices)
                 }
-                callback(true, null, bookServices)
-            }
-            .addOnFailureListener { exception ->
-                callback(false, exception.message, null)
-            }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
     }
 
 
     /* this function is for the admin portal where it gets all the bookings that are saved inside
      the databaseThis function retrieves every single booking in the entire database from all users,
      */
-    fun getAllBookServices(callback: (Boolean, String?, List<BookService>?) -> Unit) {
-        database.child("Book_Service")
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val bookServices = mutableListOf<BookService>()
-                for (child in snapshot.children) {
-                    val bookService = child.getValue(BookService::class.java)
-                    bookService?.let { bookServices.add(it) }
+    fun getAllBookServices(limit: Int = 100, startAfter: String? = null, callback: (Boolean, String?, List<BookService>?) -> Unit) {
+        var query = database.child("Book_Service")
+            .orderByChild("createdDate")
+            .limitToFirst(limit)
+
+        startAfter?.toDoubleOrNull()?.let { startAfterValue ->
+            query = query.startAfter(startAfterValue)
+        }
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val bookServices = snapshot.children.mapNotNull {
+                    it.getValue(BookService::class.java)
                 }
                 callback(true, null, bookServices)
             }
-            .addOnFailureListener { exception ->
-                callback(false, exception.message, null)
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(false, error.message, null)
             }
+        })
     }
 
     /*this function searches for a booking and returns specific booking details by using the
       bookingId */
     fun getBookServiceById(bookServiceId: String, callback: (Boolean, String?, BookService?) -> Unit) {
         database.child("Book_Service").child(bookServiceId)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val bookService = snapshot.getValue(BookService::class.java)
-                if (bookService != null) {
-                    callback(true, null, bookService)
-                } else {
-                    callback(false, "Booking not found", null)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val bookService = snapshot.getValue(BookService::class.java)
+                    if (bookService != null) {
+                        callback(true, null, bookService)
+                    } else {
+                        callback(false, "Booking not found", null)
+                    }
                 }
-            }
-            .addOnFailureListener { exception ->
-                callback(false, exception.message, null)
-            }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
     }
 
 
-    //  getting all bookings for users that are service providers.
+    //  getting all bookings for users that are service providers, optimized the code by using the denormalized serviceProviderId
     fun getBookingsForMyServices(callback: (Boolean, String?, List<BookService>?) -> Unit) {
         val userId = auth.currentUser?.uid
         if (userId == null) {
@@ -159,45 +207,21 @@ class BookServiceRepository {
             return
         }
 
-
-        database.child("Services")
-            .orderByChild("userId")
+        database.child("Book_Service")
+            .orderByChild("serviceProviderId")
             .equalTo(userId)
-            .get()
-            .addOnSuccessListener { servicesSnapshot ->
-                val myServiceIds = mutableSetOf<String>()
-                for (serviceChild in servicesSnapshot.children) {
-                    val service = serviceChild.getValue(Service::class.java)
-                    service?.serviceId?.let { myServiceIds.add(it) }
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val bookServices = snapshot.children.mapNotNull {
+                        it.getValue(BookService::class.java)
+                    }
+                    callback(true, null, bookServices)
                 }
 
-                if (myServiceIds.isEmpty()) {
-                    callback(true, null, emptyList())
-                    return@addOnSuccessListener
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
                 }
-
-                // Now get all bookings and filter for our services
-                database.child("Book_Service")
-                    .get()
-                    .addOnSuccessListener { bookingsSnapshot ->
-                        val bookServices = mutableListOf<BookService>()
-                        for (bookingChild in bookingsSnapshot.children) {
-                            val bookService = bookingChild.getValue(BookService::class.java)
-                            bookService?.let {
-                                if (myServiceIds.contains(it.serviceId)) {
-                                    bookServices.add(it)
-                                }
-                            }
-                        }
-                        callback(true, null, bookServices)
-                    }
-                    .addOnFailureListener { exception ->
-                        callback(false, exception.message, null)
-                    }
-            }
-            .addOnFailureListener { exception ->
-                callback(false, exception.message, null)
-            }
+            })
     }
 
 
@@ -214,7 +238,13 @@ class BookServiceRepository {
         //  checking if the booking exists and belongs to the current user
         getBookServiceById(bookServiceId) { success, error, bookService ->
             if (success && bookService != null && bookService.userId == userId) {
-                database.child("Book_Service").child(bookServiceId).removeValue()
+                //updating the paths for the booking
+                val updates = hashMapOf<String, Any?>(
+                    "/Book_Service/$bookServiceId" to null,
+                    "/ServiceProviderBookings/${bookService.serviceProviderId}/$bookServiceId" to null
+                )
+
+                database.updateChildren(updates)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             callback(true, null)
@@ -229,7 +259,7 @@ class BookServiceRepository {
     }
 
 
-    /* to confirm a booking this can only be done by the person who registered/owns the service */
+    /* to confirm a booking this can only be done by the person who registered/owns the service, by using the serviceProviderId for validation */
     fun confirmBooking(bookServiceId: String, callback: (Boolean, String?, BookService?) -> Unit) {
         val userId = auth.currentUser?.uid
         if (userId == null) {
@@ -237,16 +267,19 @@ class BookServiceRepository {
             return
         }
 
-        // Check if the booking exists and the current user is the service owner
+        // check if the booking exists and the current user is the service provider
         getBookServiceById(bookServiceId) { success, error, bookService ->
             if (success && bookService != null) {
-                if (bookService.userId == userId) {
-                    // Update the status to CONFIRMED
-                    val updatedBookService = bookService.copy(status = "Confirmed")
+                // using denormalized serviceProviderId
+                if (bookService.serviceProviderId == userId) {
+                    val updates = hashMapOf<String, Any>(
+                        "/Book_Service/$bookServiceId/status" to "Confirmed"
+                    )
 
-                    database.child("Book_Service").child(bookServiceId).setValue(updatedBookService)
+                    database.updateChildren(updates)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
+                                val updatedBookService = bookService.copy(status = "Confirmed")
                                 callback(true, null, updatedBookService)
                             } else {
                                 callback(false, task.exception?.message, null)
@@ -269,16 +302,18 @@ class BookServiceRepository {
             return
         }
 
-        // Check if the booking exists and the current user is the service owner
+        // check if the booking exists and the current user is the service provider
         getBookServiceById(bookServiceId) { success, error, bookService ->
             if (success && bookService != null) {
-                if (bookService.userId == userId) {
-                    // Update the status to REJECTED
-                    val updatedBookService = bookService.copy(status = "Rejected")
+                if (bookService.serviceProviderId == userId) {
+                    val updates = hashMapOf<String, Any>(
+                        "/Book_Service/$bookServiceId/status" to "Rejected"
+                    )
 
-                    database.child("Book_Service").child(bookServiceId).setValue(updatedBookService)
+                    database.updateChildren(updates)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
+                                val updatedBookService = bookService.copy(status = "Rejected")
                                 callback(true, null, updatedBookService)
                             } else {
                                 callback(false, task.exception?.message, null)
@@ -291,6 +326,11 @@ class BookServiceRepository {
                 callback(false, error ?: "Booking not found", null)
             }
         }
+    }
+
+    //clear the cache when done with the operations
+    fun clearCache() {
+        serviceCache.clear()
     }
 
 }
