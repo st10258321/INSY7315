@@ -10,6 +10,7 @@ import vcmsa.projects.wil_hustlehub.Model.BookService
 import vcmsa.projects.wil_hustlehub.Model.BookingActionResult
 import vcmsa.projects.wil_hustlehub.Model.Chat
 import vcmsa.projects.wil_hustlehub.Model.Message
+import vcmsa.projects.wil_hustlehub.Model.Report
 import vcmsa.projects.wil_hustlehub.Model.Review
 import vcmsa.projects.wil_hustlehub.Model.Service
 import vcmsa.projects.wil_hustlehub.Model.User
@@ -68,6 +69,7 @@ class UserViewModel @Inject constructor(
     val messageList = MutableLiveData<Triple<Boolean, String?, List<Message>?>>()
 
     val reportResult:LiveData<Pair<Boolean, String?>> = MutableLiveData()
+    val reportedUsers = MutableLiveData<Triple<Boolean, String?, MutableList<Report>?>>()
 
     val combinedData = MediatorLiveData<Pair<Map<String, String>?, List<Service>?>>().apply{
         val usersMap = MutableLiveData<Map<String, String>?>()
@@ -354,8 +356,29 @@ class UserViewModel @Inject constructor(
             messageStatus.postValue(Pair(success, error))
         }
     }
-    fun reportServiceProvider(serviceProviderId:String, serviceId :String, reportedIssue : String,additionalNotes :String, images : String){
-        serviceRepo.reportServiceProvider(serviceProviderId, serviceId, reportedIssue, additionalNotes, images) { success, message ->
+    fun loadReportedUser(){
+        serviceRepo.getReports { success, message, reports ->
+            if(success){
+                reportedUsers.postValue(Triple(success,message,reports))
+            }else{
+                reportedUsers.postValue(Triple(success,message,null))
+            }
+        }
+    }
+    fun updateReportStatus(report: Report, callback: (Boolean, String?) -> Unit) {
+        serviceRepo.updateReportStatus(report) { success, message ->
+            if(success){
+                callback(true, message)
+            }else{
+                callback(false, message)
+            }
+        }
+    }
+
+
+
+    fun reportServiceProvider(serviceProviderId:String,serviceProviderName : String ,serviceId :String, reportedIssue : String,additionalNotes :String, images : String){
+        serviceRepo.reportServiceProvider(serviceProviderId,serviceProviderName, serviceId, reportedIssue, additionalNotes, images) { success, message ->
                 if(success){
                     reviewStatus.postValue(Pair(true,message))
                 }else{

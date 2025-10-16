@@ -21,6 +21,10 @@ import vcmsa.projects.wil_hustlehub.View.OfferSkillsFragment
 import vcmsa.projects.wil_hustlehub.View.ProfileFragment
 import vcmsa.projects.wil_hustlehub.View.RegisterFragment
 import vcmsa.projects.wil_hustlehub.databinding.ActivityMainBinding
+import java.security.MessageDigest
+import android.util.Base64
+import androidx.annotation.RequiresApi
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -99,11 +103,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
+    private fun printSHA1() {
+        try {
+            val info = packageManager.getPackageInfo(
+                packageName,
+                PackageManager.GET_SIGNING_CERTIFICATES
+            )
+            val signatures = info.signingInfo?.apkContentsSigners
+            for (signature in signatures!!) {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                val sha1 = Base64.encodeToString(md.digest(), Base64.NO_WRAP)
+                Log.d("GoogleSignInSHA", "SHA-1: $sha1")
+            }
+        } catch (e: Exception) {
+            Log.e("GoogleSignInSHA", "Error retrieving SHA-1", e)
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        printSHA1()
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         askAllPermissions()
 

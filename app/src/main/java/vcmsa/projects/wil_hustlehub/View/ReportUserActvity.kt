@@ -42,7 +42,7 @@ class ReportUserActvity : AppCompatActivity() {
     private lateinit var binding: ActivityReportUserActvityBinding
     private var servicesOffered:  List<ServiceIdAndName>? = null
     val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo,reviewRepo,chatRepo)
-
+    private var spUsername : String = ""
 
 
 
@@ -83,6 +83,7 @@ class ReportUserActvity : AppCompatActivity() {
         userViewModel.getUserData(serviceProId).observe(this) { user ->
             if(user != null) {
                 binding.spUsername.text = "Service Provider Name: ${user.name}"
+                spUsername = user.name
                 binding.spDateJoined.text = "Date Joined HustleHub: ${user.createdDate}"
                 binding.servicesOffered.text = "Services Offered: ${servicesOffered?.joinToString(", ")}"
             }
@@ -96,7 +97,7 @@ class ReportUserActvity : AppCompatActivity() {
             val selectedid = selected.serviceId
             val reportedIssue = binding.complaintSpinner.selectedItem.toString()
             val additionalNotes = binding.edAdditionalNotes.text.toString()
-            userViewModel.reportServiceProvider(serviceProId,selectedid,reportedIssue,additionalNotes,imageString)
+            userViewModel.reportServiceProvider(serviceProId,spUsername,selectedid,reportedIssue,additionalNotes,imageString)
         }
         userViewModel.reportResult.observe(this){(success, message) ->
             if(success){

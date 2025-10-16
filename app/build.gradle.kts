@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.media3.common.ktx)
     implementation(libs.volley)
     implementation(libs.androidx.coordinatorlayout)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -63,7 +63,7 @@ class ChatRepository {
                                         serviceName = serviceName,
                                         lastMessage = "Get started and send a message",
                                         lastMessageTime = createdDate,
-                                        createdDate = createdDate
+
                                     )
 
                                     database.child("Chat").child(chatId).setValue(chat)
