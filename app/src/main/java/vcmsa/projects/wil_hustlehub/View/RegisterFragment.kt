@@ -40,7 +40,9 @@ class RegisterFragment: Fragment() {
         val chatRepo = ChatRepository()
         val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
-
+        binding.radioServiceProvider.setOnClickListener {
+            
+        }
         binding.btnRegisterSubmit.setOnClickListener {
             val user = User(
                 userID = "",

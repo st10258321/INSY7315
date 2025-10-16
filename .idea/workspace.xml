@@ -5,7 +5,17 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_bg.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/dashed_bottom_border.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_profile_placeholder.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
@@ -40,6 +50,21 @@
           <theme>@style/Theme.WIL_HustleHub</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_report_user_actvity.xml">
+        <config>
+          <theme>@style/Theme.HustleHub</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/chat_item.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/chat_list.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about_us.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
@@ -66,6 +91,16 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat_list.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_contact.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
@@ -105,12 +140,32 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_chat_list.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_chat_message_received.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_chat_message_sent.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_profile_service.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_provider_booking.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_review.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
@@ -136,14 +191,22 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="filter services functional">
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Chat.xml items">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ChatListAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatListFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat_list.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_chat_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ChatAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ChatAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Message.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Message.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Chat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Chat.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ChatRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ChatRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatRoomActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +216,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lanop\.android\avd\pixel_7_-_api_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\27682\.android\avd\Medium_Phone.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -164,8 +227,8 @@
       <list>
         <option value="Kotlin Object" />
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -186,11 +249,11 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/st10258321/INSY7315.git&quot;,
-    &quot;accountId&quot;: &quot;5139ffd0-0285-4a18-815f-b40050ca0ffb&quot;
+    &quot;accountId&quot;: &quot;4c9f996e-08b5-47c9-aa41-3310c73d530c&quot;
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -213,7 +276,7 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;updates-z&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;updates-T&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/lanop/AndroidStudioProjects/HustleHub/app/src/main/res/drawable&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
@@ -550,12 +613,66 @@
       <option name="project" value="LOCAL" />
       <updated>1759997042474</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Chat.kt">
+      <option name="closed" value="true" />
+      <created>1760445948497</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1760445948497</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Chat.xml">
+      <option name="closed" value="true" />
+      <created>1760446341998</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1760446341998</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Chat.xml items">
+      <option name="closed" value="true" />
+      <created>1760446468529</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1760446468529</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Chat.xml items">
+      <option name="closed" value="true" />
+      <created>1760475590175</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1760475590175</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Chat.xml items">
+      <option name="closed" value="true" />
+      <created>1760475963281</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1760475963281</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Chat.xml items">
+      <option name="closed" value="true" />
+      <created>1760476466557</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1760476466557</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Chat.xml items">
+      <option name="closed" value="true" />
+      <created>1760477861457</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1760477861457</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated code" />
-    <MESSAGE value="updated files" />
     <MESSAGE value="updated workspace.xml" />
     <MESSAGE value="push notifications enabled and working locally" />
     <MESSAGE value="PushApiClient.kt file was added" />
@@ -578,19 +695,22 @@
     <MESSAGE value="admin portal- in-progress" />
     <MESSAGE value="search bar functional" />
     <MESSAGE value="filter services functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="filter services functional" />
+    <MESSAGE value="Chat.kt" />
+    <MESSAGE value="Chat.xml" />
+    <MESSAGE value="Chat.xml items" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chat.xml items" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="vcmsa.projects.wil_hustlehub">
           <value>
-            <CheckInfo lastCheckTimestamp="1759949844143" />
+            <CheckInfo lastCheckTimestamp="1760610254869" />
           </value>
         </entry>
         <entry key="vcmsa.projects.wil_hustlehub.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1759949844143" />
+            <CheckInfo lastCheckTimestamp="1760610254875" />
           </value>
         </entry>
       </map>
