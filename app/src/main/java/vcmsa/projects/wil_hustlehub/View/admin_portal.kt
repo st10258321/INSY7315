@@ -25,5 +25,10 @@ class admin_portal : AppCompatActivity() {
             val intent = Intent(this, UserManagementActivity::class.java)
             startActivity(intent)
         }
+        val serviceManagementCard = findViewById<MaterialCardView>(R.id.admin_serviceMan_card)
+        serviceManagementCard.setOnClickListener {
+            val intent = Intent(this, ServiceManagementActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

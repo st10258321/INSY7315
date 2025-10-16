@@ -98,11 +98,6 @@ class ServiceRepository {
                         return
                     }
 
-                    if (service.userId != currentUser.uid) {
-                        callback(false, "This service does not belong to you!")
-                        return
-                    }
-
                     // Delete the service
                     database.child("Services").child(serviceId).removeValue()
                         .addOnCompleteListener { task ->
