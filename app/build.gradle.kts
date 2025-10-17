@@ -77,43 +77,49 @@ dependencies {
     kapt("com.github.bumptech.glide:compiler:4.12.0")
     implementation("com.google.android.material:material:1.11.0")
 
-    //google login
-    dependencies {
+    //google login dependancies
+    dependencies { 
 
         implementation(libs.google.firebase.bom)
         implementation(libs.google.firebase.auth)
         implementation(libs.androidx.credentials.v130)
         implementation(libs.androidx.credentials.play.services.auth.v130)
         implementation(libs.googleid)
+        implementation("com.google.android.gms:play-services-auth:20.7.0")
+        implementation(platform(libs.google.firebase.bom))
+        implementation(libs.firebase.auth)
+        implementation(libs.firebase.firestore.ktx)
+        }
+
     }
-}
 
-// Detekt configuration
-detekt {
-    toolVersion = "1.22.0"
-    config = files("config/detekt/detekt.yml") // create this file with your custom rules
-    buildUponDefaultConfig = true
-    allRules = false
 
-    
-    reports {
-        html.required.set(true)   // Human-readable HTML
-        xml.required.set(true)    // Can be used in CI/CD pipelines
-        txt.required.set(false)   // Simple text report
-        sarif.required.set(true)  // Useful for GitHub code scanning
-    }
-}
-
-// Optional Detekt task for running analysis
-tasks.register<io.gitlab.arturbosch.detekt.Detekt>("detektAll") {
-    description = "Runs detekt on the whole project."
-    group = "verification"
-
-    setSource(files("src/main/java", "src/main/kotlin"))
-    include("**/*.kt")
-    exclude("**/build/**")
-
-    config.setFrom(files("config/detekt/detekt.yml"))
-    buildUponDefaultConfig = true
-    parallel = true
-}
+//// Detekt configuration
+//detekt {
+//    toolVersion = "1.22.0"
+//    config = files("config/detekt/detekt.yml") // create this file with your custom rules
+//    buildUponDefaultConfig = true
+//    allRules = false
+//
+//
+//    reports {
+//        html.required.set(true)   // Human-readable HTML
+//        xml.required.set(true)    // Can be used in CI/CD pipelines
+//        txt.required.set(false)   // Simple text report
+//        sarif.required.set(true)  // Useful for GitHub code scanning
+//    }
+//}
+//
+//// Optional Detekt task for running analysis
+//tasks.register<io.gitlab.arturbosch.detekt.Detekt>("detektAll") {
+//    description = "Runs detekt on the whole project."
+//    group = "verification"
+//
+//    setSource(files("src/main/java", "src/main/kotlin"))
+//    include("**/*.kt")
+//    exclude("**/build/**")
+//
+//    config.setFrom(files("config/detekt/detekt.yml"))
+//    buildUponDefaultConfig = true
+//    parallel = true
+//}
