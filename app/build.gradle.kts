@@ -88,7 +88,6 @@ dependencies {
         implementation("com.google.android.gms:play-services-auth:20.7.0")
         implementation(platform(libs.google.firebase.bom))
         implementation(libs.firebase.auth)
-        implementation(libs.firebase.firestore.ktx)
         }
 
     }

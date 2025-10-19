@@ -97,6 +97,8 @@ class LoginFragment : Fragment() {
                 if (idToken != null) {
                     // TODO: handle Firebase Auth with idToken
                     Log.d("GoogleSignIn", "ID Token: $idToken")
+                    Log.d("--account email", account.email.toString())
+                    userViewModel.googleLogin(idToken)
                 }
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Google sign-in failed: ${e.message}", Toast.LENGTH_SHORT).show()
