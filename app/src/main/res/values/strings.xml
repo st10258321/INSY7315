@@ -214,4 +214,5 @@
     <string name="filter_category_label">Category:</string>
     <string name="filter_location_label">Location:</string>
     <string name="filter_rating_label">Rating:</string>
+    <string name="default_web_client_id">"243893716404-0hgildthjs0c1dq32opk76mqjj3m444t.apps.googleusercontent.com"</string>
 </resources>

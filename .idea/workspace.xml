@@ -191,10 +191,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="added login with sso dependancies">
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="radio button functionality for aboutMe section">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,22 +255,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "updates-T",
-    "last_opened_file_path": "C:/Users/lanop/AndroidStudioProjects/HustleHub/app/src/main/res/drawable",
-    "settings.editor.selected.configurable": "configurable.group.tools",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;updates-T&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lanop/AndroidStudioProjects/HustleHub/app/src/main/res/drawable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="android.template.-1774855519">
       <recent name="vcmsa.projects.wil_hustlehub.View" />
@@ -673,13 +674,34 @@
       <option name="project" value="LOCAL" />
       <updated>1760621785308</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="added login with google and firebase auth to gradle build">
+      <option name="closed" value="true" />
+      <created>1760704582452</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1760704582452</updated>
+    </task>
+    <task id="LOCAL-00040" summary="added sign in with google on login fragment">
+      <option name="closed" value="true" />
+      <created>1760735164073</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1760735164073</updated>
+    </task>
+    <task id="LOCAL-00041" summary="radio button functionality for aboutMe section">
+      <option name="closed" value="true" />
+      <created>1760736897840</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1760736897840</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="PushApiClient.kt file was added" />
-    <MESSAGE value="Push notification for bookings enabled" />
-    <MESSAGE value="BookServiceFragment.kt update, UI errors" />
     <MESSAGE value="ProviderBookingsFragment.kt functionality working" />
     <MESSAGE value="UI correction" />
     <MESSAGE value="UI correction attempts" />
@@ -702,19 +724,22 @@
     <MESSAGE value="Chat.xml items" />
     <MESSAGE value="Chat list page" />
     <MESSAGE value="added login with sso dependancies" />
-    <option name="LAST_COMMIT_MESSAGE" value="added login with sso dependancies" />
+    <MESSAGE value="added login with google and firebase auth to gradle build" />
+    <MESSAGE value="added sign in with google on login fragment" />
+    <MESSAGE value="radio button functionality for aboutMe section" />
+    <option name="LAST_COMMIT_MESSAGE" value="radio button functionality for aboutMe section" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="vcmsa.projects.wil_hustlehub">
           <value>
-            <CheckInfo lastCheckTimestamp="1760610254869" />
+            <CheckInfo lastCheckTimestamp="1760891420302" />
           </value>
         </entry>
         <entry key="vcmsa.projects.wil_hustlehub.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1760610254875" />
+            <CheckInfo lastCheckTimestamp="1760891420304" />
           </value>
         </entry>
       </map>
