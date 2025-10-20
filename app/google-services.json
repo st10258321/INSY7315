@@ -13,7 +13,20 @@
           "package_name": "vcmsa.projects.wil_hustlehub"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "243893716404-0hgildthjs0c1dq32opk76mqjj3m444t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vcmsa.projects.wil_hustlehub",
+            "certificate_hash": "21f2d5654c34e8fe22259fcc4fdc02e025a5c0a1"
+          }
+        },
+        {
+          "client_id": "243893716404-2o9vb34vjvndmm535a69bilrc6afeq0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDHCcOIJIY7IiWqFQr0zyo5z5GRZ1DxydU"
@@ -21,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243893716404-2o9vb34vjvndmm535a69bilrc6afeq0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

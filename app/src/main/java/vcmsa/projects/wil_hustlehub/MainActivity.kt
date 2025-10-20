@@ -14,7 +14,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.messaging.FirebaseMessaging
 import vcmsa.projects.wil_hustlehub.View.AccountFragment
 import vcmsa.projects.wil_hustlehub.View.BrowseServicesFragment
-import vcmsa.projects.wil_hustlehub.View.ChatFragment
+import vcmsa.projects.wil_hustlehub.View.ChatRoomActivity
+import vcmsa.projects.wil_hustlehub.View.ChatListFragment
 import vcmsa.projects.wil_hustlehub.View.HomeFragment
 import vcmsa.projects.wil_hustlehub.View.LoginFragment
 import vcmsa.projects.wil_hustlehub.View.OfferSkillsFragment
@@ -156,7 +157,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_chat ->{
-                    openFragment(ChatFragment())
+                    openFragment(ChatListFragment())
                     true
                 }
                 R.id.nav_profile -> {

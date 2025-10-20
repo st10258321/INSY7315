@@ -20,6 +20,7 @@ import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
 import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import javax.inject.Inject
+import kotlin.math.log
 
 class UserViewModel @Inject constructor(
     private val userRepo: UserRepository,
@@ -110,6 +111,13 @@ class UserViewModel @Inject constructor(
                 loginStat.postValue(Pair(false, message))
                 currentUserData.postValue(null)
             }
+        }
+    }
+    fun googleLogin(idToken: String){
+        if(!idToken.isEmpty()){
+            loginStat.postValue(Pair(true,idToken))
+        }else{
+            loginStat.postValue(Pair(false,"Google Login Failed"))
         }
     }
     // Getting specific user data

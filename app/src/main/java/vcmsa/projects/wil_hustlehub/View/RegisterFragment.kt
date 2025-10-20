@@ -16,7 +16,9 @@ import vcmsa.projects.wil_hustlehub.Repository.ServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.UserRepository
 import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
 import vcmsa.projects.wil_hustlehub.databinding.FragmentRegisterBinding
-
+import android.widget.RadioGroup
+import vcmsa.projects.wil_hustlehub.R
+import com.google.android.material.textfield.TextInputEditText
 class RegisterFragment: Fragment() {
     // Declare the binding variable
     private var _binding: FragmentRegisterBinding? = null
@@ -40,6 +42,29 @@ class RegisterFragment: Fragment() {
         val chatRepo = ChatRepository()
         val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
+
+
+        binding.radioServiceProvider.setOnClickListener {
+        }
+
+            val radioGroupUserRole = view.findViewById<RadioGroup>(R.id.radioGroupUserRole)
+            val aboutMeLayout = view.findViewById<TextInputEditText>(R.id.registerAboutMe)
+
+            binding.radioGroupUserRole.setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    R.id.radioServiceProvider -> {
+                        aboutMeLayout.visibility = View.VISIBLE
+                    }
+                    R.id.radioCustomer -> {
+                        aboutMeLayout.visibility = View.GONE
+                    }
+                }
+            }
+
+
+
+
+
 
         binding.btnRegisterSubmit.setOnClickListener {
             val user = User(

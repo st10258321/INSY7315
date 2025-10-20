@@ -9,12 +9,12 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.fragment_chat)
+        setContentView(R.layout.fragment_chat) // container for fragment
 
-        // Load fragment only if it's the first creation.
+        // Load ChatListFragment
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ChatFragment())
+                .replace(R.id.fragment_container, ChatListFragment())
                 .commit()
         }
     }
