@@ -55,7 +55,13 @@ class ProfileFragment: Fragment() {
         val isOwner = serviceProId.isNullOrEmpty() || serviceProId == userid
 
         binding.reportUserLayout.isVisible = !isOwner
+        binding.messageProviderBtn.isVisible = !isOwner
+        binding.userBookingsBtn.isVisible = isOwner
 
+        binding.userBookingsBtn.setOnClickListener {
+            val intent = Intent(requireContext(), UserBookingsActivity::class.java)
+            startActivity(intent)
+        }
 
         val adapter = ProfileServiceAdapter(emptyList(),
             onBookServiceClick = { service ->

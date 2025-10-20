@@ -27,13 +27,17 @@
         android:theme="@style/ShapeAppearance.Material3.Tooltip"
         tools:targetApi="31">
         <activity
+            android:name=".View.UserBookingsActivity"
             android:theme="@style/Theme.HustleHub"
-            android:name=".View.ServiceManagementActivity"
             android:exported="false" />
         <activity
+            android:name=".View.ServiceManagementActivity"
+            android:exported="false"
+            android:theme="@style/Theme.HustleHub" />
+        <activity
             android:name=".View.UserManagementActivity"
-            android:theme="@style/Theme.HustleHub"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.HustleHub" />
         <activity
             android:name=".View.admin_portal"
             android:exported="false"

@@ -50,6 +50,11 @@
           <theme>@style/Theme.HustleHub</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_bookings.xml">
+        <config>
+          <theme>@style/Theme.HustleHub</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_management.xml">
         <config>
           <theme>@style/Theme.HustleHub</theme>
@@ -150,6 +155,11 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_user_bookings.xml">
+        <config>
+          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
@@ -166,7 +176,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="added googleLogin function to UserViewModel.kt" />
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="workspace.xml">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/UserBookingsAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserBookingsActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_bookings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_user_bookings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatListFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatListFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserManagementActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserManagementActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -186,8 +210,8 @@
       <list>
         <option value="Kotlin Object" />
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -259,6 +283,9 @@
       <recent name="vcmsa.projects.wil_hustlehub.View" />
     </key>
     <key name="android.template.-1076556644">
+      <recent name="vcmsa.projects.wil_hustlehub.View" />
+    </key>
+    <key name="android.template.727449123">
       <recent name="vcmsa.projects.wil_hustlehub.View" />
     </key>
   </component>
@@ -672,7 +699,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760648391283</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="workspace.xml">
+      <option name="closed" value="true" />
+      <created>1760956526100</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1760956526100</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -708,12 +743,12 @@
       <map>
         <entry key="vcmsa.projects.wil_hustlehub">
           <value>
-            <CheckInfo lastCheckTimestamp="1760610854328" />
+            <CheckInfo lastCheckTimestamp="1760989565659" />
           </value>
         </entry>
         <entry key="vcmsa.projects.wil_hustlehub.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1760610854328" />
+            <CheckInfo lastCheckTimestamp="1760989565669" />
           </value>
         </entry>
       </map>

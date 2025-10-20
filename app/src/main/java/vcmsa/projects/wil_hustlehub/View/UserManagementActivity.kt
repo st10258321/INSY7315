@@ -18,7 +18,6 @@ class UserManagementActivity : AppCompatActivity() {
     private lateinit var adapter: ReportedUsersAdapter
     private val reports = mutableListOf<Report>()
 
-    // --- Proper ViewModel setup ---
     private val userRepo = UserRepository()
     private val serviceRepo = ServiceRepository()
     private val bookRepo = BookServiceRepository()

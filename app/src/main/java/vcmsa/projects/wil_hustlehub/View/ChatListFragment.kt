@@ -28,7 +28,7 @@ class ChatListFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.rvChats)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
+        //get the actual chat in the database and display here
         // Dummy chat list
         val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         val currentTime = dateFormat.format(Date())
