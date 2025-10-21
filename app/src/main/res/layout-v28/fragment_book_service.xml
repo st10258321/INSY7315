@@ -12,7 +12,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
+            android:paddingTop="20dp"
             android:background="@color/light_teal"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
@@ -137,7 +138,7 @@
                                 android:minHeight="48dp"
                                 android:text="@string/select_date_button"
                                 android:textSize="14sp"
-                                android:background="@color/light_teal"
+                                android:backgroundTint="@color/light_teal"
                                 android:textColor="@color/deep_blue"
                                 android:padding="12dp"
                                 android:layout_marginEnd="8dp"
@@ -151,7 +152,7 @@
                                 android:minHeight="48dp"
                                 android:text="@string/select_time_button"
                                 android:textSize="14sp"
-                                android:background="@color/light_teal"
+                                android:backgroundTint="@color/light_teal"
                                 android:textColor="@color/deep_blue"
                                 android:padding="12dp"
                                 android:layout_marginStart="8dp"
@@ -202,6 +203,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/location_online"
+                                android:focusedSearchResultHighlightColor="@color/soft_orange"
                                 android:textColor="@color/deep_blue"
                                 android:textSize="16sp"
                                 android:layout_marginEnd="16dp" />
@@ -210,6 +212,7 @@
                                 android:id="@+id/radioOnCampus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:focusedSearchResultHighlightColor="@color/soft_orange"
                                 android:text="@string/location_on_campus"
                                 android:textColor="@color/deep_blue"
                                 android:textSize="16sp" />
@@ -219,6 +222,8 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            app:boxStrokeColor="@color/primary_teal"
+                            app:cursorColor="@color/primary_teal"
                             android:layout_marginBottom="24dp"
                             app:hintEnabled="false">
 

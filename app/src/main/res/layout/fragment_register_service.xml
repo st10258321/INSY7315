@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textSize="16sp"
-                    android:hint="Service Title"
+
                     android:contentDescription="Enter service title"
                     android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textSize="16sp"
-                    android:hint="Select Category"
+
                     android:contentDescription="Select a category" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,7 +89,7 @@
                     android:inputType="textMultiLine"
                     android:maxLines="5"
                     android:textSize="16sp"
-                    android:hint="Service Description"
+
                     android:contentDescription="Enter service description"
                     android:background="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
                         android:textSize="16sp"
-                        android:hint="Enter Price"
+
                         android:contentDescription="Enter service price"
                         android:inputType="numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -134,7 +134,7 @@
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
                         android:textSize="16sp"
-                        android:hint="Select Pricing Type"
+
                         android:contentDescription="Select pricing type" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -179,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textSize="16sp"
-                    android:hint="Choose time slot"
+
                     android:contentDescription="Select availability time slot"
                     android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -192,15 +192,23 @@
                 android:hint="Location"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-                <AutoCompleteTextView
+<!--                <AutoCompleteTextView-->
+<!--                    android:id="@+id/actvLocation"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:minHeight="48dp"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:hint="Select Location"-->
+<!--                    android:contentDescription="Select location" />-->
+                <Spinner
                     android:id="@+id/actvLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:textSize="16sp"
-                    android:hint="Select Location"
-                    android:contentDescription="Select location" />
+                    android:entries="@array/service_locations"
+                    android:hint="Select Location" />
+
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <!-- Upload Images Section -->
             <TextView

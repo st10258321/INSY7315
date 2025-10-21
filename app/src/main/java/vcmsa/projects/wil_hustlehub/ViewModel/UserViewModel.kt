@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import vcmsa.projects.wil_hustlehub.Model.BookService
 import vcmsa.projects.wil_hustlehub.Model.BookingActionResult
 import vcmsa.projects.wil_hustlehub.Model.Chat
@@ -29,6 +31,8 @@ class UserViewModel @Inject constructor(
     private val reviewRepo: ReviewRepository,
     private val chatRepo: ChatRepository
 ): ViewModel() {
+
+
 
     // LiveData to observe all users
         val allUsers = MutableLiveData<List<User>?>()
@@ -114,12 +118,20 @@ class UserViewModel @Inject constructor(
         }
     }
     fun googleLogin(idToken: String){
-        if(!idToken.isEmpty()){
-            loginStat.postValue(Pair(true,idToken))
-        }else{
-            loginStat.postValue(Pair(false,"Google Login Failed"))
-        }
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val user = firebaseAuth.currentUser
+                    loginStat.postValue(Pair(true, "Welcome ${user?.displayName ?: "User"}"))
+                } else {
+                    loginStat.postValue(Pair(false, task.exception?.message ?: "Google login failed"))
+                }
+            }
     }
+
     // Getting specific user data
     fun getUserData(uid: String): LiveData<User?> {
         val liveData = MutableLiveData<User?>()
@@ -230,6 +242,7 @@ class UserViewModel @Inject constructor(
         }
     }
 
+
     // Function to get bookings for the services owned by the current user
     fun getBookingsForMyServices() {
         bookRepo.getUserBookServices { success, message, bookings ->
@@ -251,8 +264,12 @@ class UserViewModel @Inject constructor(
                         val filteredBookings =
                             bookings?.filter { myServiceIds.contains(it.serviceId) }
                         bookingsForMyServices.postValue(filteredBookings)
+                        Log.d("--serviceId","${myServiceIds.size}")
+                        Log.d("--providerFrag","${filteredBookings?.size}")
                     }
                 }
+            }else{
+                Log.d("--providerFragFailed","$message")
             }
         }
     }
@@ -277,6 +294,13 @@ class UserViewModel @Inject constructor(
                 bookingActionStatus.postValue(BookingActionResult(true,"Booking deleted", bookingId, ""))
             }
         }
+    fun updateBooking(bookService : BookService){
+        bookRepo.updateBooking(bookService){success, message, bookService ->
+            Log.d("--checking","${bookService?.serviceName}")
+                bookingActionStatus.postValue(BookingActionResult(success,message,bookService?.bookingId ?: "",bookService?.status!!))
+        }
+    }
+
 //    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String) {
 //        serviceRepo.reportServiceProvider(serviceProviderId, serviceId, reportedIssue, additionalNotes, images) { success, message ->
 //            serviceStatus.postValue(Pair(success, message))

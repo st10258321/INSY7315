@@ -49,6 +49,7 @@
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userBookingsRecycler"
             tools:listitem="@layout/item_user_bookings"
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"

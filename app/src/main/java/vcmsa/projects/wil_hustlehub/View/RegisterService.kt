@@ -82,7 +82,7 @@ class RegisterService : AppCompatActivity() {
             val description = binding.etServiceDescription.text.toString()
             val price = binding.etServicePrice.text.toString()
             val availability = binding.etAvailability.text.toString()
-            val location = binding.actvLocation.text.toString()
+            val location = binding.actvLocation.selectedItem.toString()
             if(serviceName.isEmpty()|| category.isEmpty() || description.isEmpty() || price.isEmpty()){
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }else{
