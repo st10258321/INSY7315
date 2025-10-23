@@ -18,76 +18,125 @@ class ChatRepository {
         java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault())
     private val createdDate = createdDateFormat.format(java.util.Date())
 
-    fun createChat(serviceId: String, callback: (Boolean, String?, Chat?) -> Unit) {
-        val currentUser = auth.currentUser
+    //this function creates the chat and also loads the chat history between the user and
+    //the service provider if it exists
 
+    fun createChat(
+        serviceProviderId: String,
+        callback: (Boolean, String?, Chat?, Boolean) -> Unit
+    ) {
+        val currentUser = auth.currentUser
         if (currentUser == null) {
-            callback(false, "User not logged in", null)
+            callback(false, "User not logged in", null, false)
             return
         }
 
         val userId = currentUser.uid
 
-        // getting the service table to get the serviceName and userId which is going to be assigned to the
-        // serviceProviderId
-        database.child("Services").child(serviceId)
+        // preventing the users from sending messages to themselves
+        if (userId == serviceProviderId) {
+            callback(false, "Cannot chat with yourself", null, false)
+            return
+        }
+
+        // checking if a chat already exists between these two users
+        checkExistingChat(userId, serviceProviderId) { existingChat ->
+            if (existingChat != null) {
+                // chat history is retrieved
+                callback(true, null, existingChat, false)
+            } else {
+                // creating a new chat
+                createNewChat(serviceProviderId, userId, callback)
+            }
+        }
+    }
+
+    // checks if chat already exists between user and service provider
+    private fun checkExistingChat(
+        userId: String,
+        serviceProviderId: String,
+        callback: (Chat?) -> Unit
+    ) {
+        // get the chats where current user is the client
+        database.child("Chats")
+            .orderByChild("userId")
+            .equalTo(userId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(serviceSnapshot: DataSnapshot) {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var foundChat: Chat? = null
 
-                    val service = serviceSnapshot.getValue(Service::class.java)
-
-                    if (service == null) {
-                        callback(false, "Service not found", null)
-                        return
+                    // Check if any existing chat matches the service provider
+                    for (chatSnapshot in snapshot.children) {
+                        val chat = chatSnapshot.getValue(Chat::class.java)
+                        if (chat != null && chat.serviceProviderId == serviceProviderId) {
+                            foundChat = chat
+                            break
+                        }
                     }
 
-                    val serviceProviderId =
-                        service.userId  // getting service provider id from Service class/model using userId
-                    val serviceName = service.serviceName
-                    val chatId = "${userId}_${serviceProviderId}_${serviceId}"
-
-                    // check if chat already exists before creating a new one
-                    database.child("Chats").child(chatId)
-                        .addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                if (snapshot.exists()) {
-                                    val existingChat = snapshot.getValue(Chat::class.java)
-                                    callback(true, "Chat already exists", existingChat)
-                                } else {
-                                    // creating the new chat
-                                    val chat = Chat(
-                                        chatId = chatId,
-                                        userId = userId,
-                                        serviceProviderId = serviceProviderId,
-                                        serviceId = serviceId,
-                                        serviceName = serviceName,
-                                        lastMessage = "Get started and send a message",
-                                        lastMessageTime = createdDate,
-                                        createdDate = createdDate
-                                    )
-
-                                    database.child("Chat").child(chatId).setValue(chat)
-                                        .addOnCompleteListener { task ->
-                                            if (task.isSuccessful) {
-                                                callback(true, null, chat)
-                                            } else {
-                                                callback(false, task.exception?.message, null)
-                                            }
-                                        }
-                                }
-                            }
-
-                            override fun onCancelled(error: DatabaseError) {
-                                callback(false, error.message, null)
-                            }
-                        })
+                    callback(foundChat)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    callback(false, error.message, null)
+                    callback(null)
                 }
             })
     }
+
+    //creating a new chat after fetching service details
+    private fun createNewChat(
+        serviceProviderId: String,
+        userId: String,
+        callback: (Boolean, String?, Chat?, Boolean) -> Unit
+    ) {
+
+        val chatId = database.child("Chats").push().key
+
+        if (chatId == null) {
+            callback(false, "Failed to generate chat ID", null, false)
+            return
+        }
+
+        //saving to the database and creating the chat
+        database.child("users").child(serviceProviderId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(userSnapshot: DataSnapshot) {
+                    val serviceProvider = userSnapshot.getValue(User::class.java)
+
+                    if (serviceProvider == null) {
+                        callback(false, "Service provider not found", null, false)
+                        return
+                    }
+
+                    val serviceProviderName = serviceProvider.name
+                    val createdDate = createdDateFormat.format(java.util.Date())
+
+                    val chat = Chat(
+                        chatId = chatId,
+                        userId = userId,
+                        serviceProviderId = serviceProviderId,
+                        serviceProviderName = serviceProviderName,
+                        lastMessage = "Get started and send a message",
+                        lastMessageTime = createdDate,
+                        createdDate = createdDate
+                    )
+
+                    database.child("Chats").child(chatId).setValue(chat)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                callback(true, null, chat, true)
+                            } else {
+                                callback(false, task.exception?.message, null, false)
+                            }
+                        }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null, false)
+                }
+            })
+    }
+
 
     // getting all chats for the current user
     fun getUserChats(callback: (Boolean, String?, List<Chat>?) -> Unit) {
@@ -158,6 +207,31 @@ class ChatRepository {
                 }
             })
     }
+    fun loadMessages(
+        chatId : String,
+        callback: (Boolean, String?, List<Message>?) -> Unit
+    ){
+        val currentUser = auth.currentUser
+        if(currentUser == null){
+            callback(false, "User not logged in", null)
+            return
+        }
+        database.child("Messages").child("chat1")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val messages = mutableListOf<Message>()
+                    for(messageSnapshot in snapshot.children){
+                        val message = messageSnapshot.getValue(Message::class.java)
+                        message?.let { messages.add(it) }
+                    }
+                    callback(true, null, messages)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(false, error.message, null)
+                }
+            })
+    }
 
     // send a message in the chat
     fun sendMessage(
@@ -187,6 +261,7 @@ class ChatRepository {
                         messageId = messageId,
                         chatId = chatId,
                         senderId = senderId,
+                        receiverId = "eOzy8HdGhbbilmY9x93uea4ogom1",
                         senderName = senderName,
                         message = message,
                         timeSent = createdDate,
@@ -212,6 +287,7 @@ class ChatRepository {
                         messageId = messageId,
                         chatId = chatId,
                         senderId = senderId,
+                        receiverId = "eOzy8HdGhbbilmY9x93uea4ogom1",
                         senderName = senderName,
                         message = message,
                         timeSent = createdDate
