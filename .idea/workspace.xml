@@ -5,32 +5,7 @@
       <config />
     </shared>
     <layouts>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/dashed_bottom_border.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/status_confirmed_background.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/status_pending_background.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/status_started_background.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout-v28/fragment_book_service.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal2.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_admin_portal.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
@@ -42,35 +17,10 @@
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
         <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
-        <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reviews.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_service_management.xml">
-        <config>
-          <theme>@style/Theme.HustleHub</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_bookings.xml">
-        <config>
-          <theme>@style/Theme.HustleHub</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_management.xml">
-        <config>
-          <theme>@style/Theme.HustleHub</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about_us.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
         </config>
@@ -80,22 +30,7 @@
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_add_review.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_book_service.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_services.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_categories.xml">
         <config>
           <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
@@ -107,77 +42,17 @@
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
         <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+          <theme>@style/Theme.WIL_HustleHub</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml">
         <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_offer_skills.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_provider_bookings.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
+          <theme>@style/Theme.WIL_HustleHub</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_register.xml">
         <config>
           <theme>@style/Theme.WIL_HustleHub</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_register_service.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_profile_service.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_provider_booking.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_reported_user.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_service_card.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_service_management.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_user_bookings.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/mipmap-anydpi/ic_launcher.xml">
-        <config>
-          <theme>@style/ShapeAppearance.Material3.Tooltip</theme>
         </config>
       </layout>
     </layouts>
@@ -186,20 +61,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="User Bookings implemented and functional">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/status_started_background.xml" afterDir="false" />
+    <list default="true" id="5397a6d1-6503-4858-a423-6c90b5dc061b" name="Changes" comment="Updated AndroidManifest.xml">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/UserBookingsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/UserBookingsAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/BookService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/BookService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ReviewRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ReviewRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserBookingsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserBookingsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-v28/fragment_book_service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-v28/fragment_book_service.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_bookings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_bookings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_book_service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_book_service.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_register_service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_register_service.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +79,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lanop\.android\avd\pixel_7_-_api_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\lab_services_student\.android\avd\Pixel_6.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -218,33 +88,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Object" />
-        <option value="Kotlin Class" />
         <option value="layoutResourceFile" />
-        <option value="resourceFile" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="updates-T" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;st10258321&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/st10258321/INSY7315.git&quot;,
-    &quot;accountId&quot;: &quot;5139ffd0-0285-4a18-815f-b40050ca0ffb&quot;
-  }
-}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -268,34 +125,16 @@
     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;updates-z&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lanop/AndroidStudioProjects/HustleHub/app/src/main/res/drawable&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+    &quot;git-widget-placeholder&quot;: &quot;Sprint7/Repo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lab_services_student/Documents/GitHub/INSY7315&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="android.template.-1774855519">
       <recent name="vcmsa.projects.wil_hustlehub.View" />
     </key>
-    <key name="android.template.580233790">
-      <recent name="vcmsa.projects.wil_hustlehub.View" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\lanop\AndroidStudioProjects\HustleHub\app\src\main\res\drawable" />
-    </key>
-    <key name="android.template.-1862567588">
-      <recent name="vcmsa.projects.wil_hustlehub.View" />
-    </key>
-    <key name="android.template.797885000">
-      <recent name="vcmsa.projects.wil_hustlehub.View" />
-    </key>
     <key name="android.template.-1076556644">
-      <recent name="vcmsa.projects.wil_hustlehub.View" />
-    </key>
-    <key name="android.template.727449123">
       <recent name="vcmsa.projects.wil_hustlehub.View" />
     </key>
   </component>
@@ -359,7 +198,7 @@
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Trace" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
         <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
@@ -381,392 +220,19 @@
       <option name="presentableId" value="Default" />
       <updated>1754450330574</updated>
     </task>
-    <task id="LOCAL-00001" summary="updated code">
-      <option name="closed" value="true" />
-      <created>1757949695739</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1757949695739</updated>
-    </task>
-    <task id="LOCAL-00002" summary="update">
-      <option name="closed" value="true" />
-      <created>1757958297770</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1757958297770</updated>
-    </task>
-    <task id="LOCAL-00003" summary="updated files">
-      <option name="closed" value="true" />
-      <created>1757968874343</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1757968874343</updated>
-    </task>
-    <task id="LOCAL-00004" summary="updated workspace.xml">
-      <option name="closed" value="true" />
-      <created>1757969157494</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1757969157494</updated>
-    </task>
-    <task id="LOCAL-00005" summary="push notifications enabled and working locally">
-      <option name="closed" value="true" />
-      <created>1758054955516</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1758054955517</updated>
-    </task>
-    <task id="LOCAL-00006" summary="PushApiClient.kt file was added">
-      <option name="closed" value="true" />
-      <created>1758103423760</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1758103423760</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Push notification for bookings enabled">
-      <option name="closed" value="true" />
-      <created>1758156442875</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1758156442876</updated>
-    </task>
-    <task id="LOCAL-00008" summary="workspace.xml update">
-      <option name="closed" value="true" />
-      <created>1758187015084</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1758187015084</updated>
-    </task>
-    <task id="LOCAL-00009" summary="BookServiceFragment.kt update, UI errors">
-      <option name="closed" value="true" />
-      <created>1758193604541</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1758193604541</updated>
-    </task>
-    <task id="LOCAL-00010" summary="ProviderBookingsFragment.kt functionality working">
-      <option name="closed" value="true" />
-      <created>1758225317790</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1758225317791</updated>
-    </task>
-    <task id="LOCAL-00011" summary="UI correction">
-      <option name="closed" value="true" />
-      <created>1758230038903</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1758230038903</updated>
-    </task>
-    <task id="LOCAL-00012" summary="UI correction">
-      <option name="closed" value="true" />
-      <created>1758230579009</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1758230579009</updated>
-    </task>
-    <task id="LOCAL-00013" summary="UI correction attempts">
-      <option name="closed" value="true" />
-      <created>1758282333973</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1758282333974</updated>
-    </task>
-    <task id="LOCAL-00014" summary="ProfileFragment.kt correction">
-      <option name="closed" value="true" />
-      <created>1758315105626</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1758315105626</updated>
-    </task>
-    <task id="LOCAL-00015" summary="ProfileFragment.kt correction pt2">
-      <option name="closed" value="true" />
-      <created>1758374986006</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1758374986006</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Working on Report Users functionality">
-      <option name="closed" value="true" />
-      <created>1758388688783</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1758388688784</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Working on Report Users functionality">
-      <option name="closed" value="true" />
-      <created>1758401419834</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1758401419835</updated>
-    </task>
-    <task id="LOCAL-00018" summary="update">
-      <option name="closed" value="true" />
-      <created>1758407205801</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1758407205801</updated>
-    </task>
-    <task id="LOCAL-00019" summary="UI Update">
-      <option name="closed" value="true" />
-      <created>1758497037453</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1758497037454</updated>
-    </task>
-    <task id="LOCAL-00020" summary="workspace.xml update">
-      <option name="closed" value="true" />
-      <created>1758497268681</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1758497268681</updated>
-    </task>
-    <task id="LOCAL-00021" summary="workspace.xml update">
-      <option name="closed" value="true" />
-      <created>1758497781104</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1758497781104</updated>
-    </task>
-    <task id="LOCAL-00022" summary="workspace.xml update">
-      <option name="closed" value="true" />
-      <created>1758498183888</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1758498183888</updated>
-    </task>
-    <task id="LOCAL-00023" summary="ProviderBookingsFragment.kt updated">
-      <option name="closed" value="true" />
-      <created>1758546836440</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1758546836440</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Upload image functional">
-      <option name="closed" value="true" />
-      <created>1758555680144</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1758555680145</updated>
-    </task>
-    <task id="LOCAL-00025" summary="updates">
-      <option name="closed" value="true" />
-      <created>1758571127884</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1758571127884</updated>
-    </task>
-    <task id="LOCAL-00026" summary="added admin portal">
-      <option name="closed" value="true" />
-      <created>1759950239784</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1759950239784</updated>
-    </task>
-    <task id="LOCAL-00027" summary="admin portal- in-progress">
-      <option name="closed" value="true" />
-      <created>1759953654048</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1759953654048</updated>
-    </task>
-    <task id="LOCAL-00028" summary="search bar functional">
-      <option name="closed" value="true" />
-      <created>1759995499147</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1759995499148</updated>
-    </task>
-    <task id="LOCAL-00029" summary="filter services functional">
-      <option name="closed" value="true" />
-      <created>1759997042473</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1759997042474</updated>
-    </task>
-    <task id="LOCAL-00030" summary="chat feature in progress">
-      <option name="closed" value="true" />
-      <created>1760037980125</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1760037980125</updated>
-    </task>
-    <task id="LOCAL-00031" summary="chat feature in progress">
-      <option name="closed" value="true" />
-      <created>1760038059531</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1760038059531</updated>
-    </task>
-    <task id="LOCAL-00032" summary="chat feature done">
-      <option name="closed" value="true" />
-      <created>1760215661762</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1760215661762</updated>
-    </task>
-    <task id="LOCAL-00033" summary="push notification implemented in sending messages">
-      <option name="closed" value="true" />
-      <created>1760218995490</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1760218995490</updated>
-    </task>
-    <task id="LOCAL-00034" summary="updated comments">
-      <option name="closed" value="true" />
-      <created>1760219289695</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1760219289695</updated>
-    </task>
-    <task id="LOCAL-00035" summary="updated comments">
-      <option name="closed" value="true" />
-      <created>1760219374406</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1760219374406</updated>
-    </task>
-    <task id="LOCAL-00036" summary="updated comments">
-      <option name="closed" value="true" />
-      <created>1760302857343</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1760302857343</updated>
-    </task>
-    <task id="LOCAL-00037" summary="workspace.xml">
-      <option name="closed" value="true" />
-      <created>1760303108229</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1760303108229</updated>
-    </task>
-    <task id="LOCAL-00038" summary="adding review complete">
-      <option name="closed" value="true" />
-      <created>1760311072911</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1760311072911</updated>
-    </task>
-    <task id="LOCAL-00039" summary="UserManagementActivity.kt implemented and functional">
-      <option name="closed" value="true" />
-      <created>1760644836333</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1760644836333</updated>
-    </task>
-    <task id="LOCAL-00040" summary="ServiceManagementActivity.kt implemented and functional">
-      <option name="closed" value="true" />
-      <created>1760647956315</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1760647956318</updated>
-    </task>
-    <task id="LOCAL-00041" summary="workspace.xml">
-      <option name="closed" value="true" />
-      <created>1760648391283</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1760648391283</updated>
-    </task>
-    <task id="LOCAL-00042" summary="workspace.xml">
-      <option name="closed" value="true" />
-      <created>1760956526100</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1760956526100</updated>
-    </task>
-    <task id="LOCAL-00043" summary="User Bookings view implemented">
-      <option name="closed" value="true" />
-      <created>1760992696659</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1760992696659</updated>
-    </task>
-    <option name="localTasksCounter" value="44" />
     <servers />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="UI correction attempts" />
-    <MESSAGE value="ProfileFragment.kt correction" />
-    <MESSAGE value="ProfileFragment.kt correction pt2" />
-    <MESSAGE value="Working on Report Users functionality" />
-    <MESSAGE value="update" />
-    <MESSAGE value="UI Update" />
-    <MESSAGE value="workspace.xml update" />
-    <MESSAGE value="ProviderBookingsFragment.kt updated" />
-    <MESSAGE value="Upload image functional" />
-    <MESSAGE value="updates" />
-    <MESSAGE value="detekt.yml added for static code analysis" />
-    <MESSAGE value="added admin portal" />
-    <MESSAGE value="admin portal- in-progress" />
-    <MESSAGE value="search bar functional" />
-    <MESSAGE value="filter services functional" />
-    <MESSAGE value="chat feature in progress" />
-    <MESSAGE value="chat feature done" />
-    <MESSAGE value="push notification implemented in sending messages" />
-    <MESSAGE value="updated comments" />
-    <MESSAGE value="adding review complete" />
-    <MESSAGE value="UserManagementActivity.kt implemented and functional" />
-    <MESSAGE value="ServiceManagementActivity.kt implemented and functional" />
-    <MESSAGE value="workspace.xml" />
-    <MESSAGE value="User Bookings view implemented" />
-    <MESSAGE value="User Bookings implemented and functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="User Bookings implemented and functional" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="vcmsa.projects.wil_hustlehub">
           <value>
-            <CheckInfo lastCheckTimestamp="1760989565659" />
+            <CheckInfo lastCheckTimestamp="1757956977237" />
           </value>
         </entry>
         <entry key="vcmsa.projects.wil_hustlehub.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1760989565669" />
+            <CheckInfo lastCheckTimestamp="1757956977265" />
           </value>
         </entry>
       </map>

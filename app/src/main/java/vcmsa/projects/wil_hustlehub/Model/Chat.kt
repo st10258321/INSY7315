@@ -5,8 +5,7 @@ package vcmsa.projects.wil_hustlehub.Model
         val chatId: String = "",
         val userId: String = "",
         val serviceProviderId: String = "",
-        val serviceId: String = "",
-        val serviceName: String = "",
+        val serviceProviderName: String = "",
         val lastMessage: String = "",
         val lastMessageTime: String = "",
         val createdDate: String = ""
