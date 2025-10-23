@@ -59,6 +59,11 @@ class ChatFragment : Fragment() {
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val chatId = arguments?.getString("chatID")
+        val serviceProviderId = arguments?.getString("serviceProviderId")
+        Log.d("chat-id", "$chatId")
+        Log.d("service-provider-id", "$serviceProviderId")
+
         chatAdapter = ChatAdapter(mutableListOf(), currentUserId)
         binding.chatMessagesRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -85,7 +90,7 @@ class ChatFragment : Fragment() {
             }
         }
 
-        userViewModel.loadMessages("chat1")
+        userViewModel.loadMessages(chatId!!)
         Log.d("current-user-id", "$currentUserId")
 
         // Handle Send button click
@@ -94,21 +99,25 @@ class ChatFragment : Fragment() {
             if (messageText.isNotEmpty()) {
                 val newMessage = Message(
                     messageId = System.currentTimeMillis().toString(),
-                    chatId = "chat1",
+                    chatId = chatId,
                     senderId = currentUserId,
-                    receiverId = "eOzy8HdGhbbilmY9x93uea4ogom1",
+                    receiverId = serviceProviderId!!,
                     senderName = "Me",
                     message = messageText,
                     timeSent = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
                 )
                 //get the token of the receiver by the receiver id
                 try{
-                    PushApiClient.sendMessageNotification(
-                        requireContext(),
-                        "cawqEKO_SSWKZo1zBG9BlK:APA91bHVm58qnJA2KNRBHjVbNtuWan_zgSeHRt9_qcnbpZKqMstMOh9b8VZOGZGGg3kcoPADYKZo4HBH4khwINvAMtBltCOHZVN_NsyDvDNdws7SJjGcGPg",
-                        currentUserName,
-                        messageText
-                    )
+                    userViewModel.getUserData(serviceProviderId).observe(viewLifecycleOwner){user->
+                        if(user != null){
+                            PushApiClient.sendMessageNotification(
+                                requireContext(),
+                                user.fcmToken ?: "",
+                                currentUserName,
+                                messageText
+                            )
+                        }
+                    }
                 }catch (e : Exception){
                     Log.d("push notification failes", "$e")
                 }
@@ -127,7 +136,7 @@ class ChatFragment : Fragment() {
                 binding.messageInput.text.clear()
 
                 // (Optional) Send to ViewModel/Firebase
-                userViewModel.sendMessage("chat1", messageText)
+                userViewModel.sendMessage(chatId, newMessage)
             }
         }
 

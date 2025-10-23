@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.Repository
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -207,20 +208,22 @@ class ChatRepository {
                 }
             })
     }
+
     fun loadMessages(
-        chatId : String,
+        chatId: String,
         callback: (Boolean, String?, List<Message>?) -> Unit
-    ){
+    ) {
+        Log.d("-loadMessage fun-", "$chatId")
         val currentUser = auth.currentUser
-        if(currentUser == null){
+        if (currentUser == null) {
             callback(false, "User not logged in", null)
             return
         }
-        database.child("Messages").child("chat1")
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+        database.child("Messages").child(chatId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val messages = mutableListOf<Message>()
-                    for(messageSnapshot in snapshot.children){
+                    for (messageSnapshot in snapshot.children) {
                         val message = messageSnapshot.getValue(Message::class.java)
                         message?.let { messages.add(it) }
                     }
@@ -236,7 +239,7 @@ class ChatRepository {
     // send a message in the chat
     fun sendMessage(
         chatId: String,
-        message: String,
+        message: Message,
         callback: (Boolean, String?, Message?) -> Unit
     ) {
         val currentUser = auth.currentUser
@@ -244,66 +247,54 @@ class ChatRepository {
             callback(false, "User not logged in", null)
             return
         }
+        Log.d("chat-id", "$chatId")
 
         val messageId = database.child("Messages").child(chatId).push().key ?: ""
         val senderId = currentUser.uid
 
-        // getting the name of the sender from the user table
-        database.child("Users").child(senderId)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(userSnapshot: DataSnapshot) {
 
-                    val user = userSnapshot.getValue(User::class.java)
 
-                    val senderName = user?.name ?: "User"
+        val chatMessage = Message(
+            messageId = messageId,
+            chatId = chatId,
+            senderId = senderId,
+            receiverId = message.receiverId,
+            senderName = message.senderName,
+            message = message.message,
+            timeSent = createdDate,
+        )
 
-                    val chatMessage = Message(
-                        messageId = messageId,
-                        chatId = chatId,
-                        senderId = senderId,
-                        receiverId = "eOzy8HdGhbbilmY9x93uea4ogom1",
-                        senderName = senderName,
-                        message = message,
-                        timeSent = createdDate,
-                    )
-
-                    database.child("Messages").child(chatId).child(messageId).setValue(chatMessage)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                // Update chat with last message
-                                updateLastMessageSent(chatId, message)
-                                callback(true, null, chatMessage)
-                            } else {
-                                callback(false, task.exception?.message, null)
-                            }
+        val messageRef = database.child("Messages").child(chatId)
+        //only will execute if it the users havent spoken before
+        messageRef.get().addOnSuccessListener { snapshot ->
+            if(!snapshot.exists()){
+                Log.d("new message", "new message")
+                database.child("Messages").child(chatId).child(messageId).setValue(chatMessage)
+                    .addOnCompleteListener { task ->
+                        if(task.isSuccessful){
+                            updateLastMessageSent(chatId, message.message)
+                            callback(true, null, chatMessage)
+                        }else{
+                            callback(false, task.exception?.message, null)
                         }
+                    }
+            }
+
+        }
+
+        Log.d("chat-message", "${chatMessage.chatId}")
+                database.child("Messages").child(chatId).child(messageId).setValue(chatMessage)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Update chat with last message
+                    updateLastMessageSent(chatId, message.message)
+                    callback(true, null, chatMessage)
+                } else {
+                    callback(false, task.exception?.message, null)
                 }
+            }
 
-                override fun onCancelled(error: DatabaseError) {
 
-                    val senderName = "User"
-
-                    val chatMessage = Message(
-                        messageId = messageId,
-                        chatId = chatId,
-                        senderId = senderId,
-                        receiverId = "eOzy8HdGhbbilmY9x93uea4ogom1",
-                        senderName = senderName,
-                        message = message,
-                        timeSent = createdDate
-                    )
-
-                    database.child("Messages").child(chatId).child(messageId).setValue(chatMessage)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                updateLastMessageSent(chatId, message)
-                                callback(true, null, chatMessage)
-                            } else {
-                                callback(false, task.exception?.message, null)
-                            }
-                        }
-                }
-            })
     }
 
     // update the last message sent in the chat

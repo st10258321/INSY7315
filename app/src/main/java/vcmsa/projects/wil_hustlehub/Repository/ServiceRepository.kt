@@ -278,8 +278,35 @@ class ServiceRepository {
                 }
             })
     }
+    fun getReports(callback: (Boolean, String?, MutableList<Report>?) -> Unit){
+        database.child("Reports").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val reports = mutableListOf<Report>()
+                for(reportSnapshot in snapshot.children){
+                    val report = reportSnapshot.getValue(Report::class.java)
+                    report?.let { reports.add(it) }
+                }
+                callback(true, null, reports)
+            }
 
-    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: List<String> = emptyList(), callback: (Boolean, String?) -> Unit)
+            override fun onCancelled(error: DatabaseError) {
+                callback(false, error.message, null)
+            }
+        })
+    }
+    fun updateReportStatus(report: Report, callback: (Boolean, String?) -> Unit){
+        val reportId = report.reportId
+        database.child("Reports").child(reportId).setValue(report)
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    callback(true, null)
+                }
+                else{
+                    callback(false, it.exception?.message)
+                }
+            }
+    }
+    fun reportServiceProvider(serviceProviderId: String,serviceProviderName: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String, callback: (Boolean, String?) -> Unit)
     {
         val currentUser = auth.currentUser
 
@@ -312,21 +339,29 @@ class ServiceRepository {
                     }
 
                     val reportId = database.child("Reports").push().key ?: ""
+                    val currentDate = createdDateFormat.format(java.util.Date())
 
                     val report = Report(
                         reportId = reportId,
                         serviceProviderId = serviceProviderId,
+                        serviceProviderName = serviceProviderName,
                         userId = userId,
-                        serviceId = serviceId,
+                        serviceId = serviceId, //this is the specific service selected from the drop down list
                         reportIssue = reportedIssue,
                         additionalNotes = additionalNotes,
                         image = images,
-                        createdDate = createdDateFormat.format(Date())
+                        status = "Pending",
+                        createdDate = currentDate
                     )
 
+                    // saving the report
                     database.child("Reports").child(reportId).setValue(report)
                         .addOnCompleteListener { task ->
-                            callback(task.isSuccessful, task.exception?.message)
+                            if (task.isSuccessful) {
+                                callback(true, "Report submitted successfully!")
+                            } else {
+                                callback(false, task.exception?.message)
+                            }
                         }
                 }
 

@@ -61,7 +61,7 @@ class UserRepository(
     /**
      * This function gets the user's information using their id
      */
-    private fun getUserData(uid: String, forceRefresh: Boolean = false, callback: (User?) -> Unit) {
+    fun getUserData(uid: String, forceRefresh: Boolean = false, callback: (User?) -> Unit) {
         // check if this user is cached and return it immediately
         if (cachedUser?.userID == uid) {
             callback(cachedUser)
@@ -152,6 +152,16 @@ class UserRepository(
                 } else {
                     callback(false, task.exception?.message)
                 }
+            }
+    }
+    fun getUsers(callback: (List<User>?) -> Unit) {
+        database.child("users").get()
+            .addOnSuccessListener { snapshot ->
+                val users = snapshot.children.mapNotNull { it.getValue(User::class.java) }
+                callback(users)
+            }
+            .addOnFailureListener {
+                callback(null)
             }
     }
 }

@@ -347,14 +347,15 @@ class UserViewModel @Inject constructor(
     }
 
     // ------------------ CHATS ------------------
-    fun createChat(serviceId: String) {
-        chatRepo.createChat(serviceId) { success, message, chat ->
-            if (success) {
-                singleChat.postValue(chat)
-            } else {
-                chatStatus.postValue(Pair(false, message))
+    fun createChat(serviceProviderId: String) : String {
+        var chatId = ""
+        chatRepo.createChat(serviceProviderId){ success, message, chat, isNewChat ->
+            if(success){
+                Log.d("--checkChat","${chat?.serviceProviderName}")
+                chatId = chat?.chatId ?: ""
             }
         }
+        return chatId
     }
 
     fun getUserChats() {
@@ -365,6 +366,8 @@ class UserViewModel @Inject constructor(
                 userChats.postValue(null)
                 chatStatus.postValue(Pair(false, message))
             }
+            Log.d("--uvmChat","${success}")
+            Log.d("--uvmChat","${chats?.size}")
         }
     }
 
@@ -383,7 +386,7 @@ class UserViewModel @Inject constructor(
             messageList.postValue(Triple(success,message,messages))
         }
     }
-    fun sendMessage(chatId: String, message: String) {
+    fun sendMessage(chatId: String, message: Message) {
         chatRepo.sendMessage(chatId, message) { success, error, _ ->
             messageStatus.postValue(Pair(success, error))
         }

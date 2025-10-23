@@ -77,19 +77,15 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     kapt("com.github.bumptech.glide:compiler:4.12.0")
     implementation("com.google.android.material:material:1.11.0")
-
     //google login dependancies
-    dependencies { 
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
-        implementation(libs.google.firebase.bom)
-        implementation(libs.google.firebase.auth)
-        implementation(libs.androidx.credentials.v130)
-        implementation(libs.androidx.credentials.play.services.auth.v130)
-        implementation(libs.googleid)
-        implementation("com.google.android.gms:play-services-auth:20.7.0")
-        implementation(platform(libs.google.firebase.bom))
-        implementation(libs.firebase.auth)
-        }
+
+
 
     }
 

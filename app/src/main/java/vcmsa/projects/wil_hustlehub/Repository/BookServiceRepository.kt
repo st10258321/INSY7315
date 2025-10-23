@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.Repository
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -88,6 +89,7 @@ class BookServiceRepository {
         } else {
             time
         }
+        val userName = auth.currentUser?.displayName
 
         // denormalizing so that it stores the service provider id for easier queries
         val bookService = BookService(
@@ -101,7 +103,7 @@ class BookServiceRepository {
             location = location,
             status = "Pending",
             message = message,
-            createdDate = createdDateFormat.format(Date())
+            userName = userName!!
         )
 
         //updating to two different paths in the database at the same time
@@ -326,6 +328,17 @@ class BookServiceRepository {
                 callback(false, error ?: "Booking not found", null)
             }
         }
+    }
+    fun updateBooking(bookService : BookService, callback: (Boolean, String?, BookService?) -> Unit){
+        database.child("Book_Service").child(bookService.bookingId).setValue(bookService)
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    callback(true, null, bookService)
+                }else{
+                    callback(false, task.exception?.message, null)
+                }
+            }
+        Log.d("--checking","${bookService.status}")
     }
 
     //clear the cache when done with the operations

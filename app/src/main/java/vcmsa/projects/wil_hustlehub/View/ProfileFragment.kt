@@ -63,6 +63,12 @@ class ProfileFragment: Fragment() {
             startActivity(intent)
         }
 
+        binding.messageProviderBtn.setOnClickListener {
+           val chatID = userViewModel.createChat(serviceProId!!)
+            Toast.makeText(requireContext(), "Chat ID: $chatID", Toast.LENGTH_SHORT).show()
+            //navigate to chat fragment
+        }
+
         val adapter = ProfileServiceAdapter(emptyList(),
             onBookServiceClick = { service ->
             val fragment = BookServiceFragment()

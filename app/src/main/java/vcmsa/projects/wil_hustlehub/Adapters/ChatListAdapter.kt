@@ -9,7 +9,7 @@ import vcmsa.projects.wil_hustlehub.Model.Chat
 import vcmsa.projects.wil_hustlehub.R
 
 class ChatListAdapter(
-    private val chatList: List<Chat>,
+    private val chatList: MutableList<Chat>,
     private val onItemClick: (Chat) -> Unit
 ) : RecyclerView.Adapter<ChatListAdapter.ChatViewHolder>() {
 
@@ -26,10 +26,14 @@ class ChatListAdapter(
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         val chat = chatList[position]
-        holder.tvContactName.text = chat.userId
+        holder.tvContactName.text = chat.serviceProviderName
         holder.tvLastMessage.text = chat.lastMessage
-
         holder.itemView.setOnClickListener { onItemClick(chat) }
+    }
+    fun uploadChats(chats : MutableList<Chat>) {
+        chatList.clear()
+        chatList.addAll(chats)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = chatList.size
