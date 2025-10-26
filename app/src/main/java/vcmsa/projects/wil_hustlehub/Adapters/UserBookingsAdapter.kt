@@ -40,8 +40,27 @@ class UserBookingsAdapter(
             holder.status.background = context.getDrawable(R.drawable.status_started_background)
         }else if(booking.status == "Completed"){
             holder.status.background = context.getDrawable(R.drawable.status_confirmed_background)
+            holder.btnStarted.visibility = View.GONE
+            holder.btnCompleted.visibility = View.GONE
+            holder.btnCanceled.visibility = View.GONE
         }else if(booking.status == "Canceled"){
             holder.status.background = context.getDrawable(R.drawable.status_rejected_background)
+            holder.btnStarted.visibility = View.GONE
+            holder.btnCompleted.visibility = View.GONE
+            holder.btnCanceled.visibility = View.GONE
+        }else if(booking.status == "Confirmed"){
+            holder.status.background = context.getDrawable(R.drawable.status_confirmed_background)
+        }else if (booking.status == "Rejected"){
+            holder.status.background = context.getDrawable(R.drawable.status_rejected_background)
+            holder.btnStarted.visibility = View.GONE
+            holder.btnCompleted.visibility = View.GONE
+            holder.btnCanceled.visibility = View.GONE
+        }
+        else{
+            holder.status.background = context.getDrawable(R.drawable.status_pending_background)
+            holder.btnStarted.visibility = View.VISIBLE
+            holder.btnCompleted.visibility = View.VISIBLE
+            holder.btnCanceled.visibility = View.VISIBLE
         }
 
 

@@ -35,6 +35,22 @@ class ProviderBookingsAdapter(
             //service provider can still accept the booking.
             holder.binding.btnRejectBooking.isEnabled = false
             holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_rejected_background)
+        }else if (booking.status == "Pending"){
+            holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_pending_background)
+            holder.binding.btnRejectBooking.isEnabled = true
+            holder.binding.btnConfirmBooking.isEnabled = true
+        }else if (booking.status == "Cancelled"){
+            holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_rejected_background)
+            holder.binding.btnRejectBooking.isEnabled = false
+            holder.binding.btnConfirmBooking.isEnabled = false
+        }else if(booking.status == "Completed"){
+            holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_confirmed_background)
+            holder.binding.btnRejectBooking.isEnabled = false
+            holder.binding.btnConfirmBooking.isEnabled = false
+        }else{
+            holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_pending_background)
+            holder.binding.btnRejectBooking.isEnabled = true
+            holder.binding.btnConfirmBooking.isEnabled = true
         }
         holder.binding.bookingCustomerName.text = "Customer Name: ${booking.userName}"
         holder.binding.bookingDateTime.text = "Date and Time: ${booking.date} - ${booking.time}"

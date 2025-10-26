@@ -69,6 +69,9 @@ class ProviderBookingsFragment : Fragment() {
                                 status = booking.status
                             )
                         }
+                        else{
+                            Log.d("--api","User does not have fcm token")
+                        }
                     }
                 }catch(e: Exception){
                     Log.d("--checking","${e.message}")
@@ -85,6 +88,8 @@ class ProviderBookingsFragment : Fragment() {
                                 bookingName = booking.serviceName,
                                 status = booking.status
                             )
+                        }else{
+                            Log.d("--api","User does not have fcm token")
                         }
                     }
                 }catch(e: Exception){
