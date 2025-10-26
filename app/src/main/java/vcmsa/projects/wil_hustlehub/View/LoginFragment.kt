@@ -78,9 +78,18 @@ class LoginFragment : Fragment() {
         // Observe login status
         userViewModel.loginStat.observe(viewLifecycleOwner) { (success, message) ->
             if (success) {
+
                 Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(requireContext(), MainActivity::class.java))
-                requireActivity().finish()
+                Log.d("emailCheck", email.text.toString())
+                if(email.text.toString() == "admin001@gmail.com") {
+                    Log.d("--checking--", "admin login")
+                    val intent = Intent(requireContext(), admin_portal::class.java)
+                    startActivity(intent)
+                }else{
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
+                }
+
             } else {
                 Toast.makeText(requireContext(), message ?: "Login Failed", Toast.LENGTH_SHORT).show()
             }

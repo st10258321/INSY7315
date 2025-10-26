@@ -28,8 +28,12 @@ class ProviderBookingsAdapter(
         holder.binding.bookingServiceTitle.text = booking.serviceName
         holder.binding.bookingStatus.text = booking.status
         if(booking.status == "Confirmed"){
+            holder.binding.btnRejectBooking.isEnabled = false
+            holder.binding.btnConfirmBooking.isEnabled = false
             holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_confirmed_background)
         }else if(booking.status == "Rejected"){
+            //service provider can still accept the booking.
+            holder.binding.btnRejectBooking.isEnabled = false
             holder.binding.bookingStatus.background = context.getDrawable(R.drawable.status_rejected_background)
         }
         holder.binding.bookingCustomerName.text = "Customer Name: ${booking.userName}"

@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import vcmsa.projects.wil_hustlehub.Adapters.ProviderBookingsAdapter
 import vcmsa.projects.wil_hustlehub.MainActivity
+import vcmsa.projects.wil_hustlehub.Network.PushApiClient
 import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
@@ -57,9 +58,38 @@ class ProviderBookingsFragment : Fragment() {
             bookings = mutableListOf(),
             onConfirmAction = { booking ->
                 userViewModel.confirmBooking(booking.bookingId)
+
+                try{
+                    userViewModel.getUserData(booking.serviceProviderId).observe(viewLifecycleOwner){provider->
+                        if(provider?.fcmToken != null){
+                            PushApiClient.sendBookingStatusNotification(
+                                context = requireContext(),
+                                recipientToken = provider.fcmToken!!,
+                                bookingName = booking.serviceName,
+                                status = booking.status
+                            )
+                        }
+                    }
+                }catch(e: Exception){
+                    Log.d("--checking","${e.message}")
+                }
             },
             onRejectAction = { booking ->
                 userViewModel.rejectBooking(booking.bookingId)
+                try{
+                    userViewModel.getUserData(booking.serviceProviderId).observe(viewLifecycleOwner){provider->
+                        if(provider?.fcmToken != null){
+                            PushApiClient.sendBookingStatusNotification(
+                                context = requireContext(),
+                                recipientToken = provider.fcmToken!!,
+                                bookingName = booking.serviceName,
+                                status = booking.status
+                            )
+                        }
+                    }
+                }catch(e: Exception){
+                    Log.d("--checking","${e.message}")
+                }
             }
         )
         userViewModel.bookingActionStatus.observe(viewLifecycleOwner){result ->

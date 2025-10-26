@@ -8,6 +8,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import vcmsa.projects.wil_hustlehub.Model.BookService
 import vcmsa.projects.wil_hustlehub.Model.Service
+import vcmsa.projects.wil_hustlehub.Model.User
 import java.util.Date
 
 class BookServiceRepository {
@@ -24,6 +25,7 @@ class BookServiceRepository {
 
     //created a cache to temporarily store service details instead of retrieving them from firebase every time.
     private val serviceCache = mutableMapOf<String, Service>()
+    private val userRepo = UserRepository()
 
     //the service details expires after 5 minutes.
     private val cacheExpiry = 5 * 60 * 1000L
@@ -38,6 +40,8 @@ class BookServiceRepository {
             callback(false, "User not logged in", null)
             return
         }
+
+
 
         // checking cache first. looks for the service inside the cache.
         val cachedService = serviceCache[serviceId]
@@ -91,6 +95,7 @@ class BookServiceRepository {
         }
         val userName = auth.currentUser?.displayName
 
+        Log.d("--booking-name-","$userName")
         // denormalizing so that it stores the service provider id for easier queries
         val bookService = BookService(
             bookingId = bookServiceId,
@@ -103,7 +108,7 @@ class BookServiceRepository {
             location = location,
             status = "Pending",
             message = message,
-            userName = userName!!
+            userName = userName ?: ""
         )
 
         //updating to two different paths in the database at the same time

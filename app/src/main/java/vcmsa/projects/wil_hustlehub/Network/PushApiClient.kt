@@ -72,5 +72,40 @@ object PushApiClient {
 
             }
     }
+    fun sendBookingStatusNotification(
+        context : Context,
+        recipientToken : String,
+        bookingName : String,
+        status: String
+    ){
+        FirebaseAuth.getInstance().currentUser?.getIdToken(true)
+            ?.addOnSuccessListener { result ->
+                val idToken = result.token
+                Log.d("API", "Booking notification sent: $idToken")
+                val requestBody = JSONObject().apply {
+                    put("recipientToken", recipientToken)
+                    put("bookingName", bookingName)
+                    put("status", status)
+                }
+                Log.d("API", "Booking notification sent: $requestBody")
+                val request = object : StringRequest(
+                    Method.POST,
+                    "https://push-api-k1q5.onrender.com/updated-booking",
+                    { response -> Log.d("API", "Booking notification sent: $response") },
+                    { error -> Log.e("API", "Failed to send booking notification: ${error.message}") }
+                ) {
+                    override fun getBody(): ByteArray = requestBody.toString().toByteArray()
+                    override fun getBodyContentType(): String = "application/json"
+                    override fun getHeaders(): MutableMap<String, String> =
+                        mutableMapOf("Authorization" to "Bearer $idToken")
+                }
+
+                Volley.newRequestQueue(context).add(request)
+
+            }
+            ?.addOnFailureListener {
+                Log.e("API", "Failed to get ID token: ${it.message}")
+            }
+    }
 
 }
