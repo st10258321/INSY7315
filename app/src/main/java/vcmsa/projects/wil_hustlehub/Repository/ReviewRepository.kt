@@ -92,29 +92,50 @@ class ReviewRepository {
     }
 
     // getting all the reviews for a specific service provider, using indexing
-    fun getReviewsForServiceProvider(userID: String, callback: (Boolean, String?, List<Review>?) -> Unit
-    ) {
-
-        database.child("Reviews")
-            .orderByChild("userID")
-            .equalTo(userID)
+    fun getReviewsForServiceProvider(providerId: String, callback: (Boolean, String?, List<Review>?) -> Unit) {
+        // Step 1: Get all services belonging to this provider
+        database.child("Services")
+            .orderByChild("userId")
+            .equalTo(providerId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(reviewsSnapshot: DataSnapshot) {
-                    val reviews = mutableListOf<Review>()
-
-                    for (reviewChild in reviewsSnapshot.children) {
-                        reviewChild.getValue(Review::class.java)?.let { reviews.add(it) }
+                override fun onDataChange(servicesSnapshot: DataSnapshot) {
+                    val serviceIds = servicesSnapshot.children.mapNotNull {
+                        it.key // or it.child("serviceId").value?.toString()
                     }
 
-                    val sortedReviews = reviews.sortedByDescending {
-                        try {
-                            dateFormat.parse(it.reviewDate)?.time ?: 0L
-                        } catch (e: Exception) {
-                            0L
-                        }
+                    if (serviceIds.isEmpty()) {
+                        callback(true, "No services found for provider", emptyList())
+                        return
                     }
 
-                    callback(true, null, sortedReviews)
+                    // Step 2: Get all reviews for those serviceIds
+                    database.child("Reviews")
+                        .addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(reviewsSnapshot: DataSnapshot) {
+                                val reviews = mutableListOf<Review>()
+
+                                for (reviewChild in reviewsSnapshot.children) {
+                                    val review = reviewChild.getValue(Review::class.java)
+                                    if (review != null && serviceIds.contains(review.serviceId)) {
+                                        reviews.add(review)
+                                    }
+                                }
+
+                                val sortedReviews = reviews.sortedByDescending {
+                                    try {
+                                        dateFormat.parse(it.reviewDate)?.time ?: 0L
+                                    } catch (e: Exception) {
+                                        0L
+                                    }
+                                }
+
+                                callback(true, null, sortedReviews)
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                callback(false, error.message, null)
+                            }
+                        })
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -122,6 +143,7 @@ class ReviewRepository {
                 }
             })
     }
+
 
     // this function calculates the overall rating for the service provider
     fun getServiceProviderAverageRating(userID: String, callback: (Boolean, String?, Double?, Int?) -> Unit

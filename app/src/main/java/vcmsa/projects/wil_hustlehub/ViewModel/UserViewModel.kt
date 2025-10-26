@@ -122,10 +122,11 @@ class UserViewModel @Inject constructor(
         val credential = GoogleAuthProvider.getCredential(idToken, null)
 
         firebaseAuth.signInWithCredential(credential)
+
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
-                    loginStat.postValue(Pair(true, "Welcome ${user?.displayName ?: "User"}"))
+                    loginStat.postValue(Pair(true, user?.uid))
                 } else {
                     loginStat.postValue(Pair(false, task.exception?.message ?: "Google login failed"))
                 }

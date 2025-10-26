@@ -115,6 +115,7 @@ class ProfileFragment: Fragment() {
                 }
             }else{
                 if(userid != null) {
+                    Log.d("","")
                     userViewModel.getMyServices(userid)
                     userViewModel.getUserData(userid).observe(viewLifecycleOwner) { user ->
                         //fill the page with the user's section, check if they have any services they provide and fill that section too.
@@ -136,6 +137,24 @@ class ProfileFragment: Fragment() {
             val intent = Intent(requireContext(), ReportUserActvity::class.java)
             intent.putExtra("serviceProId", serviceProId)
             startActivity(intent)
+        }
+        binding.viewReviewsBtn.setOnClickListener {
+            val fragment = ReviewsFragment()
+            val bundle = Bundle()
+            if(isOwner){
+                bundle.putString("serviceId", userid)
+            }else{
+                bundle.putString("serviceId", serviceProId)
+            }
+            fragment.arguments = bundle
+            Log.d("check-reviews", "serviceId being sent: ${bundle.getString("serviceId")}")
+
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.supportFragmentManager.beginTransaction()
+                .replace(mainActivity.binding.navHostFragment.id, fragment)
+                .addToBackStack(null)
+                .commit()
+
         }
 
 

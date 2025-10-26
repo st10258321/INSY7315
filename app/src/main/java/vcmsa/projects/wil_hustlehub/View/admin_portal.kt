@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import vcmsa.projects.wil_hustlehub.R
 import com.google.android.material.card.MaterialCardView
+import android.widget.ImageView
 
 class admin_portal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +20,11 @@ class admin_portal : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val backBtn = findViewById<ImageView>(R.id.add_pet_back_button)
+        backBtn.setOnClickListener {
+            finish()
+        }
+
         val userManagementCard = findViewById<MaterialCardView>(R.id.admin_userMan_card)
         userManagementCard.setOnClickListener {
             // Handle user management card click
