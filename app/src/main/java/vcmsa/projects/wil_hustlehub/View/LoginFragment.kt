@@ -86,6 +86,11 @@ class LoginFragment : Fragment() {
                     val intent = Intent(requireContext(), admin_portal::class.java)
                     startActivity(intent)
                 }else{
+                    val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("uid", message)
+                    Log.d("--checking--", "$message")
+                    editor.apply()
                     startActivity(Intent(requireContext(), MainActivity::class.java))
                     requireActivity().finish()
                 }

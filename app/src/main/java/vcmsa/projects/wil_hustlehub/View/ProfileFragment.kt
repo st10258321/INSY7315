@@ -51,6 +51,7 @@ class ProfileFragment: Fragment() {
         //get user data from the view model
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val userid = sharedPreferences.getString("uid", null)
+        Log.d("ProfileFragment", "User ID: $userid")
         serviceProId = arguments?.getString("serviceProfiderID")
         val isOwner = serviceProId.isNullOrEmpty() || serviceProId == userid
 
