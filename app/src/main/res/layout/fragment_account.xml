@@ -71,50 +71,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="8dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/social_login_prompt"
-                android:textSize="14sp"
-                android:textColor="@color/deep_blue"
-                android:layout_marginBottom="16dp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
-
-                <ImageButton
-                    android:id="@+id/btnSocialInstagram"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:src="@drawable/ic_instagram_primary_teal_24dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Login with Instagram"
-                    android:layout_marginEnd="24dp"
-                    app:tint="@color/deep_blue" />
-
-                <ImageButton
-                    android:id="@+id/btnSocialFacebook"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:src="@drawable/ic_facebook_primary_teal_24"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Login with Facebook"
-                    android:layout_marginEnd="24dp"
-                    app:tint="@color/deep_blue" />
-
-                <ImageButton
-                    android:id="@+id/btnSocialTwitter"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_twitter_primary_teal_24dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Login with Twitter"
-                    app:tint="@color/deep_blue" />
-
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

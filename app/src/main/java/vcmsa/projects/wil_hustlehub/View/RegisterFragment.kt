@@ -45,6 +45,11 @@ class RegisterFragment: Fragment() {
 
 
         binding.radioServiceProvider.setOnClickListener {
+            binding.aboutMeLayout.visibility = View.VISIBLE
+        }
+
+        binding.radioCustomer.setOnClickListener {
+            binding.aboutMeLayout.visibility = View.GONE
         }
 
             val radioGroupUserRole = view.findViewById<RadioGroup>(R.id.radioGroupUserRole)
@@ -73,6 +78,7 @@ class RegisterFragment: Fragment() {
                 email = binding.registerEmail.text.toString(),
                 phoneNumber = binding.registerCellNumber.text.toString(),
                 password = binding.registerPassword.text.toString(),
+                aboutMe = binding.registerAboutMe.text.toString(),
                 createdDate = ""
             )
             userViewModel.register(user)

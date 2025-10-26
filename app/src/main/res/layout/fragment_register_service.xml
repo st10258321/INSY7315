@@ -39,6 +39,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:hintTextColor="@color/black"
                 android:layout_marginBottom="16dp"
                 android:hint="@string/service_title"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -49,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textSize="16sp"
-
+                    android:textColor="@color/black"
                     android:contentDescription="Enter service title"
                     android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -58,6 +59,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:hintTextColor="@color/black"
                 android:layout_marginBottom="16dp"
                 android:hint="@string/category"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
@@ -68,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:textSize="16sp"
-
+                    android:textColor="@color/black"
                     android:contentDescription="Select a category" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                app:hintTextColor="@color/black"
                 android:hint="@string/service_description"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -89,7 +92,7 @@
                     android:inputType="textMultiLine"
                     android:maxLines="5"
                     android:textSize="16sp"
-
+                    android:textColor="@color/black"
                     android:contentDescription="Enter service description"
                     android:background="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -106,6 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
+                    app:hintTextColor="@color/black"
                     android:hint="Price"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -115,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
                         android:textSize="16sp"
-
+                        android:textColor="@color/black"
                         android:contentDescription="Enter service price"
                         android:inputType="numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -124,6 +128,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    app:hintTextColor="@color/black"
                     android:layout_marginStart="8dp"
                     android:hint="Pricing Type"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
@@ -132,82 +137,55 @@
                         android:id="@+id/actvPricingType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription="Select pricing type"
                         android:minHeight="48dp"
-                        android:textSize="16sp"
-
-                        android:contentDescription="Select pricing type" />
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <!-- Availability Section -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Availability"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/deep_blue"
-                android:layout_marginBottom="8dp" />
-
-            <!-- Days -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="7"
-                android:layout_marginBottom="12dp">
-
-                <CheckBox android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="48dp" android:text="Mon" android:textSize="16sp"/>
-                <CheckBox android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="48dp" android:text="Tue" android:textSize="16sp"/>
-                <CheckBox android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="48dp" android:text="Wed" android:textSize="16sp"/>
-                <CheckBox android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="48dp" android:text="Thu" android:textSize="16sp"/>
-                <CheckBox android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="48dp" android:text="Fri" android:textSize="16sp"/>
-                <CheckBox android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="48dp" android:text="Sat" android:textSize="16sp"/>
-                <CheckBox android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="48dp" android:text="Sun" android:textSize="16sp"/>
-            </LinearLayout>
 
             <!-- Time Slots -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Select Time Slot"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="20dp"-->
+<!--                app:hintTextColor="@color/black"-->
+<!--                android:hint="Select Time Slot"-->
+<!--                android:textSize="18sp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
 
-                <AutoCompleteTextView
-                    android:id="@+id/etAvailability"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:textSize="16sp"
-
-                    android:contentDescription="Select availability time slot"
-                    android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
+              <Spinner
+                  android:id="@+id/etAvailability"
+                  tools:listitem="@array/time_slots"
+                  android:text="Time Slots"
+                  android:textColor="@color/black"
+                  android:textSize="18sp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
             <!-- Location -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:hint="Location"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                app:hintTextColor="@color/black"-->
+<!--                android:text="Location"-->
+<!--                android:hint="Location"-->
+<!--                android:textSize="18sp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">-->
 
-<!--                <AutoCompleteTextView-->
-<!--                    android:id="@+id/actvLocation"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:minHeight="48dp"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:hint="Select Location"-->
-<!--                    android:contentDescription="Select location" />-->
                 <Spinner
                     android:id="@+id/actvLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
                     android:entries="@array/service_locations"
                     android:hint="Select Location" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
 
             <!-- Upload Images Section -->

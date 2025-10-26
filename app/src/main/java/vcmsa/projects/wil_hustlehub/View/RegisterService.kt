@@ -68,7 +68,7 @@ class RegisterService : AppCompatActivity() {
         binding.actvCategory.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_categories, android.R.layout.simple_spinner_item))
         binding.actvLocation.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_locations, android.R.layout.simple_spinner_item))
         binding.actvPricingType.setAdapter(ArrayAdapter.createFromResource(this, R.array.pricing_types, android.R.layout.simple_spinner_item))
-
+        binding.etAvailability.setAdapter(ArrayAdapter.createFromResource(this, R.array.time_slots, android.R.layout.simple_spinner_item))
 
 
         binding.btnUploadImages.setOnClickListener {
@@ -81,18 +81,17 @@ class RegisterService : AppCompatActivity() {
             val category = binding.actvCategory.text.toString()
             val description = binding.etServiceDescription.text.toString()
             val price = binding.etServicePrice.text.toString()
-            val availability = binding.etAvailability.text.toString()
+            val availability = binding.etAvailability.selectedItem.toString()
             val location = binding.actvLocation.selectedItem.toString()
-            if(serviceName.isEmpty()|| category.isEmpty() || description.isEmpty() || price.isEmpty()){
+            if(serviceName.isEmpty()|| category.isEmpty() || description.isEmpty() || price.isEmpty() || availability.isEmpty() || location.isEmpty()){
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }else{
                 val price = price.toDouble()
-                val availabilityInput = binding.etAvailability.text.toString()
+                val availabilityInput = binding.etAvailability.selectedItem.toString()
                 // Split the availability input into days and times
                 // Example input: "Mon,Tue,Wed | 09:00-17:00"
-                val parts = availabilityInput.split("|")
-                val days = parts.getOrNull(0)?.split(",") ?: listOf()
-                val times = parts.getOrNull(1)?.split(",") ?: listOf()
+                val days = ""
+                val times = availabilityInput
 
                 userViewModel.addService(serviceName, category, description, price, imageString, days, times, location)
             }

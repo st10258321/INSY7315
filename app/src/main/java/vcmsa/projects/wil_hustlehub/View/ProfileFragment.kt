@@ -107,7 +107,11 @@ class ProfileFragment: Fragment() {
                 userViewModel.getUserData(serviceProId!!).observe(viewLifecycleOwner) { user ->
                     //fill the page with the service providers information as well as the report user section
                     binding.providerName.text = user?.name
-
+                    if(user?.aboutMe.isNullOrEmpty()){
+                        binding.aboutMeTxt.text = "No About Me"
+                    }else{
+                        binding.aboutMeTxt.text = user?.aboutMe
+                    }
                     userViewModel.userServices.observe(viewLifecycleOwner){services ->
                             adapter.updateServices(services ?: emptyList())
                     }
@@ -120,7 +124,11 @@ class ProfileFragment: Fragment() {
                     userViewModel.getUserData(userid).observe(viewLifecycleOwner) { user ->
                         //fill the page with the user's section, check if they have any services they provide and fill that section too.
                         binding.providerName.text = user?.name
-
+                        if(user?.aboutMe.isNullOrEmpty()){
+                            binding.aboutMeTxt.text = "No About Me"
+                        }else{
+                            binding.aboutMeTxt.text = user?.aboutMe
+                        }
                         userViewModel.userServices.observe(viewLifecycleOwner) { services ->
                             adapter.updateServices(services ?: emptyList())
                         }

@@ -23,7 +23,7 @@ class ServiceRepository {
     private val CACHE_VALIDITY_MS = 5 * 60 * 1000L // //the service details expires after 5 minutes.
 
     // Add a new service
-    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List<String>, availabileTime: List<String>, location: String, callback: (Boolean, String?, Service?) -> Unit
+    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: String, availabileTime: String, location: String, callback: (Boolean, String?, Service?) -> Unit
     ) {
         val currentUser = auth.currentUser
         if (currentUser == null) {
