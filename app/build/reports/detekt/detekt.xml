@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="4.3">
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt">
+	<error line="34" column="26" severity="warning" message="The function createBookService(serviceId: String, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -&gt; Unit) has too many parameters. The current threshold is set to 6." source="detekt.LongParameterList" />
+	<error line="74" column="33" severity="warning" message="The function createBookingWithService(userId: String, serviceId: String, service: Service, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -&gt; Unit) has too many parameters. The current threshold is set to 6." source="detekt.LongParameterList" />
+	<error line="13" column="7" severity="warning" message="Class &apos;BookServiceRepository&apos; with &apos;11&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="349" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Repository\BookServiceRepository.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="34" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="74" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="113" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="130" column="168" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="160" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="204" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="264" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="29" column="31" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="29" column="35" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="29" column="40" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="23" column="17" severity="warning" message="Private property `createdDate` is unused." source="detekt.UnusedPrivateMember" />
+	<error line="29" column="17" severity="warning" message="Private property `cacheExpiry` is unused." source="detekt.UnusedPrivateMember" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ReviewRepository.kt">
+	<error line="64" column="27" severity="warning" message="The function saveReview(reviewId: String, userId: String, serviceId: String, reviewerName: String, stars: Int, reviewText: String, reviewDate: String, callback: (Boolean, String?, Review?) -&gt; Unit) has too many parameters. The current threshold is set to 6." source="detekt.LongParameterList" />
+	<error line="112" column="34" severity="warning" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled." source="detekt.TooGenericExceptionCaught" />
+	<error line="112" column="34" severity="warning" message="The caught exception is swallowed. The original exception could be lost." source="detekt.SwallowedException" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="192" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Repository\ReviewRepository.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt">
+	<error line="26" column="19" severity="warning" message="The function addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List&lt;String&gt;, availabileTime: List&lt;String&gt;, location: String, callback: (Boolean, String?, Service?) -&gt; Unit) has too many parameters. The current threshold is set to 6." source="detekt.LongParameterList" />
+	<error line="309" column="30" severity="warning" message="The function reportServiceProvider(serviceProviderId: String, serviceProviderName: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String, callback: (Boolean, String?) -&gt; Unit) has too many parameters. The current threshold is set to 6." source="detekt.LongParameterList" />
+	<error line="12" column="7" severity="warning" message="Class &apos;ServiceRepository&apos; with &apos;14&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="23" column="17" severity="warning" message="Private variable names should match the pattern: (_)?[a-z][A-Za-z0-9]*" source="detekt.VariableNaming" />
+	<error line="386" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Repository\ServiceRepository.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="26" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="181" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="309" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="380" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="23" column="37" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="23" column="41" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="23" column="46" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceFragment.kt">
+	<error line="63" column="18" severity="warning" message="The function onViewCreated is too long (80). The maximum length is 60." source="detekt.LongMethod" />
+	<error line="161" column="30" severity="warning" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled." source="detekt.TooGenericExceptionCaught" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt">
+	<error line="57" column="18" severity="warning" message="The function onViewCreated is too long (77). The maximum length is 60." source="detekt.LongMethod" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="177" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\BrowseServicesFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="104" column="34" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="116" column="34" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="125" column="34" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt">
+	<error line="60" column="18" severity="warning" message="The function onViewCreated is too long (82). The maximum length is 60." source="detekt.LongMethod" />
+	<error line="121" column="25" severity="warning" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled." source="detekt.TooGenericExceptionCaught" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="168" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ChatFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="147" column="17" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="49" column="45" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileFragment.kt">
+	<error line="41" column="18" severity="warning" message="The function onViewCreated is too long (83). The maximum length is 60." source="detekt.LongMethod" />
+	<error line="129" column="16" severity="warning" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled." source="detekt.TooGenericExceptionCaught" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="142" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ProfileFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="102" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="119" column="25" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt">
+	<error line="86" column="16" severity="warning" message="This condition is too complex (4). Defined complexity threshold for conditions is set to &apos;4&apos;" source="detekt.ComplexCondition" />
+	<error line="155" column="17" severity="warning" message="The caught exception is swallowed. The original exception could be lost." source="detekt.SwallowedException" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="47" column="17" severity="warning" message="Private variable names should match the pattern: (_)?[a-z][A-Za-z0-9]*" source="detekt.VariableNaming" />
+	<error line="173" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\RegisterService.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="68" column="9" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="69" column="9" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="70" column="9" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="118" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="122" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="129" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="47" column="39" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="47" column="17" severity="warning" message="Private property `CAMERA_REQUEST_CODE` is unused." source="detekt.UnusedPrivateMember" />
+	<error line="84" column="17" severity="warning" message="Private property `availability` is unused." source="detekt.UnusedPrivateMember" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt">
+	<error line="159" column="19" severity="warning" message="The function addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: List&lt;String&gt;, availableTime: List&lt;String&gt;, location: String) has too many parameters. The current threshold is set to 6." source="detekt.LongParameterList" />
+	<error line="415" column="30" severity="warning" message="The function reportServiceProvider(serviceProviderId: String, serviceProviderName: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String) has too many parameters. The current threshold is set to 6." source="detekt.LongParameterList" />
+	<error line="27" column="7" severity="warning" message="Class &apos;UserViewModel&apos; with &apos;32&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="425" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\ViewModel\UserViewModel.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="159" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="160" column="9" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="300" column="17" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="304" column="1" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="305" column="1" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="415" column="5" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="416" column="9" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/navbar.kt">
+	<error line="3" column="14" severity="warning" message="The class or object navbar is empty." source="detekt.EmptyClassBlock" />
+	<error line="3" column="7" severity="warning" message="Class and Object names should match the pattern: [A-Z][a-zA-Z0-9]*" source="detekt.ClassNaming" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="4" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\ViewModel\navbar.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt">
+	<error line="121" column="18" severity="warning" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled." source="detekt.TooGenericExceptionCaught" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="70" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="82" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="85" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="90" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="94" column="17" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="186" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt">
+	<error line="103" column="22" severity="warning" message="The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled." source="detekt.TooGenericExceptionCaught" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="29" column="17" severity="warning" message="Private variable names should match the pattern: (_)?[a-z][A-Za-z0-9]*" source="detekt.VariableNaming" />
+	<error line="17" column="1" severity="warning" message="vcmsa.projects.wil_hustlehub.Repository.* is a wildcard import. Replace it with fully qualified imports." source="detekt.WildcardImport" />
+	<error line="98" column="21" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+	<error line="29" column="30" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReportUserActvity.kt">
+	<error line="161" column="17" severity="warning" message="The caught exception is swallowed. The original exception could be lost." source="detekt.SwallowedException" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="188" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ReportUserActvity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="100" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="124" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="128" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="135" column="13" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/BrowseServiceAdapter.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="48" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Adapters\BrowseServiceAdapter.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ChatAdapter.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="67" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Adapters\ChatAdapter.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ChatListAdapter.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/MessageAdapter.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ProfileServiceAdapter.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="69" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Adapters\ProfileServiceAdapter.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ProviderBookingsAdapter.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ReportedUserAdapter.kt">
+	<error line="14" column="7" severity="warning" message="The file name &apos;ReportedUserAdapter&apos; does not match the name of the single top-level declaration &apos;ReportedUsersAdapter&apos;." source="detekt.MatchingDeclarationName" />
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ServiceAdapter.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/UserBookingsAdapter.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="79" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Adapters\UserBookingsAdapter.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/BookingActionResult.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="8" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Model\BookingActionResult.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/BookService.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Chat.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Message.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Report.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Review.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Service.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/User.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Network/PushApiClient.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="76" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Network\PushApiClient.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ChatRepository.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="64" column="34" severity="warning" message="Function parameter `forceRefresh` is unused." source="detekt.UnusedPrivateMember" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AboutUsActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AboutUsActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AboutUsFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="27" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AboutUsFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AccountActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AccountActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AccountFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="36" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AccountFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AddReviewFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="114" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AddReviewFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/admin_portal.kt">
+	<error line="12" column="7" severity="warning" message="Class and Object names should match the pattern: [A-Z][a-zA-Z0-9]*" source="detekt.ClassNaming" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="34" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\admin_portal.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\BookServiceActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="24" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\BrowseServicesActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/CategoriesActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\CategoriesActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/CategoriesFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="27" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\CategoriesFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatListFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatRoomActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ContactActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ContactActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ContactFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="26" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ContactFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/HomeActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\HomeActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/HomeFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="45" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\HomeFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\LoginActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\OfferSkillsActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="35" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\OfferSkillsFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ProfileActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookings.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="22" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ProviderBookings.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="96" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ProviderBookingsFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="86" column="17" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="21" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\RegisterActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="91" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\RegisterFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReviewsActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="22" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ReviewsActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReviewsFragment.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="81" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ReviewsFragment.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ServiceManagementActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="14" column="1" severity="warning" message="vcmsa.projects.wil_hustlehub.Repository.* is a wildcard import. Replace it with fully qualified imports." source="detekt.WildcardImport" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserBookingsActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="81" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\UserBookingsActivity.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+	<error line="49" column="13" severity="warning" message="Private property `userid` is unused." source="detekt.UnusedPrivateMember" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserManagementActivity.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="11" column="1" severity="warning" message="vcmsa.projects.wil_hustlehub.Repository.* is a wildcard import. Replace it with fully qualified imports." source="detekt.WildcardImport" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/FirebaseMessagingService.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="58" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\ViewModel\FirebaseMessagingService.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/ViewModelFactory.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="24" column="2" severity="warning" message="The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\ViewModel\ViewModelFactory.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+</checkstyle>

@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+    </style>
+    <meta charset="utf-8">
+    <title>detekt report</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            width: fit-content;
+            background: -webkit-linear-gradient(left, rgba(105, 33, 224, 1), rgba(247, 44, 67, 1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+            background: rgb(105, 33, 224);
+            background: linear-gradient(90deg, rgba(105, 33, 224, 0.8) 0%, rgba(158, 41, 156, 0.8) 50%, rgba(247, 44, 67, 0.8) 100%);
+            padding: 0.2em;
+            color: #ffffff;
+            border-radius: 4px;
+        }
+
+        h3 {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, rgba(105, 33, 224, 0.4) 0%, rgba(158, 41, 156, 0.4) 50%, rgba(247, 44, 67, 0.4) 100%);
+            padding: 0.5em;
+            border-radius: 4px;
+        }
+
+        .rule-container {
+            background: linear-gradient(90deg, rgba(105, 33, 224, 0.2) 0%, rgba(158, 41, 156, 0.2) 100%);
+            border-radius: 4px;
+            padding-left: 1em;
+            padding-bottom: 0.3em;
+            padding-top: 0.3em;
+            padding-right: 1em;
+            line-height: 1.5em;
+            margin-bottom: 8px;
+            margin-top: 8px;
+        }
+
+        .rule {
+            font-family: Arial, sans-serif;
+            padding: 0.3em;
+            font-weight: 600;
+            border-radius: 3px;
+        }
+
+        .description {
+            font-family: Arial, sans-serif;
+            color: #000000;
+            padding: 0.3em;
+        }
+
+        .location {
+            font-family: Jetbrains Mono, monospace;
+            font-weight: 500;
+            color: #000000;
+            display: block;
+        }
+
+        .message {
+            font-family: Arial, sans-serif;
+            font-size: 0.8em;
+            color: #444444;
+            display: block;
+            margin-top: 1pt;
+        }
+
+        code {
+            font-family: JetBrains Mono, monospace;
+            font-weight: 400;
+        }
+
+        pre {
+            font-family: JetBrains Mono, monospace;
+            font-weight: 500;
+            border: 1px solid #e0e0e0;
+            overflow: auto;
+        }
+
+        .lineno {
+            margin-right: 24px;
+            color: #9771c3;
+            background-color: rgba(230, 211, 243, 0.51);
+        }
+
+        .error {
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AwCFR4T/3uLMgAAADxJREFUCNdNyLERQEAABMCjL4lQwIzcjErpguAL+C9AvgKJDbeD/PRpLdm35Hm+MU+cB+tCKaJW4L4YBy+CAiLJrFs9mgAAAABJRU5ErkJggg==) bottom repeat-x;
+        }
+
+        .exception {
+            color: #b60808;
+            display: inline-block;
+            background-color: #ecdada;
+            border-color: #b60808;
+            border-radius: 10px;
+            border: solid 2px;
+            padding-left: 16px;
+            padding-right: 16px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="225" height="53" viewBox="0 0 225 53" fill="none"
+     style="padding-top: 8px">
+    <path d="M88.8883 42.2665V7.99487H81.6954V20.389C79.9918 18.3703 77.6257 16.6332 73.7926 16.6332C67.7828 16.6332 62.2461 21.2341 62.2461 29.6377V29.7316C62.2461 38.1352 67.8774 42.736 73.7926 42.736C77.5311 42.736 79.9445 40.9989 81.6954 38.6516V42.2665H88.8883ZM81.79 29.7316C81.79 33.9099 78.998 36.6798 75.6382 36.6798C72.2783 36.6798 69.439 33.9099 69.439 29.7316V29.6377C69.439 25.4124 72.2783 22.6894 75.6382 22.6894C78.998 22.6894 81.79 25.4593 81.79 29.6377V29.7316Z"
+          fill="#222222"/>
+    <path d="M120.325 30.3888V30.2949C120.325 23.1589 116.444 16.6332 107.974 16.6332C100.591 16.6332 95.4334 22.5486 95.4334 29.7316V29.8254C95.4334 37.5248 101.065 42.8299 108.683 42.8299C113.274 42.8299 116.681 41.0459 119.047 38.1352L114.93 34.5202C112.942 36.3511 111.192 37.1023 108.778 37.1023C105.56 37.1023 103.289 35.4122 102.579 32.1728H120.23C120.277 31.5156 120.325 31.093 120.325 30.3888ZM113.321 27.7128H102.484C103.052 24.4734 104.992 22.3608 107.974 22.3608C111.002 22.3608 112.895 24.5204 113.321 27.7128Z"
+          fill="#222222"/>
+    <path d="M141.278 41.2337V35.5061C140.237 36.0695 139.054 36.3981 137.729 36.3981C136.12 36.3981 135.41 35.6 135.41 33.9568V23.2059H141.373V17.1027H135.41V10.6709H128.217V17.1027H125.189V23.2059H128.217V35.1305C128.217 40.952 131.199 42.6891 135.599 42.6891C138.013 42.6891 139.764 42.1257 141.278 41.2337Z"
+          fill="#222222"/>
+    <path d="M172.008 30.3888V30.2949C172.008 23.1589 168.128 16.6332 159.657 16.6332C152.275 16.6332 147.117 22.5486 147.117 29.7316V29.8254C147.117 37.5248 152.748 42.8299 160.367 42.8299C164.958 42.8299 168.365 41.0459 170.731 38.1352L166.614 34.5202C164.626 36.3511 162.875 37.1023 160.462 37.1023C157.244 37.1023 154.973 35.4122 154.263 32.1728H171.914C171.961 31.5156 172.008 31.093 172.008 30.3888ZM165.005 27.7128H154.168C154.736 24.4734 156.676 22.3608 159.657 22.3608C162.686 22.3608 164.579 24.5204 165.005 27.7128Z"
+          fill="#222222"/>
+    <path d="M203.278 42.2665L193.293 27.0086L202.947 17.1027H194.334L185.911 26.2574V7.99487H178.718V42.2665H185.911V34.6141L188.419 31.985L195.044 42.2665H203.278Z"
+          fill="#222222"/>
+    <path d="M224.905 41.2337V35.5061C223.864 36.0695 222.681 36.3981 221.356 36.3981C219.747 36.3981 219.037 35.6 219.037 33.9568V23.2059H225V17.1027H219.037V10.6709H211.844V17.1027H208.816V23.2059H211.844V35.1305C211.844 40.952 214.826 42.6891 219.227 42.6891C221.64 42.6891 223.391 42.1257 224.905 41.2337Z"
+          fill="#222222"/>
+    <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M2.18611 0C0.978755 0 0 0.978755 0 2.18611V40.771C0 41.9783 0.978755 42.9571 2.18611 42.9571H24.2534C25.6525 42.9571 26.6258 41.5473 26.3774 40.1705C26.2109 39.2481 26.124 38.2981 26.124 37.3279C26.124 28.5443 33.2445 21.4239 42.028 21.4239C42.8689 21.4239 43.6945 21.4892 44.5001 21.6149C45.8578 21.8268 47.22 20.8585 47.22 19.4844V2.18611C47.22 0.978755 46.2412 0 45.0339 0H2.18611Z"
+          fill="url(#paint0_linear)"/>
+    <path d="M55.3358 48.6166L54.7673 48.0481L53.2421 46.5229L52.9516 46.2324C52.2427 45.5234 52.1855 44.4067 52.673 43.5306C53.6299 41.8109 54.1762 39.833 54.1762 37.7293C54.1762 32.9104 51.3147 28.7499 47.2029 26.8501C46.5196 26.5344 45.8024 26.2808 45.0573 26.0974C44.3636 25.9268 43.6467 25.8164 42.9118 25.7727C42.6749 25.7587 42.4369 25.7495 42.1966 25.7495C38.5166 25.7495 35.2203 27.4188 33.0211 30.0381C31.9784 31.2802 31.1838 32.7357 30.7114 34.3293C30.3916 35.4079 30.217 36.5481 30.217 37.7291C30.217 38.0293 30.2319 38.3259 30.2537 38.6205C30.3082 39.3559 30.4265 40.0733 30.6082 40.766C30.8038 41.5117 31.0689 42.2296 31.3974 42.9116C33.3332 46.9295 37.4465 49.7089 42.1967 49.7089C43.957 49.7089 45.6291 49.3259 47.1357 48.6403C47.9841 48.2543 49.0046 48.3536 49.6636 49.0127L50.0894 49.4385L51.6301 50.9794L52.3016 51.6509C52.7205 52.0699 53.2697 52.2794 53.8186 52.2794C54.3677 52.2794 54.9169 52.0699 55.3357 51.6509C56.1738 50.8129 56.1738 49.4544 55.3358 48.6166ZM42.1967 45.418C39.9525 45.418 37.93 44.451 36.5232 42.9122C35.9485 42.2836 35.4772 41.5594 35.135 40.7667C34.845 40.0954 34.6493 39.3746 34.5617 38.6211C34.5277 38.3283 34.5084 38.0314 34.5084 37.7297C34.5084 33.4903 37.9574 30.0413 42.1968 30.0413C42.4379 30.0413 42.6762 30.0539 42.912 30.0756C43.6638 30.1455 44.3837 30.3242 45.0576 30.5956C45.8458 30.9127 46.5689 31.3564 47.2031 31.902C48.8434 33.3131 49.8852 35.4015 49.8852 37.7297C49.885 41.9688 46.4361 45.418 42.1967 45.418Z"
+          fill="url(#paint1_linear)"/>
+    <path d="M9.9936 25.6979C9.34217 25.6979 8.84618 25.4958 8.50566 25.0914C8.16514 24.6709 7.99487 24.1695 7.99487 23.5873V23.4903C7.99487 22.908 8.16514 22.4147 8.50566 22.0104C8.84618 21.5899 9.34217 21.3796 9.9936 21.3796C10.645 21.3796 11.141 21.5899 11.4815 22.0104C11.8221 22.4147 11.9923 22.908 11.9923 23.4903V23.5873C11.9923 24.1695 11.8221 24.6709 11.4815 25.0914C11.141 25.4958 10.645 25.6979 9.9936 25.6979ZM8.17254 10.8158V7.99487H11.8147V10.8158L10.6598 19.1612H9.32736L8.17254 10.8158Z"
+          fill="white"/>
+    <path d="M20.2729 25.6979C19.6215 25.6979 19.1255 25.4958 18.785 25.0914C18.4444 24.6709 18.2742 24.1695 18.2742 23.5873V23.4903C18.2742 22.908 18.4444 22.4147 18.785 22.0104C19.1255 21.5899 19.6215 21.3796 20.2729 21.3796C20.9243 21.3796 21.4203 21.5899 21.7608 22.0104C22.1014 22.4147 22.2716 22.908 22.2716 23.4903V23.5873C22.2716 24.1695 22.1014 24.6709 21.7608 25.0914C21.4203 25.4958 20.9243 25.6979 20.2729 25.6979ZM18.4518 10.8158V7.99487H22.094V10.8158L20.9391 19.1612H19.6067L18.4518 10.8158Z"
+          fill="white"/>
+    <defs>
+        <linearGradient id="paint0_linear" x1="5.222e-07" y1="41.3361" x2="51.982" y2="33.29"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="#7942EE"/>
+            <stop offset="1" stop-color="#FF4651"/>
+        </linearGradient>
+        <linearGradient id="paint1_linear" x1="53.0121" y1="51.5465" x2="60.9801" y2="30.2423"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="#7942EE"/>
+            <stop offset="1" stop-color="#FF4651"/>
+        </linearGradient>
+    </defs>
+</svg>
+
+<h2>Metrics</h2>
+
+<div>
+  <ul>
+    <li>528 number of properties</li>
+    <li>259 number of functions</li>
+    <li>77 number of classes</li>
+    <li>8 number of packages</li>
+    <li>65 number of kt files</li>
+  </ul>
+</div>
+
+
+<h2>Complexity Report</h2>
+
+<div>
+  <ul>
+    <li>5,307 lines of code (loc)</li>
+    <li>4,318 source lines of code (sloc)</li>
+    <li>2,851 logical lines of code (lloc)</li>
+    <li>293 comment lines of code (cloc)</li>
+    <li>489 cyclomatic complexity (mcc)</li>
+    <li>475 cognitive complexity</li>
+    <li>200 number of total code smells</li>
+    <li>6% comment source ratio</li>
+    <li>171 mcc per 1,000 lloc</li>
+    <li>70 code smells per 1,000 lloc</li>
+  </ul>
+</div>
+
+
+<h2>Findings</h2>
+<div>Total: 200
+  <h3>complexity: 15</h3>
+  <details id="ComplexCondition" open="open">
+    <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
+<a href="https://detekt.dev/docs/rules/complexity#complexcondition">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:86:16</span><span class="message">This condition is too complex (4). Defined complexity threshold for conditions is set to '4'</span>
+        <pre><code><span class="lineno">  83 </span>            val price = binding.etServicePrice.text.toString()
+<span class="lineno">  84 </span>            val availability = binding.etAvailability.text.toString()
+<span class="lineno">  85 </span>            val location = binding.actvLocation.selectedItem.toString()
+<span class="lineno">  86 </span>            if(<span class="error">serviceName.isEmpty()|| category.isEmpty() || description.isEmpty() || price.isEmpty()</span>){
+<span class="lineno">  87 </span>                Toast.makeText(this, &quot;Please fill all fields&quot;, Toast.LENGTH_SHORT).show()
+<span class="lineno">  88 </span>            }else{
+<span class="lineno">  89 </span>                val price = price.toDouble()
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="LongMethod" open="open">
+    <summary class="rule-container"><span class="rule">LongMethod: 4 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+<a href="https://detekt.dev/docs/rules/complexity#longmethod">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceFragment.kt:63:18</span><span class="message">The function onViewCreated is too long (80). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  60 </span>        return binding.root
+<span class="lineno">  61 </span>    }
+<span class="lineno">  62 </span>
+<span class="lineno">  63 </span>    override fun <span class="error">onViewCreated</span>(view: View, savedInstanceState: Bundle?) {
+<span class="lineno">  64 </span>        super.onViewCreated(view, savedInstanceState)
+<span class="lineno">  65 </span>
+<span class="lineno">  66 </span>        serviceID = arguments?.getString(&quot;serviceID&quot;)
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt:57:18</span><span class="message">The function onViewCreated is too long (77). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  54 </span>    private var servicesLoaded = emptyList&lt;Service&gt;()
+<span class="lineno">  55 </span>    private var filteredServices = emptyList&lt;Service&gt;()
+<span class="lineno">  56 </span>
+<span class="lineno">  57 </span>    override fun <span class="error">onViewCreated</span>(view: View, savedInstanceState: Bundle?) {
+<span class="lineno">  58 </span>        super.onViewCreated(view, savedInstanceState)
+<span class="lineno">  59 </span>        userViewModel.getAllUsers()
+<span class="lineno">  60 </span>        userViewModel.getAllServices()
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt:60:18</span><span class="message">The function onViewCreated is too long (82). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  57 </span>    }
+<span class="lineno">  58 </span>
+<span class="lineno">  59 </span>    @SuppressLint(&quot;SuspiciousIndentation&quot;)
+<span class="lineno">  60 </span>    override fun <span class="error">onViewCreated</span>(view: View, savedInstanceState: Bundle?) {
+<span class="lineno">  61 </span>        super.onViewCreated(view, savedInstanceState)
+<span class="lineno">  62 </span>        val chatId = arguments?.getString(&quot;chatID&quot;)
+<span class="lineno">  63 </span>        val serviceProviderId = arguments?.getString(&quot;serviceProviderId&quot;)
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileFragment.kt:41:18</span><span class="message">The function onViewCreated is too long (83). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  38 </span>        return binding.root
+<span class="lineno">  39 </span>    }
+<span class="lineno">  40 </span>
+<span class="lineno">  41 </span>    override fun <span class="error">onViewCreated</span>(view: View, savedInstanceState: Bundle?) {
+<span class="lineno">  42 </span>        super.onViewCreated(view, savedInstanceState)
+<span class="lineno">  43 </span>        val userRepo = UserRepository()
+<span class="lineno">  44 </span>        val serviceRepo = ServiceRepository()
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="LongParameterList" open="open">
+    <summary class="rule-container"><span class="rule">LongParameterList: 7 </span><span class="description">The more parameters a function has the more complex it is. Long parameter lists are often used to control complex algorithms and violate the Single Responsibility Principle. Prefer functions with short parameter lists.</span></summary>
+<a href="https://detekt.dev/docs/rules/complexity#longparameterlist">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:34:26</span><span class="message">The function createBookService(serviceId: String, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -&gt; Unit) has too many parameters. The current threshold is set to 6.</span>
+        <pre><code><span class="lineno">  31 </span>    /*this function takes the information like servicename,
+<span class="lineno">  32 </span>     date and time and saves it to the database
+<span class="lineno">  33 </span>     and the current userId of the user that is logged in using indexing and denormalization*/
+<span class="lineno">  34 </span>    fun createBookService<span class="error">(serviceId: String, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -&gt; Unit</span>
+<span class="lineno">  35 </span><span class="error">    )</span> {
+<span class="lineno">  36 </span>        val userId = auth.currentUser?.uid
+<span class="lineno">  37 </span>        if (userId == null) {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:74:33</span><span class="message">The function createBookingWithService(userId: String, serviceId: String, service: Service, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -&gt; Unit) has too many parameters. The current threshold is set to 6.</span>
+        <pre><code><span class="lineno">  71 </span>    }
+<span class="lineno">  72 </span>
+<span class="lineno">  73 </span>    /*this method does the actually saving to the database after getting the cached service*/
+<span class="lineno">  74 </span>    fun createBookingWithService<span class="error">(userId: String, serviceId: String ,service: Service, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -&gt; Unit</span>
+<span class="lineno">  75 </span><span class="error">    )</span> {
+<span class="lineno">  76 </span>
+<span class="lineno">  77 </span>        // Create the booking service ID
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ReviewRepository.kt:64:27</span><span class="message">The function saveReview(reviewId: String, userId: String, serviceId: String, reviewerName: String, stars: Int, reviewText: String, reviewDate: String, callback: (Boolean, String?, Review?) -&gt; Unit) has too many parameters. The current threshold is set to 6.</span>
+        <pre><code><span class="lineno">  61 </span>        }
+<span class="lineno">  62 </span>    }
+<span class="lineno">  63 </span>
+<span class="lineno">  64 </span>    private fun saveReview<span class="error">(</span>
+<span class="lineno">  65 </span><span class="error">        reviewId: String,</span>
+<span class="lineno">  66 </span><span class="error">        userId: String,</span>
+<span class="lineno">  67 </span><span class="error">        serviceId: String,</span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:26:19</span><span class="message">The function addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List&lt;String&gt;, availabileTime: List&lt;String&gt;, location: String, callback: (Boolean, String?, Service?) -&gt; Unit) has too many parameters. The current threshold is set to 6.</span>
+        <pre><code><span class="lineno">  23 </span>    private val CACHE_VALIDITY_MS = 5 * 60 * 1000L // //the service details expires after 5 minutes.
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    // Add a new service
+<span class="lineno">  26 </span>    fun addService<span class="error">(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List&lt;String&gt;, availabileTime: List&lt;String&gt;, location: String, callback: (Boolean, String?, Service?) -&gt; Unit</span>
+<span class="lineno">  27 </span><span class="error">    )</span> {
+<span class="lineno">  28 </span>        val currentUser = auth.currentUser
+<span class="lineno">  29 </span>        if (currentUser == null) {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:309:30</span><span class="message">The function reportServiceProvider(serviceProviderId: String, serviceProviderName: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String, callback: (Boolean, String?) -&gt; Unit) has too many parameters. The current threshold is set to 6.</span>
+        <pre><code><span class="lineno"> 306 </span>                }
+<span class="lineno"> 307 </span>            }
+<span class="lineno"> 308 </span>    }
+<span class="lineno"> 309 </span>    fun reportServiceProvider<span class="error">(serviceProviderId: String,serviceProviderName: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String, callback: (Boolean, String?) -&gt; Unit)</span>
+<span class="lineno"> 310 </span>    {
+<span class="lineno"> 311 </span>        val currentUser = auth.currentUser
+<span class="lineno"> 312 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:159:19</span><span class="message">The function addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: List&lt;String&gt;, availableTime: List&lt;String&gt;, location: String) has too many parameters. The current threshold is set to 6.</span>
+        <pre><code><span class="lineno"> 156 </span>    }
+<span class="lineno"> 157 </span>
+<span class="lineno"> 158 </span>    // Function to add a new service
+<span class="lineno"> 159 </span>    fun addService<span class="error">(serviceName: String, category: String, description: String, price: Double, image: String, availability: List&lt;String&gt;, availableTime : List&lt;String&gt;, location: String)</span> {
+<span class="lineno"> 160 </span>        serviceRepo.addService(serviceName, category, description, price, image, availability,availableTime, location) { success, message, service -&gt;
+<span class="lineno"> 161 </span>            // Update UI state based on the result
+<span class="lineno"> 162 </span>            serviceStatus.postValue(Pair(success, message))
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:415:30</span><span class="message">The function reportServiceProvider(serviceProviderId: String, serviceProviderName: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String) has too many parameters. The current threshold is set to 6.</span>
+        <pre><code><span class="lineno"> 412 </span>
+<span class="lineno"> 413 </span>
+<span class="lineno"> 414 </span>
+<span class="lineno"> 415 </span>    fun reportServiceProvider<span class="error">(serviceProviderId:String,serviceProviderName : String ,serviceId :String, reportedIssue : String,additionalNotes :String, images : String)</span>{
+<span class="lineno"> 416 </span>        serviceRepo.reportServiceProvider(serviceProviderId,serviceProviderName, serviceId, reportedIssue, additionalNotes, images) { success, message -&gt;
+<span class="lineno"> 417 </span>                if(success){
+<span class="lineno"> 418 </span>                    reviewStatus.postValue(Pair(true,message))
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="TooManyFunctions" open="open">
+    <summary class="rule-container"><span class="rule">TooManyFunctions: 3 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
+<a href="https://detekt.dev/docs/rules/complexity#toomanyfunctions">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:13:7</span><span class="message">Class 'BookServiceRepository' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  10 </span>import vcmsa.projects.wil_hustlehub.Model.Service
+<span class="lineno">  11 </span>import java.util.Date
+<span class="lineno">  12 </span>
+<span class="lineno">  13 </span>class <span class="error">BookServiceRepository</span> {
+<span class="lineno">  14 </span>
+<span class="lineno">  15 </span>    private val auth = FirebaseAuth.getInstance()
+<span class="lineno">  16 </span>    private val database = FirebaseDatabase.getInstance().reference
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:12:7</span><span class="message">Class 'ServiceRepository' with '14' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">   9 </span>import vcmsa.projects.wil_hustlehub.Model.Report
+<span class="lineno">  10 </span>import java.util.Date
+<span class="lineno">  11 </span>
+<span class="lineno">  12 </span>class <span class="error">ServiceRepository</span> {
+<span class="lineno">  13 </span>    private val auth = FirebaseAuth.getInstance()
+<span class="lineno">  14 </span>    private val database = FirebaseDatabase.getInstance().reference
+<span class="lineno">  15 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:27:7</span><span class="message">Class 'UserViewModel' with '32' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  24 </span>import javax.inject.Inject
+<span class="lineno">  25 </span>import kotlin.math.log
+<span class="lineno">  26 </span>
+<span class="lineno">  27 </span>class <span class="error">UserViewModel</span> @Inject constructor(
+<span class="lineno">  28 </span>    private val userRepo: UserRepository,
+<span class="lineno">  29 </span>    private val serviceRepo: ServiceRepository,
+<span class="lineno">  30 </span>    private val bookRepo: BookServiceRepository,
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>empty-blocks: 1</h3>
+  <details id="EmptyClassBlock" open="open">
+    <summary class="rule-container"><span class="rule">EmptyClassBlock: 1 </span><span class="description">Empty block of code detected. As they serve no purpose they should be removed.</span></summary>
+<a href="https://detekt.dev/docs/rules/empty-blocks#emptyclassblock">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/navbar.kt:3:14</span><span class="message">The class or object navbar is empty.</span>
+        <pre><code><span class="lineno">   1 </span>package vcmsa.projects.wil_hustlehub.ViewModel
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>class navbar <span class="error">{</span>
+<span class="lineno">   4 </span><span class="error">}</span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>exceptions: 9</h3>
+  <details id="SwallowedException" open="open">
+    <summary class="rule-container"><span class="rule">SwallowedException: 3 </span><span class="description">The caught exception is swallowed. The original exception could be lost.</span></summary>
+<a href="https://detekt.dev/docs/rules/exceptions#swallowedexception">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ReviewRepository.kt:112:34</span><span class="message">The caught exception is swallowed. The original exception could be lost.</span>
+        <pre><code><span class="lineno"> 109 </span>                    val sortedReviews = reviews.sortedByDescending {
+<span class="lineno"> 110 </span>                        try {
+<span class="lineno"> 111 </span>                            dateFormat.parse(it.reviewDate)?.time ?: 0L
+<span class="lineno"> 112 </span>                        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 113 </span>                            0L
+<span class="lineno"> 114 </span>                        }
+<span class="lineno"> 115 </span>                    }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:155:17</span><span class="message">The caught exception is swallowed. The original exception could be lost.</span>
+        <pre><code><span class="lineno"> 152 </span>    private fun openCameraOrGallery() {
+<span class="lineno"> 153 </span>        val photoFile : File? = try{
+<span class="lineno"> 154 </span>            createImageFile()
+<span class="lineno"> 155 </span>        }catch (<span class="error">e: IOException</span>) {
+<span class="lineno"> 156 </span>            Toast.makeText(this, &quot;Failed to create image file&quot;, Toast.LENGTH_SHORT).show()
+<span class="lineno"> 157 </span>            null
+<span class="lineno"> 158 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReportUserActvity.kt:161:17</span><span class="message">The caught exception is swallowed. The original exception could be lost.</span>
+        <pre><code><span class="lineno"> 158 </span>    private fun openCameraOrGallery() {
+<span class="lineno"> 159 </span>        val photoFile : File? = try{
+<span class="lineno"> 160 </span>            createImageFile()
+<span class="lineno"> 161 </span>        }catch (<span class="error">e: IOException</span>) {
+<span class="lineno"> 162 </span>            Toast.makeText(this, &quot;Failed to create image file&quot;, Toast.LENGTH_SHORT).show()
+<span class="lineno"> 163 </span>            null
+<span class="lineno"> 164 </span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="TooGenericExceptionCaught" open="open">
+    <summary class="rule-container"><span class="rule">TooGenericExceptionCaught: 6 </span><span class="description">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span></summary>
+<a href="https://detekt.dev/docs/rules/exceptions#toogenericexceptioncaught">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt:121:18</span><span class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+        <pre><code><span class="lineno"> 118 </span>                val sha1 = Base64.encodeToString(md.digest(), Base64.NO_WRAP)
+<span class="lineno"> 119 </span>                Log.d(&quot;GoogleSignInSHA&quot;, &quot;SHA-1: $sha1&quot;)
+<span class="lineno"> 120 </span>            }
+<span class="lineno"> 121 </span>        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 122 </span>            Log.e(&quot;GoogleSignInSHA&quot;, &quot;Error retrieving SHA-1&quot;, e)
+<span class="lineno"> 123 </span>        }
+<span class="lineno"> 124 </span>    }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ReviewRepository.kt:112:34</span><span class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+        <pre><code><span class="lineno"> 109 </span>                    val sortedReviews = reviews.sortedByDescending {
+<span class="lineno"> 110 </span>                        try {
+<span class="lineno"> 111 </span>                            dateFormat.parse(it.reviewDate)?.time ?: 0L
+<span class="lineno"> 112 </span>                        } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 113 </span>                            0L
+<span class="lineno"> 114 </span>                        }
+<span class="lineno"> 115 </span>                    }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceFragment.kt:161:30</span><span class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+        <pre><code><span class="lineno"> 158 </span>                        )
+<span class="lineno"> 159 </span>                        val intent = Intent(requireContext(), MainActivity::class.java)
+<span class="lineno"> 160 </span>                        startActivity(intent)
+<span class="lineno"> 161 </span>                    } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 162 </span>                        Log.e(&quot;BookService&quot;, &quot;Failed to send notification&quot;, e)
+<span class="lineno"> 163 </span>                    }
+<span class="lineno"> 164 </span>                } else {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt:121:25</span><span class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+        <pre><code><span class="lineno"> 118 </span>                            )
+<span class="lineno"> 119 </span>                        }
+<span class="lineno"> 120 </span>                    }
+<span class="lineno"> 121 </span>                }catch (<span class="error">e : Exception</span>){
+<span class="lineno"> 122 </span>                    Log.d(&quot;push notification failes&quot;, &quot;$e&quot;)
+<span class="lineno"> 123 </span>                }
+<span class="lineno"> 124 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt:103:22</span><span class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+        <pre><code><span class="lineno"> 100 </span>                    Log.d(&quot;--account email&quot;, account.email.toString())
+<span class="lineno"> 101 </span>                    userViewModel.googleLogin(idToken)
+<span class="lineno"> 102 </span>                }
+<span class="lineno"> 103 </span>            } catch (<span class="error">e: Exception</span>) {
+<span class="lineno"> 104 </span>                Toast.makeText(requireContext(), &quot;Google sign-in failed: ${e.message}&quot;, Toast.LENGTH_SHORT).show()
+<span class="lineno"> 105 </span>            }
+<span class="lineno"> 106 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileFragment.kt:129:16</span><span class="message">The caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
+        <pre><code><span class="lineno"> 126 </span>                    }
+<span class="lineno"> 127 </span>                }
+<span class="lineno"> 128 </span>            }
+<span class="lineno"> 129 </span>        }catch(<span class="error">e : Exception</span>){
+<span class="lineno"> 130 </span>            Log.d(&quot;ProfiileFragment- Service Provider error&quot;, e.message.toString())
+<span class="lineno"> 131 </span>        }
+<span class="lineno"> 132 </span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>naming: 72</h3>
+  <details id="ClassNaming" open="open">
+    <summary class="rule-container"><span class="rule">ClassNaming: 2 </span><span class="description">A class or object name should fit the naming pattern defined in the projects configuration.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#classnaming">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/navbar.kt:3:7</span><span class="message">Class and Object names should match the pattern: [A-Z][a-zA-Z0-9]*</span>
+        <pre><code><span class="lineno">   1 </span>package vcmsa.projects.wil_hustlehub.ViewModel
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>class <span class="error">navbar</span> {
+<span class="lineno">   4 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/admin_portal.kt:12:7</span><span class="message">Class and Object names should match the pattern: [A-Z][a-zA-Z0-9]*</span>
+        <pre><code><span class="lineno">   9 </span>import vcmsa.projects.wil_hustlehub.R
+<span class="lineno">  10 </span>import com.google.android.material.card.MaterialCardView
+<span class="lineno">  11 </span>
+<span class="lineno">  12 </span>class <span class="error">admin_portal</span> : AppCompatActivity() {
+<span class="lineno">  13 </span>    override fun onCreate(savedInstanceState: Bundle?) {
+<span class="lineno">  14 </span>        super.onCreate(savedInstanceState)
+<span class="lineno">  15 </span>        enableEdgeToEdge()
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="InvalidPackageDeclaration" open="open">
+    <summary class="rule-container"><span class="rule">InvalidPackageDeclaration: 1 </span><span class="description">Kotlin source files should be stored in the directory corresponding to its package statement.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#invalidpackagedeclaration">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ReportedUserAdapter.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapter</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.View
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="MatchingDeclarationName" open="open">
+    <summary class="rule-container"><span class="rule">MatchingDeclarationName: 1 </span><span class="description">If a source file contains only a single non-private top-level class or object, the file name should reflect the case-sensitive name plus the .kt extension.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#matchingdeclarationname">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ReportedUserAdapter.kt:14:7</span><span class="message">The file name 'ReportedUserAdapter' does not match the name of the single top-level declaration 'ReportedUsersAdapter'.</span>
+        <pre><code><span class="lineno">  11 </span>import vcmsa.projects.wil_hustlehub.Model.Report
+<span class="lineno">  12 </span>import vcmsa.projects.wil_hustlehub.R
+<span class="lineno">  13 </span>
+<span class="lineno">  14 </span>class <span class="error">ReportedUsersAdapter</span>(
+<span class="lineno">  15 </span>    private var reports: MutableList&lt;Report&gt;,
+<span class="lineno">  16 </span>    private val onSuspendClick: (Report, Int) -&gt; Unit,
+<span class="lineno">  17 </span>    private val onDeleteClick: (Report, Int) -&gt; Unit
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="PackageNaming" open="open">
+    <summary class="rule-container"><span class="rule">PackageNaming: 65 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#packagenaming">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/BrowseServiceAdapter.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.View
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ChatAdapter.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.ViewGroup
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ChatListAdapter.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.View
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/MessageAdapter.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>    import android.view.LayoutInflater
+<span class="lineno">   4 </span>    import android.view.ViewGroup
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ProfileServiceAdapter.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.View
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ProviderBookingsAdapter.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.ViewGroup
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ReportedUserAdapter.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapter</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.View
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ServiceAdapter.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.View
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/UserBookingsAdapter.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.View
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.Manifest
+<span class="lineno">   4 </span>import android.content.pm.PackageManager
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/BookService.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Model</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>data class BookService(
+<span class="lineno">   4 </span>    val bookingId: String = &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/BookingActionResult.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Model</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>data class BookingActionResult (
+<span class="lineno">   4 </span>    val success : Boolean,
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Chat.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Model</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>
+<span class="lineno">   4 </span>    data class Chat(
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Message.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Model</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>data class Message(
+<span class="lineno">   4 </span>    val messageId: String = &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Report.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Model</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>data class Report(
+<span class="lineno">   4 </span>    val reportId: String = &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Review.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Model</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>data class Review(
+<span class="lineno">   4 </span>    val reviewId: String = &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/Service.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Model</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.net.Uri
+<span class="lineno">   4 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/User.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Model</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>data class User (
+<span class="lineno">   4 </span>    var userID: String = &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Network/PushApiClient.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Network</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.util.Log
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Repository</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.util.Log
+<span class="lineno">   4 </span>import com.google.firebase.auth.FirebaseAuth
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ChatRepository.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Repository</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.util.Log
+<span class="lineno">   4 </span>import com.google.firebase.auth.FirebaseAuth
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ReviewRepository.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Repository</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.google.firebase.auth.FirebaseAuth
+<span class="lineno">   4 </span>import com.google.firebase.database.DataSnapshot
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Repository</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.google.firebase.auth.FirebaseAuth
+<span class="lineno">   4 </span>import com.google.firebase.database.DataSnapshot
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.Repository</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.google.firebase.auth.FirebaseAuth
+<span class="lineno">   4 </span>import com.google.firebase.auth.FirebaseAuthException
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/FirebaseMessagingService.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.ViewModel</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.Manifest
+<span class="lineno">   4 </span>import android.R
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.ViewModel</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.net.Uri
+<span class="lineno">   4 </span>import android.util.Log
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/ViewModelFactory.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.ViewModel</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import androidx.lifecycle.ViewModel
+<span class="lineno">   4 </span>import androidx.lifecycle.ViewModelProvider
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/navbar.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.ViewModel</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>class navbar {
+<span class="lineno">   4 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AboutUsActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AboutUsFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import android.view.LayoutInflater
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AccountActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AccountFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AddReviewFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import android.util.Log
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.R
+<span class="lineno">   4 </span>import android.content.Context
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.R
+<span class="lineno">   4 </span>import android.content.Intent
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/CategoriesActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/CategoriesFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import android.view.LayoutInflater
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.annotation.SuppressLint
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatListFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatRoomActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import android.widget.Toast
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ContactActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ContactFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import android.view.LayoutInflater
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/HomeActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/HomeFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.content.Intent
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.content.Intent
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookings.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>
+<span class="lineno">   4 </span>import android.content.Intent
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import android.view.LayoutInflater
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.pm.PackageManager
+<span class="lineno">   4 </span>import android.os.Build
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReportUserActvity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.Manifest
+<span class="lineno">   4 </span>import android.content.Intent
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReviewsActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.activity.enableEdgeToEdge
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReviewsFragment.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.fragment.app.Fragment
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ServiceManagementActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import android.widget.Toast
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserBookingsActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserManagementActivity.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>import android.os.Bundle
+<span class="lineno">   3 </span>import android.widget.Toast
+<span class="lineno">   4 </span>import androidx.activity.viewModels
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/admin_portal.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package vcmsa.projects.wil_hustlehub.View</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="VariableNaming" open="open">
+    <summary class="rule-container"><span class="rule">VariableNaming: 3 </span><span class="description">Variable names should follow the naming convention set in the projects configuration.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#variablenaming">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:23:17</span><span class="message">Private variable names should match the pattern: (_)?[a-z][A-Za-z0-9]*</span>
+        <pre><code><span class="lineno">  20 </span>    // //created a cache to temporarily store service details instead of retrieving them from firebase every time.
+<span class="lineno">  21 </span>    private var servicesCache: List&lt;Service&gt;? = null
+<span class="lineno">  22 </span>    private var cacheTimestamp: Long = 0 //tracks when the cache was last updated.
+<span class="lineno">  23 </span>    private val <span class="error">CACHE_VALIDITY_MS</span> = 5 * 60 * 1000L // //the service details expires after 5 minutes.
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    // Add a new service
+<span class="lineno">  26 </span>    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List&lt;String&gt;, availabileTime: List&lt;String&gt;, location: String, callback: (Boolean, String?, Service?) -&gt; Unit
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt:29:17</span><span class="message">Private variable names should match the pattern: (_)?[a-z][A-Za-z0-9]*</span>
+        <pre><code><span class="lineno">  26 </span>    private val binding get() = _binding!!
+<span class="lineno">  27 </span>
+<span class="lineno">  28 </span>    private lateinit var googleSignInClient: GoogleSignInClient
+<span class="lineno">  29 </span>    private val <span class="error">RC_SIGN_IN</span> = 1001
+<span class="lineno">  30 </span>
+<span class="lineno">  31 </span>    private val userViewModel: UserViewModel by viewModels {
+<span class="lineno">  32 </span>        ViewModelFactory(
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:47:17</span><span class="message">Private variable names should match the pattern: (_)?[a-z][A-Za-z0-9]*</span>
+        <pre><code><span class="lineno">  44 </span>    }
+<span class="lineno">  45 </span>    private var imageString : String = &quot;&quot;
+<span class="lineno">  46 </span>    private var photoUri : Uri? = null
+<span class="lineno">  47 </span>    private val <span class="error">CAMERA_REQUEST_CODE</span> = 100
+<span class="lineno">  48 </span>    private val requestPermissionsLauncher =
+<span class="lineno">  49 </span>        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions -&gt;
+<span class="lineno">  50 </span>            val denied = permissions.filter { !it.value }.keys
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>style: 103</h3>
+  <details id="ForbiddenComment" open="open">
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 2 </span><span class="description">Flags a forbidden comment.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#forbiddencomment">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt:49:45</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  46 </span>    private val userViewModel: UserViewModel by viewModels { viewModelFactory }
+<span class="lineno">  47 </span>    private var currentUserName : String = &quot;John Doe&quot;
+<span class="lineno">  48 </span>    private lateinit var chatAdapter: ChatAdapter
+<span class="lineno">  49 </span>    private var currentUserId : String =&quot;&quot;  <span class="error">// TODO: Replace with logged-in userId</span>
+<span class="lineno">  50 </span>
+<span class="lineno">  51 </span>    override fun onCreateView(
+<span class="lineno">  52 </span>        inflater: LayoutInflater, container: ViewGroup?,
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt:98:21</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  95 </span>                val account = task.getResult(Exception::class.java)
+<span class="lineno">  96 </span>                val idToken = account?.idToken
+<span class="lineno">  97 </span>                if (idToken != null) {
+<span class="lineno">  98 </span>                    <span class="error">// TODO: handle Firebase Auth with idToken</span>
+<span class="lineno">  99 </span>                    Log.d(&quot;GoogleSignIn&quot;, &quot;ID Token: $idToken&quot;)
+<span class="lineno"> 100 </span>                    Log.d(&quot;--account email&quot;, account.email.toString())
+<span class="lineno"> 101 </span>                    userViewModel.googleLogin(idToken)
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="MagicNumber" open="open">
+    <summary class="rule-container"><span class="rule">MagicNumber: 11 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#magicnumber">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:29:31</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  26 </span>    private val serviceCache = mutableMapOf&lt;String, Service&gt;()
+<span class="lineno">  27 </span>
+<span class="lineno">  28 </span>    //the service details expires after 5 minutes.
+<span class="lineno">  29 </span>    private val cacheExpiry = <span class="error">5</span> * 60 * 1000L
+<span class="lineno">  30 </span>
+<span class="lineno">  31 </span>    /*this function takes the information like servicename,
+<span class="lineno">  32 </span>     date and time and saves it to the database
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:29:35</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  26 </span>    private val serviceCache = mutableMapOf&lt;String, Service&gt;()
+<span class="lineno">  27 </span>
+<span class="lineno">  28 </span>    //the service details expires after 5 minutes.
+<span class="lineno">  29 </span>    private val cacheExpiry = 5 * <span class="error">60</span> * 1000L
+<span class="lineno">  30 </span>
+<span class="lineno">  31 </span>    /*this function takes the information like servicename,
+<span class="lineno">  32 </span>     date and time and saves it to the database
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:29:40</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  26 </span>    private val serviceCache = mutableMapOf&lt;String, Service&gt;()
+<span class="lineno">  27 </span>
+<span class="lineno">  28 </span>    //the service details expires after 5 minutes.
+<span class="lineno">  29 </span>    private val cacheExpiry = 5 * 60 * <span class="error">1000L</span>
+<span class="lineno">  30 </span>
+<span class="lineno">  31 </span>    /*this function takes the information like servicename,
+<span class="lineno">  32 </span>     date and time and saves it to the database
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:23:37</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  20 </span>    // //created a cache to temporarily store service details instead of retrieving them from firebase every time.
+<span class="lineno">  21 </span>    private var servicesCache: List&lt;Service&gt;? = null
+<span class="lineno">  22 </span>    private var cacheTimestamp: Long = 0 //tracks when the cache was last updated.
+<span class="lineno">  23 </span>    private val CACHE_VALIDITY_MS = <span class="error">5</span> * 60 * 1000L // //the service details expires after 5 minutes.
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    // Add a new service
+<span class="lineno">  26 </span>    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List&lt;String&gt;, availabileTime: List&lt;String&gt;, location: String, callback: (Boolean, String?, Service?) -&gt; Unit
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:23:41</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  20 </span>    // //created a cache to temporarily store service details instead of retrieving them from firebase every time.
+<span class="lineno">  21 </span>    private var servicesCache: List&lt;Service&gt;? = null
+<span class="lineno">  22 </span>    private var cacheTimestamp: Long = 0 //tracks when the cache was last updated.
+<span class="lineno">  23 </span>    private val CACHE_VALIDITY_MS = 5 * <span class="error">60</span> * 1000L // //the service details expires after 5 minutes.
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    // Add a new service
+<span class="lineno">  26 </span>    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List&lt;String&gt;, availabileTime: List&lt;String&gt;, location: String, callback: (Boolean, String?, Service?) -&gt; Unit
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:23:46</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  20 </span>    // //created a cache to temporarily store service details instead of retrieving them from firebase every time.
+<span class="lineno">  21 </span>    private var servicesCache: List&lt;Service&gt;? = null
+<span class="lineno">  22 </span>    private var cacheTimestamp: Long = 0 //tracks when the cache was last updated.
+<span class="lineno">  23 </span>    private val CACHE_VALIDITY_MS = 5 * 60 * <span class="error">1000L</span> // //the service details expires after 5 minutes.
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    // Add a new service
+<span class="lineno">  26 </span>    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List&lt;String&gt;, availabileTime: List&lt;String&gt;, location: String, callback: (Boolean, String?, Service?) -&gt; Unit
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt:104:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 101 </span>            if(binding.filterContainer.isVisible){
+<span class="lineno"> 102 </span>                binding.filterContainer.animate()
+<span class="lineno"> 103 </span>                    .alpha(0f)
+<span class="lineno"> 104 </span>                    .setDuration(<span class="error">200</span>)
+<span class="lineno"> 105 </span>                    .withEndAction { binding.filterContainer.isVisible = false }
+<span class="lineno"> 106 </span>                    .start()
+<span class="lineno"> 107 </span>                binding.toggleFilterBtn.text = &quot;Show Filters&quot;
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt:116:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 113 </span>            if(binding.filterContainer.isVisible){
+<span class="lineno"> 114 </span>                binding.filterContainer.animate()
+<span class="lineno"> 115 </span>                    .alpha(0f)
+<span class="lineno"> 116 </span>                    .setDuration(<span class="error">200</span>)
+<span class="lineno"> 117 </span>                    .withEndAction { binding.filterContainer.isVisible = false }
+<span class="lineno"> 118 </span>                    .start()
+<span class="lineno"> 119 </span>                    binding.toggleFilterBtn.text = &quot;Show Filters&quot;
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt:125:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 122 </span>                binding.filterContainer.isVisible = true
+<span class="lineno"> 123 </span>                binding.filterContainer.animate()
+<span class="lineno"> 124 </span>                    .alpha(1f)
+<span class="lineno"> 125 </span>                    .setDuration(<span class="error">200</span>)
+<span class="lineno"> 126 </span>                    .start()
+<span class="lineno"> 127 </span>                binding.toggleFilterBtn.text =&quot;Hide Filters&quot;
+<span class="lineno"> 128 </span>            }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt:29:30</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  26 </span>    private val binding get() = _binding!!
+<span class="lineno">  27 </span>
+<span class="lineno">  28 </span>    private lateinit var googleSignInClient: GoogleSignInClient
+<span class="lineno">  29 </span>    private val RC_SIGN_IN = <span class="error">1001</span>
+<span class="lineno">  30 </span>
+<span class="lineno">  31 </span>    private val userViewModel: UserViewModel by viewModels {
+<span class="lineno">  32 </span>        ViewModelFactory(
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:47:39</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  44 </span>    }
+<span class="lineno">  45 </span>    private var imageString : String = &quot;&quot;
+<span class="lineno">  46 </span>    private var photoUri : Uri? = null
+<span class="lineno">  47 </span>    private val CAMERA_REQUEST_CODE = <span class="error">100</span>
+<span class="lineno">  48 </span>    private val requestPermissionsLauncher =
+<span class="lineno">  49 </span>        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions -&gt;
+<span class="lineno">  50 </span>            val denied = permissions.filter { !it.value }.keys
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="MaxLineLength" open="open">
+    <summary class="rule-container"><span class="rule">MaxLineLength: 38 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#maxlinelength">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt:70:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  67 </span>
+<span class="lineno">  68 </span>        // Notifications (Android 13+)
+<span class="lineno">  69 </span>        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.TIRAMISU &amp;&amp;
+<span class="lineno">  70 </span>            <span class="error">ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED</span>) {
+<span class="lineno">  71 </span>            permissionsToRequest.add(Manifest.permission.POST_NOTIFICATIONS)
+<span class="lineno">  72 </span>        }
+<span class="lineno">  73 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt:82:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  79 </span>        // Storage / Media
+<span class="lineno">  80 </span>        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.TIRAMISU) {
+<span class="lineno">  81 </span>            // Android 13+ → granular media access
+<span class="lineno">  82 </span>            <span class="error">if</span> (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+<span class="lineno">  83 </span>                permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
+<span class="lineno">  84 </span>            }
+<span class="lineno">  85 </span>            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) != PackageManager.PERMISSION_GRANTED) {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt:85:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  82 </span>            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+<span class="lineno">  83 </span>                permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
+<span class="lineno">  84 </span>            }
+<span class="lineno">  85 </span>            <span class="error">if</span> (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) != PackageManager.PERMISSION_GRANTED) {
+<span class="lineno">  86 </span>                permissionsToRequest.add(Manifest.permission.READ_MEDIA_VIDEO)
+<span class="lineno">  87 </span>            }
+<span class="lineno">  88 </span>        } else {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt:90:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  87 </span>            }
+<span class="lineno">  88 </span>        } else {
+<span class="lineno">  89 </span>            // Pre-Android 13 → legacy storage
+<span class="lineno">  90 </span>            <span class="error">if</span> (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+<span class="lineno">  91 </span>                permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+<span class="lineno">  92 </span>            }
+<span class="lineno">  93 </span>            if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.Q &amp;&amp;
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt:94:17</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  91 </span>                permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+<span class="lineno">  92 </span>            }
+<span class="lineno">  93 </span>            if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.Q &amp;&amp;
+<span class="lineno">  94 </span>                <span class="error">ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED</span>) {
+<span class="lineno">  95 </span>                permissionsToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+<span class="lineno">  96 </span>            }
+<span class="lineno">  97 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/MainActivity.kt:186:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 183 </span>//            bottomNav.visibility = View.VISIBLE
+<span class="lineno"> 184 </span>//        }
+<span class="lineno"> 185 </span>        binding.bottomNavigation.visibility =
+<span class="lineno"> 186 </span>            <span class="error">if (fragment is LoginFragment || fragment is RegisterFragment || fragment is AccountFragment) View.GONE else View.VISIBLE</span>
+<span class="lineno"> 187 </span>    }
+<span class="lineno"> 188 </span>}
+<span class="lineno"> 189 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:34:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  31 </span>    /*this function takes the information like servicename,
+<span class="lineno">  32 </span>     date and time and saves it to the database
+<span class="lineno">  33 </span>     and the current userId of the user that is logged in using indexing and denormalization*/
+<span class="lineno">  34 </span>    <span class="error">fun</span> createBookService(serviceId: String, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -&gt; Unit
+<span class="lineno">  35 </span>    ) {
+<span class="lineno">  36 </span>        val userId = auth.currentUser?.uid
+<span class="lineno">  37 </span>        if (userId == null) {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:74:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  71 </span>    }
+<span class="lineno">  72 </span>
+<span class="lineno">  73 </span>    /*this method does the actually saving to the database after getting the cached service*/
+<span class="lineno">  74 </span>    <span class="error">fun</span> createBookingWithService(userId: String, serviceId: String ,service: Service, date: String, time: String, location: String, message: String, callback: (Boolean, String?, BookService?) -&gt; Unit
+<span class="lineno">  75 </span>    ) {
+<span class="lineno">  76 </span>
+<span class="lineno">  77 </span>        // Create the booking service ID
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:113:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 110 </span>        val updates = hashMapOf&lt;String, Any&gt;(
+<span class="lineno"> 111 </span>            &quot;/Book_Service/$bookServiceId&quot; to bookService,
+<span class="lineno"> 112 </span>            // Optional: Create index for service owner's bookings
+<span class="lineno"> 113 </span>            <span class="error">// &quot;ServiceOwnerBookings&quot; creates an index inside the database to store the bookings that belong to a specific service provider</span>
+<span class="lineno"> 114 </span>            &quot;/ServiceProviderBookings/${service.userId}/$bookServiceId&quot; to true
+<span class="lineno"> 115 </span>        )
+<span class="lineno"> 116 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:130:168</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 127 </span>   }
+<span class="lineno"> 128 </span>
+<span class="lineno"> 129 </span>    /* with this function we are getting all the bookings that are inside the database
+<span class="lineno"> 130 </span>     that belong to the user that is logged in and returns then as a list, using indexing and limiting the amount of booked services that is shown from the database */<span class="error"></span>
+<span class="lineno"> 131 </span><span class="error">    fun getUserBookServices(limit: Int = 50, callback: (Boolean, String?, List&lt;BookService&gt;?) -&gt; Unit) {</span>
+<span class="lineno"> 132 </span><span class="error">        val userId = auth.currentUser?.uid</span>
+<span class="lineno"> 133 </span><span class="error">        if (userId == null) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:160:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 157 </span>    /* this function is for the admin portal where it gets all the bookings that are saved inside
+<span class="lineno"> 158 </span>     the databaseThis function retrieves every single booking in the entire database from all users,
+<span class="lineno"> 159 </span>     */
+<span class="lineno"> 160 </span>    <span class="error">fun</span> getAllBookServices(limit: Int = 100, startAfter: String? = null, callback: (Boolean, String?, List&lt;BookService&gt;?) -&gt; Unit) {
+<span class="lineno"> 161 </span>        var query = database.child(&quot;Book_Service&quot;)
+<span class="lineno"> 162 </span>            .orderByChild(&quot;createdDate&quot;)
+<span class="lineno"> 163 </span>            .limitToFirst(limit)
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:204:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 201 </span>    }
+<span class="lineno"> 202 </span>
+<span class="lineno"> 203 </span>
+<span class="lineno"> 204 </span>    <span class="error">//  getting all bookings for users that are service providers, optimized the code by using the denormalized serviceProviderId</span>
+<span class="lineno"> 205 </span>    fun getBookingsForMyServices(callback: (Boolean, String?, List&lt;BookService&gt;?) -&gt; Unit) {
+<span class="lineno"> 206 </span>        val userId = auth.currentUser?.uid
+<span class="lineno"> 207 </span>        if (userId == null) {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:264:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 261 </span>    }
+<span class="lineno"> 262 </span>
+<span class="lineno"> 263 </span>
+<span class="lineno"> 264 </span>    <span class="error">/* to confirm a booking this can only be done by the person who registered/owns the service, by using the serviceProviderId for validation */</span>
+<span class="lineno"> 265 </span>    fun confirmBooking(bookServiceId: String, callback: (Boolean, String?, BookService?) -&gt; Unit) {
+<span class="lineno"> 266 </span>        val userId = auth.currentUser?.uid
+<span class="lineno"> 267 </span>        if (userId == null) {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:26:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  23 </span>    private val CACHE_VALIDITY_MS = 5 * 60 * 1000L // //the service details expires after 5 minutes.
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    // Add a new service
+<span class="lineno">  26 </span>    <span class="error">fun</span> addService(serviceName: String, category: String, description: String, price: Double, image: String, availabileDay: List&lt;String&gt;, availabileTime: List&lt;String&gt;, location: String, callback: (Boolean, String?, Service?) -&gt; Unit
+<span class="lineno">  27 </span>    ) {
+<span class="lineno">  28 </span>        val currentUser = auth.currentUser
+<span class="lineno">  29 </span>        if (currentUser == null) {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:181:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 178 </span>
+<span class="lineno"> 179 </span>    // retrieving a limited number of services at a time instead of loading all services all at once
+<span class="lineno"> 180 </span>    //last key is used to fetch the next page
+<span class="lineno"> 181 </span>    <span class="error">fun</span> getServicesPaginated(lastKey: String? = null, pageSize: Int = 20, callback: (Boolean, String?, List&lt;Service&gt;?, String?) -&gt; Unit
+<span class="lineno"> 182 </span>    ) {
+<span class="lineno"> 183 </span>
+<span class="lineno"> 184 </span>        var query = database.child(&quot;Services&quot;)
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:309:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 306 </span>                }
+<span class="lineno"> 307 </span>            }
+<span class="lineno"> 308 </span>    }
+<span class="lineno"> 309 </span>    <span class="error">fun</span> reportServiceProvider(serviceProviderId: String,serviceProviderName: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String, callback: (Boolean, String?) -&gt; Unit)
+<span class="lineno"> 310 </span>    {
+<span class="lineno"> 311 </span>        val currentUser = auth.currentUser
+<span class="lineno"> 312 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:380:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 377 </span>        cacheTimestamp = 0
+<span class="lineno"> 378 </span>    }
+<span class="lineno"> 379 </span>
+<span class="lineno"> 380 </span>    <span class="error">// stops the services from being temporarily stored, it should be called in viewmodel when repository is no longer needed.</span>
+<span class="lineno"> 381 </span>    fun cleanup() {
+<span class="lineno"> 382 </span>        database.child(&quot;Services&quot;).keepSynced(false)
+<span class="lineno"> 383 </span>        invalidateCache()
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:159:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 156 </span>    }
+<span class="lineno"> 157 </span>
+<span class="lineno"> 158 </span>    // Function to add a new service
+<span class="lineno"> 159 </span>    <span class="error">fun</span> addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: List&lt;String&gt;, availableTime : List&lt;String&gt;, location: String) {
+<span class="lineno"> 160 </span>        serviceRepo.addService(serviceName, category, description, price, image, availability,availableTime, location) { success, message, service -&gt;
+<span class="lineno"> 161 </span>            // Update UI state based on the result
+<span class="lineno"> 162 </span>            serviceStatus.postValue(Pair(success, message))
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:160:9</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 157 </span>
+<span class="lineno"> 158 </span>    // Function to add a new service
+<span class="lineno"> 159 </span>    fun addService(serviceName: String, category: String, description: String, price: Double, image: String, availability: List&lt;String&gt;, availableTime : List&lt;String&gt;, location: String) {
+<span class="lineno"> 160 </span>        <span class="error">serviceRepo</span>.addService(serviceName, category, description, price, image, availability,availableTime, location) { success, message, service -&gt;
+<span class="lineno"> 161 </span>            // Update UI state based on the result
+<span class="lineno"> 162 </span>            serviceStatus.postValue(Pair(success, message))
+<span class="lineno"> 163 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:300:17</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 297 </span>    fun updateBooking(bookService : BookService){
+<span class="lineno"> 298 </span>        bookRepo.updateBooking(bookService){success, message, bookService -&gt;
+<span class="lineno"> 299 </span>            Log.d(&quot;--checking&quot;,&quot;${bookService?.serviceName}&quot;)
+<span class="lineno"> 300 </span>                <span class="error">bookingActionStatus.postValue(BookingActionResult(success,message,bookService?.bookingId ?: &quot;&quot;,bookService?.status!!))</span>
+<span class="lineno"> 301 </span>        }
+<span class="lineno"> 302 </span>    }
+<span class="lineno"> 303 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:304:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 301 </span>        }
+<span class="lineno"> 302 </span>    }
+<span class="lineno"> 303 </span>
+<span class="lineno"> 304 </span><span class="error">//    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String) {</span>
+<span class="lineno"> 305 </span>//        serviceRepo.reportServiceProvider(serviceProviderId, serviceId, reportedIssue, additionalNotes, images) { success, message -&gt;
+<span class="lineno"> 306 </span>//            serviceStatus.postValue(Pair(success, message))
+<span class="lineno"> 307 </span>//        }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:305:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 302 </span>    }
+<span class="lineno"> 303 </span>
+<span class="lineno"> 304 </span>//    fun reportServiceProvider(serviceProviderId: String, serviceId: String, reportedIssue: String, additionalNotes: String, images: String) {
+<span class="lineno"> 305 </span><span class="error">//        serviceRepo.reportServiceProvider(serviceProviderId, serviceId, reportedIssue, additionalNotes, images) { success, message -&gt;</span>
+<span class="lineno"> 306 </span>//            serviceStatus.postValue(Pair(success, message))
+<span class="lineno"> 307 </span>//        }
+<span class="lineno"> 308 </span>//
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:415:5</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 412 </span>
+<span class="lineno"> 413 </span>
+<span class="lineno"> 414 </span>
+<span class="lineno"> 415 </span>    <span class="error">fun</span> reportServiceProvider(serviceProviderId:String,serviceProviderName : String ,serviceId :String, reportedIssue : String,additionalNotes :String, images : String){
+<span class="lineno"> 416 </span>        serviceRepo.reportServiceProvider(serviceProviderId,serviceProviderName, serviceId, reportedIssue, additionalNotes, images) { success, message -&gt;
+<span class="lineno"> 417 </span>                if(success){
+<span class="lineno"> 418 </span>                    reviewStatus.postValue(Pair(true,message))
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:416:9</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 413 </span>
+<span class="lineno"> 414 </span>
+<span class="lineno"> 415 </span>    fun reportServiceProvider(serviceProviderId:String,serviceProviderName : String ,serviceId :String, reportedIssue : String,additionalNotes :String, images : String){
+<span class="lineno"> 416 </span>        <span class="error">serviceRepo</span>.reportServiceProvider(serviceProviderId,serviceProviderName, serviceId, reportedIssue, additionalNotes, images) { success, message -&gt;
+<span class="lineno"> 417 </span>                if(success){
+<span class="lineno"> 418 </span>                    reviewStatus.postValue(Pair(true,message))
+<span class="lineno"> 419 </span>                }else{
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt:147:17</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 144 </span>        binding.backToProfileBtn.setOnClickListener {
+<span class="lineno"> 145 </span>            val fragment = ProfileFragment()
+<span class="lineno"> 146 </span>            requireActivity().supportFragmentManager.beginTransaction()
+<span class="lineno"> 147 </span>                <span class="error">.</span>replace((requireActivity() as AppCompatActivity).findViewById&lt;ViewGroup&gt;(R.id.nav_host_fragment).id, fragment)
+<span class="lineno"> 148 </span>                .addToBackStack(null) // so user can press back to return here
+<span class="lineno"> 149 </span>                .commit()
+<span class="lineno"> 150 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileFragment.kt:102:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  99 </span>        binding.profileServicesRecycler.adapter = adapter
+<span class="lineno"> 100 </span>
+<span class="lineno"> 101 </span>        try{
+<span class="lineno"> 102 </span>            <span class="error">//first check if this page was navigated from the browser service page,if not display the logged in user data</span>
+<span class="lineno"> 103 </span>
+<span class="lineno"> 104 </span>            if(!serviceProId.isNullOrEmpty()) {
+<span class="lineno"> 105 </span>                userViewModel.getMyServices(serviceProId!!)
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileFragment.kt:119:25</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 116 </span>                if(userid != null) {
+<span class="lineno"> 117 </span>                    userViewModel.getMyServices(userid)
+<span class="lineno"> 118 </span>                    userViewModel.getUserData(userid).observe(viewLifecycleOwner) { user -&gt;
+<span class="lineno"> 119 </span>                        <span class="error">//fill the page with the user's section, check if they have any services they provide and fill that section too.</span>
+<span class="lineno"> 120 </span>                        binding.providerName.text = user?.name
+<span class="lineno"> 121 </span>
+<span class="lineno"> 122 </span>                        userViewModel.userServices.observe(viewLifecycleOwner) { services -&gt;
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt:86:17</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  83 </span>            if (bookings.isNullOrEmpty()) {
+<span class="lineno">  84 </span>                Toast.makeText(requireContext(), getString(R.string.toast_no_bookings), Toast.LENGTH_SHORT).show()
+<span class="lineno">  85 </span>            } else {
+<span class="lineno">  86 </span>                <span class="error">Toast.makeText(requireContext(), getString(R.string.toast_bookings_fetched, bookings.size), Toast.LENGTH_SHORT).show()</span>
+<span class="lineno">  87 </span>            }
+<span class="lineno">  88 </span>        }
+<span class="lineno">  89 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:68:9</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  65 </span>        binding = FragmentRegisterServiceBinding.inflate(layoutInflater)
+<span class="lineno">  66 </span>        setContentView(binding.root)
+<span class="lineno">  67 </span>
+<span class="lineno">  68 </span>        <span class="error">binding.actvCategory.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_categories, android.R.layout.simple_spinner_item))</span>
+<span class="lineno">  69 </span>        binding.actvLocation.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_locations, android.R.layout.simple_spinner_item))
+<span class="lineno">  70 </span>        binding.actvPricingType.setAdapter(ArrayAdapter.createFromResource(this, R.array.pricing_types, android.R.layout.simple_spinner_item))
+<span class="lineno">  71 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:69:9</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  66 </span>        setContentView(binding.root)
+<span class="lineno">  67 </span>
+<span class="lineno">  68 </span>        binding.actvCategory.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_categories, android.R.layout.simple_spinner_item))
+<span class="lineno">  69 </span>        <span class="error">binding.actvLocation.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_locations, android.R.layout.simple_spinner_item))</span>
+<span class="lineno">  70 </span>        binding.actvPricingType.setAdapter(ArrayAdapter.createFromResource(this, R.array.pricing_types, android.R.layout.simple_spinner_item))
+<span class="lineno">  71 </span>
+<span class="lineno">  72 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:70:9</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  67 </span>
+<span class="lineno">  68 </span>        binding.actvCategory.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_categories, android.R.layout.simple_spinner_item))
+<span class="lineno">  69 </span>        binding.actvLocation.setAdapter(ArrayAdapter.createFromResource(this, R.array.service_locations, android.R.layout.simple_spinner_item))
+<span class="lineno">  70 </span>        <span class="error">binding.actvPricingType.setAdapter(ArrayAdapter.createFromResource(this, R.array.pricing_types, android.R.layout.simple_spinner_item))</span>
+<span class="lineno">  71 </span>
+<span class="lineno">  72 </span>
+<span class="lineno">  73 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:118:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 115 </span>        }
+<span class="lineno"> 116 </span>
+<span class="lineno"> 117 </span>        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.TIRAMISU) {
+<span class="lineno"> 118 </span>            <span class="error">if</span> (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+<span class="lineno"> 119 </span>                permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
+<span class="lineno"> 120 </span>            }
+<span class="lineno"> 121 </span>        } else {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:122:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 119 </span>                permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
+<span class="lineno"> 120 </span>            }
+<span class="lineno"> 121 </span>        } else {
+<span class="lineno"> 122 </span>            <span class="error">if</span> (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+<span class="lineno"> 123 </span>                permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+<span class="lineno"> 124 </span>            }
+<span class="lineno"> 125 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:129:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 126 </span>
+<span class="lineno"> 127 </span>        // Notifications
+<span class="lineno"> 128 </span>        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.TIRAMISU &amp;&amp;
+<span class="lineno"> 129 </span>            <span class="error">ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED</span>
+<span class="lineno"> 130 </span>        ) {
+<span class="lineno"> 131 </span>            permissionsToRequest.add(Manifest.permission.POST_NOTIFICATIONS)
+<span class="lineno"> 132 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReportUserActvity.kt:100:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  97 </span>            val selectedid = selected.serviceId
+<span class="lineno">  98 </span>            val reportedIssue = binding.complaintSpinner.selectedItem.toString()
+<span class="lineno">  99 </span>            val additionalNotes = binding.edAdditionalNotes.text.toString()
+<span class="lineno"> 100 </span>            <span class="error">userViewModel.reportServiceProvider(serviceProId,spUsername,selectedid,reportedIssue,additionalNotes,imageString)</span>
+<span class="lineno"> 101 </span>        }
+<span class="lineno"> 102 </span>        userViewModel.reportResult.observe(this){(success, message) -&gt;
+<span class="lineno"> 103 </span>            if(success){
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReportUserActvity.kt:124:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 121 </span>        }
+<span class="lineno"> 122 </span>
+<span class="lineno"> 123 </span>        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.TIRAMISU) {
+<span class="lineno"> 124 </span>            <span class="error">if</span> (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+<span class="lineno"> 125 </span>                permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
+<span class="lineno"> 126 </span>            }
+<span class="lineno"> 127 </span>        } else {
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReportUserActvity.kt:128:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 125 </span>                permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
+<span class="lineno"> 126 </span>            }
+<span class="lineno"> 127 </span>        } else {
+<span class="lineno"> 128 </span>            <span class="error">if</span> (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+<span class="lineno"> 129 </span>                permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+<span class="lineno"> 130 </span>            }
+<span class="lineno"> 131 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReportUserActvity.kt:135:13</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 132 </span>
+<span class="lineno"> 133 </span>        // Notifications
+<span class="lineno"> 134 </span>        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.TIRAMISU &amp;&amp;
+<span class="lineno"> 135 </span>            <span class="error">ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED</span>
+<span class="lineno"> 136 </span>        ) {
+<span class="lineno"> 137 </span>            permissionsToRequest.add(Manifest.permission.POST_NOTIFICATIONS)
+<span class="lineno"> 138 </span>        }
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="NewLineAtEndOfFile" open="open">
+    <summary class="rule-container"><span class="rule">NewLineAtEndOfFile: 43 </span><span class="description">Checks whether files end with a line separator.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#newlineatendoffile">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/BrowseServiceAdapter.kt:48:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Adapters\BrowseServiceAdapter.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  45 </span>    }
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>    override fun getItemCount(): Int = services.size
+<span class="lineno">  48 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ChatAdapter.kt:67:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Adapters\ChatAdapter.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  64 </span>            binding.messageTimestamp.text = msg.timeSent
+<span class="lineno">  65 </span>        }
+<span class="lineno">  66 </span>    }
+<span class="lineno">  67 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/ProfileServiceAdapter.kt:69:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Adapters\ProfileServiceAdapter.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  66 </span>        services = newServices
+<span class="lineno">  67 </span>        notifyDataSetChanged()
+<span class="lineno">  68 </span>    }
+<span class="lineno">  69 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Adapters/UserBookingsAdapter.kt:79:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Adapters\UserBookingsAdapter.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  76 </span>    }
+<span class="lineno">  77 </span>
+<span class="lineno">  78 </span>
+<span class="lineno">  79 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Model/BookingActionResult.kt:8:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Model\BookingActionResult.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   5 </span>    val message : String?,
+<span class="lineno">   6 </span>    val bookingId : String,
+<span class="lineno">   7 </span>    val newStatus: String
+<span class="lineno">   8 </span>)
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Network/PushApiClient.kt:76:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Network\PushApiClient.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  73 </span>            }
+<span class="lineno">  74 </span>    }
+<span class="lineno">  75 </span>
+<span class="lineno">  76 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:349:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Repository\BookServiceRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 346 </span>        serviceCache.clear()
+<span class="lineno"> 347 </span>    }
+<span class="lineno"> 348 </span>
+<span class="lineno"> 349 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ReviewRepository.kt:192:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Repository\ReviewRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 189 </span>            })
+<span class="lineno"> 190 </span>    }
+<span class="lineno"> 191 </span>
+<span class="lineno"> 192 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/ServiceRepository.kt:386:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\Repository\ServiceRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 383 </span>        invalidateCache()
+<span class="lineno"> 384 </span>    }
+<span class="lineno"> 385 </span>
+<span class="lineno"> 386 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/FirebaseMessagingService.kt:58:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\ViewModel\FirebaseMessagingService.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  55 </span>        }
+<span class="lineno">  56 </span>
+<span class="lineno">  57 </span>    }
+<span class="lineno">  58 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/UserViewModel.kt:425:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\ViewModel\UserViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 422 </span>        }
+<span class="lineno"> 423 </span>    }
+<span class="lineno"> 424 </span>
+<span class="lineno"> 425 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/ViewModelFactory.kt:24:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\ViewModel\ViewModelFactory.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  21 </span>        }
+<span class="lineno">  22 </span>        throw IllegalArgumentException(&quot;Unknown ViewModel class&quot;)
+<span class="lineno">  23 </span>    }
+<span class="lineno">  24 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/ViewModel/navbar.kt:4:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\ViewModel\navbar.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span>package vcmsa.projects.wil_hustlehub.ViewModel
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>class navbar {
+<span class="lineno">   4 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AboutUsActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AboutUsActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AboutUsFragment.kt:27:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AboutUsFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  24 </span>        super.onViewCreated(view, savedInstanceState)
+<span class="lineno">  25 </span>
+<span class="lineno">  26 </span>    }
+<span class="lineno">  27 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AccountActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AccountActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AccountFragment.kt:36:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AccountFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  33 </span>
+<span class="lineno">  34 </span>        }
+<span class="lineno">  35 </span>    }
+<span class="lineno">  36 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/AddReviewFragment.kt:114:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\AddReviewFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 111 </span>            }
+<span class="lineno"> 112 </span>        }
+<span class="lineno"> 113 </span>    }
+<span class="lineno"> 114 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BookServiceActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\BookServiceActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesActivity.kt:24:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\BrowseServicesActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  21 </span>
+<span class="lineno">  22 </span>
+<span class="lineno">  23 </span>    }
+<span class="lineno">  24 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/BrowseServicesFragment.kt:177:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\BrowseServicesFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 174 </span>
+<span class="lineno"> 175 </span>        }
+<span class="lineno"> 176 </span>    }
+<span class="lineno"> 177 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/CategoriesActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\CategoriesActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/CategoriesFragment.kt:27:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\CategoriesFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  24 </span>        super.onViewCreated(view, savedInstanceState)
+<span class="lineno">  25 </span>
+<span class="lineno">  26 </span>    }
+<span class="lineno">  27 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ChatFragment.kt:168:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ChatFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 165 </span>        super.onDestroyView()
+<span class="lineno"> 166 </span>        _binding = null
+<span class="lineno"> 167 </span>    }
+<span class="lineno"> 168 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ContactActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ContactActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ContactFragment.kt:26:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ContactFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  23 </span>        super.onViewCreated(view, savedInstanceState)
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    }
+<span class="lineno">  26 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/HomeActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\HomeActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/HomeFragment.kt:45:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\HomeFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  42 </span>                .commit()
+<span class="lineno">  43 </span>        }
+<span class="lineno">  44 </span>    }
+<span class="lineno">  45 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\LoginActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\OfferSkillsActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/OfferSkillsFragment.kt:35:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\OfferSkillsFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  32 </span>            startActivity(intent)
+<span class="lineno">  33 </span>        }
+<span class="lineno">  34 </span>    }
+<span class="lineno">  35 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ProfileActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProfileFragment.kt:142:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ProfileFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 139 </span>
+<span class="lineno"> 140 </span>
+<span class="lineno"> 141 </span>    }
+<span class="lineno"> 142 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookings.kt:22:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ProviderBookings.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  19 </span>                .commit()
+<span class="lineno">  20 </span>        }
+<span class="lineno">  21 </span>    }
+<span class="lineno">  22 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ProviderBookingsFragment.kt:96:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ProviderBookingsFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  93 </span>        super.onDestroyView()
+<span class="lineno">  94 </span>        _binding = null
+<span class="lineno">  95 </span>    }
+<span class="lineno">  96 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterActivity.kt:21:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\RegisterActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  18 </span>                .commit()
+<span class="lineno">  19 </span>        }
+<span class="lineno">  20 </span>    }
+<span class="lineno">  21 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterFragment.kt:91:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\RegisterFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  88 </span>
+<span class="lineno">  89 </span>
+<span class="lineno">  90 </span>    }
+<span class="lineno">  91 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:173:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\RegisterService.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 170 </span>        return File.createTempFile(&quot;JPEG_${timestamp}_&quot;, &quot;.jpg&quot;, storageDir)
+<span class="lineno"> 171 </span>
+<span class="lineno"> 172 </span>    }
+<span class="lineno"> 173 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReportUserActvity.kt:188:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ReportUserActvity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno"> 185 </span>             return serviceName
+<span class="lineno"> 186 </span>         }
+<span class="lineno"> 187 </span>     }
+<span class="lineno"> 188 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReviewsActivity.kt:22:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ReviewsActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  19 </span>                .commit()
+<span class="lineno">  20 </span>        }
+<span class="lineno">  21 </span>    }
+<span class="lineno">  22 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ReviewsFragment.kt:81:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\ReviewsFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  78 </span>        super.onDestroyView()
+<span class="lineno">  79 </span>        _binding = null
+<span class="lineno">  80 </span>    }
+<span class="lineno">  81 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserBookingsActivity.kt:81:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\UserBookingsActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  78 </span>            }
+<span class="lineno">  79 </span>        }
+<span class="lineno">  80 </span>    }
+<span class="lineno">  81 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/admin_portal.kt:34:2</span><span class="message">The file C:\Users\ashfo\Downloads\INSY7315-updates-z\INSY7315-updates-z\app\src\main\java\vcmsa\projects\wil_hustlehub\View\admin_portal.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">  31 </span>            startActivity(intent)
+<span class="lineno">  32 </span>        }
+<span class="lineno">  33 </span>    }
+<span class="lineno">  34 </span>}
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="UnusedPrivateMember" open="open">
+    <summary class="rule-container"><span class="rule">UnusedPrivateMember: 6 </span><span class="description">Private member is unused and should be removed.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#unusedprivatemember">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:23:17</span><span class="message">Private property `createdDate` is unused.</span>
+        <pre><code><span class="lineno">  20 </span>    private val timeFormat = java.text.SimpleDateFormat(&quot;HH:mm&quot;, java.util.Locale.getDefault())
+<span class="lineno">  21 </span>
+<span class="lineno">  22 </span>    private val createdDateFormat = java.text.SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;, java.util.Locale.getDefault())
+<span class="lineno">  23 </span>    private val <span class="error">createdDate</span> = createdDateFormat.format(java.util.Date())
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    //created a cache to temporarily store service details instead of retrieving them from firebase every time.
+<span class="lineno">  26 </span>    private val serviceCache = mutableMapOf&lt;String, Service&gt;()
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/BookServiceRepository.kt:29:17</span><span class="message">Private property `cacheExpiry` is unused.</span>
+        <pre><code><span class="lineno">  26 </span>    private val serviceCache = mutableMapOf&lt;String, Service&gt;()
+<span class="lineno">  27 </span>
+<span class="lineno">  28 </span>    //the service details expires after 5 minutes.
+<span class="lineno">  29 </span>    private val <span class="error">cacheExpiry</span> = 5 * 60 * 1000L
+<span class="lineno">  30 </span>
+<span class="lineno">  31 </span>    /*this function takes the information like servicename,
+<span class="lineno">  32 </span>     date and time and saves it to the database
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/Repository/UserRepository.kt:64:34</span><span class="message">Function parameter `forceRefresh` is unused.</span>
+        <pre><code><span class="lineno">  61 </span>    /**
+<span class="lineno">  62 </span>     * This function gets the user's information using their id
+<span class="lineno">  63 </span>     */
+<span class="lineno">  64 </span>    fun getUserData(uid: String, <span class="error">forceRefresh</span>: Boolean = false, callback: (User?) -&gt; Unit) {
+<span class="lineno">  65 </span>        // check if this user is cached and return it immediately
+<span class="lineno">  66 </span>        if (cachedUser?.userID == uid) {
+<span class="lineno">  67 </span>            callback(cachedUser)
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:47:17</span><span class="message">Private property `CAMERA_REQUEST_CODE` is unused.</span>
+        <pre><code><span class="lineno">  44 </span>    }
+<span class="lineno">  45 </span>    private var imageString : String = &quot;&quot;
+<span class="lineno">  46 </span>    private var photoUri : Uri? = null
+<span class="lineno">  47 </span>    private val <span class="error">CAMERA_REQUEST_CODE</span> = 100
+<span class="lineno">  48 </span>    private val requestPermissionsLauncher =
+<span class="lineno">  49 </span>        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions -&gt;
+<span class="lineno">  50 </span>            val denied = permissions.filter { !it.value }.keys
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/RegisterService.kt:84:17</span><span class="message">Private property `availability` is unused.</span>
+        <pre><code><span class="lineno">  81 </span>            val category = binding.actvCategory.text.toString()
+<span class="lineno">  82 </span>            val description = binding.etServiceDescription.text.toString()
+<span class="lineno">  83 </span>            val price = binding.etServicePrice.text.toString()
+<span class="lineno">  84 </span>            val <span class="error">availability</span> = binding.etAvailability.text.toString()
+<span class="lineno">  85 </span>            val location = binding.actvLocation.selectedItem.toString()
+<span class="lineno">  86 </span>            if(serviceName.isEmpty()|| category.isEmpty() || description.isEmpty() || price.isEmpty()){
+<span class="lineno">  87 </span>                Toast.makeText(this, &quot;Please fill all fields&quot;, Toast.LENGTH_SHORT).show()
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserBookingsActivity.kt:49:13</span><span class="message">Private property `userid` is unused.</span>
+        <pre><code><span class="lineno">  46 </span>            insets
+<span class="lineno">  47 </span>        }
+<span class="lineno">  48 </span>        val sharedPreferences = this.getSharedPreferences(&quot;MyPrefs&quot;, Context.MODE_PRIVATE)
+<span class="lineno">  49 </span>        val <span class="error">userid</span> = sharedPreferences.getString(&quot;uid&quot;, null)
+<span class="lineno">  50 </span>        binding.addPetBackButton.setOnClickListener {
+<span class="lineno">  51 </span>            finish()
+<span class="lineno">  52 </span>        }
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="WildcardImport" open="open">
+    <summary class="rule-container"><span class="rule">WildcardImport: 3 </span><span class="description">Wildcard imports should be replaced with imports using fully qualified class names. Wildcard imports can lead to naming conflicts. A library update can introduce naming clashes with your classes which results in compilation errors.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#wildcardimport">Documentation</a>
+    <ul>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/LoginFragment.kt:17:1</span><span class="message">vcmsa.projects.wil_hustlehub.Repository.* is a wildcard import. Replace it with fully qualified imports.</span>
+        <pre><code><span class="lineno">  14 </span>import com.google.android.gms.auth.api.signin.GoogleSignInClient
+<span class="lineno">  15 </span>import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+<span class="lineno">  16 </span>import vcmsa.projects.wil_hustlehub.MainActivity
+<span class="lineno">  17 </span><span class="error">import vcmsa.projects.wil_hustlehub.Repository.*</span>
+<span class="lineno">  18 </span>import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
+<span class="lineno">  19 </span>import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
+<span class="lineno">  20 </span>import vcmsa.projects.wil_hustlehub.databinding.FragmentLoginBinding
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/ServiceManagementActivity.kt:14:1</span><span class="message">vcmsa.projects.wil_hustlehub.Repository.* is a wildcard import. Replace it with fully qualified imports.</span>
+        <pre><code><span class="lineno">  11 </span>import androidx.recyclerview.widget.RecyclerView
+<span class="lineno">  12 </span>import vcmsa.projects.wil_hustlehub.Adapters.ServiceAdapter
+<span class="lineno">  13 </span>import vcmsa.projects.wil_hustlehub.R
+<span class="lineno">  14 </span><span class="error">import vcmsa.projects.wil_hustlehub.Repository.*</span>
+<span class="lineno">  15 </span>import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
+<span class="lineno">  16 </span>import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
+<span class="lineno">  17 </span>
+</code></pre>
+      </li>
+      <li><span class="location">C:/Users/ashfo/Downloads/INSY7315-updates-z/INSY7315-updates-z/app/src/main/java/vcmsa/projects/wil_hustlehub/View/UserManagementActivity.kt:11:1</span><span class="message">vcmsa.projects.wil_hustlehub.Repository.* is a wildcard import. Replace it with fully qualified imports.</span>
+        <pre><code><span class="lineno">   8 </span>import vcmsa.projects.wil_hustlehub.Adapter.ReportedUsersAdapter
+<span class="lineno">   9 </span>import vcmsa.projects.wil_hustlehub.Model.Report
+<span class="lineno">  10 </span>import vcmsa.projects.wil_hustlehub.R
+<span class="lineno">  11 </span><span class="error">import vcmsa.projects.wil_hustlehub.Repository.*</span>
+<span class="lineno">  12 </span>import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
+<span class="lineno">  13 </span>import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
+<span class="lineno">  14 </span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+</div>
+
+
+generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2025-10-26 11:21:37 UTC.
+
+</body>
+</html>
