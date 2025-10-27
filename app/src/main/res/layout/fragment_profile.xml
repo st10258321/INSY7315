@@ -171,7 +171,7 @@
                             android:id="@+id/viewReviewsBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/light_teal"
+                            android:backgroundTint="@color/soft_orange"
                             android:paddingStart="24dp"
                             android:paddingTop="12dp"
                             android:paddingEnd="24dp"

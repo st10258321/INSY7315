@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,7 +44,10 @@ class RegisterFragment: Fragment() {
         val viewModelFactory = ViewModelFactory(userRepo, serviceRepo, bookRepo, reviewRepo, chatRepo)
         val userViewModel: UserViewModel by viewModels { viewModelFactory }
 
-
+        binding.tvLoginPrompt.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+        }
         binding.radioServiceProvider.setOnClickListener {
             binding.aboutMeLayout.visibility = View.VISIBLE
         }
@@ -86,6 +90,12 @@ class RegisterFragment: Fragment() {
         userViewModel.registrationStat.observe(viewLifecycleOwner) {(success, message, registeredUser) ->
             if (success) {
             Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
+                val loginFragment = LoginFragment()
+                val fragmentManager = requireActivity().supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.nav_host_fragment, loginFragment)
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
             }else{
                 Toast.makeText(requireContext(), "Registration Failed:  ${message}", Toast.LENGTH_SHORT).show()
             }

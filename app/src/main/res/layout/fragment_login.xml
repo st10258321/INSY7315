@@ -99,6 +99,7 @@
                 android:text="@string/dont_have_account"
                 android:textColor="@color/deep_blue"
                 android:textSize="16sp"
+                android:clickable="true"
                 android:textStyle="bold" />
 
 

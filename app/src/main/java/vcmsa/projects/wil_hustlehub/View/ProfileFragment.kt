@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import vcmsa.projects.wil_hustlehub.Adapters.ProfileServiceAdapter
 import vcmsa.projects.wil_hustlehub.MainActivity
+import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.Repository.BookServiceRepository
 import vcmsa.projects.wil_hustlehub.Repository.ChatRepository
 import vcmsa.projects.wil_hustlehub.Repository.ReviewRepository
@@ -66,7 +67,24 @@ class ProfileFragment: Fragment() {
 
         binding.messageProviderBtn.setOnClickListener {
            val chatID = userViewModel.createChat(serviceProId!!)
-            Toast.makeText(requireContext(), "Chat ID: $chatID", Toast.LENGTH_SHORT).show()
+            userViewModel.chatIdLive.observe(viewLifecycleOwner){ (success, message) ->
+                if(success){
+                    val bundle = Bundle().apply {
+                        putString("chatID", message)
+                        putString("serviceProviderId", serviceProId)
+                    }
+                    val fragment = ChatFragment().apply {
+                        arguments = bundle
+                    }
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.nav_host_fragment,fragment)
+                        .addToBackStack(null)
+                        .commit()
+
+
+                }
+            }
+            //Toast.makeText(requireContext(), "Chat ID: $chatID", Toast.LENGTH_SHORT).show()
             //navigate to chat fragment
         }
 
@@ -94,11 +112,20 @@ class ProfileFragment: Fragment() {
                     .addToBackStack(null)
                     .commit()
             },
+            {service ->
+                userViewModel.deleteService(service.serviceId)
+                userViewModel.serviceStatus.observe(viewLifecycleOwner) {
+                    if (it.first) {
+                        Toast.makeText(requireContext(), "Service deleted", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            },
             isOwner = isOwner
         )
         binding.profileServicesRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.profileServicesRecycler.minimumHeight = 200
         binding.profileServicesRecycler.adapter = adapter
-
         try{
             //first check if this page was navigated from the browser service page,if not display the logged in user data
 

@@ -13,6 +13,7 @@
         <item>Tech and IT support</item>
         <item>Photography and video</item>
         <item>Food and catering</item>
+        <item>Other</item>
     </string-array>
     <string-array name="pricing_types">
         <item>per hour</item>
@@ -21,11 +22,13 @@
     </string-array>
     <string-array name="service_locations">
         <item>Any</item>
+        <item>In person</item>
         <item>On campus</item>
         <item>Virtually</item>
     </string-array>
     <string-array name="time_slots">
         <item>Select a time</item>
+        <item>Any</item>
         <item>08:00 - 10:00</item>
         <item>10:00 - 12:00</item>
         <item>12:00 - 14:00</item>
@@ -36,6 +39,7 @@
         <item>Late to session</item>
         <item>Inaccurate advertising information</item>
         <item>Inappropriate behaviour</item>
+        <item>Other</item>
     </string-array>
 
 

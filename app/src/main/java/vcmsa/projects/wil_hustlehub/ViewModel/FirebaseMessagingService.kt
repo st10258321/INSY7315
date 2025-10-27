@@ -39,7 +39,7 @@ class FirebaseMessagingService : FirebaseMessagingService(){
 
         }
         val builder = NotificationCompat.Builder(this,channelID)
-            .setSmallIcon(R.drawable.ic_secure)
+            .setSmallIcon(R.drawable.ic_menu_save)
             .setContentTitle(title ?: "HustleHub")
             .setContentText(body ?:"")
             .setPriority(NotificationCompat.PRIORITY_HIGH)

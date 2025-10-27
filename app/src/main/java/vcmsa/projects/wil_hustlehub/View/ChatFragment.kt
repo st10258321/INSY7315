@@ -61,8 +61,7 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val chatId = arguments?.getString("chatID")
         val serviceProviderId = arguments?.getString("serviceProviderId")
-        Log.d("chat-id", "$chatId")
-        Log.d("service-provider-id", "$serviceProviderId")
+
 
         chatAdapter = ChatAdapter(mutableListOf(), currentUserId)
         binding.chatMessagesRecyclerView.apply {
@@ -87,6 +86,13 @@ class ChatFragment : Fragment() {
                         Log.d("Failed to load","${messages?.size}")
                     }
                 }
+            }
+        }
+        userViewModel.getChatById(chatId!!)
+        userViewModel.singleChat.observe(viewLifecycleOwner) {chat->
+            if(chat != null){
+                binding.chatPartnerName.text = chat.serviceProviderName
+
             }
         }
 
@@ -142,11 +148,7 @@ class ChatFragment : Fragment() {
 
         // Configured chat back button
         binding.backToProfileBtn.setOnClickListener {
-            val fragment = ProfileFragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace((requireActivity() as AppCompatActivity).findViewById<ViewGroup>(R.id.nav_host_fragment).id, fragment)
-                .addToBackStack(null) // so user can press back to return here
-                .commit()
+            parentFragmentManager.popBackStack()
         }
 
         // Observe message status from ViewModel

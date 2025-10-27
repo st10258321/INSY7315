@@ -6,6 +6,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
 import vcmsa.projects.wil_hustlehub.Model.User
 import java.util.Date
 
@@ -29,27 +30,41 @@ class UserRepository(
         email: String,
         phone: String,
         password: String,
+        aboutMe : String,
         callback: (Boolean, String?, User?) -> Unit
     ) {
-
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val uid = auth.currentUser?.uid ?: ""
-                    val createdDate = createdDateFormat.format(java.util.Date())
+                    FirebaseMessaging.getInstance().token.addOnCompleteListener { tokenTask ->
+                        if(tokenTask.isSuccessful){
+                            val fcmToken = tokenTask.result ?:""
+                            val user = User(uid, name, email, phone, password, aboutMe,"","",createdDate,fcmToken)
+                            database.child("users").child(uid).setValue(user)
+                                .addOnCompleteListener { saveTask ->
+                                    if (saveTask.isSuccessful) {
+                                        callback(true, null, user)
+                                    } else {
+                                        callback(false, saveTask.exception?.message, null)
+                                    }
+                                }
+                        }else{
+                            //stores user in database without the token
+                            val user = User(uid, name, email, phone, password, createdDate)
 
-
-                    val user = User(uid, name, email, phone, "", createdDate = createdDate)
-
-                    database.child("users").child(uid).setValue(user)
-                        .addOnCompleteListener { saveTask ->
-                            if (saveTask.isSuccessful) {
-                                cachedUser = user // Cache the user
-                                callback(true, null, user)
-                            } else {
-                                callback(false, saveTask.exception?.message, null)
-                            }
+                            database.child("users").child(uid).setValue(user)
+                                .addOnCompleteListener { saveTask ->
+                                    if (saveTask.isSuccessful) {
+                                        callback(true, null, user)
+                                    } else {
+                                        callback(false, saveTask.exception?.message, null)
+                                    }
+                                }
                         }
+
+                    }
+
                 } else {
                     callback(false, task.exception?.message, null)
                 }

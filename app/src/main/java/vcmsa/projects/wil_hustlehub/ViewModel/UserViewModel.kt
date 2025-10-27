@@ -64,6 +64,7 @@ class UserViewModel @Inject constructor(
     val bookingsForMyServices = MutableLiveData<List<BookService>?>()
 
     val reviewStatus = MutableLiveData<Pair<Boolean, String?>>()
+    val chatIdLive = MutableLiveData<Pair<Boolean, String?>>()
     val serviceProviderReviews = MutableLiveData<List<Review>?>()
     val averageRating = MutableLiveData<Pair<Double?, Int?>>() // avg rating + total reviews
 
@@ -96,7 +97,7 @@ class UserViewModel @Inject constructor(
 
     // Function to handle user registration
     fun register(user: User) {
-        userRepo.register(user.name, user.email, user.phoneNumber, user.password) { success, message, registeredUser ->
+        userRepo.register(user.name, user.email, user.phoneNumber, user.password,user.aboutMe) { success, message, registeredUser ->
             registrationStat.postValue(Triple(success, message, registeredUser))
         }
     }
@@ -352,8 +353,11 @@ class UserViewModel @Inject constructor(
         var chatId = ""
         chatRepo.createChat(serviceProviderId){ success, message, chat, isNewChat ->
             if(success){
+                chatIdLive.postValue(Pair(success,chat?.chatId))
                 Log.d("--checkChat","${chat?.serviceProviderName}")
                 chatId = chat?.chatId ?: ""
+            }else{
+                Log.d("--checkFail",message.toString())
             }
         }
         return chatId

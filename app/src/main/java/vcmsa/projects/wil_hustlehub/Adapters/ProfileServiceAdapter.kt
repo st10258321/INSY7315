@@ -22,6 +22,7 @@ class ProfileServiceAdapter(
     private var services: List<Service>,
     private val onBookServiceClick: (Service) -> Unit,
     private val onLeaveReviewClick: (Service) -> Unit,
+    private val onDeleteServiceClick : (Service) -> Unit,
     private val isOwner : Boolean
 ): RecyclerView.Adapter<ProfileServiceAdapter.ProfileViewHolder>() {
     inner class ProfileViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -33,6 +34,7 @@ class ProfileServiceAdapter(
         val btnBookService : Button = itemView.findViewById(R.id.bookNowBtn)
 
         val btnLeaveReview : Button = itemView.findViewById(R.id.leaveReviewBtn)
+        val btnDeleteService : Button = itemView.findViewById(R.id.deleteServiceBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
@@ -46,9 +48,15 @@ class ProfileServiceAdapter(
         holder.tvServicePrice.text = "R${service.price}/hour"
         holder.tvDescription.text = service.description
         if(isOwner){
+            holder.btnDeleteService.visibility = View.VISIBLE
             holder.btnBookService.visibility = View.GONE
             holder.btnLeaveReview.visibility = View.GONE
+            holder.btnDeleteService.setOnClickListener {
+                onDeleteServiceClick(service)
+                notifyItemRemoved(position)
+            }
         }else{
+            holder.btnDeleteService.visibility = View.GONE
             holder.btnLeaveReview.visibility = View.VISIBLE
             holder.btnBookService.visibility = View.VISIBLE
             holder.btnBookService.setOnClickListener {
@@ -57,6 +65,7 @@ class ProfileServiceAdapter(
             holder.btnLeaveReview.setOnClickListener {
                 onLeaveReviewClick(service)
             }
+
         }
 
 

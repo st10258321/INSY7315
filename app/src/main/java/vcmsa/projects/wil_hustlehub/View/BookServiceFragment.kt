@@ -67,7 +67,9 @@ class BookServiceFragment : Fragment() {
 
         val sharedPref = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val userId = sharedPref.getString("uid", "")
-
+        binding.addPetBackButton.setOnClickListener{
+            parentFragmentManager.popBackStack()
+        }
 
 
         userViewModel.getUserData(userId!!).observe(viewLifecycleOwner) { user ->
