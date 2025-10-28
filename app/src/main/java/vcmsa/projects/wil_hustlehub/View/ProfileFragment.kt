@@ -123,8 +123,9 @@ class ProfileFragment: Fragment() {
             },
             isOwner = isOwner
         )
-        binding.profileServicesRecycler.layoutManager = LinearLayoutManager(requireContext())
-        binding.profileServicesRecycler.minimumHeight = 200
+        binding.profileServicesRecycler.layoutManager = LinearLayoutManager(requireContext(),
+            LinearLayoutManager.VERTICAL,false )
+        binding.profileServicesRecycler.isNestedScrollingEnabled = false
         binding.profileServicesRecycler.adapter = adapter
         try{
             //first check if this page was navigated from the browser service page,if not display the logged in user data

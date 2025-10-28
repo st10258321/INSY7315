@@ -22,6 +22,7 @@ class ReportedUsersAdapter(
         val reportIssue: TextView = itemView.findViewById(R.id.serviceIssueNameTxt)
         val additionalNotes: TextView = itemView.findViewById(R.id.descOfReportTxt)
         val statusText: TextView = itemView.findViewById(R.id.statusTxt)
+        val reportDateText : TextView = itemView.findViewById(R.id.reportDateTxt)
 
         val suspendButton: Button = itemView.findViewById(R.id.btnSuspendUser)
         val deleteButton: Button = itemView.findViewById(R.id.btnDeleteUser)
@@ -38,6 +39,7 @@ class ReportedUsersAdapter(
         holder.userName.text = report.serviceProviderName ?: "Unkown User"
         holder.reportIssue.text = report.reportIssue
         holder.additionalNotes.text = report.additionalNotes
+        holder.reportDateText.text = report.createdDate
         holder.statusText.text = report.status
 
 

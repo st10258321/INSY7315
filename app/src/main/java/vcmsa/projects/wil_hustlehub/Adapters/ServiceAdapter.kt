@@ -17,7 +17,6 @@ class ServiceAdapter(
 
     inner class ServiceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val serviceName: TextView = itemView.findViewById(R.id.serviceName)
-        val serviceProviderName: TextView = itemView.findViewById(R.id.serviceProviderName)
         val serviceCreatedDate: TextView = itemView.findViewById(R.id.serviceCreatedDate)
         val serviceLocation: TextView = itemView.findViewById(R.id.serviceLocation)
         val bookingNotes: TextView = itemView.findViewById(R.id.bookingNotes)
@@ -34,7 +33,6 @@ class ServiceAdapter(
     override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
         val service = serviceList[position]
         holder.serviceName.text = service.serviceName
-        holder.serviceProviderName.text = "Provider ID: ${service.userId}"
         holder.serviceCreatedDate.text = "Date: ${service.createdDate}"
         holder.serviceLocation.text = "Location: ${service.location}"
         holder.bookingNotes.text = "Description: ${service.description}"

@@ -14,6 +14,7 @@ import vcmsa.projects.wil_hustlehub.R
 import vcmsa.projects.wil_hustlehub.Repository.*
 import vcmsa.projects.wil_hustlehub.ViewModel.UserViewModel
 import vcmsa.projects.wil_hustlehub.ViewModel.ViewModelFactory
+import android.widget.ImageView
 
 class ServiceManagementActivity : AppCompatActivity() {
     private val userRepo = UserRepository()
@@ -37,6 +38,10 @@ class ServiceManagementActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        val addPetBackButton = findViewById<ImageView>(R.id.add_pet_back_button)
+        addPetBackButton.setOnClickListener {
+            finish()
         }
 
         recyclerView = findViewById(R.id.recyclerViewServices)

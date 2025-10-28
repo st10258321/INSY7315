@@ -1,5 +1,6 @@
 package vcmsa.projects.wil_hustlehub.View
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +34,10 @@ class UserManagementActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.reportedUsersRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
+        val addPetBackButton = findViewById<ImageView>(R.id.add_pet_back_button)
+        addPetBackButton.setOnClickListener {
+            finish()
+        }
 
         adapter = ReportedUsersAdapter(
             reports,

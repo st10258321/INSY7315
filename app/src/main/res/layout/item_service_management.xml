@@ -39,15 +39,6 @@
             </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/serviceProviderName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/deep_blue"
-                android:layout_marginBottom="4dp"
-                tools:text="Customer: John Smith" />
-
             <!-- Date and Time -->
             <TextView
                 android:id="@+id/serviceCreatedDate"
