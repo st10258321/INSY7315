@@ -279,14 +279,14 @@ class UserViewModel @Inject constructor(
         // Function to confirm a booking
         fun confirmBooking(bookingId: String) {
             bookRepo.confirmBooking(bookingId) { success, message, updatedBooking ->
-                bookingActionStatus.postValue(BookingActionResult(true,"Booking confirmed", bookingId, "Confirmed"))
+                bookingActionStatus.postValue(BookingActionResult(true,"Booking confirmed", bookingId, updatedBooking?.status!!))
             }
         }
 
         // Function to reject a booking
         fun rejectBooking(bookingId: String) {
             bookRepo.rejectBooking(bookingId) { success, message, updatedBooking ->
-                bookingActionStatus.postValue(BookingActionResult(true,"Booking rejected", bookingId, "Rejected"))
+                bookingActionStatus.postValue(BookingActionResult(true,"Booking rejected", bookingId, updatedBooking?.status!!))
             }
         }
 

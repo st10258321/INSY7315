@@ -58,53 +58,56 @@ class ProviderBookingsFragment : Fragment() {
             bookings = mutableListOf(),
             onConfirmAction = { booking ->
                 userViewModel.confirmBooking(booking.bookingId)
-
-                try{
-                    userViewModel.getUserData(booking.serviceProviderId).observe(viewLifecycleOwner){provider->
-                        if(provider?.fcmToken != null){
-                            PushApiClient.sendBookingStatusNotification(
-                                context = requireContext(),
-                                recipientToken = provider.fcmToken!!,
-                                bookingName = booking.serviceName,
-                                status = booking.status
-                            )
-                        }
-                        else{
-                            Log.d("--api","User does not have fcm token")
+                userViewModel.bookingActionStatus.observe(viewLifecycleOwner){result ->
+                    if(result.success) {
+                        adapter.updateBookingStatus(result.bookingId, result.newStatus)
+                        try{
+                            userViewModel.getUserData(booking.serviceProviderId).observe(viewLifecycleOwner){provider->
+                                if(provider?.fcmToken != null){
+                                    PushApiClient.sendBookingStatusNotification(
+                                        context = requireContext(),
+                                        recipientToken = provider.fcmToken!!,
+                                        bookingName = booking.serviceName,
+                                        status = result.newStatus
+                                    )
+                                }
+                                else{
+                                    Log.d("--api","User does not have fcm token")
+                                }
+                            }
+                        }catch(e: Exception){
+                            Log.d("--checking","${e.message}")
                         }
                     }
-                }catch(e: Exception){
-                    Log.d("--checking","${e.message}")
                 }
+
             },
             onRejectAction = { booking ->
                 userViewModel.rejectBooking(booking.bookingId)
-                try{
-                    userViewModel.getUserData(booking.serviceProviderId).observe(viewLifecycleOwner){provider->
-                        if(provider?.fcmToken != null){
-                            PushApiClient.sendBookingStatusNotification(
-                                context = requireContext(),
-                                recipientToken = provider.fcmToken!!,
-                                bookingName = booking.serviceName,
-                                status = booking.status
-                            )
-                        }else{
-                            Log.d("--api","User does not have fcm token")
+                userViewModel.bookingActionStatus.observe(viewLifecycleOwner){result ->
+                    if(result.success) {
+                        adapter.updateBookingStatus(result.bookingId, result.newStatus)
+                        try{
+                            userViewModel.getUserData(booking.serviceProviderId).observe(viewLifecycleOwner){provider->
+                                if(provider?.fcmToken != null){
+                                    PushApiClient.sendBookingStatusNotification(
+                                        context = requireContext(),
+                                        recipientToken = provider.fcmToken!!,
+                                        bookingName = booking.serviceName,
+                                        status = result.newStatus
+                                    )
+                                }
+                                else{
+                                    Log.d("--api","User does not have fcm token")
+                                }
+                            }
+                        }catch(e: Exception){
+                            Log.d("--checking","${e.message}")
                         }
                     }
-                }catch(e: Exception){
-                    Log.d("--checking","${e.message}")
                 }
             }
         )
-        userViewModel.bookingActionStatus.observe(viewLifecycleOwner){result ->
-            if(result.success){
-                Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
-                adapter.updateBookingStatus(result.bookingId, result.newStatus)
-            }else{
-                Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
-            }
-        }
 
 
         binding.recyclerViewBookings.layoutManager = LinearLayoutManager(requireContext())
