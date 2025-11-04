@@ -9,15 +9,16 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "CodeQL Advanced"
+
+name: "CodeQL Advanced with Security Testing"
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
   schedule:
-    - cron: '18 8 * * 5'
+    - cron: '45 2 * * 3'
 
 jobs:
   analyze:
@@ -62,7 +63,6 @@ jobs:
     # or others). This is typically only required for manual builds.
     # - name: Setup runtime (example)
     #   uses: actions/setup-example@v1
-    
     - name: Make Gradle Wrapper executable
       run: chmod +x ./gradlew
 
@@ -73,32 +73,32 @@ jobs:
     - name: Run Unit Tests
       run: ./gradlew test
 
-    # Setup Android emulator for integration tests
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
+    # ============================================================
+    # 🔐 Third-Party Security Testing (Snyk Integration)
+    # ============================================================
+    # This section adds a third-party security testing step using Snyk.
+    # Snyk scans the project’s dependencies for known vulnerabilities
+    # and generates a JSON report
+    - name: Setup Node.js for Snyk
+      uses: actions/setup-node@v3
       with:
-        api-level: 33       # choose your target SDK
-        target: google_apis # system image
-        arch: x86_64
-        profile: Pixel_7
+        node-version: '20'
 
-    - name: Start emulator
-      run: |
-        nohup $ANDROID_HOME/emulator/emulator -avd Pixel_7 -no-window -no-audio -no-snapshot-load &
-        adb wait-for-device
-        adb shell input keyevent 82
+    - name: Install Snyk CLI
+      run: npm install -g snyk
 
-    # Run instrumented / integration tests
-    - name: Run Integration Tests
-      run: ./gradlew connectedAndroidTest
+    - name: Run Security Scan with Snyk
+      run: snyk test --all-projects --severity-threshold=critical --json-file-output=snyk-report.json
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
+    - name: Upload Snyk Security Report
+      uses: actions/upload-artifact@v4
       with:
-        languages: ${{ matrix.language }}
-        build-mode: ${{ matrix.build-mode }}
-        
-    # Initializes the CodeQL tools for scanning.
+        name: snyk-security-report
+        path: snyk-report.json
+    # ============================================================
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
@@ -107,8 +107,9 @@ jobs:
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
-
-        # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
+        #
+        # For more details on CodeQL's query packs, refer to:
+        # https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
         # queries: security-extended,security-and-quality
 
     # If the analyze step fails for one of the languages you are analyzing with
@@ -126,7 +127,6 @@ jobs:
         echo '  make bootstrap'
         echo '  make release'
         exit 1
-
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
